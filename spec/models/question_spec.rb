@@ -9,7 +9,7 @@ describe Question do
     expect(@question).to be_valid
   end
 
-  specify 'title should be present' do
+  specify 'title should exist' do
     @question.title = ''
     expect(@question).to be_invalid
   end
@@ -19,7 +19,7 @@ describe Question do
     expect(@question).to be_invalid
   end
 
-  specify 'content should be present' do
+  specify 'content should exist' do
     @question.content = ''
     expect(@question).to be_invalid
   end

@@ -1,0 +1,10 @@
+<ul>
+  <% @questions.each do |question| %>
+  <li>
+    <h3><%= question.title %></h3>
+    <div><%= question.content %></div>
+  </li>
+  <% end %>
+</ul>
+
+<%= link_to '提问', new_question_path %>

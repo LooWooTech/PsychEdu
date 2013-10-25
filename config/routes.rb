@@ -1,4 +1,11 @@
 PsychEdu::Application.routes.draw do
+
+  resource :session, :only => [:create, :destroy]
+  resources :questions, :only => [:new, :create, :show]
+
+  get 'signin' => 'sessions#new'
+
+  root 'questions#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

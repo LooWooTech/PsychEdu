@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
-  validates :title, :presence => true, 
-    :length => {:maximum => 140}
+  belongs_to :questioner, :class_name => 'User'
 
+  validates :title, :presence => true, :length => {:maximum => 140}
   validates :content, :presence => true
 end

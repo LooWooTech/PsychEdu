@@ -5,4 +5,8 @@ class Question < ActiveRecord::Base
 
   validates :title, :presence => true, :length => {:maximum => 140}
   validates :content, :presence => true
+
+  def no_answer?
+    answers.empty?
+  end
 end

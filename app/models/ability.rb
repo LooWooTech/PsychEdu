@@ -6,6 +6,7 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
     can(:edit, Question){|question| question.questioner == user }
+    can(:delete, Question){|question| question.questioner == user && question.no_answer?}
     #   if user.admin?
     #     can :manage, :all
     #   else

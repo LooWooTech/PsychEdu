@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
 
-  before_filter :find_my_question, :only => [:edit, :update]
+  before_filter :find_my_question, :only => [:edit, :update, :destroy]
 
   def index
     @questions = Question.all
@@ -33,6 +33,11 @@ class QuestionsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @question.destroy
+    redirect_to root_path
   end
 
   private

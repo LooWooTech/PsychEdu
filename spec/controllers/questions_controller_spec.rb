@@ -75,4 +75,35 @@ describe QuestionsController do
       end
     end
   end
+
+  describe '#destroy' do
+    context 'for questioner' do
+      before :each do
+        @question = FactoryGirl.create(:question, :questioner => current_user)
+      end
+
+      it 'destroys the question' do
+        expect{
+          delete :destroy, :id => @question.id
+        }.to change(Question, :count).by(-1)
+      end
+
+      it 'redirects to questions list' do
+        delete :destroy, :id => @question.id
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'for others' do
+      before :each do
+        @question = FactoryGirl.create :question
+      end
+
+      it 'cannot find the question' do
+        expect{
+          delete :destroy, :id => @question.id
+        }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
 end

@@ -1,4 +1,7 @@
 class QuestionsController < ApplicationController
+
+  before_filter :find_my_question, :only => [:edit, :update]
+
   def index
     @questions = Question.all
   end
@@ -20,10 +23,26 @@ class QuestionsController < ApplicationController
     @question = Question.find params[:id]
   end
 
+  def edit
+    render :new
+  end
+
+  def update
+    if @question.update_attributes question_params
+      redirect_to @question
+    else
+      render :new
+    end
+  end
+
   private
 
   def question_params
     params.require(:question).permit!
+  end
+
+  def find_my_question
+    @question = current_user.questions.find params[:id]
   end
 
 end

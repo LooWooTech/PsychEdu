@@ -39,4 +39,40 @@ describe QuestionsController do
       end
     end
   end
+
+  describe '#update' do
+    before :each do
+      @question = FactoryGirl.create(:question, :questioner => current_user)
+    end
+
+    context 'with valid params' do
+      before :each do
+        @new_title = 'another question title'
+        patch :update, :question => {:title => @new_title}, :id => @question.id
+      end
+
+      it 'updates the question' do
+        expect(@question.reload.title).to eq(@new_title)
+      end
+
+      it 'redirects to the question path' do
+        expect(response).to redirect_to(@question)
+      end
+    end
+
+    context 'with invalid params' do
+      before :each do
+        @blank_title = ''
+        patch :update, :question => {:title => @blank_title}, :id => @question.id
+      end
+
+      it 'does not update the question' do
+        expect(@question.reload.title).not_to eq(@blank_title)
+      end
+
+      it 're-render the `new` template' do
+        expect(response).to render_template(:new)
+      end
+    end
+  end
 end

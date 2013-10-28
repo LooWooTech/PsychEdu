@@ -1,7 +1,7 @@
 PsychEdu::Application.routes.draw do
 
   resource :session, :only => [:create, :destroy]
-  resources :questions, :only => [:new, :create, :show]
+  resources :questions, :only => [:new, :create, :show, :edit, :update]
 
   get 'signin' => 'sessions#new'
 

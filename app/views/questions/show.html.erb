@@ -7,3 +7,7 @@
     <li><%= answer.content %></li>
   <% end %>
 </ul>
+<%= form_for [@question, @answer || Answer.new] do |f| %>
+  <%= f.text_area :content %>
+  <%= f.submit '回答' %>
+<% end %>

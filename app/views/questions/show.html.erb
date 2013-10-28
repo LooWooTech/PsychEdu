@@ -1,6 +1,6 @@
 <h3><%= @question.title %></h3>
 <p><%= @question.content %> </p>
-<%= link_to '编辑', edit_question_path(@question) %>
+<%= link_to '编辑', edit_question_path(@question) if can?(:edit, @question) %>
 <ul>
   <% @question.answers.each do |answer| %>
     <li><%= answer.content %></li>

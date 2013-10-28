@@ -7,6 +7,8 @@ gem 'rspec-rails'
 
 gem 'factory_girl_rails'
 
+gem 'cancan'
+
 # Use mysql as the database for Active Record
 gem 'mysql2'
 

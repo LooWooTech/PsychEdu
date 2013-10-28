@@ -25,8 +25,6 @@ describe Question do
   end
 
   describe '#destroy' do
-    specify 'only unreplied question can be destroyed by common user'
-    specify 'admin can destroy any question'
     specify 'all answers to this question should be destroyed'
   end
 end

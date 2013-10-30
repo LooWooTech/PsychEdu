@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
 
-  before_filter :find_question_and_answer, :only => [:edit, :update]
+  before_filter :find_question_and_answer, :only => [:edit, :update, :destroy]
 
   def create
     @question = Question.find params[:question_id]
@@ -21,6 +21,11 @@ class AnswersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @answer.destroy
+    redirect_to @question
   end
 
   private

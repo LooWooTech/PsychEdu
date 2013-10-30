@@ -1,5 +1,7 @@
 class AnswersController < ApplicationController
 
+  before_filter :find_question_and_answer, :only => [:edit, :update]
+
   def create
     @question = Question.find params[:question_id]
     @answer = current_user.answers.build(answer_params.merge :question => @question)
@@ -11,9 +13,24 @@ class AnswersController < ApplicationController
     end
   end
 
+  def edit; end
+
+  def update
+    if @answer.update_attributes answer_params
+      redirect_to @question
+    else
+      render :edit
+    end
+  end
+
   private
 
   def answer_params
     params.require(:answer).permit(:content)
+  end
+
+  def find_question_and_answer
+    @question = Question.find params[:question_id]
+    @answer = current_user.answers.find params[:id]
   end
 end

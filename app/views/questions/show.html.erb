@@ -1,10 +1,14 @@
 <h3><%= @question.title %></h3>
 <p><%= @question.content %> </p>
-<%= link_to '编辑', edit_question_path(@question) if can?(:edit, @question) %>
+<%= link_to '修改', edit_question_path(@question) if can?(:edit, @question) %>
 <%= link_to '删除', @question, :method => :delete if can?(:delete, @question) %>
-<ul>
+<ul class='answers'>
   <% @question.answers.each do |answer| %>
-    <li><%= answer.content %></li>
+    <li>
+      <%= answer.content %>
+      <%= link_to '修改', edit_question_answer_path(@question, answer), :class => 'edit' if can?(:edit, answer) %>
+      <%= link_to '删除', [@question, answer], :method => :delete, :class => 'delete' if can?(:delete, answer) %>
+    </li>
   <% end %>
 </ul>
 <%= form_for [@question, @answer || Answer.new] do |f| %>

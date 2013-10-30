@@ -5,8 +5,8 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
     user ||= User.new # guest user (not logged in)
-    can(:edit, Question){|question| question.questioner == user }
-    can(:delete, Question){|question| question.questioner == user && question.no_answer?}
+    can(:update, Question){|question| question.questioner == user }
+    can(:destroy, Question){|question| question.questioner == user && question.no_answer?}
 
     can(:manage, Answer){|answer| answer.answerer == user }
     #   if user.admin?

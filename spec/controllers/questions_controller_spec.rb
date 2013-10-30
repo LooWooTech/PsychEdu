@@ -99,10 +99,9 @@ describe QuestionsController do
         @question = FactoryGirl.create :question
       end
 
-      it 'cannot find the question' do
-        expect{
-          delete :destroy, :id => @question.id
-        }.to raise_error(ActiveRecord::RecordNotFound)
+      it 'renders 403' do
+        delete :destroy, :id => @question.id
+        expect(response.status).to eq(403)
       end
     end
   end

@@ -1,9 +1,9 @@
 class AnswersController < ApplicationController
 
-  before_filter :find_question_and_answer, :only => [:edit, :update, :destroy]
+  load_resource :question
+  load_and_authorize_resource :answer, :through => :question, :only =>[:edit, :update, :destroy]
 
   def create
-    @question = Question.find params[:question_id]
     @answer = current_user.answers.build(answer_params.merge :question => @question)
 
     if @answer.save
@@ -34,8 +34,4 @@ class AnswersController < ApplicationController
     params.require(:answer).permit(:content)
   end
 
-  def find_question_and_answer
-    @question = Question.find params[:question_id]
-    @answer = current_user.answers.find params[:id]
-  end
 end

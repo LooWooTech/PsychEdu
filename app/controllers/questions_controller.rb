@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
 
-  before_filter :find_my_question, :only => [:edit, :update, :destroy]
+  load_and_authorize_resource :only => [:edit, :update, :destroy]
 
   def index
     @questions = Question.all
@@ -43,11 +43,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit!
-  end
-
-  def find_my_question
-    @question = current_user.questions.find params[:id]
+    params.require(:question).permit(:title, :content)
   end
 
 end

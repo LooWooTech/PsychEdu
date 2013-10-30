@@ -1,13 +1,13 @@
 <h3><%= @question.title %></h3>
 <p><%= @question.content %> </p>
 <%= link_to '修改', edit_question_path(@question) if can?(:edit, @question) %>
-<%= link_to '删除', @question, :method => :delete if can?(:delete, @question) %>
+<%= link_to '删除', @question, :method => :delete if can?(:destroy, @question) %>
 <ul class='answers'>
   <% @question.answers.each do |answer| %>
     <li>
       <%= answer.content %>
       <%= link_to '修改', edit_question_answer_path(@question, answer), :class => 'edit' if can?(:edit, answer) %>
-      <%= link_to '删除', [@question, answer], :method => :delete, :class => 'delete' if can?(:delete, answer) %>
+      <%= link_to '删除', [@question, answer], :method => :delete, :class => 'delete' if can?(:destroy, answer) %>
     </li>
   <% end %>
 </ul>

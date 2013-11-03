@@ -1,0 +1,16 @@
+@import 'variables';
+
+@mixin article {
+  line-height: 1.5em;
+  word-wrap: break-word;
+  text-align: justify;
+  hyphens: auto;
+}
+
+@mixin button {
+  background: #0d77e4;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  padding: 8px 13px;
+}

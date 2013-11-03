@@ -1,17 +1,35 @@
-<h3><%= @question.title %></h3>
-<p><%= @question.content %> </p>
-<%= link_to '修改', edit_question_path(@question) if can?(:edit, @question) %>
-<%= link_to '删除', @question, :method => :delete if can?(:destroy, @question) %>
+<% @body_id = 'question-show' %>
+
+<div class='question'>
+  <h1><%= @question.title %></h1>
+  <div class='content'><%= @question.content %> </div>
+  <div class='addition'>
+    <div><%= @question.questioner.name %></div>
+    <div><%= l @question.created_at %></div>
+  </div>
+  <div class='actions'>
+    <%= link_to '修改', edit_question_path(@question), :remote => true, :class => 'edit' if can?(:edit, @question) %>
+    <%= link_to '删除', @question, :method => :delete, :confirm => '确实要删除这个问题吗？' if can?(:destroy, @question) %>
+  </div>
+</div>
+
 <ul class='answers'>
   <% @question.answers.each do |answer| %>
     <li>
-      <%= answer.content %>
-      <%= link_to '修改', edit_question_answer_path(@question, answer), :class => 'edit' if can?(:edit, answer) %>
-      <%= link_to '删除', [@question, answer], :method => :delete, :class => 'delete' if can?(:destroy, answer) %>
+      <div class='content'><%= answer.content %></div>
+      <div class='addition'>
+        <div><%= answer.answerer.name %></div>
+        <div><%= l answer.created_at %></div>
+      </div>
+      <div class='actions'>
+        <%= link_to '修改', edit_question_answer_path(@question, answer), :class => 'edit' if can?(:edit, answer) %>
+        <%= link_to '删除', [@question, answer], :method => :delete, :class => 'delete' if can?(:destroy, answer) %>
+      </div>
     </li>
   <% end %>
 </ul>
-<%= form_for [@question, @answer || Answer.new] do |f| %>
+
+<%= form_for [@question, @answer || Answer.new], :html => {:class => 'new-answer'} do |f| %>
   <%= f.text_area :content %>
   <%= f.submit '回答' %>
 <% end %>

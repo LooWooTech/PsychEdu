@@ -1,0 +1,83 @@
+@import 'variables';
+@import 'mixin';
+
+body {
+  font: 16px "Helvetica Neue", Helvetica, "Lucida Grande", "Luxi Sans", Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei Mono", LiGothicMed, SimHei;
+}
+
+input[type=submit], input[type=button], button {
+  @include button;
+}
+
+input[type=text], textarea {
+  padding: 7px $text-padding-width;
+  border: $text-border-width solid #045bb3;
+  border-radius: 4px;
+}
+
+a {
+  color: #0088cc;
+  text-decoration: none;
+}
+
+#mask {
+  height: 100%;
+  width: 100%;
+  z-index: 80;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #666;
+  opacity: 0.5;
+  display: none;
+}
+
+#question-form {
+  position: fixed;
+  top: 80px;
+  z-index: 90;
+  width: $modal-box-width;
+  .title {
+    background: #1575d5;
+    padding: 10px 15px;
+    color: #fff;
+    border-radius: 6px 6px 0 0;
+    overflow: hidden;
+    
+    h1 {
+      display: inline-block;
+    }
+
+    img.close {
+      float: right;
+    }
+  }
+  .panel {
+    background: #fff;
+    border-radius: 0 0 6px 6px;
+    padding: 17px $modal-box-padding-width;
+    overflow: hidden;
+
+    div {
+      margin-bottom: 15px;
+
+      label {
+        margin-bottom: 5px;
+        display: block;
+      }
+
+      input[type=text], textarea {
+        width: $modal-box-text-input-width;
+      }
+
+      textarea {
+        height: 100px;
+      }
+    }
+
+    input[type=submit] {
+      float: right;
+    }
+
+  }
+}

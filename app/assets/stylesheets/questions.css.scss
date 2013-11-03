@@ -1,0 +1,55 @@
+@import 'variables';
+@import 'mixin';
+
+#question-show {
+  h1 {
+    font-weight: bold;
+    font-size: $major-font-size;
+  }
+
+  .question, .answers li {
+    .addition {
+      div {
+        margin-right: 10px;
+        font-size: $minor-font-size;
+        color: #999;
+        float: left;
+      }
+    }
+
+    .actions {
+      font-size: $minor-font-size;
+      margin-left: 10px;
+      float: left;
+    }
+
+    .content {
+      @include article;
+      margin: 10px 0;
+    }
+  }
+
+  .question {
+    margin-bottom: 30px;
+    overflow: hidden;
+  }
+
+  .answers {
+    border-top: 1px solid #ddd;
+    li {
+      margin: 30px 0;
+      overflow: hidden;
+    }
+  }
+
+  .new-answer {
+    textarea {
+      width: $answer-textarea-width;
+      height: 150px;
+    }
+    
+    input[type=submit] {
+      float: right;
+    }
+  }
+}

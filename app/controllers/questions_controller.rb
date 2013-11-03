@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = current_user.questions.build
+    render :new, :layout => false
   end
 
   def create
@@ -24,7 +25,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    render :new
+    render :new, :layout => false
   end
 
   def update

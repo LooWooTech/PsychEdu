@@ -1,0 +1,62 @@
+@import 'variables';
+@import 'mixin';
+
+body {
+  padding-top: $header-height !important;
+
+  #header {
+    background: #0666c5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    line-height: $header-height;
+
+    .wrap {
+      margin: 0 auto;
+      width: $main-width;
+  
+      #search {
+        float: left;
+        
+        input {
+          width: 345px;
+        }
+      }
+
+      #ask {
+        @include button;
+        margin-left: 10px;
+      }
+  
+    }
+  }
+
+  #main {
+    width: $main-width;
+    margin: 0 auto;
+    padding-top: 60px;
+    overflow: hidden;
+
+    #categories {
+      width: $category-width;
+      float: left;
+
+      .forums li {
+        margin: 20px 0;
+      }
+    }
+
+    #content {
+      width: $main-content-width;
+      float: left;
+    }
+  }
+
+  #footer {
+    width: $main-width;
+    margin: 80px auto 30px;
+    color: #999;
+    text-align: center;
+  }
+}

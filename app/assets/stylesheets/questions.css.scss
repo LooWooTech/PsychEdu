@@ -3,8 +3,7 @@
 
 #question-show {
   h1 {
-    font-weight: bold;
-    font-size: $major-font-size;
+    @include question-title;
   }
 
   .question, .answers li {
@@ -30,14 +29,14 @@
   }
 
   .question {
-    margin-bottom: 30px;
+    margin-bottom: $question-list-spacing;
     overflow: hidden;
   }
 
   .answers {
     border-top: 1px solid #ddd;
     li {
-      margin: 30px 0;
+      margin: $question-list-spacing 0;
       overflow: hidden;
     }
   }
@@ -50,6 +49,23 @@
     
     input[type=submit] {
       float: right;
+    }
+  }
+}
+
+#question-index {
+  h3 {
+    @include question-title;
+  }
+
+  #top-questions, #questions {
+    li {
+      margin-bottom: $question-list-spacing;
+
+      .content {
+        margin: 10px 0;
+        @include article;
+      }
     }
   }
 }

@@ -1,9 +1,12 @@
 class QuestionsController < ApplicationController
 
-  load_and_authorize_resource :only => [:edit, :update, :destroy]
+  helper 'questions'
+
+  load_and_authorize_resource :only => [:edit, :update, :destroy, :top]
 
   def index
-    @questions = Question.all
+    @top = Question.top
+    @questions = Question.nontop.page(params[:page]).per(10)
   end
 
   def new
@@ -39,6 +42,11 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     redirect_to root_path
+  end
+
+  def top
+    @question.toggle_top
+    redirect_to @question
   end
 
   private

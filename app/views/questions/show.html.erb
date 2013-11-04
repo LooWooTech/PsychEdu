@@ -10,6 +10,7 @@
   <div class='actions'>
     <%= link_to '修改', edit_question_path(@question), :remote => true, :class => 'edit' if can?(:edit, @question) %>
     <%= link_to '删除', @question, :method => :delete, :confirm => '确实要删除这个问题吗？' if can?(:destroy, @question) %>
+    <%= top_link %>
   </div>
 </div>
 

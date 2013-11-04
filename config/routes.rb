@@ -3,6 +3,9 @@ PsychEdu::Application.routes.draw do
   resource :session, :only => [:create, :destroy]
 
   resources :questions, :only => [:new, :create, :show, :edit, :update, :destroy] do
+    member do
+      patch 'top'
+    end
     resources :answers, :only => [:create, :edit, :update, :destroy]
   end
 

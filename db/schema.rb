@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131028055250) do
+ActiveRecord::Schema.define(version: 20131104020837) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 20131028055250) do
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
 
+  create_table "forums", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "questions", force: true do |t|
     t.string   "title"
     t.text     "content"
@@ -31,6 +37,7 @@ ActiveRecord::Schema.define(version: 20131028055250) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "questioner_id"
+    t.integer  "forum_id"
   end
 
   create_table "users", force: true do |t|

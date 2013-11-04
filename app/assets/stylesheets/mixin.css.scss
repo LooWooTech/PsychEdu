@@ -1,5 +1,10 @@
 @import 'variables';
 
+@mixin question-title {
+  font-weight: bold;
+  font-size: $major-font-size;
+}
+
 @mixin article {
   line-height: 1.5em;
   word-wrap: break-word;

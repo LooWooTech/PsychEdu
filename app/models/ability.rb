@@ -7,6 +7,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
     can(:update, Question){|question| question.questioner == user }
     can(:destroy, Question){|question| question.questioner == user && question.no_answer?}
+    can(:manage, Question){|question| user.fourm_admin? question.forum}
 
     can(:manage, Answer){|answer| answer.answerer == user }
     #   if user.admin?

@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
 
   helper 'questions'
 
-  load_and_authorize_resource :only => [:edit, :update, :destroy, :top]
+  load_and_authorize_resource :only => [:edit, :update, :destroy, :top, :refine]
 
   def index
     @top = Question.top
@@ -46,6 +46,11 @@ class QuestionsController < ApplicationController
 
   def top
     @question.toggle_top
+    redirect_to @question
+  end
+
+  def refine
+    @question.toggle_refined
     redirect_to @question
   end
 

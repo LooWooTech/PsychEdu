@@ -5,6 +5,7 @@ PsychEdu::Application.routes.draw do
   resources :questions, :only => [:new, :create, :show, :edit, :update, :destroy] do
     member do
       patch 'top'
+      patch 'refine'
     end
     resources :answers, :only => [:create, :edit, :update, :destroy]
   end

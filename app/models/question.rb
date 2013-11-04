@@ -15,6 +15,10 @@ class Question < ActiveRecord::Base
     update_attribute :top, !top?
   end
 
+  def toggle_refined
+    update_attribute :refined, !refined?
+  end
+
   class << self
     def top
       where :top => true

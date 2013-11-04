@@ -4,8 +4,15 @@ module QuestionsHelper
     link_to text, top_question_path(@question), :method => :patch if can?(:manage, @question)
   end
 
+  def refine_link
+    text = @question.refined? ? '取消精选' : '精选'
+    link_to text, refine_question_path(@question), :method => :patch if can?(:manage, @question)
+  end
+
   def question_link(question)
-    title = question.top? ? "[顶]#{question.title}" : question.title
+    title = question.title
+    title = "[顶]#{title}" if question.top?
+    title = "[精]#{title}" if question.refined?
     link_to title, question
   end
 end

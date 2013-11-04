@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131104020837) do
+ActiveRecord::Schema.define(version: 20131104023556) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -21,7 +21,20 @@ ActiveRecord::Schema.define(version: 20131104020837) do
     t.integer  "answerer_id"
   end
 
+  add_index "answers", ["answerer_id"], name: "index_answers_on_answerer_id", using: :btree
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+
+  create_table "comments", force: true do |t|
+    t.text     "content"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "commenter_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
+  add_index "comments", ["commenter_id"], name: "index_comments_on_commenter_id", using: :btree
 
   create_table "forums", force: true do |t|
     t.string   "name"
@@ -39,6 +52,9 @@ ActiveRecord::Schema.define(version: 20131104020837) do
     t.integer  "questioner_id"
     t.integer  "forum_id"
   end
+
+  add_index "questions", ["forum_id"], name: "index_questions_on_forum_id", using: :btree
+  add_index "questions", ["questioner_id"], name: "index_questions_on_questioner_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"

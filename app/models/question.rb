@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
   belongs_to :forum
 
   has_many :answers
+  has_many :comments, :as => :commentable
 
   validates :title, :presence => true, :length => {:maximum => 140}
   validates :content, :presence => true

@@ -29,6 +29,7 @@ a {
   left: 0;
   background: #666;
   opacity: 0.5;
+  filter: alpha(opacity=50);
   display: none;
 }
 

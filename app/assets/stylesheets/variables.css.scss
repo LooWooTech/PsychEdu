@@ -15,6 +15,10 @@ $major-font-size: 18px;
 $font-size: 16px;
 $minor-font-size: 14px;
 
-$answer-textarea-width: $main-content-width - $text-padding-width * 2 - 10px;
+$answer-textarea-width: $main-content-width - $text-padding-width * 2 - 5px;
+
+$comment-margin-width: 12px;
+$comment-indent-width: 50px;
+$comment-textarea-width: $main-content-width - $text-padding-width * 2 - $comment-margin-width * 2 - $comment-indent-width - 5px ;
 
 $question-list-spacing: 30px;

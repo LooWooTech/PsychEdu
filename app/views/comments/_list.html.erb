@@ -1,0 +1,9 @@
+<div class='comments'>
+  <ul>
+    <%= render :collection => question.comments, :partial => 'comments/list_item', :as => :comment %>
+  </ul>
+  <%= form_for [question, Comment.new], :remote => true, :html => {:class => 'new-comment'} do |f| %>
+    <%= f.text_area :content %>
+    <%= f.submit '评论'%>
+  <% end %>
+</div>

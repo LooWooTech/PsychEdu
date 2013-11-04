@@ -8,6 +8,8 @@ PsychEdu::Application.routes.draw do
       patch 'refine'
     end
     resources :answers, :only => [:create, :edit, :update, :destroy]
+
+    resources :comments, :controller => 'question_comments', :only => [:index, :create, :destroy]
   end
 
   get 'signin' => 'sessions#new'

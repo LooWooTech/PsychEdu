@@ -42,6 +42,7 @@
   }
 
   .new-answer {
+    overflow: hidden;
     textarea {
       width: $answer-textarea-width;
       height: 150px;
@@ -58,7 +59,7 @@
     @include question-title;
   }
 
-  #top-questions, #questions {
+  .top-questions, .questions {
     li {
       margin-bottom: $question-list-spacing;
 

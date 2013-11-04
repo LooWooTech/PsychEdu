@@ -4,6 +4,7 @@ class Question < ActiveRecord::Base
 
   has_many :answers
   has_many :comments, :as => :commentable
+  has_many :complaints, :as => :complainable
 
   validates :title, :presence => true, :length => {:maximum => 140}
   validates :content, :presence => true

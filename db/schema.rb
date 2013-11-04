@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131104023556) do
+ActiveRecord::Schema.define(version: 20131104034120) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -35,6 +35,18 @@ ActiveRecord::Schema.define(version: 20131104023556) do
 
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
   add_index "comments", ["commenter_id"], name: "index_comments_on_commenter_id", using: :btree
+
+  create_table "complaints", force: true do |t|
+    t.text     "content"
+    t.integer  "complainable_id"
+    t.string   "complainable_type"
+    t.integer  "complainer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "complaints", ["complainable_id"], name: "index_complaints_on_complainable_id", using: :btree
+  add_index "complaints", ["complainer_id"], name: "index_complaints_on_complainer_id", using: :btree
 
   create_table "forums", force: true do |t|
     t.string   "name"

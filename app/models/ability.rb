@@ -10,6 +10,8 @@ class Ability
     can(:manage, Question){|question| user.fourm_admin? question.forum}
 
     can(:manage, Answer){|answer| answer.answerer == user }
+
+    can(:destroy, Comment){|comment| comment.commenter == user}
     #   if user.admin?
     #     can :manage, :all
     #   else

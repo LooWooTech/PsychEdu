@@ -11,3 +11,6 @@ $ ->
       $('#question-show #content > .comments').toggle()
       
     false
+
+  $('#question-show #content').on 'ajax:success', '.comments .delete', (xhr, data) ->
+    $(this).closest('li').fadeOut('fast')

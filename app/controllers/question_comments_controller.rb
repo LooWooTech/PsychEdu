@@ -1,6 +1,6 @@
 class QuestionCommentsController < ApplicationController
 
-  before_filter :find_question
+  load_resource :question
 
   def index
     render :partial => 'comments/list', :locals => {:question => @question}
@@ -16,13 +16,17 @@ class QuestionCommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = @question.comments.find params[:id]
+    authorize! :destroy, @comment
+    @comment.destroy
+    render :nothing => true
+  end
+
   private
 
   def comment_params
     params.require(:comment).permit(:content)
   end
 
-  def find_question
-    @question = Question.find params[:question_id]
-  end
 end

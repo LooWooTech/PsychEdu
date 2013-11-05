@@ -14,3 +14,14 @@ $ ->
 
   $('#question-show #content').on 'ajax:success', '.comments .delete', (xhr, data) ->
     $(this).closest('li').fadeOut('fast')
+
+
+  $('#question-show .answers .actions a.comments').click ->
+    parent = $(this).closest('li')
+    if parent.find('> .comments').size() == 0
+      $.get $(this).attr('href'), (data)->
+        parent.append data
+    else
+      parent.find('> .comments').toggle()
+      
+    false

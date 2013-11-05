@@ -4,8 +4,8 @@
   <h1><%= @question.title %></h1>
   <div class='content'><%= @question.content %> </div>
   <div class='addition'>
-    <div><%= @question.questioner.name %></div>
-    <div><%= l @question.created_at %></div>
+    <span><%= @question.questioner.name %></span>
+    <span><%= l @question.created_at %></span>
   </div>
   <div class='actions'>
     <%= link_to '修改', edit_question_path(@question), :remote => true, :class => 'edit' if can?(:edit, @question) %>

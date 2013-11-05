@@ -1,11 +1,12 @@
 <li>
   <div class='content'><%= answer.content %></div>
   <div class='addition'>
-    <div><%= answer.answerer.name %></div>
-    <div><%= l answer.created_at %></div>
+    <span><%= answer.answerer.name %></span>
+    <span><%= l answer.created_at %></span>
   </div>
   <div class='actions'>
-    <%= link_to '修改', edit_question_answer_path(@question, answer), :class => 'edit' if can?(:edit, answer) %>
-    <%= link_to '删除', [@question, answer], :method => :delete, :class => 'delete', :confirm => '确实要删除这个回答吗？' if can?(:destroy, answer) %>
+    <%= link_to '修改', edit_answer_path(answer), :class => 'edit' if can?(:edit, answer) %>
+    <%= link_to '删除', answer, :method => :delete, :class => 'delete', :confirm => '确实要删除这个回答吗？' if can?(:destroy, answer) %>
+    <%= link_to "评论(#{answer.comments.count})", answer_comments_path(answer), :remote => true, :class => 'comments' %>
   </div>
 </li>

@@ -19,3 +19,39 @@
   border-radius: 4px;
   padding: 8px 13px;
 }
+
+@mixin comment-list {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 0 $comment-indent-width 40px 0;
+  ul {
+    li {
+      padding: 10px 0;
+      margin: 0 12px;
+      border-bottom: 1px solid #ddd;
+      overflow: hidden;
+  
+      .name, .addition {
+        font-size: $minor-font-size;
+        color: #999;
+      }
+  
+      .content {
+        @include article;
+        margin: 10px 0;
+      }
+    }
+  
+  }
+  .new-comment {
+    margin: 12px;
+    overflow: hidden;
+    textarea {
+      width: $comment-textarea-width;
+    }
+    
+    input[type=submit] {
+      float: right;
+    }
+  }
+}

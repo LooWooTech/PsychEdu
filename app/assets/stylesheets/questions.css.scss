@@ -6,20 +6,24 @@
     @include question-title;
   }
 
-  .question, .answers li {
+  .answers {
+    overflow: hidden;
+  }
+
+  .question, .answers > li {
     .addition {
-      div {
+      display: inline-block;
+      span {
         margin-right: 10px;
         font-size: $minor-font-size;
         color: #999;
-        float: left;
       }
     }
 
     .actions {
       font-size: $minor-font-size;
       margin-left: 10px;
-      float: left;
+      display: inline-block;
     }
 
     .content {
@@ -35,9 +39,16 @@
 
   .answers {
     border-top: 1px solid #ddd;
-    li {
+    &> li {
       margin: $question-list-spacing 0;
       overflow: hidden;
+
+      &> .comments {
+        @include comment-list;
+        margin-top: 20px;
+        margin-bottom: 0;
+        clear: both;
+      }
     }
   }
 

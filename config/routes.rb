@@ -2,14 +2,23 @@ PsychEdu::Application.routes.draw do
 
   resource :session, :only => [:create, :destroy]
 
-  resources :questions, :only => [:new, :create, :show, :edit, :update, :destroy] do
-    member do
-      patch 'top'
-      patch 'refine'
-    end
-    resources :answers, :only => [:create, :edit, :update, :destroy]
+  concern :commentable do
+    resources :comments, :only => [:index, :create, :destroy]
+  end
 
-    resources :comments, :controller => 'question_comments', :only => [:index, :create, :destroy]
+  shallow do
+    resources :questions, 
+      :only => [:new, :create, :show, :edit, :update, :destroy], 
+      :concerns => :commentable do
+
+      member do
+        patch 'top'
+        patch 'refine'
+      end
+
+      resources :answers, :only => [:create, :edit, :update, :destroy], :concerns => :commentable
+
+    end
   end
 
   get 'signin' => 'sessions#new'

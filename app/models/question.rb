@@ -2,12 +2,15 @@ class Question < ActiveRecord::Base
   belongs_to :questioner, :class_name => 'User'
   belongs_to :forum
 
-  has_many :answers
-  has_many :comments, :as => :commentable
-  has_many :complaints, :as => :complainable
+  has_many :answers, :dependent => :destroy
+  has_many :comments, :as => :commentable, :dependent => :destroy
+  has_many :complaints, :as => :complainable, :dependent => :destroy
 
   validates :title, :presence => true, :length => {:maximum => 140}
   validates :content, :presence => true
+
+  scope :top, -> {where :top => true}
+  scope :nontop, -> {where :top => false}
 
   def no_answer?
     answers.empty?
@@ -21,13 +24,4 @@ class Question < ActiveRecord::Base
     update_attribute :refined, !refined?
   end
 
-  class << self
-    def top
-      where :top => true
-    end
-
-    def nontop
-      where :top => false
-    end
-  end
 end

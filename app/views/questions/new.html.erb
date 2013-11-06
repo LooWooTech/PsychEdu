@@ -1,20 +1,12 @@
-<div id='question-form'>
-  <div class='title'>
-    <h1>提问</h1>
-    <img class='close' src='#'/>
+<%= form_for @question, :html => {:id => 'question-form'} do |f| %>
+  <div>
+    <%= f.text_field :title, :placeholder => '写下你的问题' %>
   </div>
-  <div class='panel'>
-    <%= form_for @question do |f| %>
-      <div>
-        <%= f.text_field :title, :placeholder => '写下你的问题' %>
-      </div>
-      <div>
-        <%= f.label :content, '问题说明：' %>
-        <%= f.text_area :content %>
-      </div>
-      <div>
-        <%= f.submit '发布'%>
-      </div>
-    <% end %>
+  <div>
+    <%= f.label :content, '问题说明：' %>
+    <%= f.text_area :content %>
   </div>
-</div>
+  <div>
+    <%= f.submit '发布'%>
+  </div>
+<% end %>

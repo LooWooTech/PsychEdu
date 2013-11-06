@@ -10,8 +10,9 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @question = current_user.questions.build
-    render :new, :layout => false
+    @title = '提问'
+    @question = Question.new
+    render :new, :layout => 'modal_box'
   end
 
   def create

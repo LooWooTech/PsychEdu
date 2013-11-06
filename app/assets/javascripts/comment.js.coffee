@@ -1,5 +1,5 @@
 $ ->
-  $('#question-show').on 'ajax:success', '.new-comment', (xhr, data)->
+  $('#question-show').on 'ajax:success', '.new-comment', (e, data)->
     $('#question-show .comments ul').append data
     $(this).find('textarea').val('')
 
@@ -12,7 +12,7 @@ $ ->
       
     false
 
-  $('#question-show #content').on 'ajax:success', '.comments .delete', (xhr, data) ->
+  $('#question-show #content').on 'ajax:success', '.comments .delete', (e, data) ->
     $(this).closest('li').fadeOut('fast')
 
 

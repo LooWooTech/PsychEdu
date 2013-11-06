@@ -15,4 +15,13 @@ class ApplicationController < ActionController::Base
   def signin(user)
     session[:current_user_id] = user
   end
+
+  def find_polymorphic_parent
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        return $1.classify.constantize.find(value)
+      end
+    end
+    nil
+  end
 end

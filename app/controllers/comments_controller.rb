@@ -30,11 +30,6 @@ class CommentsController < ApplicationController
   end
 
   def find_commentable
-    params.each do |name, value|
-      if name =~ /(.+)_id$/
-        @commentable = $1.classify.constantize.find(value)
-        return
-      end
-    end
+    @commentable = find_polymorphic_parent
   end
 end

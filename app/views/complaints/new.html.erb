@@ -1,0 +1,11 @@
+<%= form_for [@complainable, @complaint],
+  :remote => true,
+  :html => {:id => 'complaint-form', 'data-type' => 'text'} do |f| %>
+
+  <div>
+    <%= f.text_area :content, :placeholder => '举报理由' %>
+  </div>
+  <div>
+    <%= f.submit '举报' %>
+  </div>
+<% end %>

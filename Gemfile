@@ -5,10 +5,6 @@ gem 'rails', '4.0.0'
 
 gem 'kaminari'
 
-gem 'rspec-rails'
-
-gem 'factory_girl_rails'
-
 gem 'cancan'
 
 # Use mysql as the database for Active Record
@@ -38,6 +34,17 @@ gem 'jbuilder', '~> 1.2'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'cucumber-rails', :require => false
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+end
+
+group :production do
+  gem 'puma'
 end
 
 # Use ActiveModel has_secure_password

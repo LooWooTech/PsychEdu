@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    render :new, :layout => false
+    render :new, :layout => 'modal_box'
   end
 
   def update

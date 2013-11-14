@@ -13,11 +13,13 @@ class AnswersController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    render :edit, :layout => 'modal_box'
+  end
 
   def update
     if @answer.update_attributes answer_params
-      redirect_to @answer.question
+      render :partial => 'questions/answer', :object => @answer
     else
       render :edit
     end

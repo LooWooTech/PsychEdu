@@ -1,11 +1,11 @@
-<li>
+<li data-answer-id='<%= answer.id %>'>
   <div class='content'><%= answer.content %></div>
   <div class='addition'>
     <span><%= answer.answerer.name %></span>
     <span><%= l answer.created_at %></span>
   </div>
   <div class='actions'>
-    <%= link_to '修改', edit_answer_path(answer), :class => 'edit' if can?(:edit, answer) %>
+    <%= link_to '修改', edit_answer_path(answer), :class => 'edit', :remote => true if can?(:edit, answer) %>
     <%= link_to '删除', answer, :method => :delete, :class => 'delete', :confirm => '确实要删除这个回答吗？' if can?(:destroy, answer) %>
     <%= link_to "评论(#{answer.comments.count})", answer_comments_path(answer), :remote => true, :class => 'comments' %>
     <%= link_to "举报", new_answer_complaint_path(answer), :remote => true, :class => 'complain' %>

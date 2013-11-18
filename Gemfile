@@ -36,7 +36,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :test do
+group :test, :development do
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
   gem 'factory_girl_rails'

@@ -18,7 +18,7 @@
 </div>
 
 <ul class='answers'>
-  <%= render :collection => @question.answers, :partial => 'questions/answer' %>
+  <%= render :collection => @question.answers, :partial => 'ask/questions/answer' %>
 </ul>
 
 <%= form_for [@question, @answer || Answer.new], :html => {:class => 'new-answer'} do |f| %>

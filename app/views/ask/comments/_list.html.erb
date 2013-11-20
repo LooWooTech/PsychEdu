@@ -1,6 +1,6 @@
 <div class='comments'>
   <ul>
-    <%= render :collection => commentable.comments, :partial => 'comments/list_item', :as => :comment, :locals => {:commentable => commentable} %>
+    <%= render :collection => commentable.comments, :partial => 'ask/comments/list_item', :as => :comment, :locals => {:commentable => commentable} %>
   </ul>
   <%= form_for [commentable, Comment.new], :remote => true, :html => {:class => 'new-comment'} do |f| %>
     <%= f.text_area :content %>

@@ -1,34 +1,39 @@
 PsychEdu::Application.routes.draw do
   resource :session, :only => [:create, :destroy]
 
-  concern :complainable do
-    resources :complaints, :only => [:new, :create]
-  end
+  scope :module => :ask do
+  constraints :subdomain => 'ask' do
+    concern :complainable do
+      resources :complaints, :only => [:new, :create]
+    end
 
-  concern :commentable do
-    resources :comments, 
-      :only => [:index, :create, :destroy],
-      :concerns => :complainable
-  end
+    concern :commentable do
+      resources :comments,
+        :only => [:index, :create, :destroy],
+        :concerns => :complainable
+    end
 
-  shallow do
-    resources :questions, 
-      :only => [:new, :create, :show, :edit, :update, :destroy], 
-      :concerns => [:commentable, :complainable] do
+    shallow do
+      resources :questions,
+        :only => [:new, :create, :show, :edit, :update, :destroy],
+        :concerns => [:commentable, :complainable] do
 
-      member do
-        patch 'top'
-        patch 'refine'
+        member do
+          patch 'top'
+          patch 'refine'
+        end
+
+        resources :answers,
+          :only => [:create, :edit, :update, :destroy],
+          :concerns => [:commentable, :complainable]
+
       end
-
-      resources :answers, 
-        :only => [:create, :edit, :update, :destroy],
-        :concerns => [:commentable, :complainable]
-
     end
   end
 
+end
+
   get 'signin' => 'sessions#new'
 
-  root 'questions#index'
+  root 'ask/questions#index'
 end

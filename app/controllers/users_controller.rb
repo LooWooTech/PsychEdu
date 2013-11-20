@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
 
   def new
-    @user = User.new
+    @user = Student.new
   end
 
   def create
-    @user = User.new params[:user]
+    @user = Student.new params[:user]
     if @user.save
       redirect_to signin_path
     else

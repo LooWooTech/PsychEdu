@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  belongs_to :questioner, :class_name => 'User'
+  belongs_to :questioner, :polymorphic => true
   belongs_to :forum
 
   has_many :answers, :dependent => :destroy

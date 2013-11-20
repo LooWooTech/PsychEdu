@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131104034120) do
+ActiveRecord::Schema.define(version: 20131120004702) do
+
+  create_table "admins", force: true do |t|
+    t.string   "login"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -19,6 +25,7 @@ ActiveRecord::Schema.define(version: 20131104034120) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "answerer_id"
+    t.string   "answerer_type"
   end
 
   add_index "answers", ["answerer_id"], name: "index_answers_on_answerer_id", using: :btree
@@ -31,6 +38,7 @@ ActiveRecord::Schema.define(version: 20131104034120) do
     t.integer  "commenter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "commenter_type"
   end
 
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
@@ -43,6 +51,7 @@ ActiveRecord::Schema.define(version: 20131104034120) do
     t.integer  "complainer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "complainer_type"
   end
 
   add_index "complaints", ["complainable_id"], name: "index_complaints_on_complainable_id", using: :btree
@@ -57,21 +66,33 @@ ActiveRecord::Schema.define(version: 20131104034120) do
   create_table "questions", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.boolean  "top",           default: false
-    t.boolean  "refined",       default: false
+    t.boolean  "top",             default: false
+    t.boolean  "refined",         default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "questioner_id"
     t.integer  "forum_id"
+    t.string   "questioner_type"
   end
 
   add_index "questions", ["forum_id"], name: "index_questions_on_forum_id", using: :btree
   add_index "questions", ["questioner_id"], name: "index_questions_on_questioner_id", using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "students", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "votes", force: true do |t|
+    t.integer  "score"
+    t.integer  "voter_id"
+    t.integer  "answer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["answer_id"], name: "index_votes_on_answer_id", using: :btree
+  add_index "votes", ["voter_id"], name: "index_votes_on_voter_id", using: :btree
 
 end

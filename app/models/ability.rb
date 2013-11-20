@@ -4,14 +4,18 @@ class Ability
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     #
-    user ||= User.new # guest user (not logged in)
+    user ||= Student.new # guest user (not logged in)
+
     can(:update, Question){|question| question.questioner == user }
     can(:destroy, Question){|question| question.questioner == user && question.no_answer?}
-    can(:manage, Question){|question| user.fourm_admin? question.forum}
 
     can(:manage, Answer){|answer| answer.answerer == user }
 
     can(:destroy, Comment){|comment| comment.commenter == user}
+
+    if user.is_a? Admin
+      can(:manage, Question){|question| user.fourm_admin? question.forum}
+    end
     #   if user.admin?
     #     can :manage, :all
     #   else

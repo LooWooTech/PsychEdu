@@ -1,6 +1,6 @@
 class Answer < ActiveRecord::Base
   belongs_to :question
-  belongs_to :answerer, :class_name => 'User'
+  belongs_to :answerer, :polymorphic => true
 
   has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :complaints, :as => :complainable, :dependent => :destroy

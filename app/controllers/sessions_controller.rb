@@ -1,8 +1,10 @@
 class SessionsController < ApplicationController
 
   def create
-    @user = Student.find_or_create_by(:name => params[:name])
-    signin @user
-    redirect_to root_path
+    if Administrator.authenticate params[:login], params[:password]
+      redirect_to admin_url
+    else
+      render :new
+    end
   end
 end

@@ -1,5 +1,5 @@
 module Ask
-  class ComplaintsController < ApplicationController
+  class ComplaintsController < AskController
   
     before_filter :find_complainable
   

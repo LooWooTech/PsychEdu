@@ -1,7 +1,4 @@
 class ApplicationController < ActionController::Base
-
-  include UrlHelper
-
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -13,6 +10,28 @@ class ApplicationController < ActionController::Base
   def current_user
     return @current_user if defined? @current_user
     @current_user ||= Student.find session[:current_user_id]
+  end
+
+  def logged_in?
+    !!current_user
+  end
+
+  def login_required
+    if !logged_in?
+      store_location
+      flash[:notice] = '请先登录'
+      redirect_to signin_path
+      return false
+    end
+  end
+
+  def store_location
+    session[:return_to] = request.request_uri
+  end
+
+  def redirect_back_or_default(default_path)
+    redirect_to(session[:return_to]||default_path)
+    session[:return_to] = nil
   end
 
   def signin(user)

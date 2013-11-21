@@ -5,9 +5,7 @@ describe Question do
     @question = FactoryGirl.build :question
   end
 
-  specify 'valid' do
-    expect(@question).to be_valid
-  end
+  specify { expect(@question).to be_valid }
 
   specify 'title should exist' do
     @question.title = ''

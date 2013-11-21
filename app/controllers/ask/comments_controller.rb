@@ -1,5 +1,5 @@
 module Ask
-  class CommentsController < ApplicationController
+  class CommentsController < AskController
   
     before_filter :find_commentable, :only => [:index, :create]
   

@@ -13,6 +13,6 @@ module QuestionsHelper
     title = question.title
     title = "[顶]#{title}" if question.top?
     title = "[精]#{title}" if question.refined?
-    link_to title, question_url(question, :subdomain => 'ask')
+    link_to title, question_url(question)
   end
 end

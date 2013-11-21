@@ -1,5 +1,5 @@
 module Ask
-  class AnswersController < ApplicationController
+  class AnswersController < AskController
   
     load_resource :question, :only => :create
     load_and_authorize_resource :only =>[:edit, :update, :destroy]

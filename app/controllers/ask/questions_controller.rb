@@ -1,5 +1,5 @@
 module Ask
-  class QuestionsController < ApplicationController
+  class QuestionsController < AskController
   
     helper 'questions'
   

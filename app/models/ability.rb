@@ -13,7 +13,7 @@ class Ability
 
     can(:destroy, Comment){|comment| comment.commenter == user}
 
-    if user.is_a? Admin
+    if user.is_a? Administrator
       can(:manage, Question){|question| user.fourm_admin? question.forum}
     end
     #   if user.admin?

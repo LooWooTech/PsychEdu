@@ -1,4 +1,15 @@
+<% if flash[:notice] %>
+  <div class='notice'><%= flash[:notice] %></div>
+<% end %>
+
 <%= form_tag session_path do %>
-  <%= text_field_tag :name %>
-  <%= submit_tag 'sign in' %>
+  <div>
+    <%= text_field_tag :login, params[:login], :placeholder => '登录名' %>
+  </div>
+  <div>
+    <%= password_field_tag :password, params[:password], :placeholder => '密码' %>
+  </div>
+  <div>
+    <%= submit_tag '登录' %>
+  </div>
 <% end %>

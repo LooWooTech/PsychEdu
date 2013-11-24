@@ -1,5 +1,18 @@
-<ul>
+<%= link_to '新增学员', new_student_path %>
+<table>
+  <tr>
+    <th>登录名</th>
+    <th>姓名</th>
+    <th>性别</th>
+    <th>单位编码</th>
+  </tr>
   <% @students.each do |student| %>
-    <li><%= student.name %></li>
+    <tr>
+      <td><%= link_to student.login, student %></td>
+      <td><%= student.name %></td>
+      <td><%= t student.gender %></td>
+      <td><%= student.unit_code %></td>
+    </tr>
   <% end%>
-</ul>
+</table>
+<%= paginate @students %>

@@ -1,15 +1,11 @@
 class Administrator < ActiveRecord::Base
-  has_secure_password
 
-  validates :login, :presence => true
+  has_many :added_students, :class_name => 'Student', :foreign_key => 'added_by_id'
+
+  include HasAnAccount
   
   def fourm_admin?(forum)
     true
   end
 
-  class << self
-    def authenticate(login, password)
-      find_by(:login => login).try :authenticate, password
-    end
-  end
 end

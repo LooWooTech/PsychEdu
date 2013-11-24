@@ -1,8 +1,6 @@
 module Ask
   class QuestionsController < AskController
   
-    helper 'questions'
-  
     load_and_authorize_resource :only => [:edit, :update, :destroy, :top, :refine]
   
     def index

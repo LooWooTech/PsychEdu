@@ -7,9 +7,19 @@ class ApplicationController < ActionController::Base
     render :file => "#{Rails.root}/public/403", :format => [:html], :status => 403, :layout => false
   end
 
+  def login(account)
+    session[:current_account_id] = account.id
+    @current_user = account.owner
+  end
+
+  def logout
+    session[:current_account_id] = nil
+    @current_user = nil
+  end
+
   def current_user
     return @current_user if defined? @current_user
-    @current_user ||= Student.find session[:current_user_id]
+    @current_user ||= Account.find_by(:id => session[:current_account_id]).try(:owner)
   end
 
   def logged_in?
@@ -17,25 +27,23 @@ class ApplicationController < ActionController::Base
   end
 
   def login_required
-    if !logged_in?
-      store_location
-      flash[:notice] = '请先登录'
-      redirect_to signin_path
-      return false
-    end
+    login_first if !logged_in?
+  end
+
+  def login_first(notice='请先登录')
+    store_location
+    flash[:notice] = notice
+    redirect_to login_path
+    return false
   end
 
   def store_location
-    session[:return_to] = request.request_uri
+    session[:return_to] = request.url
   end
 
   def redirect_back_or_default(default_path)
     redirect_to(session[:return_to]||default_path)
     session[:return_to] = nil
-  end
-
-  def signin(user)
-    session[:current_user_id] = user
   end
 
   def find_polymorphic_parent

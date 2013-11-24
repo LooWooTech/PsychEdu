@@ -11,13 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120120712) do
+ActiveRecord::Schema.define(version: 20131122042732) do
 
-  create_table "administrators", force: true do |t|
+  create_table "accounts", force: true do |t|
     t.string   "login"
+    t.string   "password_digest"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_digest"
+  end
+
+  add_index "accounts", ["owner_id"], name: "index_accounts_on_owner_id", using: :btree
+
+  create_table "administrators", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "answers", force: true do |t|
@@ -83,7 +92,13 @@ ActiveRecord::Schema.define(version: 20131120120712) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "gender"
+    t.string   "unit_code"
+    t.string   "note"
+    t.integer  "added_by_id"
   end
+
+  add_index "students", ["added_by_id"], name: "index_students_on_added_by_id", using: :btree
 
   create_table "votes", force: true do |t|
     t.integer  "score"

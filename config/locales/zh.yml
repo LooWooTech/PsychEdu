@@ -10,3 +10,9 @@ zh:
       previous: '&lsaquo;'
       next: '&rsaquo;'
       truncate: '...'
+  admin:
+    students:
+      new:
+        male: 男
+        female: 女
+        secret: 保密

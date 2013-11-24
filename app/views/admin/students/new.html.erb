@@ -1,0 +1,35 @@
+<%= form_for @student do |f| %>
+  <%= f.fields_for :account do |account| %>
+  <div>
+    <%= account.label :login, '用户名' %>
+    <%= account.text_field :login %>
+  </div>
+  <div>
+    <%= account.label :password, '密码' %>
+    <%= account.password_field :password %>
+  </div>
+  <div>
+    <%= account.label :password_confirmation, '确认密码' %>
+    <%= account.password_field :password_confirmation %>
+  </div>
+  <% end %>
+  <div>
+    <%= f.label :name, '姓名' %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :gender, '性别' %>
+    <%= f.select :gender, gender_options, :include_blank => '请选择' %>
+  </div>
+  <div>
+    <%= f.label :unit_code, '单位编码' %>
+    <%= f.text_field :unit_code %>
+  </div>
+  <div>
+    <%= f.label :note, '备注' %>
+    <%= f.text_area :note %>
+  </div>
+  <div>
+    <%= f.submit '保存' %>
+  </div>
+<% end %>

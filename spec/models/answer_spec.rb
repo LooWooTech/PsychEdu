@@ -1,16 +1,10 @@
 require 'spec_helper'
 
 describe Answer do
-  before :each do
-    @answer = FactoryGirl.build :answer
-  end
+  subject{ FactoryGirl.build :answer}
 
-  specify 'valid' do
-    expect(@answer).to be_valid
-  end
+  specify{ expect(subject).to be_valid }
 
-  specify 'content should exist' do
-    @answer.content = ''
-    expect(@answer).to be_invalid
-  end
+  it_behaves_like 'requiring attributes', :content
+
 end

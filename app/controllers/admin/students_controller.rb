@@ -1,5 +1,7 @@
 module Admin
   class StudentsController < AdminController
+    before_filter :find_student, :only => [:show, :edit, :update]
+
     def index
       @students = Student.page(params[:page]).per(10)
     end
@@ -18,17 +20,28 @@ module Admin
       end
     end
 
-    def show
-      @student = Student.find params[:id]
+    def show; end
+
+    def edit
+      render :new
+    end
+
+    def update
+      if @student.update_attributes student_params
+        redirect_to @student
+      else
+        render :new
+      end
     end
 
     private
 
     def student_params
-      params.require(:student).permit(
-        :name, :gender, :unit_code, :note,
-        :account_attributes => [:login, :password, :password_confirmation]
-      )
+      params.require(:student).permit(:name, :gender, :unit_code, :note, :login, :password, :password_confirmation)
+    end
+
+    def find_student
+      @student = Student.find params[:id]
     end
   end
 end

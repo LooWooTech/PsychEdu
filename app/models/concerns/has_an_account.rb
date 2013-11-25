@@ -4,16 +4,9 @@ module HasAnAccount
 
   included do
     has_one :account, :as => :owner, :dependent => :destroy
-    delegate_account :login, :password
+    delegates_attributes :login, :password, :password_confirmation, :to => :account
 
     validates :account, :presence => true
-
-    accepts_nested_attributes_for :account
   end
 
-  module ClassMethods
-    def delegate_account(*attrs)
-      attrs.each{|attr| delegate attr, :to => :account}
-    end
-  end
 end

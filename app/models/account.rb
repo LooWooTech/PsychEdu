@@ -3,7 +3,7 @@ class Account < ActiveRecord::Base
 
   belongs_to :owner, :polymorphic => true
 
-  validates :login, :presence => true
+  validates :login, :presence => true, :uniqueness => true
 
   class << self
     def authenticate(login, password)

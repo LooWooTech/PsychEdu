@@ -11,6 +11,7 @@ gem 'mysql2'
 
 gem 'kaminari'
 gem 'cancan'
+gem 'delegates_attributes_to', :git => 'git@github.com:pahanix/delegates_attributes_to.git'
 
 group :test, :development do
   gem 'rspec-rails'

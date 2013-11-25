@@ -1,13 +1,13 @@
 <p>
-<%= @student.name %>
+  <%= @student.name %>
 </p>
 <p>
-登录名：<%= @student.login %>
+  登录名：<%= @student.login %>
 </p>
 <p>
-性别：<%= t @student.gender %>
+  性别：<%= t @student.gender %>
 </p>
 <p>
-状态：在学
+  状态：在学
 </p>
-<%= link_to '修改信息', '#'%>
+<%= link_to '修改信息', edit_student_path(@student)%>

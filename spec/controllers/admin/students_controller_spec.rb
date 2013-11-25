@@ -10,7 +10,7 @@ module Admin
       before :each do
         @student_attributes = {
           :student => FactoryGirl.attributes_for(:student).merge(
-            :account_attributes => FactoryGirl.attributes_for(:account)
+            FactoryGirl.attributes_for(:account)
           )
         }
       end
@@ -25,7 +25,7 @@ module Admin
           @student_attributes[:student][:name] = ''
         end
 
-        xit 're-renders the `new` template' do
+        it 're-renders the `new` template' do
           post :create, @student_attributes
           expect(response).to render_template(:new)
         end

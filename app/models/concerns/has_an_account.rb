@@ -4,9 +4,11 @@ module HasAnAccount
 
   included do
     has_one :account, :as => :owner, :dependent => :destroy
-    delegates_attributes :login, :password, :password_confirmation, :to => :account
+    delegate :login, :password, :to => :account
 
     validates :account, :presence => true
+
+    accepts_nested_attributes_for :account, :update_only => true
   end
 
 end

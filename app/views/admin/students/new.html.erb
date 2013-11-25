@@ -1,16 +1,18 @@
 <%= form_for @student do |f| %>
+  <%= f.fields_for :account do |account| %>
   <div>
-    <%= f.label :login, '用户名' %>
-    <%= f.text_field :login %>
+    <%= account.label :login, '用户名' %>
+    <%= account.text_field :login %>
   </div>
   <div>
-    <%= f.label :password, '密码' %>
-    <%= f.password_field :password %>
+    <%= account.label :password, '密码' %>
+    <%= account.password_field :password %>
   </div>
   <div>
-    <%= f.label :password_confirmation, '确认密码' %>
-    <%= f.password_field :password_confirmation %>
+    <%= account.label :password_confirmation, '确认密码' %>
+    <%= account.password_field :password_confirmation %>
   </div>
+  <% end %>
   <div>
     <%= f.label :name, '姓名' %>
     <%= f.text_field :name %>

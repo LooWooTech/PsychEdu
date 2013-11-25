@@ -10,7 +10,7 @@ module Admin
       before :each do
         @student_attributes = {
           :student => FactoryGirl.attributes_for(:student).merge(
-            FactoryGirl.attributes_for(:account)
+            :account_attributes => FactoryGirl.attributes_for(:account)
           )
         }
       end

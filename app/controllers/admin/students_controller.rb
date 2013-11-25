@@ -37,7 +37,10 @@ module Admin
     private
 
     def student_params
-      params.require(:student).permit(:name, :gender, :unit_code, :note, :login, :password, :password_confirmation)
+      params.require(:student).permit(
+        :name, :gender, :unit_code, :note, 
+        :account_attributes => [:login, :password, :password_confirmation]
+      )
     end
 
     def find_student

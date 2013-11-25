@@ -3,7 +3,7 @@ require 'spec_helper'
 module Admin
   describe StudentsController do
     before :each do
-      login_as_administrator
+      sign_in_as_administrator
     end
 
     describe '#create' do

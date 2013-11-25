@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Ask
   describe QuestionsController do
-    before(:each){ login }
+    before(:each){ sign_in }
   
     describe '#create' do
   

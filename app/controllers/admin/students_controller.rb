@@ -39,7 +39,7 @@ module Admin
     def student_params
       params.require(:student).permit(
         :name, :gender, :unit_code, :note, 
-        :account_attributes => [:login, :password, :password_confirmation]
+        :account_attributes => [:username, :password, :password_confirmation]
       )
     end
 

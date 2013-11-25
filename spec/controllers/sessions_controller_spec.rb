@@ -2,14 +2,14 @@ require 'spec_helper'
 
 describe SessionsController do
   describe '#create' do
-    context 'login as an administrator' do
+    context 'sign in as an administrator' do
       before :each do
         @administrator = FactoryGirl.create :administrator
       end
 
       context 'when success' do
         before :each do
-          post :create, {:login => @administrator.login, :password => @administrator.password}
+          post :create, {:username => @administrator.username, :password => @administrator.password}
         end
 
         it 'redirects to root path of admin' do
@@ -19,7 +19,7 @@ describe SessionsController do
 
       context 'when fail' do
         before :each do
-          post :create, {:login => @administrator.login, :password => 'wrong password'}
+          post :create, {:username => @administrator.username, :password => 'wrong password'}
         end
 
         it 'renders the `new` template' do

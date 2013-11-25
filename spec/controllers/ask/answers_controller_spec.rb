@@ -5,7 +5,7 @@ module Ask
     describe '#create' do
   
       before :each do
-        login
+        sign_in
         @question = FactoryGirl.create :question
       end
   

@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131122042732) do
+ActiveRecord::Schema.define(version: 20131125035534) do
 
   create_table "accounts", force: true do |t|
-    t.string   "login"
+    t.string   "username"
     t.string   "password_digest"
     t.integer  "owner_id"
     t.string   "owner_type"

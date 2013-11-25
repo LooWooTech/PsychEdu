@@ -1,9 +1,9 @@
 module SessionHelpers
-  def login
+  def sign_in 
     controller.stub :current_user => FactoryGirl.create(:student)
   end
 
-  def login_as_administrator
+  def sign_in_as_administrator
     controller.stub :current_user => FactoryGirl.create(:administrator)
   end
 

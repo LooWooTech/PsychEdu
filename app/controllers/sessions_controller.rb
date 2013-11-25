@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def create
-    if @account = Account.authenticate(params[:login], params[:password])
-      login @account
+    if @account = Account.authenticate(params[:username], params[:password])
+      sign_in @account
       redirect_to admin_url
     else
       render :new

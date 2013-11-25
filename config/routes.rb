@@ -2,7 +2,7 @@ PsychEdu::Application.routes.draw do
 
   resource :session, :only => [:create, :destroy]
 
-  get 'login' => 'sessions#new'
+  get 'sign_in' => 'sessions#new'
 
   scope :module => :admin do
     constraints :subdomain => 'admin' do

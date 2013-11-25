@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     render :file => "#{Rails.root}/public/403", :format => [:html], :status => 403, :layout => false
   end
 
-  def login(account)
+  def sign_in(account)
     session[:current_account_id] = account.id
     @current_user = account.owner
   end
@@ -26,14 +26,14 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
-  def login_required
-    login_first if !logged_in?
+  def user_required
+    sign_in_first if !logged_in?
   end
 
-  def login_first(notice='请先登录')
+  def sign_in_first(notice='请先登录')
     store_location
     flash[:notice] = notice
-    redirect_to login_path
+    redirect_to sign_in_path
     return false
   end
 

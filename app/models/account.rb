@@ -3,11 +3,11 @@ class Account < ActiveRecord::Base
 
   belongs_to :owner, :polymorphic => true
 
-  validates :login, :presence => true, :uniqueness => true
+  validates :username, :presence => true, :uniqueness => true
 
   class << self
-    def authenticate(login, password)
-      find_by(:login => login).try :authenticate, password
+    def authenticate(username, password)
+      find_by(:username => username).try :authenticate, password
     end
   end
 end

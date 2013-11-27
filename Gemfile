@@ -11,14 +11,11 @@ gem 'mysql2'
 
 gem 'kaminari'
 gem 'cancan'
+gem 'puma'
 
 group :test, :development do
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
   gem 'factory_girl_rails'
   gem 'database_cleaner'
-end
-
-group :production do
-  gem 'puma'
 end

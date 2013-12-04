@@ -20,6 +20,8 @@ class Student < ActiveRecord::Base
     :as => 'complainer', :foreign_key => :complainer_id,
     :dependent => :nullify
 
+  has_many :course_learnings, :dependent => :destroy
+
   belongs_to :added_by, :class_name => 'Administrator'
 
   validates :name, :presence => true

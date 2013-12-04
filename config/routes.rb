@@ -4,6 +4,12 @@ PsychEdu::Application.routes.draw do
 
   get 'sign_in' => 'sessions#new'
 
+  scope :module => :personal do
+    constraints :subdomain => 'personal' do
+      root 'period_applications#index', :as => :personal
+    end
+  end
+
   scope :module => :admin do
     constraints :subdomain => 'admin' do
       resources :students, :only => [:new, :create, :show, :edit, :update]

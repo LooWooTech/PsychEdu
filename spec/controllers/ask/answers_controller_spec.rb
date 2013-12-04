@@ -4,13 +4,13 @@ module Ask
   describe AnswersController do
     describe '#create' do
   
-      before :each do
+      before do
         sign_in
         @question = FactoryGirl.create :question
       end
   
       context 'with valid params' do
-        before :each do
+        before do
           @answer_params = {
             :answer => FactoryGirl.attributes_for(:answer),
             :question_id => @question.id
@@ -24,7 +24,7 @@ module Ask
       end
   
       context 'with invalid params' do
-        before :each do
+        before do
           @answer_params = {
             :answer => FactoryGirl.attributes_for(:answer, :content => nil),
             :question_id => @question.id

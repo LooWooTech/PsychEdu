@@ -2,12 +2,12 @@ require 'spec_helper'
 
 module Ask
   describe QuestionsController do
-    before(:each){ sign_in }
+    before{ sign_in }
   
     describe '#create' do
   
       context 'with valid params' do
-        before :each do
+        before do
           @question_params = {:question => FactoryGirl.attributes_for(:question)}
         end
   
@@ -24,7 +24,7 @@ module Ask
       end
   
       context 'with invalid params' do
-        before :each do
+        before do
           @question_params = {:question => FactoryGirl.attributes_for(:question, :title => nil)}
         end
   
@@ -42,12 +42,12 @@ module Ask
     end
   
     describe '#update' do
-      before :each do
+      before do
         @question = FactoryGirl.create(:question, :questioner => current_user)
       end
   
       context 'with valid params' do
-        before :each do
+        before do
           @new_title = 'another question title'
           patch :update, :question => {:title => @new_title}, :id => @question.id
         end
@@ -62,7 +62,7 @@ module Ask
       end
   
       context 'with invalid params' do
-        before :each do
+        before do
           @blank_title = ''
           patch :update, :question => {:title => @blank_title}, :id => @question.id
         end
@@ -79,7 +79,7 @@ module Ask
   
     describe '#destroy' do
       context 'for questioner' do
-        before :each do
+        before do
           @question = FactoryGirl.create(:question, :questioner => current_user)
         end
   
@@ -96,7 +96,7 @@ module Ask
       end
   
       context 'for others' do
-        before :each do
+        before do
           @question = FactoryGirl.create :question
         end
   

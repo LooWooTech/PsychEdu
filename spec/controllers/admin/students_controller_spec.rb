@@ -2,12 +2,12 @@ require 'spec_helper'
 
 module Admin
   describe StudentsController do
-    before :each do
+    before do
       sign_in_as_administrator
     end
 
     describe '#create' do
-      before :each do
+      before do
         @student_attributes = {
           :student => FactoryGirl.attributes_for(:student).merge(
             :account_attributes => FactoryGirl.attributes_for(:account)
@@ -21,7 +21,7 @@ module Admin
       end
 
       context 'when fail' do
-        before :each do
+        before do
           @student_attributes[:student][:name] = ''
         end
 

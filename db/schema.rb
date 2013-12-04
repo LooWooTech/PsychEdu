@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125035534) do
+ActiveRecord::Schema.define(version: 20131128073948) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -67,11 +67,53 @@ ActiveRecord::Schema.define(version: 20131125035534) do
   add_index "complaints", ["complainable_id"], name: "index_complaints_on_complainable_id", using: :btree
   add_index "complaints", ["complainer_id"], name: "index_complaints_on_complainer_id", using: :btree
 
+  create_table "course_learnings", force: true do |t|
+    t.integer  "student_id"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_learnings", ["course_id"], name: "index_course_learnings_on_course_id", using: :btree
+  add_index "course_learnings", ["student_id"], name: "index_course_learnings_on_student_id", using: :btree
+
+  create_table "courses", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "forums", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "learning_periods", force: true do |t|
+    t.integer  "course_learning_id"
+    t.date     "start_on"
+    t.date     "end_on"
+    t.integer  "review_state"
+    t.integer  "reviewer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "learning_periods", ["course_learning_id"], name: "index_learning_periods_on_course_learning_id", using: :btree
+  add_index "learning_periods", ["reviewer_id"], name: "index_learning_periods_on_reviewer_id", using: :btree
+
+  create_table "leaving_periods", force: true do |t|
+    t.integer  "learning_period_id"
+    t.date     "start_on"
+    t.date     "end_on"
+    t.integer  "review_state"
+    t.integer  "reviewer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "leaving_periods", ["learning_period_id"], name: "index_leaving_periods_on_learning_period_id", using: :btree
+  add_index "leaving_periods", ["reviewer_id"], name: "index_leaving_periods_on_reviewer_id", using: :btree
 
   create_table "questions", force: true do |t|
     t.string   "title"
@@ -87,6 +129,18 @@ ActiveRecord::Schema.define(version: 20131125035534) do
 
   add_index "questions", ["forum_id"], name: "index_questions_on_forum_id", using: :btree
   add_index "questions", ["questioner_id"], name: "index_questions_on_questioner_id", using: :btree
+
+  create_table "resumings", force: true do |t|
+    t.integer  "leaving_period_id"
+    t.date     "date"
+    t.integer  "review_state",      default: 0
+    t.integer  "reviewer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "resumings", ["leaving_period_id"], name: "index_resumings_on_leaving_period_id", using: :btree
+  add_index "resumings", ["reviewer_id"], name: "index_resumings_on_reviewer_id", using: :btree
 
   create_table "students", force: true do |t|
     t.string   "name"

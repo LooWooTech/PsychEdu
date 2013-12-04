@@ -22,12 +22,12 @@ class ApplicationController < ActionController::Base
     @current_user ||= Account.find_by(:id => session[:current_account_id]).try(:owner)
   end
 
-  def logged_in?
+  def signed_in?
     !!current_user
   end
 
   def user_required
-    sign_in_first if !logged_in?
+    sign_in_first if !signed_in?
   end
 
   def sign_in_first(notice='请先登录')

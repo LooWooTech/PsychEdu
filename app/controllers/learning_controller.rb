@@ -1,4 +1,4 @@
-class PersonalController < ApplicationController
+class LearningController < ApplicationController
   before_filter :admin_required
 
   def student_required

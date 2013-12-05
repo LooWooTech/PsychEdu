@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe CourseLearning do
-  subject{ FactoryGirl.create :course_learning }
+describe SubjectLearning do
+  subject{ FactoryGirl.create :subject_learning }
 
   before do
     @learning_start = Date.parse('2013-01-01')

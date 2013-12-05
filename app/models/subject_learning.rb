@@ -1,6 +1,6 @@
-class CourseLearning < ActiveRecord::Base
+class SubjectLearning < ActiveRecord::Base
   belongs_to :student
-  belongs_to :course
+  belongs_to :subject
 
   has_many :learning_periods, :dependent => :destroy
 

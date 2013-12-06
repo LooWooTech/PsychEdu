@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe Subject do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject{ FactoryGirl.create :subject }
+  it_behaves_like 'having unique attributes', :name
+  it_behaves_like 'requiring attributes', :name
 end

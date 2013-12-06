@@ -1,0 +1,21 @@
+<%= form_for @subject do |f| %>
+  <div>
+    <%= f.label :name, '名称' %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :introduction, '简介' %>
+    <%= f.text_area :introduction %>
+  </div>
+  <div>
+    <%= f.label :course_count, '课程数量' %>
+    <%= f.text_field :course_count %>
+  </div>
+  <div>
+    <%= f.label :length, '总时长' %>
+    <%= f.text_field :length %>小时
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

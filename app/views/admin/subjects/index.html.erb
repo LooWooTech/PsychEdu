@@ -1,0 +1,10 @@
+<table>
+  <tr>
+    <th>专题名称</th>
+  </tr>
+  <% @subjects.each do |subject| %>
+    <tr>
+      <td><%= subject.name %></td>
+    </tr>
+  <% end %>
+</table>

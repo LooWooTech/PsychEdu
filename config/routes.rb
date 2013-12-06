@@ -13,7 +13,7 @@ PsychEdu::Application.routes.draw do
   scope :module => :admin do
     constraints :subdomain => 'admin' do
       resources :students, :only => [:new, :create, :show, :edit, :update]
-      resources :subjects, :only => [:new, :create]
+      resources :subjects, :only => [:new, :create, :index]
       root 'students#index', :as => :admin
     end
   end

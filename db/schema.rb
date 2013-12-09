@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131205061400) do
+ActiveRecord::Schema.define(version: 20131208081706) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -71,7 +71,10 @@ ActiveRecord::Schema.define(version: 20131205061400) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "subject_id"
   end
+
+  add_index "courses", ["subject_id"], name: "index_courses_on_subject_id", using: :btree
 
   create_table "forums", force: true do |t|
     t.string   "name"

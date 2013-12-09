@@ -1,0 +1,23 @@
+<div id='info'>
+  <h1><%= @subject.name %></h1>
+  <div>
+    <label>简介：<%= @subject.introduction %></label>
+  </div>
+  <div>
+    <label>课程数量：<%= @subject.course_count %></label>
+  </div>
+  <div>
+    <label>时长：<%= @subject.length %></label>
+  </div>
+</div>
+
+<div id='table'>
+  <table>
+    <tr>
+      <th>课程名称</th>
+    </tr>
+    <% @subject.courses.each do |course| %>
+      <tr><%= course.name %></tr>
+    <% end %>
+  </table>
+</div>

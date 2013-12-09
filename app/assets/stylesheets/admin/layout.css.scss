@@ -1,0 +1,41 @@
+@import 'variables';
+
+body {
+  #navigation {
+    float: left;
+    width: $navigation-width;
+    padding: $layout-spacing;
+  
+    .categories {
+      h2 {
+        font-weight: bold;
+      }
+      ul li {
+        margin: 10px;
+      }
+    }
+  }
+
+  #content {
+    width: $content-width;
+    padding: $layout-spacing;
+    float: left;
+    h1 {
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+
+    table {
+      margin: 20px 0;
+      width: 100%;
+      th {
+        font-weight: bold;
+      }
+
+      td {
+        border: 1px solid #333;
+        padding: 3px;
+      }
+    }
+  }
+}

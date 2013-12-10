@@ -1,0 +1,19 @@
+<div id='info'>
+  <h1>
+    <%= link_to @course.subject_name, @course.subject %>：
+    <%= @course.name %>
+  </h1>
+  <%= link_to '修改', edit_course_path(@course) %>
+</div>
+
+<div id='table'>
+  <%= link_to '添加章节', new_course_chapter_path(@course) %>
+  <table>
+    <tr>
+      <th>课程名称</th>
+    </tr>
+    <% @course.chapters.each do |chapter| %>
+      <tr><%= chapter.name %></tr>
+    <% end %>
+  </table>
+</div>

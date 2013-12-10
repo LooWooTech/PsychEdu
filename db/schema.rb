@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131208081706) do
+ActiveRecord::Schema.define(version: 20131209084451) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 20131208081706) do
 
   add_index "answers", ["answerer_id"], name: "index_answers_on_answerer_id", using: :btree
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+
+  create_table "chapters", force: true do |t|
+    t.string   "name"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "chapters", ["course_id"], name: "index_chapters_on_course_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.text     "content"

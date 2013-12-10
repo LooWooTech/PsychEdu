@@ -1,0 +1,10 @@
+<%= form_for [@subject, @course] do |f| %>
+  <div>
+    <%= f.label :name, '课程名称' %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= link_to '返回', :back %>
+    <%= f.submit '保存' %>
+  </div>
+<% end %>

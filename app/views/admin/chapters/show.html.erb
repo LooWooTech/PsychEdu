@@ -1,0 +1,7 @@
+<div id='info'>
+  <h1>
+    <%= link_to @chapter.course_name , @chapter.course %>：
+    <%= @chapter.name %>
+  </h1>
+  <%= link_to '修改', edit_chapter_path(@chapter) %>
+</div>

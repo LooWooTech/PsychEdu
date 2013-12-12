@@ -12,6 +12,7 @@ gem 'mysql2'
 gem 'kaminari'
 gem 'cancan'
 gem 'puma'
+gem 'carrierwave'
 
 group :test, :development do
   gem 'rspec-rails'

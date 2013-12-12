@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe Chapter do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject{ FactoryGirl.create :chapter }
+  it_behaves_like 'having unique attribute in scope', :name, :course_id
 end

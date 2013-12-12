@@ -10,7 +10,7 @@ module Admin
     def create
       @subject = Subject.new subject_params
       if @subject.save
-        redirect_to subjects_path
+        redirect_to @subject
       else
         render :new
       end

@@ -1,0 +1,35 @@
+<% @chapter.videos.build if @chapter.videos.empty? %>
+
+<%= form_for [@course, @chapter], :html => {:multipart => true} do |f| %>
+  <div>
+    <%= f.label :name, '章节名称' %>
+    <%= f.text_field :name %>
+  </div>
+  <ol class='video-fields'>
+  <%= f.fields_for :videos do |videos| %>
+    <li>
+      <div>
+        <%= videos.label :teacher_names, '讲师' %>
+        <%= videos.text_field :teacher_names %>
+      </div>
+      <div>
+        <%= videos.label :url, '视频地址' %>
+        <%= videos.text_field :url %>
+      </div>
+      <div>
+        <%= videos.label :interaction_file, '视频交互XML' %>
+        <%= videos.file_field :interaction_file %>
+      </div>
+      <div>
+        <%= videos.label :_destroy, '删除' %>
+        <%= videos.check_box :_destroy%>
+      </div>
+    </li>
+  <% end %>
+  </ol>
+  <div><a class='add-video' href='javascript:;'>添加视频</a></div>
+  <div>
+    <%= link_to '返回', :back %>
+    <%= f.submit '保存' %>
+  </div>
+<% end %>

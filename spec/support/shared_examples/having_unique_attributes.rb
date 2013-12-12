@@ -20,7 +20,7 @@ shared_examples 'having unique attribute in scope' do |attribute, scope|
     expect(model_with_the_same_attribute(attribute, scope)).to be_invalid
   end
 
-  specify "#{attribute} could not be unique with different #{scope}" do
+  specify "#{attribute} can not be unique with different #{scope}" do
     expect(model_with_the_same_attribute(attribute)).to be_valid
   end
 end

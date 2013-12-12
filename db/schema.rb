@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209084451) do
+ActiveRecord::Schema.define(version: 20131210075547) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -175,6 +175,17 @@ ActiveRecord::Schema.define(version: 20131209084451) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "videos", force: true do |t|
+    t.string   "url"
+    t.string   "interaction_file"
+    t.string   "teacher_names"
+    t.integer  "chapter_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "videos", ["chapter_id"], name: "index_videos_on_chapter_id", using: :btree
 
   create_table "votes", force: true do |t|
     t.integer  "score"

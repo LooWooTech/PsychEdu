@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :chapter do
-    name "MyString"
-    course nil
+    sequence(:name){|n| "name#{n}"}
+    course
   end
 end

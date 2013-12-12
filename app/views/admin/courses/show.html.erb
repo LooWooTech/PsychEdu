@@ -11,9 +11,16 @@
   <table>
     <tr>
       <th>课程名称</th>
+      <th>操作</th>
     </tr>
     <% @course.chapters.each do |chapter| %>
-      <tr><%= chapter.name %></tr>
+      <tr>
+        <td><%= chapter.name %></td>
+        <td>
+          <%= link_to '修改', edit_chapter_path(chapter)%>
+          <%= link_to '删除', chapter, :method => :delete, :data => {:confirm => "确实要删除“#{chapter.name}”吗？"}%>
+        </td>
+      </tr>
     <% end %>
   </table>
 </div>

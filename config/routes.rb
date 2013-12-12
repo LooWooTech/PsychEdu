@@ -51,8 +51,8 @@ PsychEdu::Application.routes.draw do
             :concerns => [:commentable, :complainable]
         end
       end
+      root 'questions#index', :as => :ask
     end
   end
 
-  root 'ask/questions#index'
 end

@@ -91,7 +91,7 @@ module Ask
   
         it 'redirects to questions list' do
           delete :destroy, :id => @question.id
-          expect(response).to redirect_to(root_path)
+          expect(response).to redirect_to(ask_path)
         end
       end
   

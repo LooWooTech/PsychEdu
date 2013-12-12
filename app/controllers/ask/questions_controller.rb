@@ -41,7 +41,7 @@ module Ask
   
     def destroy
       @question.destroy
-      redirect_to root_path
+      redirect_to ask_path
     end
   
     def top

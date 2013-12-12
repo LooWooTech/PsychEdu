@@ -16,7 +16,7 @@ PsychEdu::Application.routes.draw do
       shallow do
         resources :subjects, :only => [:new, :create, :index, :show, :edit, :update, :destroy] do
           resources :courses, :only => [:new, :create, :show, :edit, :update, :destroy] do
-            resources :chapters
+            resources :units
           end
         end
       end

@@ -7,18 +7,18 @@
 </div>
 
 <div id='table'>
-  <%= link_to '添加章节', new_course_chapter_path(@course) %>
+  <%= link_to '添加单元', new_course_unit_path(@course) %>
   <table>
     <tr>
       <th>课程名称</th>
       <th>操作</th>
     </tr>
-    <% @course.chapters.each do |chapter| %>
+    <% @course.units.each do |unit| %>
       <tr>
-        <td><%= chapter.name %></td>
+        <td><%= unit.name %></td>
         <td>
-          <%= link_to '修改', edit_chapter_path(chapter)%>
-          <%= link_to '删除', chapter, :method => :delete, :data => {:confirm => "确实要删除“#{chapter.name}”吗？"}%>
+          <%= link_to '修改', edit_unit_path(unit)%>
+          <%= link_to '删除', unit, :method => :delete, :data => {:confirm => "确实要删除“#{unit.name}”吗？"}%>
         </td>
       </tr>
     <% end %>

@@ -1,4 +1,4 @@
-class Chapter < ActiveRecord::Base
+class Unit < ActiveRecord::Base
   belongs_to :course
 
   has_many :videos, :dependent => :destroy

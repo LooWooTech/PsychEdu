@@ -1,0 +1,86 @@
+<div class='navigator'>
+  <h1><%= @video_watching.course_name %></h1>
+  <div class='unit-selector'>
+    <span class='current'><%= @video_watching.unit_name %></span>
+    <ul>
+      <% current_course_learning.unit_learnings.each do |unit_learning| %>
+        <% if unit_learning.open? %>
+          <li><%= link_to unit_learning.name, unit_learning %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class='player'>
+  <video id='video'></video>
+  <ul class='video-selector'>
+    <% @video_watching.siblings.each do |video_watching| %>
+      <li><%= link_to image_tag(''), video_watching  %></li>
+    <% end %>
+    <li><a href='#'><img src=''/></a></li>
+  </ul>
+</div>
+
+<div class='comments-and-notes'>
+  <div class='comments'>
+    <h1>评论</h1>
+    <form>
+      <textarea></textarea>
+      <input type='submit' value='发布'/>
+    </form>
+    <ul>
+      <li>
+        <img class='avatar' src=''/>
+        <div>
+          <a class='name' href='#'>邱茂源</a>
+          <span class='time'>2014-01-01 19:02</span>
+          <div class='content'>
+            <p>我了个去的</p>
+            <p>我了个去的</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class='notes'>
+    <h1>笔记</h1>
+    <form>
+      <textarea></textarea>
+      <input type='submit' value='发布'/>
+    </form>
+    <ul>
+      <li>
+        <img src=''/>
+        <div>
+          <span class='time'>2014-01-01 19:02</span>
+          <div class='content'>
+            <p>我了个去的</p>
+            <p>我了个去的</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<% content_for :head do %>
+<script type='text/javascript'>
+		var flashvers = {};
+		flashvers.mp4_url = "<%= @video_watching.url %>";
+		flashvers.dianping = "true";
+		flashvers.xml_url = "<%= @video_watching.interaction_file_url %>";
+		flashvers.public_root = "/sound/";
+		flashvers.event_sound_root = "/data/sound/events/";//这是语音文件地址，mp3文件名已经写到xml中，但只是个文件名，前面加上存放路径即可找到该声音文件
+		flashvers.start_time = <%= @video_watching.last_end_at %>;
+		
+		var params = {};
+		params.menu="false";
+		params.allowFullScreen="true";
+		params.allowScriptAccess="sameDomain";
+		params.wmode="opaque";
+		
+		swfobject.embedSWF("/flashplayer/player.swf", "video", "100%", "100%", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
+</script>
+<% end %>

@@ -20,7 +20,7 @@ class CourseLearning < ActiveRecord::Base
     last? ? nil : subject_learning.course_learnings.find_by(:course => course.next)
   end
 
-  def opened?
+  def open?
     first? || previous.passed?
   end
 

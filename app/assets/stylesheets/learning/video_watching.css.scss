@@ -1,0 +1,82 @@
+@import 'variables';
+@import 'mixin';
+
+$video-selector-width: 150px;
+$player-width: $content-width - $video-selector-width;
+
+#content {
+  .navigator {
+    overflow: hidden;
+    h1 {
+      margin-top: 5px;
+      float: left;
+    }
+    .unit-selector {
+      margin-left: 5px;
+      float: left;
+      @include drop-down;
+    }
+  }
+
+  .player {
+    margin: 15px 0 40px 0;
+    overflow: hidden;
+    #video {
+      width: $player-width;
+      float: left;
+    }
+    .video-selector {
+      float: right;
+      width: $video-selector-width;
+    }
+  }
+
+  .comments-and-notes {
+    overflow: hidden;
+    .comments, .notes {
+      width: 450px;
+      h1 {
+        font-size: 18px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid $border-gray;
+      }
+
+      form {
+        overflow: hidden;
+        margin-top: 30px;
+        textarea {
+          width: 444px;
+          height: 120px;
+          border-color: $border-gray;
+        }
+        input[type=submit] {
+          float: right;
+          background: $blue;
+          border: none;
+          color: $white;
+          font-size: 16px;
+          padding: 5px 15px;
+        }
+      }
+      ul {
+        font-size: 14px;
+        li {
+          border-top: 1px solid $border-gray;
+          margin: 20px 0;
+          .name {
+            margin-right: 10px;
+          }
+          .content {
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+    .comments {
+      float: left;
+    }
+    .notes {
+      float: right;
+    }
+  }
+}

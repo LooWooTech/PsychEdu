@@ -3,11 +3,14 @@ class UnitLearning < ActiveRecord::Base
   belongs_to :unit
 
   delegate :name, :course, :first?, :last?, :to => :unit
+  delegate :course_name, :to => :unit
+
+  has_many :video_watchings, :dependent => :destroy
 
   validate :unit_must_be_in_the_same_learning_course
 
-  def opened?
-    course_learning.opened? && (first? || previous.passed?)
+  def open?
+    course_learning.open? && video_watchings.any? && (first? || previous.passed?)
   end
 
   def previous

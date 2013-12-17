@@ -1,4 +1,5 @@
 class Course < ActiveRecord::Base
+  include AssociatedTree
   belongs_to :subject
 
   has_many :course_learnings, :dependent => :destroy
@@ -11,7 +12,7 @@ class Course < ActiveRecord::Base
   delegate :name, :to => :subject, :prefix => true
   delegate :subject_learnings, :to => :subject
 
-  after_create :create_course_learning_for_each_subject_learning
+  auto_create :course_learnings, :for => :subject_learnings
 
   alias previous higher_item
   alias next lower_item

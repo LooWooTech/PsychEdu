@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131215110231) do
+ActiveRecord::Schema.define(version: 20131217134312) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -121,6 +121,15 @@ ActiveRecord::Schema.define(version: 20131215110231) do
   add_index "leaving_periods", ["learning_period_id"], name: "index_leaving_periods_on_learning_period_id", using: :btree
   add_index "leaving_periods", ["reviewer_id"], name: "index_leaving_periods_on_reviewer_id", using: :btree
 
+  create_table "notes", force: true do |t|
+    t.integer  "video_watching_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notes", ["video_watching_id"], name: "index_notes_on_video_watching_id", using: :btree
+
   create_table "questions", force: true do |t|
     t.string   "title"
     t.text     "content"
@@ -198,6 +207,18 @@ ActiveRecord::Schema.define(version: 20131215110231) do
   end
 
   add_index "units", ["course_id"], name: "index_units_on_course_id", using: :btree
+
+  create_table "video_watchings", force: true do |t|
+    t.integer  "unit_learning_id"
+    t.integer  "video_id"
+    t.float    "last_end_at",      default: 0.0
+    t.integer  "play_times",       default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "video_watchings", ["unit_learning_id"], name: "index_video_watchings_on_unit_learning_id", using: :btree
+  add_index "video_watchings", ["video_id"], name: "index_video_watchings_on_video_id", using: :btree
 
   create_table "videos", force: true do |t|
     t.string   "url"

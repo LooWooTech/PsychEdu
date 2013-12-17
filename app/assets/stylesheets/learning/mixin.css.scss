@@ -4,3 +4,37 @@
   text-align: justify;
   hyphens: auto;
 }
+
+@mixin drop-down {
+  .current {
+    background: $blue;
+    color: $white;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 3px;
+    &:hover {
+      background: lighten($blue, 10%);
+    }
+  }
+
+  ul {
+    position: absolute;
+    z-index: 1000;
+    background: lighten($blue, 10%);
+    border-radius: 3px;
+    padding: 3px 0;
+    display: none;
+    li {
+      a {
+        display: block;
+        padding: 5px 10px;
+        color: $white;
+
+        &:hover {
+          background: $blue;
+        }
+      }
+    }
+  }
+}

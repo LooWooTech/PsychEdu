@@ -1,4 +1,6 @@
 class Unit < ActiveRecord::Base
+  include AssociatedTree
+
   belongs_to :course
 
   has_many :videos, :dependent => :destroy
@@ -9,7 +11,7 @@ class Unit < ActiveRecord::Base
   delegate :name, :to => :course, :prefix => true
   delegate :course_learnings, :to => :course
 
-  after_create :create_unit_learning_for_each_course_learning
+  auto_create :unit_learnings, :for => :course_learnings
 
   alias previous higher_item
   alias next lower_item
@@ -24,11 +26,4 @@ class Unit < ActiveRecord::Base
     videos.sum :duration
   end
 
-  private
-
-  def create_unit_learning_for_each_course_learning
-    course_learnings.each do |course_learning|
-      course_learning.unit_learnings.create :unit => self
-    end
-  end
 end

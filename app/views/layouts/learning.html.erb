@@ -4,6 +4,7 @@
     <title>学习</title>
     <%= stylesheet_link_tag "learning/manifest", media: "all" %>
     <%= javascript_include_tag "learning/manifest" %>
+    <%= yield :head %>
     <%= csrf_meta_tags %>
   </head>
   <body id='<%= @body_id %>'>
@@ -21,7 +22,7 @@
           <img src=''/>
         </div>
         <div id='subject-selector'>
-          <span class='current-subject'><%= current_subject_learning.name %></span>
+          <span class='current'><%= current_subject_learning.name %></span>
           <ul>
             <% current_user.subject_learnings.each do |subject_learning| %>
               <li><%= link_to subject_learning.name, subject_path(subject_learning) %></li>

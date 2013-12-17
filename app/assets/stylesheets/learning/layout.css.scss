@@ -1,9 +1,10 @@
 @import 'variables';
+@import 'mixin';
 
 #header {
   height: 90px;
   width: 100%;
-  background: $header-background-color;
+  background: $blue;
   color: $white;
 
   .wrapper {
@@ -32,7 +33,7 @@
           padding: 10px 15px;
           color: $white;
           &:hover {
-            background: darken($header-background-color, 10%);
+            background: darken($blue, 10%);
           }
         }
       }
@@ -40,34 +41,8 @@
 
     #subject-selector {
       float: right;
-      cursor: pointer;
-      margin-top: 44px;
-      .current-subject {
-        display: inline-block;
-        padding: 5px 10px;
-        border-radius: 3px;
-        &:hover {
-          background: lighten($header-background-color, 10%);
-        }
-      }
-      ul {
-        position: absolute;
-        background: lighten($header-background-color, 10%);
-        border-radius: 3px;
-        padding: 3px 0;
-        display: none;
-        li {
-          a {
-            display: block;
-            padding: 5px 10px;
-            color: $white;
-
-            &:hover {
-              background: $header-background-color;
-            }
-          }
-        }
-      }
+      margin-top: 39px;
+      @include drop-down;
     }
   }
 }

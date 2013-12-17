@@ -39,7 +39,7 @@ class Student < ActiveRecord::Base
     subject_learnings.where(:current => true).first || subject_learnings.order('created_at ASC').first
   end
 
-  def no_subject_opened?
+  def no_subject_open?
     subject_learnings.empty?
   end
 

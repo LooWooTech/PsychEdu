@@ -1,0 +1,21 @@
+<li>
+  <img src='' class='cover'/>
+  <div class='info'>
+    <h1><%= course_learning.name %></h1>
+    <p><%= course_learning.introduction %></p>
+    <ul class='units'>
+      <% course_learning.unit_learnings.each do |unit_learning| %>
+        <% if unit_learning.opened? %>
+          <li><%= link_to unit_learning.name, unit_path(unit_learning) %></li>
+        <% else %>
+          <li><span><%= unit_learning.name %></span></li>
+        <% end %>
+      <% end %>
+    </ul>
+    <div class='state'>
+      <span class='minutes'>已学：3小时</span>
+      <span class='testing-state'>通过考试</span>
+      <span class='average-score'>平均分：80</span>
+    </div>
+  </div>
+</li>

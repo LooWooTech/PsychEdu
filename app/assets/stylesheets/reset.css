@@ -8,7 +8,6 @@ html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockqu
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 16px;
   font: inherit;
   vertical-align: baseline;
 }
@@ -18,7 +17,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-body { line-height: 1;}
+body { 
+  line-height: 1;
+  font: 16px "Helvetica Neue", Helvetica, "Lucida Grande", "Luxi Sans", Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei Mono", LiGothicMed, SimHei;
+}
 
 ol, ul {list-style: none;}
 

@@ -1,0 +1,89 @@
+@import 'variables';
+
+#header {
+  height: 90px;
+  width: 100%;
+  background: $header-background-color;
+  color: $white;
+
+  .wrapper {
+    width: $content-width;
+    margin: 0 auto;
+    height: 100%;
+    overflow: hidden;
+
+    h1 {
+      font-size: 30px;
+      float: left;
+      margin-top: 30px;
+    }
+    
+    #user {
+      float: right;
+    }
+
+    #navigator {
+      float: left;
+      margin: 44px 0 0 16px;
+      li {
+        display: inline-block;
+        a{
+          border-radius: 3px;
+          padding: 10px 15px;
+          color: $white;
+          &:hover {
+            background: darken($header-background-color, 10%);
+          }
+        }
+      }
+    }
+
+    #subject-selector {
+      float: right;
+      cursor: pointer;
+      margin-top: 44px;
+      .current-subject {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 3px;
+        &:hover {
+          background: lighten($header-background-color, 10%);
+        }
+      }
+      ul {
+        position: absolute;
+        background: lighten($header-background-color, 10%);
+        border-radius: 3px;
+        padding: 3px 0;
+        display: none;
+        li {
+          a {
+            display: block;
+            padding: 5px 10px;
+            color: $white;
+
+            &:hover {
+              background: $header-background-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#content {
+  width: $content-width;
+  margin: 0 auto;
+}
+
+#footer {
+  color: #444;
+  background: #e8e8e8;
+  padding: 25px 0;
+  .wrapper {
+    width: $content-width;
+    margin: 0 auto;
+    text-align: center;
+  }
+}

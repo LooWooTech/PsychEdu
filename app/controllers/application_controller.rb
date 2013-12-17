@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
     render :file => "#{Rails.root}/public/403", :format => [:html], :status => 403, :layout => false
   end
 
+  helper_method :current_user
+
   def sign_in(account)
     session[:current_account_id] = account.id
     @current_user = account.owner

@@ -13,6 +13,7 @@ gem 'kaminari'
 gem 'cancan'
 gem 'puma'
 gem 'carrierwave'
+gem 'acts_as_list'
 
 group :test, :development do
   gem 'rspec-rails'

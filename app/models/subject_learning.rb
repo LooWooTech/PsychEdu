@@ -3,6 +3,13 @@ class SubjectLearning < ActiveRecord::Base
   belongs_to :subject
 
   has_many :learning_periods, :dependent => :destroy
+  has_many :course_learnings, :dependent => :destroy
+
+  validates :subject_id, :uniqueness => {:scope => :student_id}
+
+  delegate :name, :courses, :to => :subject
+
+  after_create :create_course_learnings
 
   def start(start_on, end_on)
     learning_periods.create(:start_on => start_on, :end_on => end_on).valid?
@@ -30,5 +37,11 @@ class SubjectLearning < ActiveRecord::Base
 
   def learning_periods_include_date(date)
     learning_periods.find{|period| period.include_date? date }
+  end
+
+  private
+
+  def create_course_learnings
+    courses.each{ |course| course_learnings.create :course => course }
   end
 end

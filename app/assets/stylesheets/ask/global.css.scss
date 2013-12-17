@@ -1,10 +1,6 @@
 @import 'variables';
 @import 'mixin';
 
-body {
-  font: 16px "Helvetica Neue", Helvetica, "Lucida Grande", "Luxi Sans", Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Micro Hei Mono", "WenQuanYi Zen Hei", "WenQuanYi Zen Hei Mono", LiGothicMed, SimHei;
-}
-
 input[type=submit], input[type=button], button {
   @include button;
 }

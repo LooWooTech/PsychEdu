@@ -3,6 +3,9 @@
     <%= link_to @course.subject_name, @course.subject %>：
     <%= @course.name %>
   </h1>
+  <div>
+    <label>简介：<%= @course.introduction %></label>
+  </div>
   <%= link_to '修改', edit_course_path(@course) %>
 </div>
 
@@ -15,7 +18,7 @@
     </tr>
     <% @course.units.each do |unit| %>
       <tr>
-        <td><%= unit.name %></td>
+        <td><%= link_to unit.name, unit %></td>
         <td>
           <%= link_to '修改', edit_unit_path(unit)%>
           <%= link_to '删除', unit, :method => :delete, :data => {:confirm => "确实要删除“#{unit.name}”吗？"}%>

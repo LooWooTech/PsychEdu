@@ -1,0 +1,6 @@
+@mixin article-typesetting {
+  line-height: 1.5em;
+  word-wrap: break-word;
+  text-align: justify;
+  hyphens: auto;
+}

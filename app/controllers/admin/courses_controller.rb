@@ -46,7 +46,7 @@ module Admin
     end
 
     def course_params
-      params.require(:course).permit(:name)
+      params.require(:course).permit(:name, :introduction)
     end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131212082432) do
+ActiveRecord::Schema.define(version: 20131215110231) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -67,11 +67,24 @@ ActiveRecord::Schema.define(version: 20131212082432) do
   add_index "complaints", ["complainable_id"], name: "index_complaints_on_complainable_id", using: :btree
   add_index "complaints", ["complainer_id"], name: "index_complaints_on_complainer_id", using: :btree
 
+  create_table "course_learnings", force: true do |t|
+    t.integer  "subject_learning_id"
+    t.integer  "course_id"
+    t.integer  "minutes",             default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_learnings", ["course_id"], name: "index_course_learnings_on_course_id", using: :btree
+  add_index "course_learnings", ["subject_learning_id"], name: "index_course_learnings_on_subject_learning_id", using: :btree
+
   create_table "courses", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "subject_id"
+    t.integer  "position",     default: 0
+    t.text     "introduction"
   end
 
   add_index "courses", ["subject_id"], name: "index_courses_on_subject_id", using: :btree
@@ -86,7 +99,7 @@ ActiveRecord::Schema.define(version: 20131212082432) do
     t.integer  "subject_learning_id"
     t.date     "start_on"
     t.date     "end_on"
-    t.integer  "review_state"
+    t.integer  "review_state",        default: 0
     t.integer  "reviewer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -99,7 +112,7 @@ ActiveRecord::Schema.define(version: 20131212082432) do
     t.integer  "learning_period_id"
     t.date     "start_on"
     t.date     "end_on"
-    t.integer  "review_state"
+    t.integer  "review_state",       default: 0
     t.integer  "reviewer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -152,6 +165,7 @@ ActiveRecord::Schema.define(version: 20131212082432) do
     t.integer  "subject_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "current",    default: false
   end
 
   add_index "subject_learnings", ["student_id"], name: "index_subject_learnings_on_student_id", using: :btree
@@ -159,19 +173,28 @@ ActiveRecord::Schema.define(version: 20131212082432) do
 
   create_table "subjects", force: true do |t|
     t.string   "name"
-    t.text     "introduction"
     t.string   "teacher_names"
-    t.integer  "course_count",  default: 0
-    t.float    "length",        default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "introduction"
+  end
+
+  create_table "unit_learnings", force: true do |t|
+    t.integer  "course_learning_id"
+    t.integer  "unit_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "unit_learnings", ["course_learning_id"], name: "index_unit_learnings_on_course_learning_id", using: :btree
+  add_index "unit_learnings", ["unit_id"], name: "index_unit_learnings_on_unit_id", using: :btree
 
   create_table "units", force: true do |t|
     t.string   "name"
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position",   default: 0
   end
 
   add_index "units", ["course_id"], name: "index_units_on_course_id", using: :btree
@@ -183,19 +206,9 @@ ActiveRecord::Schema.define(version: 20131212082432) do
     t.integer  "unit_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "duration"
   end
 
   add_index "videos", ["unit_id"], name: "index_videos_on_unit_id", using: :btree
-
-  create_table "votes", force: true do |t|
-    t.integer  "score"
-    t.integer  "voter_id"
-    t.integer  "answer_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "votes", ["answer_id"], name: "index_votes_on_answer_id", using: :btree
-  add_index "votes", ["voter_id"], name: "index_votes_on_voter_id", using: :btree
 
 end

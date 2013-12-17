@@ -5,7 +5,7 @@
   font-size: $major-font-size;
 }
 
-@mixin article {
+@mixin article-typesetting {
   line-height: 1.5em;
   word-wrap: break-word;
   text-align: justify;
@@ -37,7 +37,7 @@
       }
   
       .content {
-        @include article;
+        @include article-typesetting;
         margin: 10px 0;
       }
     }

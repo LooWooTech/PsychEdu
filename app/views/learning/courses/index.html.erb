@@ -1,0 +1,36 @@
+<%= render :partial => 'notifications' %>
+
+<ul id='courses'>
+  <%= render :partial => 'learning/courses/course_learning', :collection => course_learnings %>
+</ul>
+
+<div id='personal-activity'>
+  <div class='info'>
+    <img class='avatar' src=''/>
+    <div class='state'>
+      <h1><%= current_user.name %></h1>
+      <span>在学</span>
+      <span>有效期：2014-10-01</span>
+    </div>
+  </div>
+  <div id='ask'>
+    <h1>我的问答</h1>
+    <ul>
+      <li><a href='#'>什么是黄金规则和反黄金规则？</a></li>
+      <li><a href='#'>发现自己不愿意夸奖别人的优点，这是为什么？</a></li>
+      <li><a href='#'>人都是自私的吗？</a></li>
+    </ul>
+    <a class='more' href='#'>更多 &gt;</a>
+  </div>
+  <div id='supervision'>
+    <h1>我的督导</h1>
+    <ul>
+      <li><a href='#'>督导1</a></li>
+      <li><a href='#'>督导2</a></li>
+      <li><a href='#'>督导3</a></li>
+      <li><a href='#'>督导4</a></li>
+      <li><a href='#'>督导5</a></li>
+    </ul>
+    <a class='more' href='#'>更多 &gt;</a>
+  </div>
+</div>

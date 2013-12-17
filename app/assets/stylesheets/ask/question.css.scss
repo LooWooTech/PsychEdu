@@ -27,7 +27,7 @@
     }
 
     .content {
-      @include article;
+      @include article-typesetting;
       margin: 10px 0;
     }
   }
@@ -76,7 +76,7 @@
 
       .content {
         margin: 10px 0;
-        @include article;
+        @include article-typesetting;
       }
     }
   }

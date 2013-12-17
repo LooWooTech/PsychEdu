@@ -28,4 +28,19 @@ class Student < ActiveRecord::Base
   validates :gender, :presence => true
   validates :unit_code, :presence => true
 
+  def change_current_subject_learning(subject_learning)
+    transaction do
+      current_subject_learning.update_attribute :current, false
+      subject_learning.update_attribute :current, true
+    end
+  end
+
+  def current_subject_learning
+    subject_learnings.where(:current => true).first || subject_learnings.order('created_at ASC').first
+  end
+
+  def no_subject_opened?
+    subject_learnings.empty?
+  end
+
 end

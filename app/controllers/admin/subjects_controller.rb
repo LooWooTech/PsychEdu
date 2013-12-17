@@ -42,7 +42,7 @@ module Admin
     private
 
     def subject_params
-      params.require(:subject).permit(:name, :introduction, :course_count, :length)
+      params.require(:subject).permit(:name, :introduction)
     end
 
     def find_subject

@@ -42,6 +42,6 @@ class SubjectLearning < ActiveRecord::Base
   private
 
   def create_course_learnings
-    courses.each{ |course| course_learnings.create :course => course }
+    courses.each{|course| course_learnings.create :course => course }
   end
 end

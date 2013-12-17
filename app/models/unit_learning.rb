@@ -3,11 +3,13 @@ class UnitLearning < ActiveRecord::Base
   belongs_to :unit
 
   delegate :name, :course, :first?, :last?, :to => :unit
-  delegate :course_name, :to => :unit
+  delegate :videos, :course_name, :to => :unit
 
   has_many :video_watchings, :dependent => :destroy
 
   validate :unit_must_be_in_the_same_learning_course
+
+  after_create :create_video_watchings
 
   def open?
     course_learning.open? && video_watchings.any? && (first? || previous.passed?)
@@ -29,5 +31,9 @@ class UnitLearning < ActiveRecord::Base
 
   def unit_must_be_in_the_same_learning_course
     errors[:base] << 'the unit must be in the same learning course' if course != course_learning.course
+  end
+
+  def create_video_watchings
+    videos.each{|video| video_watchings.create :video => video }
   end
 end

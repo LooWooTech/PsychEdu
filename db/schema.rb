@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217134312) do
+ActiveRecord::Schema.define(version: 20131218055514) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20131217134312) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "play_time_point"
   end
 
   add_index "notes", ["video_watching_id"], name: "index_notes_on_video_watching_id", using: :btree

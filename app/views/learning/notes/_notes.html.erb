@@ -1,0 +1,4 @@
+<div class='list'>
+  <ul><%= render :collection => notes, :partial => 'learning/notes/note' %> </ul>
+  <%= paginate notes, :remote => true, :params => {:controller => 'learning/notes', :action => :index, :video_watching_id => video_watching.id} %>
+</div>

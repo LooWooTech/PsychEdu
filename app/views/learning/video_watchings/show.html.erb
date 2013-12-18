@@ -33,24 +33,11 @@
   </div>
   <div class='notes'>
     <h1>笔记</h1>
-    <form>
-      <textarea></textarea>
-      <input type='submit' value='发布'/>
-    </form>
-    <div class='list'>
-    <ul>
-      <li>
-        <img src=''/>
-        <div>
-          <span class='time'>2014-01-01 19:02</span>
-          <div class='content'>
-            <p>我了个去的</p>
-            <p>我了个去的</p>
-          </div>
-        </div>
-      </li>
-    </ul>
-    </div>
+    <%= form_for [@video_watching, Note.new], :remote => true, :html => {:id => 'video-note'} do |f| %>
+      <%= f.text_area :content %>
+      <%= f.submit '保存' %>
+    <% end %>
+    <%= render :partial => 'learning/notes/notes', :object => @video_watching.notes.page(1).per(5), :locals => {:video_watching => @video_watching} %>
   </div>
 </div>
 

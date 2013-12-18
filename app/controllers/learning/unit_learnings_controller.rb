@@ -5,7 +5,7 @@ module Learning
     def show
       @unit_learning = UnitLearning.find params[:id]
       @video_watching = @unit_learning.video_watchings.first
-      render 'learning/video_learnings/show'
+      render 'learning/video_watchings/show'
     end
 
     private

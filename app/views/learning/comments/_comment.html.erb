@@ -1,0 +1,10 @@
+<li>
+  <img class='avatar' src=''/>
+  <div>
+    <a class='name' href='#'><%= comment.commenter_name %></a>
+    <span class='time'><%= l comment.created_at, :format => :long %></span>
+    <div class='content'>
+      <%= comment.content %>
+    </div>
+  </div>
+</li>

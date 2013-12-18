@@ -12,10 +12,12 @@ PsychEdu::Application.routes.draw do
             resources :unit_learnings, :only => [:show] do
               resources :video_watchings, :only => [:show] do
                 resources :notes, :only => [:create, :destroy, :index]
-                resources :comments, :only => [:create, :destroy, :index]
               end
             end
           end
+        end
+        resources :videos, :only => [] do
+          resources :comments, :only => [:create, :destroy, :index]
         end
       end
 

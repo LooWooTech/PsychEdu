@@ -1,6 +1,6 @@
 $ ->
   $('#question-show').on 'ajax:success', '.new-comment', (e, data)->
-    $('#question-show .comments ul').append data
+    $(this).prev('ul').prepend data
     $(this).find('textarea').val('')
 
   $('#question-show .question .actions a.comments').click ->

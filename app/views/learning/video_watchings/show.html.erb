@@ -25,31 +25,19 @@
 <div class='comments-and-notes'>
   <div class='comments'>
     <h1>评论</h1>
-    <form>
-      <textarea></textarea>
-      <input type='submit' value='发布'/>
-    </form>
-    <ul>
-      <li>
-        <img class='avatar' src=''/>
-        <div>
-          <a class='name' href='#'>邱茂源</a>
-          <span class='time'>2014-01-01 19:02</span>
-          <div class='content'>
-            <p>我了个去的</p>
-            <p>我了个去的</p>
-          </div>
-        </div>
-      </li>
-    </ul>
+    <%= form_for [@video_watching.video, Comment.new], :remote => true, :html => {:id => 'video-comment'} do |f| %>
+      <%= f.text_area :content %>
+      <%= f.submit '发布' %>
+    <% end %>
+    <%= render :partial => 'learning/comments/comments', :object => @video_watching.comments.page(1).per(5), :locals => {:commentable => @video_watching.video} %>
   </div>
-
   <div class='notes'>
     <h1>笔记</h1>
     <form>
       <textarea></textarea>
       <input type='submit' value='发布'/>
     </form>
+    <div class='list'>
     <ul>
       <li>
         <img src=''/>
@@ -62,6 +50,7 @@
         </div>
       </li>
     </ul>
+    </div>
   </div>
 </div>
 

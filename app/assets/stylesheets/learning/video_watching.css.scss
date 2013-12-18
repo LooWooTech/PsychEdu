@@ -58,16 +58,29 @@ $player-width: $content-width - $video-selector-width;
           padding: 5px 15px;
         }
       }
-      ul {
+      .list {
         font-size: 14px;
         li {
           border-top: 1px solid $border-gray;
           margin: 20px 0;
           .name {
             margin-right: 10px;
+            color: #4bbbd1;
           }
           .content {
             margin-top: 10px;
+          }
+        }
+        .pagination {
+          float: left;
+          .page, .next, .prev, .last, .first {
+            margin: 5px;
+            display: inline-block;
+            a {
+              display: block;
+              padding: 5px;
+              color: #444;
+            }
           }
         }
       }

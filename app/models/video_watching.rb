@@ -4,7 +4,7 @@ class VideoWatching < ActiveRecord::Base
 
   has_many :notes, :dependent => :destroy
 
-  delegate :url, :course_name, :unit_name, :to => :video
+  delegate :comments, :url, :course_name, :unit_name, :to => :video
 
   def siblings
     unit_learning.video_watchings - [self]

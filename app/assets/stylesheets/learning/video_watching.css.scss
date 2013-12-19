@@ -20,6 +20,8 @@ $player-width: $content-width - $video-selector-width;
 
   .player {
     margin: 15px 0 40px 0;
+    width: 810px;
+    height: 480px;
     overflow: hidden;
     #video {
       width: $player-width;

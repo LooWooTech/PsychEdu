@@ -5,7 +5,7 @@ class CourseLearning < ActiveRecord::Base
   has_many :unit_learnings, :dependent => :destroy
 
   delegate :student, :to => :subject_learning
-  delegate :name, :introduction, :subject, :units, :first?, :last?, :to => :course
+  delegate :name, :introduction, :subject, :first?, :last?, :to => :course
 
   validates :course, :uniqueness => {:scope => :subject_learning}
   validate :course_must_in_the_learning_subject, :if => :subject_learning
@@ -26,6 +26,10 @@ class CourseLearning < ActiveRecord::Base
 
   def passed?
     true
+  end
+
+  def units
+    course ? course.units : []
   end
 
   private

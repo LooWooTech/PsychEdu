@@ -1,8 +1,8 @@
 @import 'variables';
 @import 'mixin';
 
-$video-selector-width: 150px;
-$player-width: $content-width - $video-selector-width;
+$player-width: 850px;
+$video-selector-width: $content-width - $player-width;
 
 #content {
   .navigator {
@@ -20,7 +20,7 @@ $player-width: $content-width - $video-selector-width;
 
   .player {
     margin: 15px 0 40px 0;
-    width: 810px;
+    width: $player-width;
     height: 480px;
     overflow: hidden;
     #video {

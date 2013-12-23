@@ -1,7 +1,6 @@
 class Unit < ActiveRecord::Base
-  include AssociatedTree
-
-  belongs_to :course
+  include LearnableChild
+  learnable_child_for :course, :through => :course_learnings, :as => :unit_learnings
 
   has_many :videos, :dependent => :destroy
   has_many :unit_learnings, :dependent => :destroy
@@ -9,9 +8,6 @@ class Unit < ActiveRecord::Base
   acts_as_list :scope => :course
 
   delegate :name, :to => :course, :prefix => true
-  delegate :course_learnings, :to => :course
-
-  auto_create :unit_learnings, :for => :course_learnings
 
   alias previous higher_item
   alias next lower_item

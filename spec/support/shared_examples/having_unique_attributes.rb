@@ -16,11 +16,15 @@ shared_examples 'having unique attributes' do |*attributes|
 end
 
 shared_examples 'having unique attribute in scope' do |attribute, scope|
-  specify "#{attribute} must be unique with the same #{scope}" do
+  before do
+    subject.update_attribute scope, FactoryGirl.create(scope)
+  end
+
+  specify "#{attribute} must be unique in the same #{scope}" do
     expect(model_with_the_same_attribute(attribute, scope)).to be_invalid
   end
 
-  specify "#{attribute} can not be unique with different #{scope}" do
+  specify "#{attribute} can be the same with different #{scope}" do
     expect(model_with_the_same_attribute(attribute)).to be_valid
   end
 end

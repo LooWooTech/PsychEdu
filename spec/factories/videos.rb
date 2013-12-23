@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :video do
-    sequence(:url){|n| "http://www.example.com/url#{1}" } 
-    unit
+    sequence(:url){|n| "http://www.example.com/url-#{n}" } 
   end
 end

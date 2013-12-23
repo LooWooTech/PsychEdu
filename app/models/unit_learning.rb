@@ -7,7 +7,7 @@ class UnitLearning < ActiveRecord::Base
 
   has_many :video_watchings, :dependent => :destroy
 
-  validate :unit_must_be_in_the_same_learning_course
+  validate :unit_must_be_in_the_same_learning_course, :if => :course_learning
 
   after_create :create_video_watchings
 

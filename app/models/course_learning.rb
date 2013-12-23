@@ -7,8 +7,8 @@ class CourseLearning < ActiveRecord::Base
   delegate :student, :to => :subject_learning
   delegate :name, :introduction, :subject, :units, :first?, :last?, :to => :course
 
-  validates :course_id, :uniqueness => {:scope => :subject_learning_id}
-  validate :course_must_in_the_learning_subject
+  validates :course, :uniqueness => {:scope => :subject_learning}
+  validate :course_must_in_the_learning_subject, :if => :learning_subject
 
   after_create :create_unit_learnings
 
@@ -28,10 +28,14 @@ class CourseLearning < ActiveRecord::Base
     true
   end
 
+  def learning_subject
+    subject_learning.try :subject
+  end
+
   private
 
   def course_must_in_the_learning_subject
-    errors[:base] << 'the course must be in the learning subject' if subject != subject_learning.subject
+    errors[:base] << 'the course must be in the learning subject' if subject != learning_subject
   end
 
   def create_unit_learnings

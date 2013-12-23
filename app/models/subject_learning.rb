@@ -7,7 +7,7 @@ class SubjectLearning < ActiveRecord::Base
 
   validates :subject_id, :uniqueness => {:scope => :student_id}
 
-  delegate :name, :courses, :to => :subject
+  delegate :name, :to => :subject
 
   after_create :create_course_learnings
 
@@ -37,6 +37,10 @@ class SubjectLearning < ActiveRecord::Base
 
   def learning_periods_include_date(date)
     learning_periods.find{|period| period.include_date? date }
+  end
+
+  def courses
+    subject ? subject.courses : []
   end
 
   private

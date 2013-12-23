@@ -1,6 +1,6 @@
 class Course < ActiveRecord::Base
-  include AssociatedTree
-  belongs_to :subject
+  include LearnableChild
+  learnable_child_for :subject, :through => :subject_learnings, :as => :course_learnings
 
   has_many :course_learnings, :dependent => :destroy
   has_many :units, :dependent => :destroy
@@ -9,10 +9,7 @@ class Course < ActiveRecord::Base
 
   validates :name, :presence => true, :uniqueness => {:scope => :subject_id}
 
-  delegate :name, :to => :subject, :prefix => true
-  delegate :subject_learnings, :to => :subject
-
-  auto_create :course_learnings, :for => :subject_learnings
+  delegate :name, :to => :subject, :prefix => true, :allow_nil => true
 
   alias previous higher_item
   alias next lower_item
@@ -21,11 +18,4 @@ class Course < ActiveRecord::Base
     units.to_a.sum &:duration
   end
 
-  private
-
-  def create_course_learning_for_each_subject_learning
-    subject_learnings.each do |subject_learning|
-      subject_learning.course_learnings.create :course => self
-    end
-  end
 end

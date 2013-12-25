@@ -1,22 +1,22 @@
 <div id='info'>
   <h1>
-    <%= link_to @course.topic_name, @course.topic %>：
-    <%= @course.name %>
+    <%= link_to @chapter.topic_name, @chapter.topic %>：
+    <%= @chapter.name %>
   </h1>
   <div>
-    <label>简介：<%= @course.introduction %></label>
+    <label>简介：<%= @chapter.introduction %></label>
   </div>
-  <%= link_to '修改', edit_course_path(@course) %>
+  <%= link_to '修改', edit_chapter_path(@chapter) %>
 </div>
 
 <div id='table'>
-  <%= link_to '添加单元', new_course_unit_path(@course) %>
+  <%= link_to '添加单元', new_chapter_unit_path(@chapter) %>
   <table>
     <tr>
       <th>课程名称</th>
       <th>操作</th>
     </tr>
-    <% @course.units.each do |unit| %>
+    <% @chapter.units.each do |unit| %>
       <tr>
         <td><%= link_to unit.name, unit %></td>
         <td>

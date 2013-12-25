@@ -1,10 +1,10 @@
 <li>
   <img src='' class='cover'/>
   <div class='info'>
-    <h1><%= course_learning.name %></h1>
-    <p><%= course_learning.introduction %></p>
+    <h1><%= chapter_learning.name %></h1>
+    <p><%= chapter_learning.introduction %></p>
     <ul class='units'>
-      <% course_learning.unit_learnings.each do |unit_learning| %>
+      <% chapter_learning.unit_learnings.each do |unit_learning| %>
         <% if unit_learning.open? %>
           <li><%= link_to unit_learning.name, unit_learning %></li>
         <% else %>

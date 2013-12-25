@@ -1,9 +1,9 @@
 <div class='navigator'>
-  <h1><%= @video_watching.course_name %></h1>
+  <h1><%= @video_watching.chapter_name %></h1>
   <div class='unit-selector'>
     <span class='current'><%= @video_watching.unit_name %></span>
     <ul>
-      <% current_course_learning.unit_learnings.each do |unit_learning| %>
+      <% current_chapter_learning.unit_learnings.each do |unit_learning| %>
         <% if unit_learning.open? %>
           <li><%= link_to unit_learning.name, unit_learning %></li>
         <% end %>

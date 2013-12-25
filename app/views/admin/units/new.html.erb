@@ -1,6 +1,6 @@
 <% @unit.videos.build if @unit.videos.empty? %>
 
-<%= form_for [@course, @unit], :html => {:multipart => true} do |f| %>
+<%= form_for [@chapter, @unit], :html => {:multipart => true} do |f| %>
   <div>
     <%= f.label :name, '单元名称' %>
     <%= f.text_field :name %>

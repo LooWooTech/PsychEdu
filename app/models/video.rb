@@ -5,7 +5,7 @@ class Video < ActiveRecord::Base
   has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :video_watchings, :dependent => :destroy
 
-  delegate :course_name, :to => :unit
+  delegate :chapter_name, :to => :unit
   delegate :name, :to => :unit, :prefix => true, :allow_nil => true
 
   validates :url, :uniqueness => {:scope => :unit}

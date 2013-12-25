@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :unit do
-    course
+    chapter
     sequence(:name){|n| "name#{n}"}
   end
 end

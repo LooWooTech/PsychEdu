@@ -4,7 +4,7 @@
     <label>简介：<%= @topic.introduction %></label>
   </div>
   <div>
-    <label>课程数量：<%= @topic.course_count %></label>
+    <label>课程数量：<%= @topic.chapter_count %></label>
   </div>
   <div>
     <label>时长：<%= @topic.duration %></label>
@@ -13,18 +13,18 @@
 </div>
 
 <div id='table'>
-  <%= link_to '添加课程', new_topic_course_path(@topic) %>
+  <%= link_to '添加课程', new_topic_chapter_path(@topic) %>
   <table>
     <tr>
       <th>课程名称</th>
       <th>操作</th>
     </tr>
-    <% @topic.courses.each do |course| %>
+    <% @topic.chapters.each do |chapter| %>
       <tr>
-        <td><%= link_to course.name, course %></td>
+        <td><%= link_to chapter.name, chapter %></td>
         <td>
-          <%= link_to '修改', edit_course_path(course) %>
-          <%= link_to '删除', course, :method => :delete, :data => {:confirm => "确实要删除“#{course.name}”吗？"} %>
+          <%= link_to '修改', edit_chapter_path(chapter) %>
+          <%= link_to '删除', chapter, :method => :delete, :data => {:confirm => "确实要删除“#{chapter.name}”吗？"} %>
         </td>
       </tr>
     <% end %>

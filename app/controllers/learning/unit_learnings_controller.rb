@@ -1,6 +1,6 @@
 module Learning
   class UnitLearningsController < LearningController
-    helper_method :current_course_learning
+    helper_method :current_chapter_learning
 
     def show
       @unit_learning = UnitLearning.find params[:id]
@@ -10,8 +10,8 @@ module Learning
 
     private
 
-    def current_course_learning
-      @unit_learning.course_learning
+    def current_chapter_learning
+      @unit_learning.chapter_learning
     end
   end
 end

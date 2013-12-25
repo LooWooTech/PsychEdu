@@ -1,6 +1,6 @@
 module Admin
   class UnitsController < AdminController
-    before_filter :find_course, :only => [:new, :create]
+    before_filter :find_chapter, :only => [:new, :create]
     before_filter :find_unit, :only => [:edit, :update, :show, :destroy]
 
     def new
@@ -8,7 +8,7 @@ module Admin
     end
 
     def create
-      @unit = @course.units.build unit_params
+      @unit = @chapter.units.build unit_params
       if @unit.save
         redirect_to @unit
       else
@@ -32,7 +32,7 @@ module Admin
 
     def destroy
       @unit.destroy
-      redirect_to @unit.course
+      redirect_to @unit.chapter
     end
 
     private
@@ -45,8 +45,8 @@ module Admin
       @unit = Unit.find params[:id]
     end
 
-    def find_course
-      @course = Course.find params[:course_id]
+    def find_chapter
+      @chapter = Chapter.find params[:chapter_id]
     end
   end
 end

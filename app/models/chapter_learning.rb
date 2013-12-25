@@ -1,20 +1,20 @@
-class CourseLearning < ActiveRecord::Base
+class ChapterLearning < ActiveRecord::Base
   belongs_to :topic_learning
-  belongs_to :course
+  belongs_to :chapter
 
   has_many :unit_learnings, :dependent => :destroy
 
   delegate :student, :to => :topic_learning
-  delegate :name, :introduction, :topic, :first?, :last?, :to => :course
+  delegate :name, :introduction, :topic, :first?, :last?, :to => :chapter
 
   after_create :create_unit_learnings
 
   def previous
-    first? ? nil : topic_learning.course_learnings.find_by(:course => course.previous)
+    first? ? nil : topic_learning.chapter_learnings.find_by(:chapter => chapter.previous)
   end
 
   def next
-    last? ? nil : topic_learning.course_learnings.find_by(:course => course.next)
+    last? ? nil : topic_learning.chapter_learnings.find_by(:chapter => chapter.next)
   end
 
   def open?
@@ -26,7 +26,7 @@ class CourseLearning < ActiveRecord::Base
   end
 
   def units
-    course ? course.units : []
+    chapter ? chapter.units : []
   end
 
   private

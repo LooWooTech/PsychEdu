@@ -8,7 +8,7 @@ PsychEdu::Application.routes.draw do
     constraints :subdomain => 'learning' do
       shallow do
         resources :topic_learnings, :only => [:show] do
-          resources :course_learnings, :only => [:show] do
+          resources :chapter_learnings, :only => [:show] do
             resources :unit_learnings, :only => [:show] do
               resources :video_watchings, :only => [:show] do
                 resources :notes, :only => [:create, :destroy, :index]
@@ -21,7 +21,7 @@ PsychEdu::Application.routes.draw do
         end
       end
 
-      root 'course_learnings#index', :as => :learning
+      root 'chapter_learnings#index', :as => :learning
     end
   end
 
@@ -30,7 +30,7 @@ PsychEdu::Application.routes.draw do
       resources :students, :only => [:new, :create, :show, :edit, :update]
       shallow do
         resources :topics, :only => [:new, :create, :index, :show, :edit, :update, :destroy] do
-          resources :courses, :only => [:new, :create, :show, :edit, :update, :destroy] do
+          resources :chapters, :only => [:new, :create, :show, :edit, :update, :destroy] do
             resources :units, :only => [:new, :create, :show, :edit, :update, :destroy]
           end
         end

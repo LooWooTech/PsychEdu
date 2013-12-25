@@ -4,7 +4,7 @@ class LearningController < ApplicationController
   before_filter :student_required
   before_filter :ensure_topic_open
 
-  helper_method :current_topic_learning, :course_learnings
+  helper_method :current_topic_learning, :chapter_learnings
 
   private
 
@@ -25,7 +25,7 @@ class LearningController < ApplicationController
     current_user.change_current_topic_learning @current_topic_learning
   end
 
-  def course_learnings
-    @course_learnings ||= current_topic_learning.course_learnings.page(params[:page]).per(10)
+  def chapter_learnings
+    @chapter_learnings ||= current_topic_learning.chapter_learnings.page(params[:page]).per(10)
   end
 end

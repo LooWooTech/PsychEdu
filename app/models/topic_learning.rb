@@ -3,13 +3,13 @@ class TopicLearning < ActiveRecord::Base
   belongs_to :topic
 
   has_many :learning_periods, :dependent => :destroy
-  has_many :course_learnings, :dependent => :destroy
+  has_many :chapter_learnings, :dependent => :destroy
 
   validates :topic, :uniqueness => {:scope => :student}
 
   delegate :name, :to => :topic
 
-  after_create :create_course_learnings
+  after_create :create_chapter_learnings
 
   def start(start_on, end_on)
     learning_periods.create(:start_on => start_on, :end_on => end_on).valid?
@@ -39,13 +39,13 @@ class TopicLearning < ActiveRecord::Base
     learning_periods.find{|period| period.include_date? date }
   end
 
-  def courses
-    topic ? topic.courses : []
+  def chapters
+    topic ? topic.chapters : []
   end
 
   private
 
-  def create_course_learnings
-    courses.each{|course| course_learnings.create :course => course }
+  def create_chapter_learnings
+    chapters.each{|chapter| chapter_learnings.create :chapter => chapter }
   end
 end

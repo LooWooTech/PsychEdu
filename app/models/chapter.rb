@@ -1,8 +1,8 @@
-class Course < ActiveRecord::Base
+class Chapter < ActiveRecord::Base
   include LearnableChild
-  learnable_child_for :topic, :through => :topic_learnings, :as => :course_learnings
+  learnable_child_for :topic, :through => :topic_learnings, :as => :chapter_learnings
 
-  has_many :course_learnings, :dependent => :destroy
+  has_many :chapter_learnings, :dependent => :destroy
   has_many :units, :dependent => :destroy
 
   acts_as_list :scope => :topic

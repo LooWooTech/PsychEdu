@@ -12,7 +12,7 @@ shared_examples 'auto create child learning objects' do |child_learning, params|
       @parent_learning = FactoryGirl.create parent_learning_name, parent_name => @parent
     end
 
-    it "auto creates #{child_learning} for each course" do
+    it "auto creates #{child_learning} for each #{child_name}" do
       expect(@parent_learning.__send__(child_learning).count).to eq(@children_count) 
       @parent.__send__(children_names).each do |child|
         expect(@parent_learning.__send__(child_learning).find_by child_name => child).not_to be_nil

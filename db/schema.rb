@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131225085749) do
+ActiveRecord::Schema.define(version: 20131225093931) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -41,6 +41,28 @@ ActiveRecord::Schema.define(version: 20131225085749) do
   add_index "answers", ["answerer_id"], name: "index_answers_on_answerer_id", using: :btree
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
 
+  create_table "chapter_learnings", force: true do |t|
+    t.integer  "topic_learning_id"
+    t.integer  "chapter_id"
+    t.integer  "minutes",           default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "chapter_learnings", ["chapter_id"], name: "index_chapter_learnings_on_chapter_id", using: :btree
+  add_index "chapter_learnings", ["topic_learning_id"], name: "index_chapter_learnings_on_topic_learning_id", using: :btree
+
+  create_table "chapters", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "topic_id"
+    t.integer  "position",     default: 0
+    t.text     "introduction"
+  end
+
+  add_index "chapters", ["topic_id"], name: "index_chapters_on_topic_id", using: :btree
+
   create_table "comments", force: true do |t|
     t.text     "content"
     t.integer  "commentable_id"
@@ -66,28 +88,6 @@ ActiveRecord::Schema.define(version: 20131225085749) do
 
   add_index "complaints", ["complainable_id"], name: "index_complaints_on_complainable_id", using: :btree
   add_index "complaints", ["complainer_id"], name: "index_complaints_on_complainer_id", using: :btree
-
-  create_table "course_learnings", force: true do |t|
-    t.integer  "topic_learning_id"
-    t.integer  "course_id"
-    t.integer  "minutes",           default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "course_learnings", ["course_id"], name: "index_course_learnings_on_course_id", using: :btree
-  add_index "course_learnings", ["topic_learning_id"], name: "index_course_learnings_on_topic_learning_id", using: :btree
-
-  create_table "courses", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "topic_id"
-    t.integer  "position",     default: 0
-    t.text     "introduction"
-  end
-
-  add_index "courses", ["topic_id"], name: "index_courses_on_topic_id", using: :btree
 
   create_table "forums", force: true do |t|
     t.string   "name"
@@ -190,24 +190,24 @@ ActiveRecord::Schema.define(version: 20131225085749) do
   end
 
   create_table "unit_learnings", force: true do |t|
-    t.integer  "course_learning_id"
+    t.integer  "chapter_learning_id"
     t.integer  "unit_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "unit_learnings", ["course_learning_id"], name: "index_unit_learnings_on_course_learning_id", using: :btree
+  add_index "unit_learnings", ["chapter_learning_id"], name: "index_unit_learnings_on_chapter_learning_id", using: :btree
   add_index "unit_learnings", ["unit_id"], name: "index_unit_learnings_on_unit_id", using: :btree
 
   create_table "units", force: true do |t|
     t.string   "name"
-    t.integer  "course_id"
+    t.integer  "chapter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "position",   default: 0
   end
 
-  add_index "units", ["course_id"], name: "index_units_on_course_id", using: :btree
+  add_index "units", ["chapter_id"], name: "index_units_on_chapter_id", using: :btree
 
   create_table "video_watchings", force: true do |t|
     t.integer  "unit_learning_id"

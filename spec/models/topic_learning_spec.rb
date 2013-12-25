@@ -4,7 +4,7 @@ describe TopicLearning do
   subject{ FactoryGirl.create :topic_learning }
 
   it_behaves_like 'having unique attribute in scope', :topic, :student
-  include_examples 'auto create child learning objects', :course_learnings, :for => :course, :parent => :topic
+  include_examples 'auto create child learning objects', :chapter_learnings, :for => :chapter, :parent => :topic
 
   before do
     @learning_start = Date.parse('2013-01-01')

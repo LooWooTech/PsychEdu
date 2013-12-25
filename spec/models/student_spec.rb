@@ -7,29 +7,29 @@ describe Student do
   it_behaves_like 'requiring attributes', :name, :gender, :unit_code
   it_behaves_like 'having an account'
 
-  describe '#current_subject_learning' do
+  describe '#current_topic_learning' do
     before do
-      FactoryGirl.create_list :subject_learning, 2, :student => subject
-      @current_subject_learning = subject.subject_learnings.last
+      FactoryGirl.create_list :topic_learning, 2, :student => subject
+      @current_topic_learning = subject.topic_learnings.last
     end
 
-    context 'current subject learning object exists' do
+    context 'current topic learning object exists' do
       before do
-        @current_subject_learning.update_attribute :current, true
+        @current_topic_learning.update_attribute :current, true
       end
 
-      it 'returns subject_learning object whose current attribute is true' do
-        expect(subject.current_subject_learning).to eq(@current_subject_learning)
+      it 'returns topic_learning object whose current attribute is true' do
+        expect(subject.current_topic_learning).to eq(@current_topic_learning)
       end
     end
 
-    context 'no current subject learning' do
+    context 'no current topic learning' do
       before do
-        @earliest_subject_learning = subject.subject_learnings.min{|s| s.created_at.to_i }
+        @earliest_topic_learning = subject.topic_learnings.min{|s| s.created_at.to_i }
       end
 
-      it 'returns the earliest subject learning object' do
-        expect(subject.current_subject_learning).to eq(@earliest_subject_learning)
+      it 'returns the earliest topic learning object' do
+        expect(subject.current_topic_learning).to eq(@earliest_topic_learning)
       end
     end
   end

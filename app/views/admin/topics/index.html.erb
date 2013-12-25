@@ -1,0 +1,21 @@
+<div id='info'>
+  <h1>专题管理</h1>
+</div>
+<div id='table'>
+  <%= link_to '新建专题', new_topic_path %>
+  <table>
+    <tr>
+      <th>专题名称</th>
+      <th>操作</th>
+    </tr>
+    <% @topics.each do |topic| %>
+      <tr>
+        <td><%= link_to topic.name, topic %></td>
+        <td>
+          <%= link_to '修改', edit_topic_path(topic) %>
+          <%= link_to '删除', topic, :method => :delete, :data => {:confirm => "确实要删除“#{topic.name}”吗？"} %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

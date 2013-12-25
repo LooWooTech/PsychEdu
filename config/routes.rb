@@ -7,7 +7,7 @@ PsychEdu::Application.routes.draw do
   scope :module => :learning do
     constraints :subdomain => 'learning' do
       shallow do
-        resources :subject_learnings, :only => [:show] do
+        resources :topic_learnings, :only => [:show] do
           resources :course_learnings, :only => [:show] do
             resources :unit_learnings, :only => [:show] do
               resources :video_watchings, :only => [:show] do
@@ -29,7 +29,7 @@ PsychEdu::Application.routes.draw do
     constraints :subdomain => 'admin' do
       resources :students, :only => [:new, :create, :show, :edit, :update]
       shallow do
-        resources :subjects, :only => [:new, :create, :index, :show, :edit, :update, :destroy] do
+        resources :topics, :only => [:new, :create, :index, :show, :edit, :update, :destroy] do
           resources :courses, :only => [:new, :create, :show, :edit, :update, :destroy] do
             resources :units, :only => [:new, :create, :show, :edit, :update, :destroy]
           end

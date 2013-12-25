@@ -20,7 +20,7 @@ class Student < ActiveRecord::Base
     :as => 'complainer', :foreign_key => :complainer_id,
     :dependent => :nullify
 
-  has_many :subject_learnings, :dependent => :destroy
+  has_many :topic_learnings, :dependent => :destroy
 
   belongs_to :added_by, :class_name => 'Administrator'
 
@@ -28,19 +28,19 @@ class Student < ActiveRecord::Base
   validates :gender, :presence => true
   validates :unit_code, :presence => true
 
-  def change_current_subject_learning(subject_learning)
+  def change_current_topic_learning(topic_learning)
     transaction do
-      current_subject_learning.update_attribute :current, false
-      subject_learning.update_attribute :current, true
+      current_topic_learning.update_attribute :current, false
+      topic_learning.update_attribute :current, true
     end
   end
 
-  def current_subject_learning
-    subject_learnings.where(:current => true).first || subject_learnings.order('created_at ASC').first
+  def current_topic_learning
+    topic_learnings.where(:current => true).first || topic_learnings.order('created_at ASC').first
   end
 
-  def no_subject_open?
-    subject_learnings.empty?
+  def no_topic_open?
+    topic_learnings.empty?
   end
 
 end

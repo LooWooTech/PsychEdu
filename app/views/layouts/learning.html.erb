@@ -21,12 +21,12 @@
         <div id='user'>
           <img src=''/>
         </div>
-        <div id='subject-selector'>
-          <span class='current'><%= current_subject_learning.name %></span>
+        <div id='topic-selector'>
+          <span class='current'><%= current_topic_learning.name %></span>
           <ul>
-            <% current_user.subject_learnings.each do |subject_learning| %>
-              <li><%= link_to subject_learning.name, subject_path(subject_learning) %></li>
-              <li><%= link_to subject_learning.name, subject_path(subject_learning) %></li>
+            <% current_user.topic_learnings.each do |topic_learning| %>
+              <li><%= link_to topic_learning.name, topic_path(topic_learning) %></li>
+              <li><%= link_to topic_learning.name, topic_path(topic_learning) %></li>
             <% end %>
           </ul>
         </div>

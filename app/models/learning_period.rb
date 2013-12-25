@@ -5,7 +5,7 @@ class LearningPeriod < ActiveRecord::Base
   validate :should_not_intersect_with_other_learning_period
 
   has_many :leaving_periods, :dependent => :destroy
-  belongs_to :subject_learning
+  belongs_to :topic_learning
 
   def actually_end_on
     end_on + leaving_periods.to_a.sum(&:duration)
@@ -22,7 +22,7 @@ class LearningPeriod < ActiveRecord::Base
   private
 
   def should_not_intersect_with_other_learning_period
-    errors[:base] << 'should not intersect with another learning period' if subject_learning.has_intersected_learning_periods? self
+    errors[:base] << 'should not intersect with another learning period' if topic_learning.has_intersected_learning_periods? self
   end
 
 end

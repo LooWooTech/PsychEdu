@@ -14,8 +14,8 @@ describe CourseLearning do
     context 'non-first course learning' do
       before do
         @the_course = subject.course
-        @subject = FactoryGirl.create :subject
-        @subject.courses << [@the_course, FactoryGirl.create(:course)]
+        @topic = FactoryGirl.create :topic
+        @topic.courses << [@the_course, FactoryGirl.create(:course)]
         @the_course.move_to_bottom
       end
 

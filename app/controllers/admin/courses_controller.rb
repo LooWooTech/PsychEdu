@@ -1,6 +1,6 @@
 module Admin
   class CoursesController < AdminController
-    before_filter :find_subject, :only => [:new, :create]
+    before_filter :find_topic, :only => [:new, :create]
     before_filter :find_course, :only => [:edit, :show, :update, :destroy]
 
     def new
@@ -8,7 +8,7 @@ module Admin
     end
 
     def create
-      @course = @subject.courses.build course_params
+      @course = @topic.courses.build course_params
       if @course.save
         redirect_to @course
       else
@@ -32,7 +32,7 @@ module Admin
 
     def destroy
       @course.destroy
-      redirect_to @course.subject
+      redirect_to @course.topic
     end
 
     private
@@ -41,8 +41,8 @@ module Admin
       @course = Course.find params[:id]
     end
 
-    def find_subject
-      @subject = Subject.find params[:subject_id]
+    def find_topic
+      @topic = Topic.find params[:topic_id]
     end
 
     def course_params

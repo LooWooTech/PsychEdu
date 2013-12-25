@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :course do
-    subject
+    topic
     sequence(:name){|n| "course#{n}"}
   end
 end

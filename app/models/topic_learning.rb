@@ -1,13 +1,13 @@
-class SubjectLearning < ActiveRecord::Base
+class TopicLearning < ActiveRecord::Base
   belongs_to :student
-  belongs_to :subject
+  belongs_to :topic
 
   has_many :learning_periods, :dependent => :destroy
   has_many :course_learnings, :dependent => :destroy
 
-  validates :subject_id, :uniqueness => {:scope => :student_id}
+  validates :topic, :uniqueness => {:scope => :student}
 
-  delegate :name, :to => :subject
+  delegate :name, :to => :topic
 
   after_create :create_course_learnings
 
@@ -40,7 +40,7 @@ class SubjectLearning < ActiveRecord::Base
   end
 
   def courses
-    subject ? subject.courses : []
+    topic ? topic.courses : []
   end
 
   private

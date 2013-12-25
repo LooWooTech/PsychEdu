@@ -8,15 +8,15 @@ describe LearningPeriod do
   context 'when other learning periods were created' do
     before{ @another_learning_period = FactoryGirl.create :learning_period }
 
-    it 'should not intersect with any other learning periods that in the same subject learning' do
-      subject.subject_learning = @another_learning_period.subject_learning.reload
+    it 'should not intersect with any other learning periods that in the same topic learning' do
+      subject.topic_learning = @another_learning_period.topic_learning.reload
       subject.start_on = @another_learning_period.start_on + 1.day
       subject.end_on = subject.start_on + 29.days
 
       expect(subject).to be_invalid
     end
 
-    it 'can intersect with other learning periods that not in the same subject learning' do
+    it 'can intersect with other learning periods that not in the same topic learning' do
       subject.start_on = @another_learning_period.start_on + 1.day
       subject.end_on = subject.start_on + 29.days
 

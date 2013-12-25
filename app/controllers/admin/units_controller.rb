@@ -38,7 +38,7 @@ module Admin
     private
 
     def unit_params
-      params.require(:unit).permit(:name, :videos_attributes => [:url, :interaction_file, :teacher_names, :_destroy, :id])
+      params.require(:unit).permit(:name, :videos_attributes => [:url, :teacher_names, :_destroy, :id])
     end
 
     def find_unit

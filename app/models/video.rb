@@ -8,7 +8,13 @@ class Video < ActiveRecord::Base
   delegate :course_name, :to => :unit
   delegate :name, :to => :unit, :prefix => true, :allow_nil => true
 
-  mount_uploader :interaction_file, VideoInteractionFileUploader
-
   validates :url, :uniqueness => {:scope => :unit}
+
+  def root_path
+    url[/.*\//]
+  end
+
+  def metadata_file_url
+    "#{root_path}mulu.xml"
+  end
 end

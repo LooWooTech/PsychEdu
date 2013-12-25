@@ -46,9 +46,9 @@
 		var flashvers = {};
 		flashvers.mp4_url = "<%= @video_watching.url %>";
 		flashvers.dianping = "true";
-		flashvers.xml_url = "<%= @video_watching.interaction_file_url %>";
+		flashvers.xml_url = "<%= @video_watching.metadata_file_url %>";
 		flashvers.public_root = "/sound/";
-		flashvers.event_sound_root = "/data/sound/events/";//这是语音文件地址，mp3文件名已经写到xml中，但只是个文件名，前面加上存放路径即可找到该声音文件
+		flashvers.event_sound_root = "<%= @video_watching.root_path %>";//这是语音文件地址，mp3文件名已经写到xml中，但只是个文件名，前面加上存放路径即可找到该声音文件
 		flashvers.start_time = <%= @video_watching.last_end_at %>;
 		
 		var params = {};

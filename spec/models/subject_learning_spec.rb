@@ -4,6 +4,7 @@ describe SubjectLearning do
   subject{ FactoryGirl.create :subject_learning }
 
   it_behaves_like 'having unique attribute in scope', :subject, :student
+  include_examples 'auto create child learning objects', :course_learnings, :for => :course, :parent => :subject
 
   before do
     @learning_start = Date.parse('2013-01-01')
@@ -49,17 +50,4 @@ describe SubjectLearning do
     end
   end
 
-  context "subject has many courses" do
-    before do
-      @subject = FactoryGirl.create :subject
-      FactoryGirl.create_list :course, 5, :subject => @subject
-      @subject_learning = FactoryGirl.create :subject_learning, :subject => @subject
-    end
-
-    it "creates course_learning for each course in the subject after creating" do
-      @subject.courses.each do |course|
-        expect(CourseLearning.find_by(:course => course, :subject_learning => @subject_learning)).not_to be_nil
-      end
-    end
-  end
 end

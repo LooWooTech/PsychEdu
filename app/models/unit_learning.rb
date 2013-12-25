@@ -7,8 +7,6 @@ class UnitLearning < ActiveRecord::Base
 
   has_many :video_watchings, :dependent => :destroy
 
-  validate :unit_must_be_in_the_same_learning_course, :if => :course_learning
-
   after_create :create_video_watchings
 
   def open?
@@ -28,10 +26,6 @@ class UnitLearning < ActiveRecord::Base
   end
 
   private
-
-  def unit_must_be_in_the_same_learning_course
-    errors[:base] << 'the unit must be in the same learning course' if course != course_learning.course
-  end
 
   def create_video_watchings
     videos.each{|video| video_watchings.create :video => video }

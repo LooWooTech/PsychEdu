@@ -3,15 +3,7 @@ require 'spec_helper'
 describe CourseLearning do
   subject{ FactoryGirl.create :course_learning }
 
-  it_behaves_like 'composing with model that have the same parent object', :subject_learning, :subject
-
-  it 'has unique course with the same subject_learning' do
-    expect(FactoryGirl.build :course_learning, :course => subject.course, :subject_learning => subject.subject_learning).to be_invalid
-  end
-
-  it 'could have the same course without same subject_learning' do
-    expect(FactoryGirl.build :course_learning, :course => subject.course, :subject_learning => FactoryGirl.create(:subject_learning, :subject => subject.subject)).to be_valid
-  end
+  include_examples 'auto create child learning objects', :unit_learnings, :for => :unit, :parent => :course
 
   describe '#open?' do
     context 'first course learning' do

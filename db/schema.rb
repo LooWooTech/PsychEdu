@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131230090118) do
+ActiveRecord::Schema.define(version: 20131231081408) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 20131230090118) do
 
   add_index "answers", ["answerer_id", "answerer_type"], name: "index_answers_on_answerer_id_and_answerer_type", using: :btree
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+
+  create_table "case_questions", force: true do |t|
+    t.text     "content"
+    t.integer  "unit_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "case_questions", ["unit_id"], name: "index_case_questions_on_unit_id", using: :btree
 
   create_table "chapter_learnings", force: true do |t|
     t.integer  "topic_learning_id"
@@ -74,13 +83,17 @@ ActiveRecord::Schema.define(version: 20131230090118) do
 
   add_index "choices", ["choice_question_id", "choice_question_type"], name: "index_choices_on_choice_question_id_and_choice_question_type", using: :btree
 
-  create_table "choices_exam_answers", force: true do |t|
+  create_table "choices_multiple", force: true do |t|
     t.integer "choice_id"
-    t.integer "exam_answer_id"
+    t.integer "multiple_choice_answer_id"
   end
 
-  add_index "choices_exam_answers", ["choice_id"], name: "index_choices_exam_answers_on_choice_id", using: :btree
-  add_index "choices_exam_answers", ["exam_answer_id"], name: "index_choices_exam_answers_on_exam_answer_id", using: :btree
+  create_table "choices_singular", force: true do |t|
+    t.integer "choice_id"
+    t.integer "singular_choice_answer_id"
+  end
+
+  add_index "choices_singular", ["choice_id"], name: "index_choices_singular_on_choice_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.text     "content"
@@ -107,29 +120,6 @@ ActiveRecord::Schema.define(version: 20131230090118) do
 
   add_index "complaints", ["complainable_id", "complainable_type"], name: "index_complaints_on_complainable_id_and_complainable_type", using: :btree
   add_index "complaints", ["complainer_id", "complainer_type"], name: "index_complaints_on_complainer_id_and_complainer_type", using: :btree
-
-  create_table "exam_answers", force: true do |t|
-    t.integer  "exam_question_id"
-    t.integer  "parent_id"
-    t.string   "type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "exam_answers", ["exam_question_id"], name: "index_exam_answers_on_exam_question_id", using: :btree
-  add_index "exam_answers", ["parent_id"], name: "index_exam_answers_on_parent_id", using: :btree
-
-  create_table "exam_questions", force: true do |t|
-    t.text     "content"
-    t.string   "type"
-    t.integer  "unit_id"
-    t.integer  "parent_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "exam_questions", ["parent_id"], name: "index_exam_questions_on_parent_id", using: :btree
-  add_index "exam_questions", ["unit_id"], name: "index_exam_questions_on_unit_id", using: :btree
 
   create_table "forums", force: true do |t|
     t.string   "name"
@@ -162,6 +152,29 @@ ActiveRecord::Schema.define(version: 20131230090118) do
 
   add_index "leaving_periods", ["learning_period_id"], name: "index_leaving_periods_on_learning_period_id", using: :btree
   add_index "leaving_periods", ["reviewer_id"], name: "index_leaving_periods_on_reviewer_id", using: :btree
+
+  create_table "multiple_choice_answers", force: true do |t|
+    t.integer  "multiple_choice_question_id"
+    t.integer  "case_answer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "unit_exam_id"
+  end
+
+  add_index "multiple_choice_answers", ["case_answer_id"], name: "index_multiple_choice_answers_on_case_answer_id", using: :btree
+  add_index "multiple_choice_answers", ["multiple_choice_question_id"], name: "index_multiple_choice_answers_on_multiple_choice_question_id", using: :btree
+  add_index "multiple_choice_answers", ["unit_exam_id"], name: "index_multiple_choice_answers_on_unit_exam_id", using: :btree
+
+  create_table "multiple_choice_questions", force: true do |t|
+    t.text     "content"
+    t.integer  "unit_id"
+    t.integer  "case_question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "multiple_choice_questions", ["case_question_id"], name: "index_multiple_choice_questions_on_case_question_id", using: :btree
+  add_index "multiple_choice_questions", ["unit_id"], name: "index_multiple_choice_questions_on_unit_id", using: :btree
 
   create_table "notes", force: true do |t|
     t.integer  "video_watching_id"
@@ -200,6 +213,29 @@ ActiveRecord::Schema.define(version: 20131230090118) do
   add_index "resumings", ["leaving_period_id"], name: "index_resumings_on_leaving_period_id", using: :btree
   add_index "resumings", ["reviewer_id"], name: "index_resumings_on_reviewer_id", using: :btree
 
+  create_table "singular_choice_answers", force: true do |t|
+    t.integer  "singular_choice_question_id"
+    t.integer  "case_answer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "unit_exam_id"
+  end
+
+  add_index "singular_choice_answers", ["case_answer_id"], name: "index_singular_choice_answers_on_case_answer_id", using: :btree
+  add_index "singular_choice_answers", ["singular_choice_question_id"], name: "index_singular_choice_answers_on_singular_choice_question_id", using: :btree
+  add_index "singular_choice_answers", ["unit_exam_id"], name: "index_singular_choice_answers_on_unit_exam_id", using: :btree
+
+  create_table "singular_choice_questions", force: true do |t|
+    t.text     "content"
+    t.integer  "unit_id"
+    t.integer  "case_question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "singular_choice_questions", ["case_question_id"], name: "index_singular_choice_questions_on_case_question_id", using: :btree
+  add_index "singular_choice_questions", ["unit_id"], name: "index_singular_choice_questions_on_unit_id", using: :btree
+
   create_table "students", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -235,6 +271,7 @@ ActiveRecord::Schema.define(version: 20131230090118) do
     t.integer  "unit_learning_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "submitted",        default: false
   end
 
   add_index "unit_exams", ["unit_learning_id"], name: "index_unit_exams_on_unit_learning_id", using: :btree

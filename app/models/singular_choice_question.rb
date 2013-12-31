@@ -1,3 +1,3 @@
-class SingularChoiceQuestion < ExamQuestion
+class SingularChoiceQuestion < ActiveRecord::Base
   include ChoiceQuestion
 end

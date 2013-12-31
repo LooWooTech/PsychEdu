@@ -33,9 +33,9 @@ module QuestionImporter
     def import
       rows.each do |row|
         if row.singular_choice?
-          question = @unit.singular_choice_questions.create :content => row.question
+          question = @unit.singular_choice_questions.create :content => row.question.strip
         else
-          question = @unit.multiple_choice_questions.create :content => row.question
+          question = @unit.multiple_choice_questions.create :content => row.question.strip
         end
         question.choices << row.choices
       end
@@ -87,7 +87,7 @@ module QuestionImporter
 
       def choices
         @table.choice_indexes.map do |k, i|
-          Choice.new :content => @raw_data[i], :correct => (k == correct_choice)
+          Choice.new :content => @raw_data[i].strip, :correct => (k == correct_choice)
         end
       end
 

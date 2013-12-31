@@ -1,3 +1,3 @@
-class MultipleChoiceQuestion < ExamQuestion
+class MultipleChoiceQuestion < ActiveRecord::Base
   include ChoiceQuestion
 end

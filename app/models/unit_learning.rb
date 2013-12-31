@@ -2,8 +2,10 @@ class UnitLearning < ActiveRecord::Base
   belongs_to :chapter_learning
   belongs_to :unit
 
-  delegate :name, :chapter, :first?, :last?, :to => :unit
-  delegate :videos, :chapter_name, :to => :unit
+  delegate :name, :chapter, :first?, :last?, 
+    :videos, :chapter_name, :singular_choice_count, :multiple_choice_count,
+    :singular_choice_questions, :multiple_choice_questions,
+    :to => :unit
 
   has_many :video_watchings, :dependent => :destroy
   has_many :exams, :class_name => 'UnitExam', :dependent => :destroy
@@ -24,6 +26,18 @@ class UnitLearning < ActiveRecord::Base
 
   def passed?
     true
+  end
+
+  def generate_exam
+    exams.create
+  end
+
+  def random_singular_choice_questions(&block)
+    singular_choice_questions.shuffle[0, singular_choice_count].each &block
+  end
+
+  def random_multiple_choice_questions(&block)
+    multiple_choice_questions.shuffle[0, multiple_choice_count].each &block
   end
 
   private

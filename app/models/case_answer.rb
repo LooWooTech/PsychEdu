@@ -1,0 +1,2 @@
+class CaseAnswer < ExamAnswer
+end

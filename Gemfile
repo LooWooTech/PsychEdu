@@ -9,6 +9,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'jquery-rails'
 gem 'mysql2'
 
+gem 'carrierwave'
 gem 'kaminari'
 gem 'cancan'
 gem 'puma'

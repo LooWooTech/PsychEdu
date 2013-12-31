@@ -6,6 +6,7 @@ class UnitLearning < ActiveRecord::Base
   delegate :videos, :chapter_name, :to => :unit
 
   has_many :video_watchings, :dependent => :destroy
+  has_many :exams, :class_name => 'UnitExam', :dependent => :destroy
 
   after_create :create_video_watchings
 

@@ -5,6 +5,22 @@
     <%= f.label :name, '单元名称' %>
     <%= f.text_field :name %>
   </div>
+  <div>
+    <%= f.label :name, '单选题数' %>
+    <%= f.number_field :singular_choice_count %>
+  </div>
+  <div>
+    <%= f.label :name, '多选题数' %>
+    <%= f.number_field :multiple_choice_count %>
+  </div>
+  <div>
+    <%= f.label :name, '案例题数' %>
+    <%= f.number_field :case_count %>
+  </div>
+  <div>
+    <%= f.label :name, '题库文件' %>
+    <%= f.file_field :question_repository_file %>
+  </div>
   <ol class='video-fields'>
   <%= f.fields_for :videos do |videos| %>
     <li>

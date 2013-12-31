@@ -38,7 +38,8 @@ module Admin
     private
 
     def unit_params
-      params.require(:unit).permit(:name, :videos_attributes => [:url, :teacher_names, :_destroy, :id])
+      params.require(:unit).permit(:name, :singular_choice_count, :multiple_choice_count, :case_count, :question_repository_file,
+        :videos_attributes => [:url, :teacher_names, :_destroy, :id])
     end
 
     def find_unit

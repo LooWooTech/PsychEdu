@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131225093931) do
+ActiveRecord::Schema.define(version: 20131230090118) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20131225093931) do
     t.datetime "updated_at"
   end
 
-  add_index "accounts", ["owner_id"], name: "index_accounts_on_owner_id", using: :btree
+  add_index "accounts", ["owner_id", "owner_type"], name: "index_accounts_on_owner_id_and_owner_type", using: :btree
 
   create_table "administrators", force: true do |t|
     t.datetime "created_at"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20131225093931) do
     t.string   "answerer_type"
   end
 
-  add_index "answers", ["answerer_id"], name: "index_answers_on_answerer_id", using: :btree
+  add_index "answers", ["answerer_id", "answerer_type"], name: "index_answers_on_answerer_id_and_answerer_type", using: :btree
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
 
   create_table "chapter_learnings", force: true do |t|
@@ -63,6 +63,25 @@ ActiveRecord::Schema.define(version: 20131225093931) do
 
   add_index "chapters", ["topic_id"], name: "index_chapters_on_topic_id", using: :btree
 
+  create_table "choices", force: true do |t|
+    t.text     "content"
+    t.boolean  "correct",              default: false
+    t.integer  "choice_question_id"
+    t.string   "choice_question_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "choices", ["choice_question_id", "choice_question_type"], name: "index_choices_on_choice_question_id_and_choice_question_type", using: :btree
+
+  create_table "choices_exam_answers", force: true do |t|
+    t.integer "choice_id"
+    t.integer "exam_answer_id"
+  end
+
+  add_index "choices_exam_answers", ["choice_id"], name: "index_choices_exam_answers_on_choice_id", using: :btree
+  add_index "choices_exam_answers", ["exam_answer_id"], name: "index_choices_exam_answers_on_exam_answer_id", using: :btree
+
   create_table "comments", force: true do |t|
     t.text     "content"
     t.integer  "commentable_id"
@@ -73,8 +92,8 @@ ActiveRecord::Schema.define(version: 20131225093931) do
     t.string   "commenter_type"
   end
 
-  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
-  add_index "comments", ["commenter_id"], name: "index_comments_on_commenter_id", using: :btree
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+  add_index "comments", ["commenter_id", "commenter_type"], name: "index_comments_on_commenter_id_and_commenter_type", using: :btree
 
   create_table "complaints", force: true do |t|
     t.text     "content"
@@ -86,8 +105,31 @@ ActiveRecord::Schema.define(version: 20131225093931) do
     t.string   "complainer_type"
   end
 
-  add_index "complaints", ["complainable_id"], name: "index_complaints_on_complainable_id", using: :btree
-  add_index "complaints", ["complainer_id"], name: "index_complaints_on_complainer_id", using: :btree
+  add_index "complaints", ["complainable_id", "complainable_type"], name: "index_complaints_on_complainable_id_and_complainable_type", using: :btree
+  add_index "complaints", ["complainer_id", "complainer_type"], name: "index_complaints_on_complainer_id_and_complainer_type", using: :btree
+
+  create_table "exam_answers", force: true do |t|
+    t.integer  "exam_question_id"
+    t.integer  "parent_id"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "exam_answers", ["exam_question_id"], name: "index_exam_answers_on_exam_question_id", using: :btree
+  add_index "exam_answers", ["parent_id"], name: "index_exam_answers_on_parent_id", using: :btree
+
+  create_table "exam_questions", force: true do |t|
+    t.text     "content"
+    t.string   "type"
+    t.integer  "unit_id"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "exam_questions", ["parent_id"], name: "index_exam_questions_on_parent_id", using: :btree
+  add_index "exam_questions", ["unit_id"], name: "index_exam_questions_on_unit_id", using: :btree
 
   create_table "forums", force: true do |t|
     t.string   "name"
@@ -144,7 +186,7 @@ ActiveRecord::Schema.define(version: 20131225093931) do
   end
 
   add_index "questions", ["forum_id"], name: "index_questions_on_forum_id", using: :btree
-  add_index "questions", ["questioner_id"], name: "index_questions_on_questioner_id", using: :btree
+  add_index "questions", ["questioner_id", "questioner_type"], name: "index_questions_on_questioner_id_and_questioner_type", using: :btree
 
   create_table "resumings", force: true do |t|
     t.integer  "leaving_period_id"
@@ -189,6 +231,14 @@ ActiveRecord::Schema.define(version: 20131225093931) do
     t.text     "introduction"
   end
 
+  create_table "unit_exams", force: true do |t|
+    t.integer  "unit_learning_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "unit_exams", ["unit_learning_id"], name: "index_unit_exams_on_unit_learning_id", using: :btree
+
   create_table "unit_learnings", force: true do |t|
     t.integer  "chapter_learning_id"
     t.integer  "unit_id"
@@ -204,7 +254,11 @@ ActiveRecord::Schema.define(version: 20131225093931) do
     t.integer  "chapter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "position",   default: 0
+    t.integer  "position",                 default: 0
+    t.integer  "singular_choice_count",    default: 0
+    t.integer  "multiple_choice_count",    default: 0
+    t.integer  "case_count",               default: 0
+    t.string   "question_repository_file"
   end
 
   add_index "units", ["chapter_id"], name: "index_units_on_chapter_id", using: :btree

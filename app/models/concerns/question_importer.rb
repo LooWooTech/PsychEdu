@@ -19,6 +19,9 @@ module QuestionImporter
   end
 
   class Table
+
+    attr_reader :unit
+
     def initialize(csv_path, unit)
       @unit = unit
       @table = CSV.read csv_path, :encoding => 'UTF-8'
@@ -31,18 +34,11 @@ module QuestionImporter
     end
 
     def import
-      rows.each do |row|
-        if row.singular_choice?
-          question = @unit.singular_choice_questions.create :content => row.question.strip
-        else
-          question = @unit.multiple_choice_questions.create :content => row.question.strip
-        end
-        question.choices << row.choices
-      end
+      rows.each{|row| row.create_question }
     end
 
     def rows
-      @rows ||= @table[1..-1].map{|raw_data| Row.new raw_data, self }
+      @rows ||= @table[1..-1].map{|row_data| Row.new row_data, self }
     end
 
     def question_type_position
@@ -69,6 +65,19 @@ module QuestionImporter
         @table = table
       end
 
+      def create_question
+        if singular_choice?
+          @question = unit.singular_choice_questions.create :content => question
+        else
+          @question = unit.multiple_choice_questions.create :content => question
+        end
+        add_choices
+      end
+
+      def unit
+        @table.unit
+      end
+
       def question_type
         @raw_data[@table.question_type_position]
       end
@@ -82,12 +91,12 @@ module QuestionImporter
       end
 
       def question
-        @raw_data[@table.question_position]
+        @raw_data[@table.question_position].strip
       end
 
-      def choices
+      def add_choices
         @table.choice_indexes.map do |k, i|
-          Choice.new :content => @raw_data[i].strip, :correct => (k == correct_choice)
+          @question.choices.create :content => @raw_data[i].strip, :correct => correct_choice.include?(k)
         end
       end
 

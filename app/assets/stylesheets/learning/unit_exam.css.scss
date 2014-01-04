@@ -1,0 +1,53 @@
+@import 'variables';
+
+#unit-exam {
+  #content {
+    h2 {
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 3em;
+    }
+
+    .choice-questions {
+      &> li {
+        list-style-position: inside;
+        list-style-type: decimal;
+        margin: 24px 0;
+        padding: 12px;
+        &.unfinished {
+          background: #def;
+          border-radius: 4px;
+        }
+        .choices {
+          padding-left: 24px;
+          li{
+            margin: 12px 0;
+          }
+        }
+        .correct {
+          font-size: 14px;
+          margin-left: 24px;
+          background: #ec320b;
+          padding: 12px;
+          color: $white;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+  #countdown {
+    background: #e8e8e8;
+    line-height: 2em;
+    position: fixed;
+    right: 0;
+    padding: 25px;
+    border-radius: 4px;
+    h1 {
+      text-align: center;
+      font-weight: bold;
+    }
+    span {
+      display: block;
+    }
+  }
+}

@@ -2,7 +2,9 @@ zh:
   time:
     formats:
       default: '%Y-%m-%d'
-      long: '%Y-%m-%d %H:%M'
+      datetime: '%Y-%m-%d %H:%M'
+      full_datetime: '%Y-%m-%d %H:%M:%S'
+      time_only: '%H:%M:%S'
   views:
     pagination:
       first: '&laquo;'

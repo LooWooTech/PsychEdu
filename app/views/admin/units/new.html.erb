@@ -6,16 +6,20 @@
     <%= f.text_field :name %>
   </div>
   <div>
-    <%= f.label :name, '单选题数' %>
+    <%= f.label :singular_choice_count, '单选题数' %>
     <%= f.number_field :singular_choice_count %>
   </div>
   <div>
-    <%= f.label :name, '多选题数' %>
+    <%= f.label :multiple_choice_count, '多选题数' %>
     <%= f.number_field :multiple_choice_count %>
   </div>
   <div>
-    <%= f.label :name, '案例题数' %>
+    <%= f.label :case_count, '案例题数' %>
     <%= f.number_field :case_count %>
+  </div>
+  <div>
+    <%= f.label :exam_minutes, '考试时间（分钟）' %>
+    <%= f.number_field :exam_minutes %>
   </div>
   <div>
     <%= f.label :name, '题库文件' %>

@@ -1,0 +1,40 @@
+<% if choice_answers.any? %>
+  <h2><%= title %></h2>
+  <ol class='choice-questions'>
+    <% choice_answers.each_with_index do |answer, index| %>
+      <% question = answer.question %>
+      <%= f.fields_for nested_model, answer do |answer_field| %>
+        <li>
+          <div class='question-content'><%= question.content %></div>
+          <ol class='choices'>
+            <% question.choices.each do |choice| %>
+              <li>
+                <label>
+                  <% if answer.is_a? SingularChoiceAnswer %>
+                    <%= answer_field.radio_button :choice_id, choice.id, :disabled => exam_end %>
+                  <% else %>
+                    <%= check_box_tag "unit_exam[#{nested_model}_attributes][#{index}]choice_ids[]" , choice.id, answer.choice_ids.include?(choice.id), :disabled => exam_end %>
+                  <% end %>
+                  <%= choice.content %>
+                </label>
+              </li>
+            <% end %>
+          </ol>
+          <% if exam_end && answer.wrong? %>
+            <div class='correct'> 正确答案：
+              <% if answer.is_a? SingularChoiceAnswer %>
+                <%= question.correct_choice.content %>
+              <% else %>
+                <ol>
+                <% question.correct_choices.each do |choice| %>
+                  <li><%= choice.content %></li>
+                <% end %>
+                </ol>
+              <% end %>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    <% end %>
+  </ol>
+<% end %>

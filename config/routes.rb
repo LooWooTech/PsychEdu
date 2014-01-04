@@ -13,6 +13,7 @@ PsychEdu::Application.routes.draw do
               resources :video_watchings, :only => [:show] do
                 resources :notes, :only => [:create, :destroy, :index]
               end
+              resources :unit_exams, :only => [:create, :update, :show]
             end
           end
         end

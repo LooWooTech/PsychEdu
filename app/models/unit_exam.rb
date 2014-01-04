@@ -1,9 +1,41 @@
 class UnitExam < ActiveRecord::Base
+
+  FULL_MARKS = 100
+  PASS_LINE = 60
+  
   belongs_to :unit_learning
   has_many :singular_choice_answers, :dependent => :destroy
   has_many :multiple_choice_answers, :dependent => :destroy
 
+  delegate :name, :to => :unit_learning
+
   after_create :generate_empty_answers
+
+  accepts_nested_attributes_for :singular_choice_answers, :multiple_choice_answers, :update_only => true
+
+  def end_at
+    created_at + unit_learning.unit.exam_minutes.minutes
+  end
+
+  def end?
+    submitted? || rest_seconds <= 0
+  end
+
+  def rest_seconds
+    end_at - Time.now
+  end
+
+  def score
+    FULL_MARKS * correct_answers_count / answers_count
+  end
+
+  def answers_count
+    singular_choice_answers.count + multiple_choice_answers.count
+  end
+
+  def correct_answers_count
+    singular_choice_answers.select(&:correct?).count + multiple_choice_answers.select(&:correct?).count
+  end
 
   private
 

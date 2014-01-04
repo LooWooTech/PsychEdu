@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131231081408) do
+ActiveRecord::Schema.define(version: 20140102085930) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -82,18 +82,6 @@ ActiveRecord::Schema.define(version: 20131231081408) do
   end
 
   add_index "choices", ["choice_question_id", "choice_question_type"], name: "index_choices_on_choice_question_id_and_choice_question_type", using: :btree
-
-  create_table "choices_multiple", force: true do |t|
-    t.integer "choice_id"
-    t.integer "multiple_choice_answer_id"
-  end
-
-  create_table "choices_singular", force: true do |t|
-    t.integer "choice_id"
-    t.integer "singular_choice_answer_id"
-  end
-
-  add_index "choices_singular", ["choice_id"], name: "index_choices_singular_on_choice_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.text     "content"
@@ -176,6 +164,13 @@ ActiveRecord::Schema.define(version: 20131231081408) do
   add_index "multiple_choice_questions", ["case_question_id"], name: "index_multiple_choice_questions_on_case_question_id", using: :btree
   add_index "multiple_choice_questions", ["unit_id"], name: "index_multiple_choice_questions_on_unit_id", using: :btree
 
+  create_table "multiple_choices", force: true do |t|
+    t.integer "choice_id"
+    t.integer "multiple_choice_answer_id"
+  end
+
+  add_index "multiple_choices", ["choice_id"], name: "index_multiple_choices_on_choice_id", using: :btree
+
   create_table "notes", force: true do |t|
     t.integer  "video_watching_id"
     t.text     "content"
@@ -219,9 +214,11 @@ ActiveRecord::Schema.define(version: 20131231081408) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "unit_exam_id"
+    t.integer  "choice_id"
   end
 
   add_index "singular_choice_answers", ["case_answer_id"], name: "index_singular_choice_answers_on_case_answer_id", using: :btree
+  add_index "singular_choice_answers", ["choice_id"], name: "index_singular_choice_answers_on_choice_id", using: :btree
   add_index "singular_choice_answers", ["singular_choice_question_id"], name: "index_singular_choice_answers_on_singular_choice_question_id", using: :btree
   add_index "singular_choice_answers", ["unit_exam_id"], name: "index_singular_choice_answers_on_unit_exam_id", using: :btree
 
@@ -296,6 +293,7 @@ ActiveRecord::Schema.define(version: 20131231081408) do
     t.integer  "multiple_choice_count",    default: 0
     t.integer  "case_count",               default: 0
     t.string   "question_repository_file"
+    t.integer  "exam_minutes",             default: 0
   end
 
   add_index "units", ["chapter_id"], name: "index_units_on_chapter_id", using: :btree

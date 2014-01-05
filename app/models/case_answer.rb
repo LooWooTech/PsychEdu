@@ -1,2 +1,2 @@
-class CaseAnswer < ExamAnswer
+class CaseAnswer < ActiveRecord::Base
 end

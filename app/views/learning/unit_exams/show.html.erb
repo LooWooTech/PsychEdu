@@ -1,6 +1,6 @@
 <% @body_id = 'unit-exam' %>
 <%= form_for @unit_exam do |f| %>
-  <% unless @unit_exam.end? %>
+  <% unless @unit_exam.over? %>
     <div id='countdown'>
       <h1><%= @unit_exam.name %>测试</h1>
       <span><%= l @unit_exam.created_at, :format => :time_only %>&nbsp;开始</span>
@@ -12,13 +12,16 @@
     </div>
   <% else %>
     <div id='result'>
+      <h1><%= @unit_exam.name %>测试</h1>
+      <span>得分：<%= @unit_exam.score %></sapn>
+      <span><%= @unit_exam.passed? ? '恭喜你通过测试！' : '您没有通过测试。'%></sapn>
     </div>
   <% end %>
   <%= render :partial => 'choice_answers', 
     :object => @unit_exam.singular_choice_answers, 
-    :locals => {:f => f, :nested_model => :singular_choice_answers, :title => '单选题', :exam_end => @unit_exam.end? } %>
+    :locals => {:f => f, :nested_model => :singular_choice_answers, :title => '单选题', :exam_over => @unit_exam.over? } %>
 
   <%= render :partial => 'choice_answers',
     :object => @unit_exam.multiple_choice_answers,
-    :locals => {:f => f, :nested_model => :multiple_choice_answers, :title => '多选题', :exam_end => @unit_exam.end? } %>
+    :locals => {:f => f, :nested_model => :multiple_choice_answers, :title => '多选题', :exam_over => @unit_exam.over? } %>
 <% end %>

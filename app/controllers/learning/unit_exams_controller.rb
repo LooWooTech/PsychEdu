@@ -1,6 +1,7 @@
 module Learning
   class UnitExamsController < LearningController
     before_filter :find_unit_exam, :only => [:show, :update]
+    after_filter :destroy_unpassed_exam, :only => [:show, :update]
 
     def create
       @unit_learning = UnitLearning.find params[:unit_learning_id]
@@ -32,6 +33,10 @@ module Learning
 
     def find_unit_exam
       @unit_exam = UnitExam.find params[:id]
+    end
+
+    def destroy_unpassed_exam
+      @unit_exam.destroy if @unit_exam.over? && !@unit_exam.passed?
     end
   end
 end

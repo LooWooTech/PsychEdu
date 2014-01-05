@@ -11,16 +11,16 @@
               <li>
                 <label>
                   <% if answer.is_a? SingularChoiceAnswer %>
-                    <%= answer_field.radio_button :choice_id, choice.id, :disabled => exam_end %>
+                    <%= answer_field.radio_button :choice_id, choice.id, :disabled => exam_over %>
                   <% else %>
-                    <%= check_box_tag "unit_exam[#{nested_model}_attributes][#{index}]choice_ids[]" , choice.id, answer.choice_ids.include?(choice.id), :disabled => exam_end %>
+                    <%= check_box_tag "unit_exam[#{nested_model}_attributes][#{index}]choice_ids[]" , choice.id, answer.choice_ids.include?(choice.id), :disabled => exam_over %>
                   <% end %>
                   <%= choice.content %>
                 </label>
               </li>
             <% end %>
           </ol>
-          <% if exam_end && answer.wrong? %>
+          <% if exam_over && answer.wrong? %>
             <div class='correct'> 正确答案：
               <% if answer.is_a? SingularChoiceAnswer %>
                 <%= question.correct_choice.content %>

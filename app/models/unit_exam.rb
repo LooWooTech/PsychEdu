@@ -17,8 +17,12 @@ class UnitExam < ActiveRecord::Base
     created_at + unit_learning.unit.exam_minutes.minutes
   end
 
-  def end?
+  def over?
     submitted? || rest_seconds <= 0
+  end
+
+  def passed?
+    score >= PASS_LINE
   end
 
   def rest_seconds

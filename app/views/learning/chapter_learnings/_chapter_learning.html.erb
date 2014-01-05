@@ -7,7 +7,11 @@
       <% chapter_learning.unit_learnings.each do |unit_learning| %>
         <% if unit_learning.open? %>
           <li><%= link_to unit_learning.name, unit_learning %></li>
-          <li><%= link_to '单元测试', unit_learning_unit_exams_path(unit_learning), :method => :post %></li>
+          <% if unit_learning.unfinished_exam %>
+            <li><%= link_to '继续测试', unit_exam_path(unit_learning.unfinished_exam) %></li>
+          <% else %>
+            <li><%= link_to '开始测试', unit_learning_unit_exams_path(unit_learning), :method => :post %></li>
+          <% end %>
         <% else %>
           <li><span><%= unit_learning.name %></span></li>
         <% end %>

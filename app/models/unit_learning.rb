@@ -12,6 +12,10 @@ class UnitLearning < ActiveRecord::Base
 
   after_create :create_video_watchings
 
+  def unfinished_exam
+    exams.find{|exam| !exam.over? }
+  end
+
   def open?
     chapter_learning.open? && video_watchings.any? && (first? || previous.passed?)
   end
@@ -25,7 +29,7 @@ class UnitLearning < ActiveRecord::Base
   end
 
   def passed?
-    true
+    exams.any?{|exam| exam.passed? }
   end
 
   def generate_exam

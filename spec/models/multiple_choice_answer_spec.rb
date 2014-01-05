@@ -6,8 +6,8 @@ describe MultipleChoiceAnswer do
   describe "#correct?" do
     before do
       @question = FactoryGirl.create :multiple_choice_question
-      @correct_choices = FactoryGirl.create_list :correct_choice, 2, :choice_question => @question
-      @wrong_choices = FactoryGirl.create_list :choice, 2, :choice_question => @question
+      @correct_choices = FactoryGirl.create_list :correct_choice, 3, :choice_question => @question
+      @wrong_choice = FactoryGirl.create :choice, :choice_question => @question
       subject.update_attribute :question, @question
     end
 
@@ -21,9 +21,14 @@ describe MultipleChoiceAnswer do
       end
 
       it "returns false if any wrong choice was selected" do
-        subject.choices << @wrong_choices
+        subject.choices << @wrong_choice
         expect(subject.correct?).to be_false
       end
+    end
+
+    it 'returns true if all correct choices were selected in different order' do
+      subject.choices << @correct_choices.reverse
+      expect(subject.correct?).to be_true
     end
 
     it "returns false if any correct choice was not selected" do

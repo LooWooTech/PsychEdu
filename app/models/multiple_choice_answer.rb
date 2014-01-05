@@ -4,6 +4,6 @@ class MultipleChoiceAnswer < ActiveRecord::Base
   has_and_belongs_to_many :choices, :join_table => :multiple_choices
 
   def correct?
-    choices == question.correct_choices
+    choices.sort == question.correct_choices.sort
   end
 end

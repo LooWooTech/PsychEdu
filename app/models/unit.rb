@@ -24,6 +24,14 @@ class Unit < ActiveRecord::Base
   alias previous higher_item
   alias next lower_item
 
+  def ready_for_exam?
+    exam_question_count > 0
+  end
+
+  def exam_question_count
+    singular_choice_questions.count + multiple_choice_questions.count
+  end
+
   def duration
     videos.sum :duration
   end

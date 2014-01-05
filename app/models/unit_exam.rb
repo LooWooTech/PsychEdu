@@ -30,6 +30,7 @@ class UnitExam < ActiveRecord::Base
   end
 
   def score
+    return 0 if answers_count == 0
     FULL_MARKS * correct_answers_count / answers_count
   end
 

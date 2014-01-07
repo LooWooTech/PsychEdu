@@ -4,8 +4,12 @@ module Learning
 
     def show
       @unit_learning = UnitLearning.find params[:id]
-      @video_watching = @unit_learning.video_watchings.first
-      render 'learning/video_watchings/show'
+      if @unit_learning.open?
+        @video_watching = @unit_learning.video_watchings.first
+        render 'learning/video_watchings/show'
+      else
+        render :text => '该单元尚未开放，请先通过前一单元的测试。'
+      end
     end
 
     private

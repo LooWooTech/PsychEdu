@@ -2,9 +2,11 @@
 @import 'mixin';
 
 @mixin unit-learning-button {
-  display: block;
   padding: 6px 14px;
+  margin: 10px 10px 10px 0;
   color: $white;
+  border-radius: 3px;
+  display: inline-block;
 }
 
 @mixin activity {
@@ -59,44 +61,30 @@
     width: 640px;
     li {
       margin-bottom: 50px;
-      overflow: hidden;
+      width: 528px;
 
-      .cover {
-        float: left;
+      h1 {
+        font-size: 18px;
+        line-height: 30px;
+        color: #fd6445;
       }
 
-      .info {
-        float: right;
-        width: 528px;
-        h1 {
-          font-size: 18px;
-          line-height: 30px;
-          color: #fd6445;
-        }
-
-        p {
-          font-size: 14px;
-          @include article-typesetting;
-        }
-
-        .units {
-          li {
-            margin: 10px 10px 10px 0;
-            display: inline-block;
-            border-radius: 3px;
-            a {
-              @include unit-learning-button;
-              background: #009cff;
-            }
-            span {
-              @include unit-learning-button;
-              background: #bbb;
-            }
+      .units {
+        li {
+          margin: 10px 0;
+          display: inline-block;
+          a {
+            @include unit-learning-button;
+            background: #009cff;
+          }
+          .inactive {
+            @include unit-learning-button;
+            background: #bbb;
           }
         }
-        .state {
-          font-size: 14px;
-        }
+      }
+      .state {
+        font-size: 14px;
       }
     }
   }

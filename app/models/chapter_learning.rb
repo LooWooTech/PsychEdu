@@ -22,7 +22,7 @@ class ChapterLearning < ActiveRecord::Base
   end
 
   def passed?
-    true
+    unit_learnings.all? &:passed?
   end
 
   def units

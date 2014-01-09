@@ -1,7 +1,7 @@
 class UnitExam < ActiveRecord::Base
 
-  FULL_MARKS = 100
-  PASS_LINE = 60
+  FULL_MARKS = 100.0
+  PASS_LINE = 60.0
   
   belongs_to :unit_learning
   has_many :singular_choice_answers, :dependent => :destroy

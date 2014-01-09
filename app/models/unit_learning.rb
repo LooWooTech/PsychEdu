@@ -44,6 +44,23 @@ class UnitLearning < ActiveRecord::Base
     multiple_choice_questions.shuffle[0, multiple_choice_count].each &block
   end
 
+  def seconds
+    video_watchings.sum :seconds
+  end
+
+  def passed_exams
+    exams.select &:passed?
+  end
+
+  def passed?
+    passed_exams.any?
+  end
+
+  def average_score
+    return 0 if !passed?
+    passed_exams.average &:score
+  end
+
   private
 
   def create_video_watchings

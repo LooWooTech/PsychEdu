@@ -3,9 +3,6 @@
     <%= link_to @chapter.topic_name, @chapter.topic %>：
     <%= @chapter.name %>
   </h1>
-  <div>
-    <label>简介：<%= @chapter.introduction %></label>
-  </div>
   <%= link_to '修改', edit_chapter_path(@chapter) %>
 </div>
 

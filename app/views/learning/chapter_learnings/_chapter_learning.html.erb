@@ -2,7 +2,7 @@
   <div class='info'>
     <h1><%= chapter_learning.name %></h1>
     <ul class='units'>
-      <%= render :collection => chapter_learning.unit_learnings, :partial => 'unit_learning' %>
+      <%= render :collection => chapter_learning.unit_learnings, :partial => 'learning/chapter_learnings/unit_learning' %>
     </ul>
   </div>
 </li>

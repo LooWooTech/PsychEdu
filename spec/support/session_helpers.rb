@@ -7,7 +7,7 @@ module SessionHelpers
     controller.stub :current_user => FactoryGirl.create(:administrator)
   end
 
-  def logout
+  def sign_out
     controller.stub :current_user => nil
   end
 

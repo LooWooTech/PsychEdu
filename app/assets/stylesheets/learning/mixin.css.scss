@@ -14,7 +14,7 @@
     padding: 5px 10px;
     border-radius: 3px;
     &:hover {
-      background: lighten($blue, 10%);
+      background: darken($blue, 10%);
     }
   }
 
@@ -24,7 +24,6 @@
     background: lighten($blue, 10%);
     border-radius: 3px;
     padding: 3px 0;
-    display: none;
     li {
       a {
         display: block;
@@ -32,7 +31,7 @@
         color: $white;
 
         &:hover {
-          background: $blue;
+          background: darken($blue, 10%);
         }
       }
     }

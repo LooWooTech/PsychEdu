@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     @current_user = account.owner
   end
 
-  def logout
+  def sign_out
     session[:current_account_id] = nil
     @current_user = nil
   end
@@ -43,8 +43,13 @@ class ApplicationController < ActionController::Base
     session[:return_to] = request.url
   end
 
-  def redirect_back_or_default(default_path)
-    redirect_to(session[:return_to]||default_path)
+  def redirect_back_or_root
+    if current_user.is_a? Student
+      root_url = learning_url
+    else
+      root_url = admin_url
+    end
+    redirect_to(session[:return_to]||root_url)
     session[:return_to] = nil
   end
 

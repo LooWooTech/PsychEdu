@@ -2,7 +2,6 @@
 @import 'mixin';
 
 #header {
-  height: 90px;
   width: 100%;
   background: $blue;
   color: $white;
@@ -13,36 +12,41 @@
     height: 100%;
     overflow: hidden;
 
-    h1 {
-      font-size: 30px;
-      float: left;
-      margin-top: 30px;
-    }
-    
-    #user {
-      float: right;
-    }
-
-    #navigator {
-      float: left;
-      margin: 44px 0 0 16px;
-      li {
-        display: inline-block;
-        a{
-          border-radius: 3px;
-          padding: 10px 15px;
+    #current-environment {
+      overflow: hidden;
+      margin-top: 10px;
+      #topic-selector {
+        float: right;
+        @include drop-down;
+      }
+      #session {
+        float: right;
+        margin: 5px 0 0 10px;
+        a {
           color: $white;
-          &:hover {
-            background: darken($blue, 10%);
-          }
         }
       }
     }
 
-    #topic-selector {
-      float: right;
-      margin-top: 39px;
-      @include drop-down;
+    h1 {
+      margin: 0 0 10px 15px;
+      font-size: 30px;
+    }
+
+    #navigator {
+      margin-bottom: 10px;
+      li {
+        display: inline-block;
+        a{
+          border-radius: 3px;
+          padding: 5px 15px;
+          color: $white;
+          display: block;
+          &:hover, &.current {
+            background: darken($blue, 10%);
+          }
+        }
+      }
     }
   }
 }

@@ -1,7 +1,6 @@
 <% if flash[:notice] %>
   <div class='notice'><%= flash[:notice] %></div>
 <% end %>
-
 <%= form_tag session_path do %>
   <div>
     <%= text_field_tag :username, params[:username], :placeholder => '登录名' %>

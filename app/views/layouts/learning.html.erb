@@ -10,26 +10,28 @@
   <body id='<%= @body_id %>'>
     <div id='header'>
       <div class='wrapper'>
+        <div id='current-environment'>
+          <div id='session'>
+            <span>欢迎您，<%= current_user.name %>！<span>
+            <%= link_to '注销', session_path, :method => :delete %>
+          </div>
+          <div id='topic-selector'>
+            <span class='current'><%= current_topic_learning.name %></span>
+            <ul>
+              <% current_topic_learning.siblings.each do |topic_learning| %>
+                <li><%= link_to topic_learning.name, topic_learning %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
         <h1>XXX心理教学实操平台</h1>
         <ul id='navigator'>
-          <li><%= link_to '首页', learning_path %></li>
+          <li><%= link_to '课程学习', learning_path, :class => controller.is_a?(LearningController) ? 'current' : '' %></li>
           <li><a href='#'>案例解读</a></li>
           <li><a href='#'>问答社区</a></li>
           <li><a href='#'>案例督导</a></li>
           <li><a href='#'>学习指导</a></li>
         </ul>
-        <div id='user'>
-          <img src=''/>
-        </div>
-        <div id='topic-selector'>
-          <span class='current'><%= current_topic_learning.name %></span>
-          <ul>
-            <% current_user.topic_learnings.each do |topic_learning| %>
-              <li><%= link_to topic_learning.name, topic_path(topic_learning) %></li>
-              <li><%= link_to topic_learning.name, topic_path(topic_learning) %></li>
-            <% end %>
-          </ul>
-        </div>
       </div>
     </div>
     <div id='content'> <%= yield %> </div>

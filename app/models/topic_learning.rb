@@ -11,6 +11,10 @@ class TopicLearning < ActiveRecord::Base
 
   after_create :create_chapter_learnings
 
+  def siblings
+    student.topic_learnings - [self]
+  end
+
   def start(start_on, end_on)
     learning_periods.create(:start_on => start_on, :end_on => end_on).valid?
   end

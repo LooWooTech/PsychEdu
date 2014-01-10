@@ -13,11 +13,11 @@
     <% end %>
     <%= link_to '单元小结', '#'%>
     <div class='state'>
-      <span class='hours'>已学：<%= unit_learning_hours unit_learning %>小时</span>
       <span class='testing-state'><%= unit_exam_state unit_learning %></span>
       <span class='average-score'>平均分：<%= unit_learning.average_score %></span>
+      <span class='hours'>已学：<%= unit_learning_hours unit_learning %>小时</span>
     </div>
   <% else %>
-    <span class='inactive'>暂未开通</span>
+    <span class='inactive'>暂未开放</span>
   <% end %>
 </li>

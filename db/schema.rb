@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140109024727) do
+ActiveRecord::Schema.define(version: 20140109043456) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 20140109024727) do
   create_table "chapter_learnings", force: true do |t|
     t.integer  "topic_learning_id"
     t.integer  "chapter_id"
-    t.integer  "minutes",           default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

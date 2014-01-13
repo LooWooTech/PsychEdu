@@ -13,7 +13,7 @@ describe SessionsController do
         end
 
         it 'redirects to root path of admin' do
-          expect(response).to redirect_to(admin_path)
+          expect(response).to redirect_to(admin_url)
         end
       end
 

@@ -6,7 +6,7 @@
 <% content_for :head do %>
 <script type='text/javascript'>
 		var flashvers = {};
-		flashvers.mp4_url = "http://edu.jdjypx.com:8080/a.mp4";
+		flashvers.mp4_url = "<%= current_topic_learning.guide_video_url %>";
 		flashvers.dianping = "true";
 		
 		var params = {};

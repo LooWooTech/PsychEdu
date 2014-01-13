@@ -4,7 +4,7 @@ class LearningController < ApplicationController
   before_filter :student_required
   before_filter :ensure_topic_open
 
-  helper_method :current_topic_learning, :chapter_learnings
+  helper_method :current_topic_learning, :chapter_learnings, :page_title
 
   private
 
@@ -28,4 +28,9 @@ class LearningController < ApplicationController
   def chapter_learnings
     @chapter_learnings ||= current_topic_learning.chapter_learnings.page(params[:page]).per(10)
   end
+
+  def page_title
+    @page_title || 'XX心理教学实操平台'
+  end
+
 end

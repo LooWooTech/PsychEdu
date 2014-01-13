@@ -3,9 +3,9 @@ module Learnings
     def unit_exam_link(unit_learning)
       if unit_learning.ready_for_exam?
         if unit_learning.unfinished_exam
-          "<li>#{link_to '继续测试', unit_exam_path(unit_learning.unfinished_exam)}</li>"
+          link_to '继续测试', unit_exam_path(unit_learning.unfinished_exam)
         else
-          "<li>#{link_to '开始测试', unit_learning_unit_exams_path(unit_learning), :method => :post}</li>"
+          link_to '开始测试', unit_learning_unit_exams_path(unit_learning), :method => :post
         end
       end
     end

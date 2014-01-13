@@ -8,6 +8,9 @@ PsychEdu::Application.routes.draw do
     constraints :subdomain => 'learning' do
       shallow do
         resources :topic_learnings, :only => [:show] do
+          member do
+            get :guide
+          end
           resources :chapter_learnings, :only => [:show] do
             resources :unit_learnings, :only => [:show] do
               resources :video_watchings, :only => [:show] do

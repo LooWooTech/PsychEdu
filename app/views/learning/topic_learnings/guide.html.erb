@@ -1,0 +1,20 @@
+<% content_for(:title){ "专题导学：#{current_topic_learning.name}" } %>
+<div class='player'>
+  <video id='video'></video>
+</div>
+
+<% content_for :head do %>
+<script type='text/javascript'>
+		var flashvers = {};
+		flashvers.mp4_url = "http://edu.jdjypx.com:8080/a.mp4";
+		flashvers.dianping = "true";
+		
+		var params = {};
+		params.menu="false";
+		params.allowFullScreen="true";
+		params.allowScriptAccess="sameDomain";
+		params.wmode="opaque";
+		
+		swfobject.embedSWF("/flashplayer/player.swf", "video", "100%", "100%", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
+</script>
+<% end %>

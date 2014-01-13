@@ -1,8 +1,6 @@
 <li>
-  <div class='info'>
-    <h1><%= chapter_learning.name %></h1>
-    <ul class='units'>
-      <%= render :collection => chapter_learning.unit_learnings, :partial => 'learning/chapter_learnings/unit_learning' %>
-    </ul>
-  </div>
+  <h1><%= chapter_learning.name %></h1>
+  <ul class='units'>
+    <%= render :collection => chapter_learning.unit_learnings, :partial => 'learning/chapter_learnings/unit_learning' %>
+  </ul>
 </li>

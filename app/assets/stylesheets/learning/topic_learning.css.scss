@@ -60,7 +60,7 @@
     float: left;
     width: 640px;
     li {
-      margin-bottom: 50px;
+      margin-bottom: 20px;
       width: 528px;
 
       h1 {
@@ -72,7 +72,7 @@
       .units {
         li {
           margin: 10px 0;
-          display: inline-block;
+          display: block;
           a {
             @include unit-learning-button;
             background: #009cff;
@@ -85,6 +85,9 @@
       }
       .state {
         font-size: 14px;
+        span {
+          margin-right: 12px;
+        }
       }
     }
   }

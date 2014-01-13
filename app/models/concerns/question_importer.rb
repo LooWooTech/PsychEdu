@@ -67,9 +67,9 @@ module QuestionImporter
 
       def create_question
         if singular_choice?
-          @question = unit.singular_choice_questions.create :content => question
+          @question = unit.singular_choice_questions.build :content => question
         else
-          @question = unit.multiple_choice_questions.create :content => question
+          @question = unit.multiple_choice_questions.build :content => question
         end
         add_choices
       end
@@ -96,7 +96,7 @@ module QuestionImporter
 
       def add_choices
         @table.choice_indexes.map do |k, i|
-          @question.choices.create :content => @raw_data[i].strip, :correct => correct_choice.include?(k)
+          @question.choices.build :content => @raw_data[i].strip, :correct => correct_choice.include?(k)
         end
       end
 

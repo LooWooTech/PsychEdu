@@ -3,14 +3,7 @@
   <% if unit_learning.open? %>
     <%= link_to '单元提要', '#'%>
     <%= link_to '开始学习', unit_learning %>
-    <% if unit_learning.ready_for_exam? %>
-      <% if unit_learning.unfinished_exam %>
-        <%= link_to '继续测试', unit_exam_path(unit_learning.unfinished_exam) %>
-        <%= unit_exam_link unit_learning%>
-      <% else %>
-        <%= link_to '单元测试', unit_learning_unit_exams_path(unit_learning), :method => :post %>
-      <% end %>
-    <% end %>
+    <%= unit_exam_link unit_learning%>
     <%= link_to '单元小结', '#'%>
     <div class='state'>
       <span class='testing-state'><%= unit_exam_state unit_learning %></span>

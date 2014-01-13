@@ -42,7 +42,7 @@ module Admin
     private
 
     def topic_params
-      params.require(:topic).permit(:name, :introduction)
+      params.require(:topic).permit(:name, :introduction, :guide_video_url)
     end
 
     def find_topic

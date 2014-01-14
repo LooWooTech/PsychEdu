@@ -18,4 +18,8 @@ class Chapter < ActiveRecord::Base
     units.to_a.sum &:duration
   end
 
+  def has_only_one_unit?
+    units.to_a.count == 1
+  end
+
 end

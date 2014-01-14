@@ -7,7 +7,7 @@ class UnitExam < ActiveRecord::Base
   has_many :singular_choice_answers, :dependent => :destroy
   has_many :multiple_choice_answers, :dependent => :destroy
 
-  delegate :name, :to => :unit_learning
+  delegate :name, :chapter_name, :to => :unit_learning
 
   after_create :generate_empty_answers
 

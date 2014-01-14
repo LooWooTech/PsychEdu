@@ -4,7 +4,7 @@
     <label>简介：<%= @topic.introduction %></label>
   </div>
   <div>
-    <label>课程数量：<%= @topic.chapter_count %></label>
+    <label>章节数量：<%= @topic.chapter_count %></label>
   </div>
   <div>
     <label>时长：<%= @topic.duration %></label>
@@ -13,10 +13,10 @@
 </div>
 
 <div id='table'>
-  <%= link_to '添加课程', new_topic_chapter_path(@topic) %>
+  <%= link_to '添加章节', new_topic_chapter_path(@topic) %>
   <table>
     <tr>
-      <th>课程名称</th>
+      <th>章节名称</th>
       <th>操作</th>
     </tr>
     <% @topic.chapters.each do |chapter| %>

@@ -24,6 +24,10 @@ class Unit < ActiveRecord::Base
   alias previous higher_item
   alias next lower_item
 
+  def name
+    only_child? ? chapter.name : read_attribute(:name)
+  end
+
   def ready_for_exam?
     exam_question_count > 0
   end
@@ -34,6 +38,10 @@ class Unit < ActiveRecord::Base
 
   def duration
     videos.sum :duration
+  end
+
+  def only_child?
+    chapter.has_only_one_unit?
   end
 
 end

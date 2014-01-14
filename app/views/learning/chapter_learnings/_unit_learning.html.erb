@@ -1,5 +1,5 @@
 <li>
-  <h2><%= unit_learning.name %></h2>
+  <% if !unit_learning.only_child? %><h2><%= unit_learning.name %></h2><% end %>
   <% if unit_learning.open? %>
     <%= link_to '单元提要', '#'%>
     <%= link_to '开始学习', unit_learning %>

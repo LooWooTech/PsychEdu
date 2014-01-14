@@ -4,7 +4,7 @@ module Admin
     before_filter :find_unit, :only => [:edit, :update, :show, :destroy]
 
     def new
-      @unit = Unit.new
+      @unit = @chapter.units.build
     end
 
     def create

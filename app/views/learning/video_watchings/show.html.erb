@@ -1,5 +1,6 @@
 <div class='navigator'>
   <h1><%= @video_watching.chapter_name %></h1>
+  <% if !@video_watching.unit_learning.only_child? %>
   <div class='unit-selector'>
     <span class='current'><%= @video_watching.unit_name %></span>
     <ul>
@@ -10,6 +11,7 @@
       <% end %>
     </ul>
   </div>
+  <% end %>
 </div>
 
 <div class='player'>

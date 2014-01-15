@@ -17,5 +17,9 @@ module Learnings
     def unit_exam_state(unit_learning)
       unit_learning.passed? ? '通过考试' : '未通过考试'
     end
+
+    def unit_name(unit_learning)
+      unit_learning.only_child? ? unit_learning.chapter_name : unit_learning.name
+    end
   end
 end

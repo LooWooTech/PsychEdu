@@ -7,11 +7,15 @@ class UnitExam < ActiveRecord::Base
   has_many :singular_choice_answers, :dependent => :destroy
   has_many :multiple_choice_answers, :dependent => :destroy
 
-  delegate :name, :chapter_name, :to => :unit_learning
+  delegate :chapter_name, :to => :unit_learning
 
   after_create :generate_empty_answers
 
   accepts_nested_attributes_for :singular_choice_answers, :multiple_choice_answers, :update_only => true
+
+  def name
+    unit_learning.only_child? ? chapter_name : unit_learning.name
+  end
 
   def end_at
     created_at + unit_learning.unit.exam_minutes.minutes

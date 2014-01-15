@@ -7,7 +7,7 @@ class TopicLearning < ActiveRecord::Base
 
   validates :topic, :uniqueness => {:scope => :student}
 
-  delegate :name, :guide_video_url, :to => :topic
+  delegate :name, :guide_video_url, :announcements, :to => :topic
 
   after_create :create_chapter_learnings
 

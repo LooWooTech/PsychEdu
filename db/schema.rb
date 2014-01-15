@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140110061645) do
+ActiveRecord::Schema.define(version: 20140115150748) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 20140110061645) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "announcements", force: true do |t|
+    t.integer  "topic_id"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "announcements", ["topic_id"], name: "index_announcements_on_topic_id", using: :btree
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"

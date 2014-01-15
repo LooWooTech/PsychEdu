@@ -1,0 +1,10 @@
+<%= form_for [@topic, @announcement] do |f| %>
+  <%= render :partial => 'admin/shared/rich_text_toolbar', :locals => {:toolbar_id => 'announcement-editor-toolbar'} %>
+  <div>
+    <%= f.label :title, '标题' %>
+    <%= f.text_field :title %>
+  </div>
+  <%= f.text_area :content, :id => 'announcement-content' %>
+  <%= f.submit '发布' %>
+  <%= link_to '返回', :back %>
+<% end %>

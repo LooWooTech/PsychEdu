@@ -1,0 +1,7 @@
+$ ->
+  reviewEditor = new wysihtml5.Editor 'announcement-content',
+    toolbar: 'announcement-editor-toolbar',
+    parserRules: wysihtml5ParserRules,
+    stylesheets: ['<%= asset_path 'admin/manifest.css'%>'],
+    useLineBreaks: false,
+    autoLink: true

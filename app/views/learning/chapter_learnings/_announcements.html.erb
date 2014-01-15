@@ -1,0 +1,5 @@
+<ul id='announcements'>
+  <% current_topic_learning.announcements.each do |announcement| %>
+    <li><%= link_to announcement.title, announcement %></li>
+  <% end %>
+</ul>

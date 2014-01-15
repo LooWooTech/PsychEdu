@@ -1,4 +1,4 @@
-<%= render :partial => 'learning/chapter_learnings/notifications' %>
+<%= render :partial => 'learning/chapter_learnings/announcements' if current_topic_learning.announcements.any? %>
 
 <ul id='chapters'>
   <li>

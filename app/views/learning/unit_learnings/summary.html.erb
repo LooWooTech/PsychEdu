@@ -1,0 +1,3 @@
+<% @body_id = 'unit-summary' %>
+<% content_for(:title){"#{unit_name @unit_learning}-单元提要"} %>
+<%= sanitize @unit_learning.summary %>

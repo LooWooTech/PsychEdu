@@ -1,0 +1,16 @@
+<div id="<%= toolbar_id %>" style="display: none;">
+  <a data-wysihtml5-command="bold">加粗</a>
+  <a data-wysihtml5-command="italic">斜体</a>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value='h1'>一级标题</a>
+  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value='h2'>二级标题</a>
+  <a data-wysihtml5-command="insertUnorderedList">无序列表</a>
+  <a data-wysihtml5-command="insertOrderedList">有序列表</a>
+  <!-- Some wysihtml5 commands like 'createLink' require extra paramaters specified by the user (eg. href) -->
+  <a data-wysihtml5-command="createLink">插入链接</a>
+  <div data-wysihtml5-dialog="createLink" style="display: none;">
+    <label>
+      URL: <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+    </label>
+    <a data-wysihtml5-dialog-action="save">完成</a> <a data-wysihtml5-dialog-action="cancel">取消</a>
+  </div>
+</div>

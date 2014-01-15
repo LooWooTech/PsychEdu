@@ -1,0 +1,5 @@
+@import 'wysihtml5_content';
+
+#unit-summary, #unit-review {
+  @include wysihtml5-content;
+}

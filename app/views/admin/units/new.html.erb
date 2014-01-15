@@ -14,16 +14,22 @@
     <%= f.number_field :multiple_choice_count %>
   </div>
   <div>
-    <%= f.label :case_count, '案例题数' %>
-    <%= f.number_field :case_count %>
-  </div>
-  <div>
     <%= f.label :exam_minutes, '考试时间（分钟）' %>
     <%= f.number_field :exam_minutes %>
   </div>
   <div>
     <%= f.label :name, '题库文件' %>
     <%= f.file_field :question_repository_file %>
+  </div>
+  <div>
+    <%= render :partial => 'admin/shared/rich_text_toolbar', :locals => {:toolbar_id => 'unit-summary-editor-toolbar'} %>
+    <%= f.label :name, '单元提要' %>
+    <%= f.text_area :summary, :id => 'unit-summary' %>
+  </div>
+  <div>
+    <%= render :partial => 'admin/shared/rich_text_toolbar', :locals => {:toolbar_id => 'unit-review-editor-toolbar'} %>
+    <%= f.label :name, '单元小结' %>
+    <%= f.text_area :review, :id => 'unit-review' %>
   </div>
   <ol class='video-fields'>
   <%= f.fields_for :videos do |videos| %>

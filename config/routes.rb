@@ -13,6 +13,10 @@ PsychEdu::Application.routes.draw do
           end
           resources :chapter_learnings, :only => [:show] do
             resources :unit_learnings, :only => [:show] do
+              member do
+                get :summary
+                get :review
+              end
               resources :video_watchings, :only => [:show] do
                 resources :notes, :only => [:create, :destroy, :index]
               end

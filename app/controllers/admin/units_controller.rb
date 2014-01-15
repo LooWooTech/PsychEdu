@@ -42,6 +42,7 @@ module Admin
         :name, :singular_choice_count, 
         :multiple_choice_count, :case_count,
         :question_repository_file, :exam_minutes,
+        :summary, :review,
         :videos_attributes => [:url, :teacher_names, :_destroy, :id]
       )
     end

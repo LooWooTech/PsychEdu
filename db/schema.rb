@@ -293,6 +293,8 @@ ActiveRecord::Schema.define(version: 20140110061645) do
     t.integer  "case_count",               default: 0
     t.string   "question_repository_file"
     t.integer  "exam_minutes",             default: 0
+    t.text     "summary"
+    t.text     "review"
   end
 
   add_index "units", ["chapter_id"], name: "index_units_on_chapter_id", using: :btree

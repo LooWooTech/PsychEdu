@@ -1,10 +1,10 @@
 <li>
   <% if !unit_learning.only_child? %><h2><%= unit_learning.name %></h2><% end %>
   <% if unit_learning.open? %>
-    <%= link_to '单元提要', '#'%>
+    <%= link_to '单元提要', summary_unit_learning_path(unit_learning) %>
     <%= link_to '开始学习', unit_learning %>
     <%= unit_exam_link unit_learning%>
-    <%= link_to '单元小结', '#'%>
+    <%= link_to '单元小结', review_unit_learning_path(unit_learning) %>
     <div class='state'>
       <span class='testing-state'><%= unit_exam_state unit_learning %></span>
       <span class='average-score'>平均分：<%= unit_learning.average_score %></span>

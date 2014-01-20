@@ -9,9 +9,9 @@ class UnitExam < ActiveRecord::Base
 
   delegate :chapter_name, :to => :unit_learning
 
-  after_create :generate_empty_answers
-
   accepts_nested_attributes_for :singular_choice_answers, :multiple_choice_answers, :update_only => true
+
+  after_create :generate_empty_answers
 
   def name
     unit_learning.only_child? ? chapter_name : unit_learning.name

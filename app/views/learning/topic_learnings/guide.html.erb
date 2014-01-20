@@ -5,16 +5,18 @@
 
 <% content_for :head do %>
 <script type='text/javascript'>
-		var flashvers = {};
-		flashvers.mp4_url = "<%= current_topic_learning.guide_video_url %>";
-		flashvers.dianping = "true";
-		
-		var params = {};
-		params.menu="false";
-		params.allowFullScreen="true";
-		params.allowScriptAccess="sameDomain";
-		params.wmode="opaque";
-		
-		swfobject.embedSWF("/flashplayer/player.swf", "video", "100%", "100%", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
+    var flashvers = {};
+    flashvers.mp4_url = "<%= current_topic_learning.guide_video_url %>";
+    flashvers.dianping = "false";
+    flashvers.save_dx = 10;
+    flashvers.over_per = 1.5;
+    
+    var params = {};
+    params.menu="false";
+    params.allowFullScreen="true";
+    params.allowScriptAccess="sameDomain";
+    params.wmode="opaque";
+    
+    swfobject.embedSWF("/flashplayer/player.swf", "video", "100%", "100%", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
 </script>
 <% end %>

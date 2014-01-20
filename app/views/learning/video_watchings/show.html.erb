@@ -45,22 +45,29 @@
 
 <% content_for :head do %>
 <script type='text/javascript'>
-		var flashvers = {};
-		flashvers.mp4_url = "<%= @video_watching.url %>";
-		flashvers.dianping = "true";
-		flashvers.save_dx = 10;//每隔多长时间存储一次数据，以秒为单位
-		flashvers.over_per = 1.5;//非点评版课程，观看多少倍视为完成
-		flashvers.xml_url = "<%= @video_watching.metadata_file_url %>";
-		flashvers.public_root = "/sound/";
-		flashvers.event_sound_root = "<%= @video_watching.root_path %>";//这是语音文件地址，mp3文件名已经写到xml中，但只是个文件名，前面加上存放路径即可找到该声音文件
-		flashvers.flash_xml = "";//由flash存储的XML数据，每次启动页面时传递该数据，如果没有，则为“”
-		
-		var params = {};
-		params.menu="false";
-		params.allowFullScreen="true";
-		params.allowScriptAccess="sameDomain";
-		params.wmode="opaque";
-		
-		swfobject.embedSWF("/flashplayer/player.swf", "video", "100%", "100%", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
+    var flashvers = {};
+    flashvers.mp4_url = "<%= @video_watching.url %>";
+    flashvers.dianping = "true";
+    flashvers.save_dx = 10;
+    flashvers.over_per = 1.5;
+    flashvers.xml_url = "<%= @video_watching.metadata_file_url %>";
+    flashvers.public_root = "/sound/";
+    flashvers.event_sound_root = "<%= @video_watching.root_path %>";
+    flashvers.flash_xml = '<%= raw @video_watching.playing_data %>';
+    
+    var params = {};
+    params.menu="false";
+    params.allowFullScreen="true";
+    params.allowScriptAccess="sameDomain";
+    params.wmode="opaque";
+    
+    swfobject.embedSWF("/flashplayer/player.swf", "video", "100%", "100%", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
+
+    function swf_save_data(time, xml) {
+      $.post('<%= video_watching_path @video_watching %>',{
+        _method: 'patch',
+        data: xml.replace(/[\r\n]/g,'')
+      });
+    }
 </script>
 <% end %>

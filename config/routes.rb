@@ -18,7 +18,7 @@ PsychEdu::Application.routes.draw do
                 get :summary
                 get :review
               end
-              resources :video_watchings, :only => :show do
+              resources :video_watchings, :only => [:show, :update] do
                 resources :notes, :only => [:create, :destroy, :index]
               end
               resources :unit_exams, :only => [:create, :update, :show]

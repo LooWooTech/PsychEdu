@@ -1,13 +1,28 @@
-<p>
+<div>
   <%= @student.name %>
-</p>
-<p>
+</div>
+<div>
   登录名：<%= @student.username %>
-</p>
-<p>
+</div>
+<div>
   性别：<%= t @student.gender %>
-</p>
-<p>
+</div>
+<div>
   状态：在学
-</p>
+</div>
+
+<% if @student.topic_learnings.any? %>
+  <h2>在学专题：</h2>
+  <ul>
+    <% @student.topic_learnings.each do |topic_learning| %>
+      <li><%= topic_learning.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <div>该生没有开通任何专题</div>
+<% end %>
 <%= link_to '修改信息', edit_student_path(@student)%>
+<%= form_for [@student, TopicLearning.new] do |f| %>
+  <%= f.select :topic_id, options_from_collection_for_select(Topic.all, :id, :name) %>
+  <%= f.submit '开通专题' %>
+<% end %>

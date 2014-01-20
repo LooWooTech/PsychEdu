@@ -36,7 +36,9 @@ PsychEdu::Application.routes.draw do
 
   scope :module => :admin do
     constraints :subdomain => 'admin' do
-      resources :students, :only => [:new, :create, :show, :edit, :update]
+      resources :students, :only => [:new, :create, :show, :edit, :update, :index] do
+        resources :topic_learnings, :only => [:create]
+      end
       shallow do
         resources :topics, :only => [:new, :create, :index, :show, :edit, :update, :destroy] do
           resources :announcements, :only => [:new, :create, :edit, :update, :destroy]

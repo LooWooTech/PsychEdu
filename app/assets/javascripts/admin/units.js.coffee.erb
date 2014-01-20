@@ -1,14 +1,16 @@
 $ ->
-  summaryEditor = new wysihtml5.Editor 'unit-summary',
-    toolbar: 'unit-summary-editor-toolbar',
-    parserRules: wysihtml5ParserRules,
-    stylesheets: ['<%= asset_path 'admin/manifest.css'%>'],
-    useLineBreaks: false,
-    autoLink: true
+  if $('#unit-summary').size() > 0
+    summaryEditor = new wysihtml5.Editor 'unit-summary',
+      toolbar: 'unit-summary-editor-toolbar',
+      parserRules: wysihtml5ParserRules,
+      stylesheets: ['<%= asset_path 'admin/manifest.css'%>'],
+      useLineBreaks: false,
+      autoLink: true
 
-  reviewEditor = new wysihtml5.Editor 'unit-review',
-    toolbar: 'unit-review-editor-toolbar',
-    parserRules: wysihtml5ParserRules,
-    stylesheets: ['<%= asset_path 'admin/manifest.css'%>'],
-    useLineBreaks: false,
-    autoLink: true
+  if $('#unit-review').size() > 0
+    reviewEditor = new wysihtml5.Editor 'unit-review',
+      toolbar: 'unit-review-editor-toolbar',
+      parserRules: wysihtml5ParserRules,
+      stylesheets: ['<%= asset_path 'admin/manifest.css'%>'],
+      useLineBreaks: false,
+      autoLink: true

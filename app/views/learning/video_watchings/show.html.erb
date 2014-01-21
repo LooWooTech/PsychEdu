@@ -16,11 +16,13 @@
 
 <div class='player'>
   <video id='video'></video>
-  <ul class='video-selector'>
-    <% @video_watching.siblings.each_with_index do |video_watching, index| %>
-      <li><%= link_to video_watching.name, video_watching, :class => (index.odd? ? 'odd' : 'even') %></li>
-    <% end %>
-  </ul>
+  <% if @video_watching.siblings.any? %>
+    <ul class='video-selector'>
+      <% @video_watching.siblings.each_with_index do |video_watching, index| %>
+        <li><%= link_to video_watching.name, video_watching, :class => (index.odd? ? 'odd' : 'even') %></li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
 
 <div class='comments-and-notes'>

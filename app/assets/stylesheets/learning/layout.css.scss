@@ -21,7 +21,7 @@
       }
       #session {
         float: right;
-        margin: 5px 0 0 10px;
+        @include drop-down;
         a {
           color: $white;
         }

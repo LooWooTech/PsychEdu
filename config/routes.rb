@@ -6,6 +6,7 @@ PsychEdu::Application.routes.draw do
 
   scope :module => :learning do
     constraints :subdomain => 'learning' do
+      resource :password, :only => [:edit, :update], :path_names => {:edit => :change}
       shallow do
         resources :topic_learnings, :only => :show do
           member do

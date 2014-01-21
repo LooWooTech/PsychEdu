@@ -4,7 +4,7 @@ module HasAnAccount
 
   included do
     has_one :account, :as => :owner, :dependent => :destroy
-    delegate :username, :password, :to => :account
+    delegate :username, :password, :change_password, :to => :account
 
     validates :account, :presence => true
 

@@ -12,8 +12,14 @@
       <div class='wrapper'>
         <div id='current-environment'>
           <div id='session'>
-            <span>欢迎您，<%= current_user.name %>！<span>
-            <%= link_to '注销', session_path, :method => :delete %>
+            <span class='current'><%= current_user.name %></span>
+            <ul>
+              <li><%= link_to '密码修改', edit_password_path %></li>
+              <li><a href='#'>学员信息</a></li>
+              <li><a href='#'>学员申请</a></li>
+              <li><a href='#'>平台设置</a></li>
+              <li><%= link_to '退出登录', session_path, :method => :delete %></li>
+            </ul>
           </div>
           <div id='topic-selector'>
             <span class='current'><%= current_topic_learning.name %></span>

@@ -30,8 +30,7 @@ $video-selector-width: $content-width - $player-width;
       width: $video-selector-width;
       li a {
         display: inline-block;
-        height: 40px;
-        line-height: 40px;
+        line-height: 30px;
         width: 100%;
         text-align: center;
         &.even {

@@ -1,7 +1,7 @@
 module Admin
   class AnnouncementsController < AdminController
-    before_filter :find_topic, :only => [:new, :create]
-    before_filter :find_announcement, :only => [:edit, :update, :destroy]
+    before_action :find_topic, :only => [:new, :create]
+    before_action :find_announcement, :only => [:edit, :update, :destroy]
     def new
       @announcement = @topic.announcements.build
     end

@@ -17,10 +17,9 @@
 <div class='player'>
   <video id='video'></video>
   <ul class='video-selector'>
-    <% @video_watching.siblings.each do |video_watching| %>
-      <li><%= link_to image_tag(''), video_watching  %></li>
+    <% @video_watching.siblings.each_with_index do |video_watching, index| %>
+      <li><%= link_to video_watching.name, video_watching, :class => (index.odd? ? 'odd' : 'even') %></li>
     <% end %>
-    <li><a href='#'><img src=''/></a></li>
   </ul>
 </div>
 
@@ -61,7 +60,7 @@
     params.allowScriptAccess="sameDomain";
     params.wmode="opaque";
     
-    swfobject.embedSWF("/flashplayer/player.swf", "video", "100%", "100%", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
+    swfobject.embedSWF("/flashplayer/player.swf", "video", "850px", "480px", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
 
     function swf_save_data(time, xml) {
       $.post('<%= video_watching_path @video_watching %>',{

@@ -1,7 +1,7 @@
 module Admin
   class UnitsController < AdminController
-    before_filter :find_chapter, :only => [:new, :create]
-    before_filter :find_unit, :only => [:edit, :update, :show, :destroy]
+    before_action :find_chapter, :only => [:new, :create]
+    before_action :find_unit, :only => [:edit, :update, :show, :destroy]
 
     def new
       @unit = @chapter.units.build
@@ -43,7 +43,7 @@ module Admin
         :multiple_choice_count, :case_count,
         :question_repository_file, :exam_minutes,
         :summary, :review,
-        :videos_attributes => [:url, :teacher_names, :_destroy, :id]
+        :videos_attributes => [:url, :teacher_names, :_destroy, :id, :name]
       )
     end
 

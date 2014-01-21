@@ -1,7 +1,7 @@
 module Admin
   class ChaptersController < AdminController
-    before_filter :find_topic, :only => [:new, :create]
-    before_filter :find_chapter, :only => [:edit, :show, :update, :destroy]
+    before_action :find_topic, :only => [:new, :create]
+    before_action :find_chapter, :only => [:edit, :show, :update, :destroy]
 
     def new
       @chapter = Chapter.new

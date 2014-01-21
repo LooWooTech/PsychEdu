@@ -1,7 +1,7 @@
 module Admin
   class TopicsController < AdminController
 
-    before_filter :find_topic, :only => [:show, :edit, :update, :destroy]
+    before_action :find_topic, :only => [:show, :edit, :update, :destroy]
 
     def new
       @topic = Topic.new

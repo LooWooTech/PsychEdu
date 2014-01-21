@@ -3,7 +3,7 @@ module CommentsController
   extend ActiveSupport::Concern
 
   included do
-    before_filter :find_commentable, :only => [:index, :create]
+    before_action :find_commentable, :only => [:index, :create]
   end
   
   def create

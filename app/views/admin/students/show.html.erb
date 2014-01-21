@@ -1,15 +1,7 @@
-<div>
-  <%= @student.name %>
-</div>
-<div>
-  登录名：<%= @student.username %>
-</div>
-<div>
-  性别：<%= t @student.gender %>
-</div>
-<div>
-  状态：在学
-</div>
+<div> <%= @student.name %> </div>
+<div> 登录名：<%= @student.username %> </div>
+<div> 性别：<%= t @student.gender %> </div>
+<div> 状态：在学 </div>
 
 <% if @student.topic_learnings.any? %>
   <h2>在学专题：</h2>

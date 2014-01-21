@@ -20,16 +20,27 @@ $video-selector-width: $content-width - $player-width;
 
   .player {
     margin: 15px 0 40px 0;
-    width: $player-width;
-    height: 480px;
     overflow: hidden;
     #video {
-      width: $player-width;
       float: left;
     }
+
     .video-selector {
       float: right;
       width: $video-selector-width;
+      li a {
+        display: inline-block;
+        height: 40px;
+        line-height: 40px;
+        width: 100%;
+        text-align: center;
+        &.even {
+          background: #eee;
+        }
+        &.odd {
+          background: #e8e8e8;
+        }
+      }
     }
   }
 

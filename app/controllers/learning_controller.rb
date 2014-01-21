@@ -1,8 +1,8 @@
 class LearningController < ApplicationController
   layout 'learning'
 
-  before_filter :student_required
-  before_filter :ensure_topic_open
+  before_action :student_required
+  before_action :ensure_topic_open
 
   helper_method :current_topic_learning, :chapter_learnings, :page_title
 

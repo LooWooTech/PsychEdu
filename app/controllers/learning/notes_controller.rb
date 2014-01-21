@@ -1,6 +1,6 @@
 module Learning
   class NotesController < LearningController
-    before_filter :find_video_watching
+    before_action :find_video_watching
 
     def index
       @notes = @video_watching.notes.page(params[:page]).per(5)

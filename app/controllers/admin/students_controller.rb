@@ -1,6 +1,6 @@
 module Admin
   class StudentsController < AdminController
-    before_filter :find_student, :only => [:show, :edit, :update]
+    before_action :find_student, :only => [:show, :edit, :update]
 
     def index
       @students = Student.page(params[:page]).per(10)

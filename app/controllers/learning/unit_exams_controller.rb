@@ -1,7 +1,7 @@
 module Learning
   class UnitExamsController < LearningController
-    before_filter :find_unit_exam, :only => [:show, :update]
-    after_filter :destroy_unpassed_exam, :only => [:show, :update]
+    before_action :find_unit_exam, :only => [:show, :update]
+    after_action :destroy_unpassed_exam, :only => [:show, :update]
 
     def create
       @unit_learning = UnitLearning.find params[:unit_learning_id]

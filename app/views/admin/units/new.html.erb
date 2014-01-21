@@ -35,6 +35,10 @@
   <%= f.fields_for :videos do |videos| %>
     <li>
       <div>
+        <%= videos.label :name, '名称' %>
+        <%= videos.text_field :name%>
+      </div>
+      <div>
         <%= videos.label :teacher_names, '讲师' %>
         <%= videos.text_field :teacher_names %>
       </div>

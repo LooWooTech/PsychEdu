@@ -1,7 +1,7 @@
 module Ask
   class ComplaintsController < AskController
   
-    before_filter :find_complainable
+    before_action :find_complainable
   
     def new
       @complaint = Complaint.new

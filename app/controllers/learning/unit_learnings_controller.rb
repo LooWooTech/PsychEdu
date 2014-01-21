@@ -2,7 +2,7 @@ module Learning
   class UnitLearningsController < LearningController
     helper_method :current_chapter_learning
 
-    before_filter :find_unit_learning, :only => [:show, :summary, :review]
+    before_action :find_unit_learning, :only => [:show, :summary, :review]
 
     def show
       if @unit_learning.open?

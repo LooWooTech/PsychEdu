@@ -22,7 +22,7 @@ PsychEdu::Application.routes.draw do
               resources :video_watchings, :only => [:show, :update] do
                 resources :notes, :only => [:create, :destroy, :index]
               end
-              resources :unit_exams, :only => [:create, :update, :show]
+              resources :unit_exams, :only => [:create, :update, :show, :index]
             end
           end
         end

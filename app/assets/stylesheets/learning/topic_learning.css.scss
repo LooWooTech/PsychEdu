@@ -1,6 +1,9 @@
 @import 'variables';
 @import 'mixin';
 
+$orange: #fd6445;
+$gray: #bbb;
+
 @mixin unit-learning-button {
   padding: 6px 14px;
   margin: 10px 10px 10px 0;
@@ -59,27 +62,27 @@
   #chapters {
     float: left;
     width: 640px;
-    li {
+     &> li {
       margin-bottom: 20px;
       width: 528px;
 
       h1 {
         font-size: 18px;
         line-height: 30px;
-        color: #fd6445;
+        color: $orange;
       }
 
       .units {
-        li {
+        &> li {
           margin: 10px 0;
           display: block;
-          a {
+          &> a {
             @include unit-learning-button;
             background: #009cff;
           }
           .inactive {
             @include unit-learning-button;
-            background: #bbb;
+            background: $gray;
           }
         }
       }
@@ -87,6 +90,29 @@
         font-size: 14px;
         span {
           margin-right: 12px;
+        }
+
+        .exam-history {
+          position: relative;
+          display: inline-block;
+          .average-score {
+            color: #4b6bb6;
+            cursor: pointer;
+          }
+          ul {
+            position: absolute;
+            top: 16px;
+            border: solid 1px $border-gray;
+            border-radius: 3px;
+            li {
+              a {
+                padding: 5px;
+                display: block;
+                background: $white;
+                color: #4b6bb6;
+              }
+            }
+          }
         }
       }
     }

@@ -23,7 +23,9 @@ module Learning
     private
 
     def unit_exam_params
-      params[:unit_exam][:multiple_choice_answers_attributes].each{|k, v| v[:choice_ids] ||=[]}
+      # 允许取消所有已经选择的多选题选项
+      params[:unit_exam][:multiple_choice_answers_attributes].try(:each){|k, v| v[:choice_ids] ||=[]}
+
       params.require(:unit_exam).permit(
         :submitted,
         :singular_choice_answers_attributes => [:choice_id, :id],

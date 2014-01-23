@@ -7,7 +7,13 @@
     <%= link_to '单元小结', review_unit_learning_path(unit_learning) %>
     <div class='state'>
       <span class='testing-state'><%= unit_exam_state unit_learning %></span>
-      <span class='average-score'>平均分：<%= unit_learning.average_score %></span>
+      <div class='exam-history'>
+        <span class='average-score'>平均分：<%= unit_learning.average_score %></span>
+        <ul>
+          <% unit_learning.passed_exams.each do |exam| %>
+            <li><%= link_to "#{l exam.created_at, :format => :datetime } 得分 #{exam.score}", exam %></li>
+          <% end %>
+        </ul>
       <span class='hours'>已学：<%= unit_learning_hours unit_learning %>小时</span>
     </div>
   <% else %>

@@ -1,4 +1,6 @@
 <% content_for(:title){ "专题导学：#{current_topic_learning.name}" } %>
+<% @body_id = 'topic-learing-guide' %>
+<h1><%= current_topic_learning.name %>专题导学</h1>
 <div class='player'>
   <video id='video'></video>
 </div>

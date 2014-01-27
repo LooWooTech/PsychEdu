@@ -62,14 +62,18 @@ $gray: #bbb;
   #chapters {
     float: left;
     width: 640px;
-     &> li {
+    &> li {
       margin-bottom: 20px;
       width: 528px;
 
       h1 {
+        display: inline-block;
         font-size: 18px;
         line-height: 30px;
         color: $orange;
+      }
+      &> a{
+        color: #4b6bb6;
       }
 
       .units {

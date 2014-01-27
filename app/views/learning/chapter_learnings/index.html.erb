@@ -2,7 +2,7 @@
 
 <ul id='chapters'>
   <li>
-    <%= link_to raw('<h1>专题导学</h1>'), guide_topic_learning_path(current_topic_learning) %>
+    <h1>专题导学</h1> <%= link_to '开始导学', guide_topic_learning_path(current_topic_learning) %>
   </li>
   <%= render :partial => 'learning/chapter_learnings/chapter_learning', :collection => chapter_learnings %>
 </ul>

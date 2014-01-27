@@ -2,10 +2,11 @@ class LearningPeriod < ActiveRecord::Base
   include Period
   include Reviewable
 
-  validate :should_not_intersect_with_other_learning_period
-
   has_many :leaving_periods, :dependent => :destroy
-  belongs_to :topic_learning
+  belongs_to :topic_learning, :inverse_of => :learning_periods
+
+  validates :topic_learning, :presence => true
+  validate :should_not_intersect_with_other_learning_period
 
   def actually_end_on
     end_on + leaving_periods.to_a.sum(&:duration)

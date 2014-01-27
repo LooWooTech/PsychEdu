@@ -1,6 +1,6 @@
 class Student < ActiveRecord::Base
 
-  GENDER = {:male => 0, :female => 1, :secret => 2}
+  GENDER = {'男' => 0, '女' => 1, '保密' => 2}
 
   include HasAnAccount
 

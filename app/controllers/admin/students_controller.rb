@@ -20,7 +20,11 @@ module Admin
       end
     end
 
-    def show; end
+    def show
+      @topic_learning = TopicLearning.new
+      @topic_learning.learning_periods.build
+      @unopened_topics = Topic.unopened_for(@student)
+    end
 
     def edit
       render :new

@@ -6,14 +6,14 @@ module Admin
       if @topic_learning.save
         redirect_to @student
       else
-        render :text => '开通专题失败'
+        render :text => "开通专题失败"
       end
     end
 
     private
     
     def topic_learning_params
-      params.require(:topic_learning).permit(:topic_id)
+      params.require(:topic_learning).permit(:topic_id, :learning_periods_attributes => [:start_on, :end_on])
     end
   end
 end

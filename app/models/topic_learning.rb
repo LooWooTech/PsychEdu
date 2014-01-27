@@ -2,12 +2,14 @@ class TopicLearning < ActiveRecord::Base
   belongs_to :student
   belongs_to :topic
 
-  has_many :learning_periods, :dependent => :destroy
+  has_many :learning_periods, :dependent => :destroy, :inverse_of => :topic_learning
   has_many :chapter_learnings, :dependent => :destroy
 
   validates :topic, :uniqueness => {:scope => :student}
 
   delegate :name, :guide_video_url, :announcements, :to => :topic
+
+  accepts_nested_attributes_for :learning_periods, :reject_if => lambda{|attr| attr[:start_on].blank? || attr[:end_on].blank?}
 
   after_create :create_chapter_learnings
 
@@ -36,7 +38,7 @@ class TopicLearning < ActiveRecord::Base
   end
 
   def learning_periods_intersected_with(learning_period)
-    learning_periods.select{|period| period.intersected? learning_period }
+    learning_periods.select{|period| period != learning_period && period.intersected?(learning_period) }
   end
 
   def learning_periods_include_date(date)

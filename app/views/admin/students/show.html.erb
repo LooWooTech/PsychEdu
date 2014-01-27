@@ -14,7 +14,24 @@
   <div>该生没有开通任何专题</div>
 <% end %>
 <%= link_to '修改信息', edit_student_path(@student)%>
-<%= form_for [@student, TopicLearning.new] do |f| %>
-  <%= f.select :topic_id, options_from_collection_for_select(Topic.all, :id, :name) %>
-  <%= f.submit '开通专题' %>
+<% if @unopened_topics.any? %>
+  <%= form_for [@student, @topic_learning] do |f| %>
+    <div>
+      <%= f.label :topic_id, '要开通的专题' %>
+      <%= f.select :topic_id, options_from_collection_for_select(@unopened_topics, :id, :name) %>
+    </div>
+    <%= f.fields_for :learning_periods do |period_field| %>
+      <div>
+        <%= period_field.label :start_on, '开始日期' %>
+        <%= period_field.date_field :start_on %>
+      </div>
+      <div>
+        <%= period_field.label :end_on, '结束日期' %>
+        <%= period_field.date_field :end_on %>
+      </div>
+    <% end %>
+    <div>
+    <%= f.submit '开通专题' %>
+    </div>
+  <% end %>
 <% end %>

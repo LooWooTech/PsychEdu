@@ -13,4 +13,10 @@ class Topic < ActiveRecord::Base
     chapters.to_a.sum &:duration
   end
 
+  class << self
+    def unopened_for(student)
+      all - student.topic_learnings.map(&:topic)
+    end
+  end
+
 end

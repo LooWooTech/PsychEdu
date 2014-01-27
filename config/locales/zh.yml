@@ -5,6 +5,10 @@ zh:
       datetime: '%Y-%m-%d %H:%M'
       full_datetime: '%Y-%m-%d %H:%M:%S'
       time_only: '%H:%M:%S'
+
+  date:
+    formats:
+      default: '%Y-%m-%d'
   views:
     pagination:
       first: '&laquo;'
@@ -12,9 +16,3 @@ zh:
       previous: '&lsaquo;'
       next: '&rsaquo;'
       truncate: '...'
-  admin:
-    students:
-      new:
-        male: 男
-        female: 女
-        secret: 保密

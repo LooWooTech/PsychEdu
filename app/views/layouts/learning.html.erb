@@ -15,7 +15,7 @@
             <span class='current'><%= current_user.name %></span>
             <ul>
               <li><%= link_to '密码修改', edit_password_path %></li>
-              <li><a href='#'>学员信息</a></li>
+              <li><%= link_to '学员信息', profile_path %></li>
               <li><a href='#'>学员申请</a></li>
               <li><a href='#'>平台设置</a></li>
               <li><%= link_to '退出登录', session_path, :method => :delete %></li>

@@ -19,7 +19,7 @@
   </div>
   <div>
     <%= f.label :gender, '性别' %>
-    <%= f.select :gender, gender_options, :include_blank => '请选择' %>
+    <%= f.select :gender, Student::GENDER, :include_blank => '请选择' %>
   </div>
   <div>
     <%= f.label :unit_code, '单位编码' %>

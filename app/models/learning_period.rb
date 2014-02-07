@@ -23,7 +23,7 @@ class LearningPeriod < ActiveRecord::Base
   private
 
   def should_not_intersect_with_other_learning_period
-    errors[:base] << 'should not intersect with another learning period' if topic_learning.has_intersected_learning_periods? self
+    errors.add(:base, :conflict) if topic_learning.has_intersected_learning_periods? self
   end
 
 end

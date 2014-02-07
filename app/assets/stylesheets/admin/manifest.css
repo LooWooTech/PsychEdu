@@ -1,5 +1,6 @@
 /*
 *= require reset
+*= require jquery-ui
 *= require wysihtml5_content
 *= require_tree .
 */

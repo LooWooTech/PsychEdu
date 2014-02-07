@@ -15,7 +15,7 @@
 <% end %>
 <%= link_to '修改信息', edit_student_path(@student)%>
 <% if @unopened_topics.any? %>
-  <%= form_for [@student, @topic_learning] do |f| %>
+  <%= form_for [@student, @topic_learning], :html => {:id => 'open-topic-learning'} do |f| %>
     <div>
       <%= f.label :topic_id, '要开通的专题' %>
       <%= f.select :topic_id, options_from_collection_for_select(@unopened_topics, :id, :name) %>

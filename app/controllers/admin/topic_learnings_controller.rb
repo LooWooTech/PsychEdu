@@ -4,9 +4,9 @@ module Admin
       @student = Student.find params[:student_id]
       @topic_learning = @student.topic_learnings.build topic_learning_params
       if @topic_learning.save
-        redirect_to @student
+        render :text => student_path(@student)
       else
-        render :text => "开通专题失败"
+        render :status => 400, :text => @topic_learning.errors.full_messages.map{|msg| "<li>#{msg}</li>"}.join
       end
     end
 

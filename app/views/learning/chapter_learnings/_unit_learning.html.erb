@@ -11,7 +11,7 @@
         <span class='average-score'>平均分：<%= unit_learning.average_score %></span>
         <ul>
           <% unit_learning.passed_exams.each do |exam| %>
-            <li><%= link_to "#{l exam.created_at, :format => :datetime } 得分 #{exam.score}", exam %></li>
+            <li><%= link_to "#{l exam.created_at, :format => :long } 得分 #{exam.score}", exam %></li>
           <% end %>
         </ul>
       <span class='hours'>已学：<%= unit_learning_hours unit_learning %>小时</span>

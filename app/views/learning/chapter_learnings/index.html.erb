@@ -1,30 +1,64 @@
-<%= render :partial => 'learning/chapter_learnings/announcements' if current_topic_learning.announcements.any? %>
+<% @body_id = 'topic-learning' %>
+<div class='current-topic-learning'>
+  <h1><%= current_topic_learning.name %></h1>
+  <% if current_topic_learning.siblings.any? %>
+    <div class='switcher'>
+      <span>切换专题</span>
+      <ul>
+        <% current_topic_learning.siblings.each do |topic_learning| %>
+          <li><%= link_to topic_learning.name, topic_learning %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
 
-<ul id='chapters'>
-  <li>
-    <h1>专题导学</h1> <%= link_to '开始导学', guide_topic_learning_path(current_topic_learning) %>
-  </li>
-  <%= render :partial => 'learning/chapter_learnings/chapter_learning', :collection => chapter_learnings %>
-</ul>
-
-<div id='personal-activity'>
-  <div class='info'>
-    <img class='avatar' src=''/>
-    <div class='state'>
-      <h1><%= current_user.name %></h1>
-      <span>在学</span>
-      <span>有效期：2014-10-01</span>
+<div class='user-info-and-announcements'>
+  <div class='user-info'>
+    <%= image_tag 'learning/avatar.jpg', :class => 'avatar' %>
+    <div class='info'>
+      <h1><%= current_user.name %>(<%= current_user.username %>)</h1>
+      <div class='state'><strong>状态：</strong><%= topic_learning_state current_topic_learning %></div>
+      <div class='period'>
+        <% if !current_topic_learning.out_of_period? %><strong>有效期：</strong><%= period current_topic_learning %><% end %>
+      </div>
     </div>
   </div>
+  <% if current_topic_learning.announcements.any? %>
+    <div class='announcements'>
+      <h1>通知公告</h1>
+      <ul>
+        <% current_topic_learning.announcements.each do |announcement| %>
+          <li><%= link_to announcement.title, announcement %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<div id='chapters'>
+  <h1>专题目录</h1>
+  <ul>
+    <li class='guide'>
+      <h2>专题导学</h2><%= link_to '查看内容', guide_topic_learning_path(current_topic_learning) %>
+    </li>
+    <%= render :partial => 'learning/chapter_learnings/chapter_learning', :collection => chapter_learnings %>
+  </ul>
+</div>
+
+<div id='ask-and-supervision'>
   <div id='ask'>
     <h1>我的问答</h1>
     <ul>
-      <li><a href='#'>什么是黄金规则和反黄金规则？</a></li>
+      <li>
+        <a href='#'><h2>什么是黄金规则和反黄金规则？</h2></a>
+      </li>
       <li><a href='#'>发现自己不愿意夸奖别人的优点，这是为什么？</a></li>
       <li><a href='#'>人都是自私的吗？</a></li>
     </ul>
     <a class='more' href='#'>更多 &gt;</a>
   </div>
+
   <div id='supervision'>
     <h1>我的督导</h1>
     <ul>

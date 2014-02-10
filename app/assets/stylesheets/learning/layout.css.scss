@@ -1,49 +1,71 @@
 @import 'variables';
 @import 'mixin';
 
+$header-title-size: 36px;
+$header-height: $header-title-size * 1.5;
+$navigator-font-size: 16px;
+
+@mixin header-button {
+  padding: 0 15px;
+  &:hover {
+    background: darken($blue, 10);
+  }
+}
+
 #header {
-  width: 100%;
   background: $blue;
   color: $white;
-
+  border-bottom: 1px solid #5c87bc;
+  a {color: $white;}
   .wrapper {
-    width: $content-width;
+    width: 960px;
     margin: 0 auto;
-    height: 100%;
     overflow: hidden;
-
-    #current-environment {
-      overflow: hidden;
-      margin-top: 10px;
-      #topic-selector {
-        float: right;
-        @include drop-down;
-      }
-      #session {
-        float: right;
-        @include drop-down;
-        a {
-          color: $white;
+    line-height: 54px;
+    h1 {
+      float: left;
+      font-size: $header-title-size;
+      font-weight: bold;
+      line-height: $header-height;
+    }
+    #navigator {
+      float: left;
+      margin-left: 80px;
+      font-size: $navigator-font-size;
+      font-weight: bold;
+      li{
+        @include header-button;
+        float: left;
+        @each $item in home, cases, ask, supervision, guide {
+          &.#{$item} a{
+            display: block;
+            padding-left: 20px;
+            background: asset-url('learning/#{$item}.png') no-repeat left center;
+          }
         }
       }
     }
 
-    h1 {
-      margin: 0 0 10px 15px;
-      font-size: 30px;
-    }
-
-    #navigator {
-      margin-bottom: 10px;
-      li {
-        display: inline-block;
-        a{
-          border-radius: 3px;
-          padding: 5px 15px;
-          color: $white;
-          display: block;
-          &:hover, &.current {
-            background: darken($blue, 10%);
+    #account {
+      float: right;
+      @include header-button;
+      .avatar {
+        height: 25px;
+        width: 25px;
+        vertical-align: middle;
+      }
+      .menu {
+        position: absolute;
+        background: $blue;
+        padding: 5px;
+        line-height: 1em;
+        li {
+          margin: 5px 0;
+          a {
+            &:hover {
+              background: $white;
+              color: $blue;
+            }
           }
         }
       }
@@ -54,15 +76,11 @@
 #content {
   width: $content-width;
   margin: 0 auto;
+  border-bottom: 1px solid $gray;
 }
 
 #footer {
-  color: #444;
-  background: #e8e8e8;
-  padding: 25px 0;
-  .wrapper {
-    width: $content-width;
-    margin: 0 auto;
-    text-align: center;
-  }
+  width: $content-width;
+  margin: 20px auto;
+  text-align: center;
 }

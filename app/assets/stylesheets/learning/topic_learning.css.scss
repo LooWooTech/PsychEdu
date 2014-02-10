@@ -1,120 +1,191 @@
 @import 'variables';
 @import 'mixin';
 
-$orange: #fd6445;
-$gray: #bbb;
+$topic-name-size: 32px;
 
-@mixin unit-learning-button {
-  padding: 6px 14px;
-  margin: 10px 10px 10px 0;
-  color: $white;
-  border-radius: 3px;
-  display: inline-block;
-}
-
-@mixin activity {
-  margin: 30px 0;
-  overflow: hidden;
-
-  h1 {
-    font-size: 18px;
-    color: #444;
-    padding-bottom: 10px;
-  }
-  ul {
-    margin: 10px 0;
-    li {
-      margin: 10px 0;
-      font-size: 14px;
-      a {
-        color: #4b6bb6;
-      }
-    }
-  }
-  .more {
+#topic-learning {
+  #content {
+    padding: 20px 0;
     font-size: 14px;
-    float: right;
-    color: #444;
-  }
-}
+    overflow: hidden;
+    .current-topic-learning {
+      overflow: hidden;
+      h1 {
+        font-size: 32px;
+        padding: 0 5px 0 37px;
+        line-height: 1em;
+        float: left;
+        background: asset-url('learning/topic.png') no-repeat left center;
+      }
+      .switcher {
+        margin-top: 10px;
+        float: left;
+        span {
+          display: block;
+          cursor: pointer;
+          padding: 2px 2px 2px 12px;
+          background: $blue asset-url('learning/expand-down.png') no-repeat left center;
+          color: $white;
+          &:hover {
+            background-color: darken($blue, 10%);
+          }
+        }
+        ul {
+          position: absolute;
+          padding: 8px;
+          background: $light-gray;
+          border: 1px solid $gray;
+          li {
+            a {
+              display: block;
+              padding: 10px;
+              &:hover {
+                background: lighten($blue, 30%);
+              }
+            }
+          }
+        }
+      }
+    }
 
-#content {
-  padding: 25px 0;
-  overflow: hidden;
-  #announcements {
-    height: 72px;
-    margin-bottom: 25px;
-    background: #f2f2f2;
-    border-radius: 3px;
-    border: 1px solid $border-gray;
-    li {
-      display: inline-block;
-      line-height: 36px;
-      margin-left: 10px;
-      width: 450px;
-      
-      a {
-        color: #555;
+    .user-info-and-announcements {
+      padding: 20px 0;
+      overflow: hidden;
+      border-bottom: 1px solid $gray;
+      .user-info {
+        float: left;
+        .avatar {
+          float: left;
+          width: 96px;
+          height: 96px;
+          margin-right: 20px;
+        }
+        .info {
+          float: left;
+          h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+          }
+          div {
+            margin-top: 10px;
+            strong {
+              color: $blue;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+      .announcements {
+        float: right;
+        width: 260px;
+        height: 66px;
+        padding: 15px;
+        background: $light-gray;
+        border: 1px solid $gray;
+        h1 {
+          font-weight: bold;
+        }
+        ul {
+          list-style: disc inside;
+          li {
+            margin: 1px 0;
+          }
+        }
       }
     }
   }
-
   #chapters {
     float: left;
-    width: 640px;
-    &> li {
+    margin: 20px 0;
+    width: 660px;
+    h1 {
+      font-size: 24px;
+      padding-left: 24px;
       margin-bottom: 20px;
-      width: 528px;
+      background: asset-url('learning/catalog.png') no-repeat left center;
+    }
+    ul {
+      li {
+        margin: 20px 0;
+        overflow: hidden;
 
-      h1 {
-        display: inline-block;
-        font-size: 18px;
-        line-height: 30px;
-        color: $orange;
-      }
-      &> a{
-        color: #4b6bb6;
-      }
-
-      .units {
-        &> li {
-          margin: 10px 0;
-          display: block;
-          &> a {
-            @include unit-learning-button;
-            background: #009cff;
-          }
-          .inactive {
-            @include unit-learning-button;
-            background: $gray;
+        &.open, &.guide {
+          > h2 {
+            background: $blue;
           }
         }
-      }
-      .state {
-        font-size: 14px;
-        span {
-          margin-right: 12px;
+
+        &.guide {
+          a {
+            line-height: 35px;
+            padding-right: 20px;
+            background: asset-url('learning/expand.png') no-repeat right center;
+          }
         }
 
-        .exam-history {
-          position: relative;
-          display: inline-block;
-          .average-score {
-            color: #4b6bb6;
-            cursor: pointer;
+        h2 {
+          margin-right: 20px;
+          width: 80px;
+          height: 35px;
+          color: $white;
+          text-align: center;
+          line-height: 35px;
+          background: $dark-gray;
+          float: left;
+        }
+        .learning {
+          float: left;
+          header {
+            h3 {
+              font-weight: bold;
+              margin-right: 10px;
+              display: inline-block;
+            }
+            .detail {
+              color: $blue;
+            }
           }
-          ul {
-            position: absolute;
-            top: 16px;
-            border: solid 1px $border-gray;
-            border-radius: 3px;
-            li {
-              a {
-                padding: 5px;
-                display: block;
-                background: $white;
-                color: #4b6bb6;
+          > a {
+            padding-right: 20px;
+            &.expand {
+              background: asset-url('learning/expand.png') no-repeat right center;
+            }
+            &.retract {
+              background: asset-url('learning/retract.png') no-repeat right center;
+            }
+          }
+          .units {
+            width: 560px;
+            .learning {
+              > a {
+                color: $blue;
+                padding-right: 10px;
               }
+            }
+          }
+        }
+        .buttons {
+          float: right;
+          * {
+            float: left;
+            display: block;
+            margin: 0 7px;
+            line-height: 35px;
+          }
+          .average-score {
+            font-size: 35px;
+            color: $yellow;
+          }
+          a {
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 3px;
+            color: $white;
+            &.start-learning {
+              background: $blue;
+            }
+            &.start-exam {
+              background: $yellow;
             }
           }
         }
@@ -122,39 +193,37 @@ $gray: #bbb;
     }
   }
 
-  #personal-activity {
-    float: right;
-    width: 300px;
-    .info {
-      padding: 25px;
-      background: #f2f2f2;
-      border-radius: 3px;
-      overflow: hidden;
-      .avatar {
-        height: 100px;
-        width: 100px;
-        float: left;
-      }
-      .state {
-        float: right;
-        width: 135px;
-        h1 {
-          font-size: 20px;
-          margin-bottom: 25px;
-        }
+  #ask-and-supervision {
+    margin: 20px 0;
+    float: left ;
+    h1 {
+      font-size: 24px;
+      padding-left: 24px;
+      margin-bottom: 20px;
+    }
 
-        span {
-          margin: 5px 0;
-          display: block;
-          font-size: 15px;
-        }
+    ul li {
+      margin: 10px 0;
+    }
+
+    .more {
+      color: $blue;
+      float: right;
+    }
+
+    #ask {
+      margin-bottom: 20px;
+      overflow: hidden;
+      h1 {
+        background: asset-url('learning/question.png') no-repeat left center;
       }
     }
-    #ask {
-      @include activity;
-    }
+
     #supervision {
-      @include activity;
+      overflow: hidden;
+      h1 {
+        background: asset-url('learning/blue-arrow.png') no-repeat left center;
+      }
     }
   }
 }

@@ -10,41 +10,30 @@
   <body id='<%= @body_id %>'>
     <div id='header'>
       <div class='wrapper'>
-        <div id='current-environment'>
-          <div id='session'>
-            <span class='current'><%= current_user.name %></span>
-            <ul>
-              <li><%= link_to '密码修改', edit_password_path %></li>
-              <li><%= link_to '学员信息', profile_path %></li>
-              <li><a href='#'>学员申请</a></li>
-              <li><a href='#'>平台设置</a></li>
-              <li><%= link_to '退出登录', session_path, :method => :delete %></li>
-            </ul>
-          </div>
-          <div id='topic-selector'>
-            <span class='current'><%= current_topic_learning.name %></span>
-            <ul>
-              <% current_topic_learning.siblings.each do |topic_learning| %>
-                <li><%= link_to topic_learning.name, topic_learning %></li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-        <h1>XXX心理教学实操平台</h1>
+        <h1>LOGO</h1>
         <ul id='navigator'>
-          <li><%= link_to '课程学习', learning_path, :class => controller.is_a?(LearningController) ? 'current' : '' %></li>
-          <li><a href='#'>案例解读</a></li>
-          <li><a href='#'>问答社区</a></li>
-          <li><a href='#'>案例督导</a></li>
-          <li><a href='#'>学习指导</a></li>
+          <li class='home'><%= link_to '课程学习', learning_path, :class => controller.is_a?(LearningController) ? 'current' : '' %></li>
+          <li class='cases'><a href='#'>案例解读</a></li>
+          <li class='ask'><a href='#'>问答社区</a></li>
+          <li class='supervision'><a href='#'>案例督导</a></li>
+          <li class='guide'><a href='#'>学习指导</a></li>
         </ul>
+        <div id='account'>
+          <%= image_tag 'learning/avatar.jpg', :class => 'avatar' %>
+          <span class='current-user'><%= current_user.name %></span>
+          <ul class='menu'>
+            <li><%= link_to '密码修改', edit_password_path %></li>
+            <li><%= link_to '学员信息', profile_path %></li>
+            <li><a href='#'>学员申请</a></li>
+            <li><a href='#'>平台设置</a></li>
+            <li><%= link_to '退出登录', session_path, :method => :delete %></li>
+          </ul>
+        </div>
       </div>
     </div>
     <div id='content'> <%= yield %> </div>
     <div id='footer'>
-      <div class='wrapper'>
-        <span id='copyright'>&copy; 建德教育</div>
-      </div>
+      <span id='copyright'>&copy; 建德教育</div>
     </div>
   </body>
 </html>

@@ -1,6 +1,25 @@
-<li>
-  <h1><%= chapter_learning.name %></h1>
-  <ul class='units'>
-    <%= render :collection => chapter_learning.unit_learnings, :partial => 'learning/chapter_learnings/unit_learning' %>
-  </ul>
+<li class='<%= "open" if chapter_learning.open? %>'>
+  <h2>第<%= chapter_learning_counter + 1 %>节</h2>
+  <div class='learning'>
+    <header>
+      <h3><%= chapter_learning.name %></h3>
+      <a class='detail' href='javascript:;'>详情</a>
+    </header>
+    <% if !chapter_learning.has_only_one_unit? %>
+      <a class='expand' href='javascript:;'>展开课程</a>
+    <% end %>
+    <% if !chapter_learning.has_only_one_unit? %>
+      <ul class='units'>
+        <%= render :collection => chapter_learning.unit_learnings, :partial => 'learning/chapter_learnings/unit_learning' %>
+      </ul>
+    <% end %>
+  </div>
+  <% if chapter_learning.has_only_one_unit? && chapter_learning.open? %>
+    <% unit_learning = chapter_learning.unit_learnings.first %>
+    <div class='buttons'>
+      <span class='average-score'><%= unit_learning.average_score %></span>
+      <%= link_to '开始学习', unit_learning, :class => 'start-learning' %>
+      <%= unit_exam_link unit_learning %>
+    </div>
+  <% end %>
 </li>

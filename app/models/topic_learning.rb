@@ -26,11 +26,15 @@ class TopicLearning < ActiveRecord::Base
   end
 
   def ongoing?(date=Date.today)
-    !leaving?(date) && learning_periods.any?{|period| period.include_date?(date) }
+    !leaving?(date) && !out_of_period?(date)
   end
 
   def leaving?(date=Date.today)
     learning_periods.any?{|period| period.leaving?(date) }
+  end
+
+  def out_of_period?(date=Date.today)
+    !learning_periods.any?{|period| period.include_date?(date) }
   end
 
   def has_intersected_learning_periods?(target)
@@ -47,6 +51,10 @@ class TopicLearning < ActiveRecord::Base
 
   def chapters
     topic ? topic.chapters : []
+  end
+
+  def current_learning_period
+    learning_periods.find{|period| period.include_date?(Date.today) }
   end
 
   private

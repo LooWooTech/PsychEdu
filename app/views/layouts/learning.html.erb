@@ -12,7 +12,7 @@
       <div class='wrapper'>
         <h1>LOGO</h1>
         <ul id='navigator'>
-          <li class='home'><%= link_to '课程学习', learning_path, :class => controller.is_a?(LearningController) ? 'current' : '' %></li>
+          <li class='home <%=controller.is_a?(LearningController) ? 'current' : ''%>'><%= link_to '课程学习', learning_path %></li>
           <li class='cases'><a href='#'>案例解读</a></li>
           <li class='ask'><a href='#'>问答社区</a></li>
           <li class='supervision'><a href='#'>案例督导</a></li>

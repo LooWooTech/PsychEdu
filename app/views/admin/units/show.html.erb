@@ -3,8 +3,9 @@
     <%= link_to @unit.chapter_name , @unit.chapter %>：
     <%= @unit.name %>
   </h1>
-  <div>单选题数：<%= @unit.singular_choice_count %></div>
-  <div>多选题数：<%= @unit.multiple_choice_count %></div>
+  <div>出卷单选题数：<%= @unit.singular_choice_count %></div>
+  <div>出卷多选题数：<%= @unit.multiple_choice_count %></div>
+  <div>题库总题数：<%= @unit.exam_question_count %></div>
   <div>考试时间：<%= @unit.exam_minutes %> 分钟</div>
   <%= link_to '修改', edit_unit_path(@unit) %>
 </div>

@@ -1,7 +1,9 @@
 <li>
-  <img src=''/>
   <div>
-    <span class='time'><%= l note.created_at, :format => :long %></span>
+    <header>
+      <span class='record-at'>记录于<date><%= l note.created_at, :format => :long %></date></span>
+      <span class='video-time-point'>视频时间：<span><%= note.play_time_point %></span></span>
+    </header>
     <div class='content'><%= note.content %></div>
   </div>
 </li>

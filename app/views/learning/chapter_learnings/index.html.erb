@@ -2,7 +2,7 @@
 <div class='current-topic-learning'>
   <h1><%= current_topic_learning.name %></h1>
   <% if current_topic_learning.siblings.any? %>
-    <div class='switcher'>
+    <div class='chapter-selector'>
       <span>切换专题</span>
       <ul>
         <% current_topic_learning.siblings.each do |topic_learning| %>

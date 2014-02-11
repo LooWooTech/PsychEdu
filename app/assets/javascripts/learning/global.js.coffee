@@ -16,10 +16,10 @@ $ ->
   $('#account').mouseleave (e) ->
     $(this).find('.menu').hide()
 
-  $('.current-topic-learning .switcher ul').hide()
-  $('.current-topic-learning .switcher').mouseenter (e) ->
+  $('.current-topic-learning .chapter-selector ul').hide()
+  $('.current-topic-learning .chapter-selector').mouseenter (e) ->
     $(this).find('ul').show()
 
-  $('.current-topic-learning .switcher').mouseleave (e) ->
+  $('.current-topic-learning .chapter-selector').mouseleave (e) ->
     $(this).find('ul').hide()
     

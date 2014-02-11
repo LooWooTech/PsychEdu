@@ -3,9 +3,9 @@
   <% unless @unit_exam.over? %>
     <div id='countdown'>
       <h1><%= @unit_exam.name %>测试</h1>
-      <span><%= l @unit_exam.created_at, :format => :time_only %>&nbsp;开始</span>
-      <span><%= l @unit_exam.end_at, :format => :time_only %>&nbsp;结束</span>
-      <span>剩余&nbsp;<time><%= @unit_exam.rest_seconds %></time></span>
+      <div>开始时间：<%= l @unit_exam.created_at, :format => :time_only %></div>
+      <div>结束时间：<%= l @unit_exam.end_at, :format => :time_only %></div>
+      <div>剩余时间：<time class='rest'><%= @unit_exam.rest_seconds %></time></div>
       <input type='button' value='哪些题目未做？' class='mark'/>
       <input type='button' value='交卷' class='submit'/>
       <%= f.hidden_field :submitted, :class => 'submitted' %>
@@ -13,15 +13,18 @@
   <% else %>
     <div id='result'>
       <h1><%= @unit_exam.name %>测试</h1>
-      <span>得分：<%= @unit_exam.score %></sapn>
-      <span><%= @unit_exam.passed? ? '恭喜你通过测试！' : '您没有通过测试。'%></sapn>
+      <div>得分：<span class='score'><%= @unit_exam.score %></span></div>
+      <div><%= @unit_exam.passed? ? '恭喜你通过测试！' : '您没有通过测试。'%></div>
     </div>
   <% end %>
-  <%= render :partial => 'choice_answers', 
-    :object => @unit_exam.singular_choice_answers, 
-    :locals => {:f => f, :nested_model => :singular_choice_answers, :title => '单选题', :exam_over => @unit_exam.over? } %>
+  <div class='questions'>
+    <h1>单元练习</h1>
+    <%= render :partial => 'choice_answers', 
+      :object => @unit_exam.singular_choice_answers, 
+      :locals => {:f => f, :nested_model => :singular_choice_answers, :title => '单选题', :exam_over => @unit_exam.over? } %>
 
-  <%= render :partial => 'choice_answers',
-    :object => @unit_exam.multiple_choice_answers,
-    :locals => {:f => f, :nested_model => :multiple_choice_answers, :title => '多选题', :exam_over => @unit_exam.over? } %>
+    <%= render :partial => 'choice_answers',
+      :object => @unit_exam.multiple_choice_answers,
+      :locals => {:f => f, :nested_model => :multiple_choice_answers, :title => '多选题', :exam_over => @unit_exam.over? } %>
+  </div>
 <% end %>

@@ -4,7 +4,10 @@ class VideoWatching < ActiveRecord::Base
 
   has_many :notes, :dependent => :destroy
 
-  delegate :name, :comments, :url, :chapter_name, :unit_name, :metadata_file_url, :root_path, :to => :video
+  delegate :name, :comments, :url, 
+    :chapter_name, :unit_name, 
+    :metadata_file_url, :root_path,
+    :teacher_names, :duration, :to => :video
   delegate :chapter_learning, :to => :unit_learning
 
   def siblings

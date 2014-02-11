@@ -5,34 +5,30 @@
   hyphens: auto;
 }
 
-@mixin drop-down {
-  .current {
-    background: $blue;
-    color: $white;
-    cursor: pointer;
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 3px;
-    &:hover {
-      background: darken($blue, 10%);
-    }
+@mixin drop-down-button {
+  display: block;
+  cursor: pointer;
+  color: $white;
+  padding: 2px 2px 2px 12px;
+  border-left: 2px solid $blue;
+  background: $blue asset-url('learning/expand-down.png') no-repeat left center;
+  &:hover {
+    border-color: darken($blue, 10%);
+    background-color: darken($blue, 10%);
   }
+}
 
-  ul {
-    position: absolute;
-    z-index: 1000;
-    background: lighten($blue, 10%);
-    border-radius: 3px;
-    padding: 3px 0;
-    li {
-      a {
-        display: block;
-        padding: 5px 10px;
-        color: $white;
-
-        &:hover {
-          background: darken($blue, 10%);
-        }
+@mixin drop-down-list {
+  position: absolute;
+  padding: 8px;
+  background: $light-gray;
+  border: 1px solid $gray;
+  li {
+    a {
+      display: block;
+      padding: 10px;
+      &:hover {
+        background: lighten($blue, 30%);
       }
     }
   }

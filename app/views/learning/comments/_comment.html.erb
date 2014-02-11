@@ -1,8 +1,10 @@
 <li>
-  <img class='avatar' src=''/>
-  <div>
-    <a class='name' href='#'><%= comment.commenter_name %></a>
-    <span class='time'><%= l comment.created_at, :format => :long %></span>
+  <%= image_tag 'learning/avatar.jpg', :class => 'avatar' %>
+  <div class='content'>
+    <header>
+      <span class='name'><%= comment.commenter_name %></span>
+      <span class='time'><%= l comment.created_at, :format => :long %></span>
+    </header>
     <div class='content'>
       <%= comment.content %>
     </div>

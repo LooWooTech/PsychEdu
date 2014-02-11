@@ -4,104 +4,165 @@
 $player-width: 850px;
 $video-selector-width: $content-width - $player-width;
 
-#content {
-  .navigator {
+#video-watching {
+  #content {
+    header {
     overflow: hidden;
-    h1 {
-      margin-top: 5px;
-      float: left;
-    }
-    .unit-selector {
-      margin-left: 5px;
-      float: left;
-      @include drop-down;
-    }
-  }
-
-  .player {
-    margin: 15px 0 40px 0;
-    overflow: hidden;
-    #video {
-      float: left;
-    }
-
-    .video-selector {
-      float: right;
-      width: $video-selector-width;
-      li a {
-        display: inline-block;
-        line-height: 30px;
-        width: 100%;
-        text-align: center;
-        &.even {
-          background: #eee;
-        }
-        &.odd {
-          background: #e8e8e8;
-        }
-      }
-    }
-  }
-
-  .comments-and-notes {
-    overflow: hidden;
-    .comments, .notes {
-      width: 450px;
       h1 {
-        font-size: 18px;
-        padding-bottom: 5px;
-        border-bottom: 1px solid $border-gray;
+        font-size: 24px;
+        float: left;
       }
-
-      form {
-        overflow: hidden;
-        margin-top: 30px;
-        textarea {
-          width: 444px;
-          height: 120px;
-          border-color: $border-gray;
+      .unit-selector {
+        float: left;
+        margin-top: 5px;
+        span {
+          @include drop-down-button;
+          font-size: 13px;
         }
-        input[type=submit] {
-          float: right;
-          background: $blue;
-          border: none;
-          color: $white;
-          font-size: 16px;
-          padding: 5px 15px;
+        ul {
+          @include drop-down-list;
         }
       }
-      .list {
-        font-size: 14px;
+    }
+    .player {
+      margin: 20px 0;
+      overflow: hidden;
+      background: $gray;
+      #video {
+        float: left;
+      }
+      .video-selector {
+        height: 100%;
+        float: right;
         li {
-          border-top: 1px solid $border-gray;
-          margin: 20px 0;
-          .name {
-            margin-right: 10px;
-            color: #4bbbd1;
-          }
-          .content {
-            margin-top: 10px;
-          }
-        }
-        .pagination {
-          float: left;
-          .page, .next, .prev, .last, .first {
+          a {
+            display: block;
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
             margin: 5px;
-            display: inline-block;
-            a {
-              display: block;
-              padding: 5px;
-              color: #444;
+            &:hover {
+              background: $dark-gray;
             }
           }
         }
       }
     }
-    .comments {
-      float: left;
+    .video-info {
+      margin: 20px 0;
+      span {
+        margin-right: 20px;
+      }
+      .start-exam {
+        display: inline-block;
+        padding: 5px;
+        background: $blue;
+        color: $white;
+        border-radius: 3px;
+        &:hover {
+          background: darken($blue, 10%);
+        }
+      }
     }
-    .notes {
-      float: right;
+    .comments-and-notes {
+      form {
+        textarea {
+          margin: 20px 0;
+          width: 580px;
+          height: 150px;
+          border: 1px solid $gray;
+        }
+        input[type=submit] {
+          display: block;
+          border: none;
+          border-radius: 3px;
+          padding: 5px;
+          background: $blue;
+          color: $white;
+          &:hover {
+            background: darken($blue, 10%);
+          }
+        }
+      }
+
+      .switcher {
+        overflow: hidden;
+        border-bottom: 1px solid $gray;
+        div {
+          padding: 10px 0;
+          background: $gray;
+          float: left;
+          margin-right: 5px;
+          width: 96px;
+          text-align: center;
+          cursor: pointer;
+          &:hover {
+            background: $dark-gray;
+          }
+          &.current {
+            background: $blue;
+            color: $white;
+          }
+        }
+      }
+      .notes {
+        ul {
+          li {
+            padding-left: 55px;
+            background: asset-url('learning/note.png') no-repeat left center;
+            min-height: 50px;
+            header {
+              margin-bottom: 5px;
+              .record-at {
+                date {
+                  color: $blue;
+                }
+              }
+              .video-time-point {
+                margin-left: 10px;
+                span {
+                  color: $blue;
+                }
+              }
+            }
+          }
+        }
+      }
+      .list {
+        margin-top: 20px;
+        ul {
+          li {
+            overflow: hidden;
+            margin: 20px 0;
+            .avatar {
+              float: left;
+              width: 56px;
+              height: 56px;
+              margin-right: 20px;
+            }
+            header {
+              margin-bottom: 5px;
+              .name {
+                font-weight: bold;
+              }
+            }
+          }
+        }
+        .pagination {
+          span.current, span a {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            background: $dark-gray;
+          }
+          span.current {
+            background: $gray;
+          }
+        }
+      }
     }
   }
 }

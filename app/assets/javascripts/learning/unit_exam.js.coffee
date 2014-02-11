@@ -28,7 +28,7 @@ $ ->
       if $(li).find('input:checked').size() is 0
         $(li).addClass('unfinished')
 
-    $('body').animate(scrollTop: $('.unfinished:nth(0)').position().top, 'fast')
+    $('body, html').animate(scrollTop: $('.unfinished:nth(0)').position().top, 'fast')
 
 
   $('.choice-questions li input').change (e)->

@@ -7,7 +7,7 @@ $navigator-font-size: 16px;
 
 @mixin header-button {
   padding: 0 15px;
-  &:hover {
+  &:hover, &.current {
     background: darken($blue, 10);
   }
 }
@@ -57,7 +57,7 @@ $navigator-font-size: 16px;
       .menu {
         position: absolute;
         background: $blue;
-        padding: 5px;
+        padding: 5px 10px;
         line-height: 1em;
         li {
           margin: 5px 0;

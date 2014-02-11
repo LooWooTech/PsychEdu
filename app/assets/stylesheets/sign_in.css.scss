@@ -20,6 +20,9 @@
       width: 299px;
       height: 230px;
       background: asset-url('sign-in-background.png') no-repeat;
+      .notice {
+        color: $white;
+      }
       input {
         border: none;
         height: 35px;

@@ -1,10 +1,10 @@
 <% @body_id = 'sign-in' %>
-<h1>LOGO</h1>
+<h1>建德教育</h1>
 <div class='background'>
-  <% if flash[:notice] %>
-    <div class='notice'><%= flash[:notice] %></div>
-  <% end %>
   <%= form_tag session_path do %>
+    <% if flash[:notice] %>
+      <div class='notice'><%= flash[:notice] %></div>
+    <% end %>
     <div>
       <%= text_field_tag :username, params[:username], :placeholder => '登录名' %>
     </div>

@@ -1,7 +1,9 @@
 <% @body_id = 'video-watching' %>
 <header>
-  <h1>课程学习：<%= @video_watching.unit_name %></h1>
-  <% if !@video_watching.unit_learning.only_child? %>
+  <% if @video_watching.unit_learning.only_child? %>
+    <h1>课程学习：<%= @video_watching.chapter_name %></h1>
+  <% else %>
+    <h1>课程学习：<%= @video_watching.unit_name %></h1>
     <div class='unit-selector'>
       <span>课程列表</span>
       <ul>

@@ -1,14 +1,18 @@
-<% if flash[:notice] %>
-  <div class='notice'><%= flash[:notice] %></div>
-<% end %>
-<%= form_tag session_path do %>
-  <div>
-    <%= text_field_tag :username, params[:username], :placeholder => '登录名' %>
-  </div>
-  <div>
-    <%= password_field_tag :password, params[:password], :placeholder => '密码' %>
-  </div>
-  <div>
-    <%= submit_tag '登录' %>
-  </div>
-<% end %>
+<% @body_id = 'sign-in' %>
+<h1>LOGO</h1>
+<div class='background'>
+  <% if flash[:notice] %>
+    <div class='notice'><%= flash[:notice] %></div>
+  <% end %>
+  <%= form_tag session_path do %>
+    <div>
+      <%= text_field_tag :username, params[:username], :placeholder => '登录名' %>
+    </div>
+    <div>
+      <%= password_field_tag :password, params[:password], :placeholder => '密码' %>
+    </div>
+    <div>
+      <%= submit_tag '登        录' %>
+    </div>
+  <% end %>
+</div>

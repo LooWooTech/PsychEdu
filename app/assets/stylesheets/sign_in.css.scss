@@ -1,0 +1,45 @@
+@import 'learning/variables';
+#sign-in {
+  h1 {
+    color: $blue;
+    font-weight: bold;
+    font-size: 32px;
+    height: 3em;
+    line-height: 3em;
+    margin-left: 150px;
+  }
+  .background {
+    position: relative;
+    background: asset-url('sign-in.jpg') no-repeat -550px 0;
+    height: 402px;
+    form {
+      position: absolute;
+      left: 850px;
+      top: 45px;
+      padding: 25px 35px;
+      width: 299px;
+      height: 230px;
+      background: asset-url('sign-in-background.png') no-repeat;
+      input {
+        border: none;
+        height: 35px;
+        width: 225px;
+        margin: 20px 0;
+        &[type=submit] {
+          background: $blue;
+          border-radius: 3px;
+          color: $white;
+        }
+      }
+    }
+  }
+  #footer {
+    margin: 30px 0;
+    span {
+      display: block;
+      width: 300px;
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
+}

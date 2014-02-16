@@ -19,3 +19,9 @@
 /public/assets
 /public/uploads
 /coverage
+
+# Ignore Mac files
+.DS_Store
+
+# Ignore RubyMine files
+.idea/*

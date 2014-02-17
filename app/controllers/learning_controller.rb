@@ -30,7 +30,7 @@ class LearningController < ApplicationController
   end
 
   def page_title
-    @page_title || 'XX心理教学实操平台'
+    @page_title || '建德教育心理教学实操平台'
   end
 
 end

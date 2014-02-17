@@ -60,9 +60,9 @@ $topic-name-size: 32px;
           width:700px;
         }
       }
-      /*.announcements {
+      .announcements {
         float: right;
-        width: 260px;
+        width: 240px;
         height: 66px;
         padding: 15px;
         background: $light-gray;
@@ -76,7 +76,7 @@ $topic-name-size: 32px;
             margin: 1px 0;
           }
         }
-      }  */
+      }
     }
   }
   #chapters {
@@ -201,13 +201,6 @@ $topic-name-size: 32px;
       float: right;
     }
 
-    #announcements {
-      margin-bottom: 20px;
-      overflow: hidden;
-      h1 {
-        background: asset-url('learning/blue-arrow.png') no-repeat left center;
-      }
-    }
 
     #ask {
       margin-bottom: 20px;

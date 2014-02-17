@@ -30,14 +30,13 @@
 <% if @video_watching.siblings.any? %>
     <div class='switcher'>
         <ul class='video-selector'>
-          <li class='.list-title'><h3>本单元其他视频</h3></li>
+          <li class='.list-title'><h3>视频列表</h3></li>
             <% @video_watching.siblings.each_with_index do |video_watching, index| %>
               <li><%= link_to video_watching.name, video_watching %></li>
             <% end %>
         </ul>
     </div>
 <% end %>
-
 
 <div class='comments-and-notes'>
   <div class='switcher'>

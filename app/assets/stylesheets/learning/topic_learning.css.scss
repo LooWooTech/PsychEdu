@@ -33,6 +33,7 @@ $topic-name-size: 32px;
       border-bottom: 1px solid $gray;
       .user-info {
         float: right;
+        width: 240px;
         .avatar {
           float: left;
           width: 64px;
@@ -54,7 +55,7 @@ $topic-name-size: 32px;
         }
       }
       .banner {
-        float:right;
+        float:left;
         .banner-pic {
           width:700px;
         }

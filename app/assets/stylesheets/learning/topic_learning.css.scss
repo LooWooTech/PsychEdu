@@ -31,49 +31,53 @@ $topic-name-size: 32px;
       padding: 20px 0;
       overflow: hidden;
       border-bottom: 1px solid $gray;
-      .user-info {
-        float: right;
-        width: 240px;
-        .avatar {
-          float: left;
-          width: 64px;
-          height: 64px;
-          margin-right: 20px;
-        }
-        .info {
-          float: left;
-          h1 {
-            font-size: 24px;
-          }
-          div {
-            margin-top: 10px;
-            strong {
-              color: $blue;
-              font-weight: bold;
-            }
-          }
-        }
-      }
       .banner {
         float:left;
         .banner-pic {
           width:700px;
         }
       }
-      .announcements {
-        float: right;
-        width: 240px;
-        height: 66px;
-        padding: 15px;
-        background: $light-gray;
-        border: 1px solid $gray;
-        h1 {
-          font-weight: bold;
+      #user-and-announcements
+      {
+        float:right;
+        width:240px;
+        .user-info {
+          width: 100%;
+          .avatar {
+            float: left;
+            width: 64px;
+            height: 64px;
+            margin-right: 20px;
+          }
+          .info {
+            float: left;
+            h1 {
+              font-size: 24px;
+            }
+            div {
+              margin-top: 10px;
+              strong {
+                color: $blue;
+                font-weight: bold;
+              }
+            }
+          }
         }
-        ul {
-          list-style: disc inside;
-          li {
-            margin: 1px 0;
+
+        .announcements {
+          width:100px;
+          height: 66px;
+          padding: 15px;
+          background: $light-gray;
+          border: 1px solid $gray;
+          h1 {
+            font-weight: bold;
+          }
+          ul {
+            list-style: disc inside;
+            li {
+              margin: 1px 0;
+            }
           }
         }
       }

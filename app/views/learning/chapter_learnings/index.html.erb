@@ -14,28 +14,30 @@
 </div>
 
 <div class='user-info-and-announcements'>
-  <div class='user-info'>
-    <%= image_tag 'learning/avatar.jpg', :class => 'avatar' %>
-    <div class='info'>
-      <h1><%= current_user.name %>(<%= current_user.username %>)</h1>
-      <div class='state'><strong>状态：</strong><%= topic_learning_state current_topic_learning %></div>
-      <div class='period'>
-        <% if !current_topic_learning.out_of_period? %><strong>有效期：</strong><%= period current_topic_learning %><% end %>
+  <div class="user-and-announcements">
+      <div class='user-info'>
+        <%= image_tag 'learning/avatar.jpg', :class => 'avatar' %>
+        <div class='info'>
+          <h1><%= current_user.name %>(<%= current_user.username %>)</h1>
+          <div class='state'><strong>状态：</strong><%= topic_learning_state current_topic_learning %></div>
+          <div class='period'>
+            <% if !current_topic_learning.out_of_period? %><strong>有效期：</strong><%= period current_topic_learning %><% end %>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <% if current_topic_learning.announcements.any? || true %>
-      <div class='announcements'>
-        <h1>通知公告</h1>
-        <ul>
-          <% current_topic_learning.announcements.each do |announcement| %>
-              <li><%= link_to announcement.title, announcement %></li>
-          <% end %>
-        </ul>
-        <a class='more' href='#'>更多 &gt;</a>
-      </div>
-  <% end %>
+      <% if current_topic_learning.announcements.any? || true %>
+          <div class='announcements'>
+            <h1>通知公告</h1>
+            <ul>
+              <% current_topic_learning.announcements.each do |announcement| %>
+                  <li><%= link_to announcement.title, announcement %></li>
+              <% end %>
+            </ul>
+            <a class='more' href='#'>更多 &gt;</a>
+          </div>
+      <% end %>
+  </div>
 
   <div class='banner'>
     <%= image_tag 'learning/learning001.jpg', :class => 'banner-pic' %>

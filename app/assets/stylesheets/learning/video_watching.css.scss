@@ -67,15 +67,16 @@ $video-selector-width: $content-width - $player-width;
           display:inline-block;
           color:#fff;
           h3{
-            display: inline;
+            display: block;
             width: 100px;
             height: 40px;
             line-height: 40px;
             text-align: center;
             margin: 5px;
+            color: #4178bc;
           }
           a {
-            display: inline;
+            display: block;
             width: 100px;
             height: 40px;
             line-height: 40px;

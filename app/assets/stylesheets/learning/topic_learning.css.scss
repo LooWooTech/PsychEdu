@@ -32,18 +32,17 @@ $topic-name-size: 32px;
       overflow: hidden;
       border-bottom: 1px solid $gray;
       .user-info {
-        float: left;
+        float: right;
         .avatar {
           float: left;
-          width: 96px;
-          height: 96px;
+          width: 64px;
+          height: 64px;
           margin-right: 20px;
         }
         .info {
           float: left;
           h1 {
             font-size: 24px;
-            margin-bottom: 20px;
           }
           div {
             margin-top: 10px;
@@ -52,6 +51,12 @@ $topic-name-size: 32px;
               font-weight: bold;
             }
           }
+        }
+      }
+      .banner {
+        float:right;
+        .banner-pic {
+          width:700px;
         }
       }
       /*.announcements {

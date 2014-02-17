@@ -24,6 +24,9 @@
       </div>
     </div>
   </div>
+  <div class='banner'>
+    <%= image_tag 'learning/learning001.jpg', :class => 'banner-pic' %>
+  </div>
 
 </div>
 
@@ -40,12 +43,13 @@
 <div id='ask-and-supervision'>
   <% if current_topic_learning.announcements.any? || true %>
       <div class='announcements'>
-        <h2>通知公告</h2>
+        <h1>通知公告</h1>
         <ul>
           <% current_topic_learning.announcements.each do |announcement| %>
               <li><%= link_to announcement.title, announcement %></li>
           <% end %>
         </ul>
+        <a class='more' href='#'>更多 &gt;</a>
       </div>
   <% end %>
 

@@ -65,8 +65,14 @@ $video-selector-width: $content-width - $player-width;
         width: 100%;
         li {
           display:inline-block;
-          &.list-title{
-            background-color:#63bad8;
+          color:#fff;
+          h3{
+            display: inline;
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            margin: 5px;
           }
           a {
             display: inline;
@@ -76,10 +82,14 @@ $video-selector-width: $content-width - $player-width;
             text-align: center;
             margin: 5px;
             &:hover {
-              background: $dark-gray;
+              //background: $dark-gray;
+              background-color: #4178bc;
             }
+            background-color:#63bad8;
+
+
           }
-          background-color: #4178bc;
+
         }
 
       }

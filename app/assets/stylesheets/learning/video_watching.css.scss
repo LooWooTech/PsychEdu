@@ -65,28 +65,30 @@ $video-selector-width: $content-width - $player-width;
         width: 100%;
         li {
           display:inline-block;
-          color:#fff;
+          font-weight: bold;
           h3{
             display: block;
-            width: 100px;
             height: 40px;
             line-height: 40px;
             text-align: center;
             margin: 5px;
             color: #4178bc;
+            border:1px solid #4178bc;
           }
           a {
             display: block;
-            width: 100px;
+            padding-left:8px;
+            padding-right:8px;
             height: 40px;
             line-height: 40px;
             text-align: center;
             margin: 5px;
+            color:#fff;
             &:hover {
               //background: $dark-gray;
               background-color: #4178bc;
             }
-            background-color:#63bad8;
+            background-color:#6693ca;
 
 
           }

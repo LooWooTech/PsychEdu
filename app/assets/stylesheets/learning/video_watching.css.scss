@@ -7,7 +7,7 @@ $video-selector-width: $content-width - $player-width;
 #video-watching {
   #content {
     header {
-    overflow: hidden;
+      overflow: hidden;
       h1 {
         font-size: 24px;
         float: left;
@@ -23,20 +23,45 @@ $video-selector-width: $content-width - $player-width;
           @include drop-down-list;
         }
       }
+
+      .video-info {
+        margin: 20px 0;
+        float:right;
+        span {
+          margin-right: 20px;
+        }
+        .start-exam {
+          display: inline-block;
+          padding: 5px;
+          background: $blue;
+          color: $white;
+          border-radius: 3px;
+          &:hover {
+            background: darken($blue, 10%);
+          }
+        }
+      }
     }
     .player {
-      margin: 20px 0;
+      //margin: 20px 0;
       overflow: hidden;
-      background: $gray;
+      width:100%;
+      //background: $gray;
+      text-align: center;
       #video {
-        float: left;
+        margin-left:0;
+        margin-right:0;
+        //float: left;
       }
+    }
+
+    .switcher {
       .video-selector {
-        height: 100%;
-        float: right;
+        float: left;
+        width: 100%;
         li {
           a {
-            display: block;
+            display: inline;
             width: 100px;
             height: 40px;
             line-height: 40px;
@@ -49,22 +74,7 @@ $video-selector-width: $content-width - $player-width;
         }
       }
     }
-    .video-info {
-      margin: 20px 0;
-      span {
-        margin-right: 20px;
-      }
-      .start-exam {
-        display: inline-block;
-        padding: 5px;
-        background: $blue;
-        color: $white;
-        border-radius: 3px;
-        &:hover {
-          background: darken($blue, 10%);
-        }
-      }
-    }
+
     .comments-and-notes {
       form {
         textarea {

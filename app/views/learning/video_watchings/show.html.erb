@@ -15,23 +15,28 @@
       </ul>
     </div>
   <% end %>
+
+  <div class='video-info'>
+    <span>时长：<%= @video_watching.duration %>分钟</span>
+    <span>教师：<%= @video_watching.teacher_names %></span>
+    <%= unit_exam_link @video_watching.unit_learning %>
+  </div>
 </header>
 
 <div class='player'>
   <video id='video'></video>
-  <% if @video_watching.siblings.any? %>
-    <ul class='video-selector'>
-      <% @video_watching.siblings.each_with_index do |video_watching, index| %>
-        <li><%= link_to video_watching.name, video_watching %></li>
-      <% end %>
-    </ul>
-  <% end %>
 </div>
-<div class='video-info'>
-  <span>时长：<%= @video_watching.duration %>分钟</span>
-  <span>教师：<%= @video_watching.teacher_names %></span>
-  <%= unit_exam_link @video_watching.unit_learning %>
-</div>
+
+<% if @video_watching.siblings.any? %>
+    <div class='switcher'>
+        <ul class='video-selector'>
+            <% @video_watching.siblings.each_with_index do |video_watching, index| %>
+              <li><%= link_to video_watching.name, video_watching %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
 
 <div class='comments-and-notes'>
   <div class='switcher'>

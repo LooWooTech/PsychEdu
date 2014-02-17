@@ -24,16 +24,7 @@
       </div>
     </div>
   </div>
-  <% if current_topic_learning.announcements.any? || true %>
-    <div class='announcements'>
-      <h1>通知公告</h1>
-      <ul>
-        <% current_topic_learning.announcements.each do |announcement| %>
-          <li><%= link_to announcement.title, announcement %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+
 </div>
 
 <div id='chapters'>
@@ -47,6 +38,17 @@
 </div>
 
 <div id='ask-and-supervision'>
+  <% if current_topic_learning.announcements.any? || true %>
+      <div class='announcements'>
+        <h2>通知公告</h2>
+        <ul>
+          <% current_topic_learning.announcements.each do |announcement| %>
+              <li><%= link_to announcement.title, announcement %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+
   <div id='ask'>
     <h1>我的问答</h1>
     <ul>

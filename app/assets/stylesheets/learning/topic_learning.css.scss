@@ -54,7 +54,7 @@ $topic-name-size: 32px;
           }
         }
       }
-      .announcements {
+      /*.announcements {
         float: right;
         width: 260px;
         height: 66px;
@@ -70,7 +70,7 @@ $topic-name-size: 32px;
             margin: 1px 0;
           }
         }
-      }
+      }  */
     }
   }
   #chapters {
@@ -193,6 +193,14 @@ $topic-name-size: 32px;
     .more {
       color: $blue;
       float: right;
+    }
+
+    #announcements {
+      margin-bottom: 20px;
+      overflow: hidden;
+      h1 {
+        background: asset-url('learning/blue-arrow.png') no-repeat left center;
+      }
     }
 
     #ask {

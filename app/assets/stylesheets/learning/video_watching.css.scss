@@ -25,7 +25,7 @@ $video-selector-width: $content-width - $player-width;
       }
 
       .video-info {
-        margin: 20px 0;
+        //margin: 20px 0;
         float:right;
         span {
           margin-right: 20px;
@@ -56,10 +56,18 @@ $video-selector-width: $content-width - $player-width;
     }
 
     .switcher {
+      display:block;
+      height:50px;
+      text-align: center;
       .video-selector {
-        float: left;
+        margin-left:0;
+        margin-right:0;
         width: 100%;
         li {
+          display:inline-block;
+          &.list-title{
+            background-color:#63bad8;
+          }
           a {
             display: inline;
             width: 100px;
@@ -71,7 +79,9 @@ $video-selector-width: $content-width - $player-width;
               background: $dark-gray;
             }
           }
+          background-color: #4178bc;
         }
+
       }
     }
 

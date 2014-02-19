@@ -21,7 +21,7 @@
           <h1><%= current_user.name %>(<%= current_user.username %>)</h1>
           <div class='state'><strong>状态：</strong><%= topic_learning_state current_topic_learning %></div>
           <div class='period'>
-            <% if !current_topic_learning.out_of_period? %><strong>有效期：</strong><%= period current_topic_learning %><% end %>
+            <% if !current_topic_learning.out_of_period? %><strong>有效期：</strong><br/><%= period current_topic_learning %><% end %>
           </div>
         </div>
       </div>

@@ -1,3 +1,67 @@
-// Place all the styles related to the learning/final_exams controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.final_test{
+  h1{
+    font-size: 32px;
+    padding: 0 12px 0 0;
+  }
+  h2{
+    font-size: 22px;
+    padding: 0 16px 4px 0;
+    margin-bottom:8px;
+    margin-top:8px;
+    border-bottom:solid 1px #e4e4e4;
+  }
+}
+
+.exam_title {
+  font-size:22px;
+  float:left;
+  background-color: #e4e4e4;
+  color:#fff;
+  padding:3px 8px 3px 8px;
+
+}
+.exam_content {
+  margin-left:64px;
+  p{
+    font-size:14px;
+    line-height:18px;
+  }
+}
+
+table {
+  border:0;
+  border-collpase:collpase;
+  width:100%;
+  border:1px solid #e4e4e4;
+  td, th
+  {
+    border-top:solid 1px #e4e4e4;
+    border-left: solid 1px #e4e4e4;
+    padding:2px;
+  }
+  th
+  {
+    background-color: #f4f4f4;
+  }
+}
+
+.exam_answer span {
+  padding:2px 3px 2px 3px;
+  border-top: 3px solid #0d77e4;
+  margin:6px 0 6px 0;
+
+}
+.upload {
+  margin-top:12px;
+  a
+  {
+    padding:5px;
+    font-size:14px;
+    background-color: #6693ca;
+    color:#fff;
+  }
+}
+.upload
+{
+  margin-top:12px;
+}

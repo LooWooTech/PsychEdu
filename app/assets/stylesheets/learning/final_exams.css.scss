@@ -12,14 +12,23 @@
   }
 }
 
+.exam {
+  margin-bottom: 12px;
+  min-height: 36px;
+  ul{
+    list-style:circle;
+    list-style-position:outside;
+  }
+}
+
 .exam_title {
   font-size:22px;
   float:left;
-  background-color: #e4e4e4;
+  background-color: #6693ca;
   color:#fff;
   padding:3px 8px 3px 8px;
-
 }
+
 .exam_content {
   margin-left:64px;
   p{

@@ -51,6 +51,9 @@
       <h2>专题导学</h2><%= link_to '查看内容', guide_topic_learning_path(current_topic_learning) %>
     </li>
     <%= render :partial => 'learning/chapter_learnings/chapter_learning', :collection => chapter_learnings %>
+    <li class='guide'>
+      <h2>专题考核</h2><%= link_to '开始考核', {:controller => "learning/final_exams", :action => "show"} %>
+    </li>
   </ul>
 </div>
 

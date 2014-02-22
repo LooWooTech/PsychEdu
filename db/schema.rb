@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(version: 20140211012446) do
   end
 
   add_index "multiple_choices", ["choice_id"], name: "index_multiple_choices_on_choice_id", using: :btree
+  add_index "multiple_choices", ["multiple_choice_answer_id"], name: "index_multiple_choices_on_multiple_choice_answer_id", using: :btree
 
   create_table "notes", force: true do |t|
     t.integer  "video_watching_id"
@@ -266,10 +267,10 @@ ActiveRecord::Schema.define(version: 20140211012446) do
 
   create_table "topics", force: true do |t|
     t.string   "name"
+    t.text     "introduction"
     t.string   "teacher_names"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "introduction"
     t.string   "guide_video_url"
   end
 

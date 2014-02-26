@@ -16,10 +16,9 @@ $topic-name-size: 32px;
         background: asset-url('learning/topic.png') no-repeat left center;
       }
       .chapter-selector {
-        //margin-top: 10px;
         float: left;
         span {
-          line-height:28px;
+          line-height: 28px;
           @include drop-down-button;
         }
         ul {
@@ -33,15 +32,15 @@ $topic-name-size: 32px;
       overflow: hidden;
       border-bottom: 1px solid $gray;
       .banner {
-        float:left;
+        float: left;
         .banner-pic {
-          width:700px;
+          width: 700px;
         }
       }
       #user-and-announcements
       {
-        float:right;
-        width:240px;
+        float: right;
+        width: 240px;
         .user-info {
           width: 100%;
           height: 80px;
@@ -67,7 +66,7 @@ $topic-name-size: 32px;
         }
 
         .announcements {
-          width:100%;
+          width: 100%;
           height: 166px;
           padding: 12px;
           background: $light-gray;

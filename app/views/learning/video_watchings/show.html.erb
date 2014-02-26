@@ -7,7 +7,7 @@
     <div class='unit-selector'>
       <span>课程列表</span>
       <ul>
-        <% current_chapter_learning.unit_learnings.each do |unit_learning| %>
+        <% @chapter_learning.unit_learnings.each do |unit_learning| %>
           <% if unit_learning.open? %>
             <li><%= link_to unit_learning.name, unit_learning %></li>
           <% end %>
@@ -27,11 +27,11 @@
   <video id='video'></video>
 </div>
 
-<% if @video_watching.siblings.any? %>
+<% if @unit_learning.video_watchings.any? %>
     <div class='switcher'>
         <ul class='video-selector'>
           <li class='.list-title'><h3>视频列表</h3></li>
-            <% @video_watching.siblings.each_with_index do |video_watching, index| %>
+            <% @unit_learning.video_watchings.each do |video_watching| %>
               <li><%= link_to video_watching.name, video_watching %></li>
             <% end %>
         </ul>

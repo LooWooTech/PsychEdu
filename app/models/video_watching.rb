@@ -10,9 +10,4 @@ class VideoWatching < ActiveRecord::Base
     :teacher_names, :duration, :to => :video
   delegate :chapter_learning, :to => :unit_learning
 
-  def siblings
-    # unit_learning.video_watchings - [self]
-    unit_learning.video_watchings
-  end
-
 end

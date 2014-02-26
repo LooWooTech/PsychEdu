@@ -25,8 +25,7 @@ $video-selector-width: $content-width - $player-width;
       }
 
       .video-info {
-        //margin: 20px 0;
-        float:right;
+        float: right;
         span {
           margin-right: 20px;
         }
@@ -43,55 +42,49 @@ $video-selector-width: $content-width - $player-width;
       }
     }
     .player {
-      //margin: 20px 0;
       overflow: hidden;
-      width:100%;
-      //background: $gray;
+      width: 100%;
       text-align: center;
       #video {
-        margin-left:0;
-        margin-right:0;
-        //float: left;
+        margin-left: 0;
+        margin-right: 0;
       }
     }
 
     .switcher {
-      display:block;
-      height:50px;
+      display: block;
+      height: 50px;
       text-align: center;
-      padding-top:12px;
+      padding-top: 12px;
       .video-selector {
-        margin-left:0;
-        margin-right:0;
+        margin-left: 0;
+        margin-right: 0;
         width: 100%;
         li {
-          display:inline-block;
+          display: inline-block;
           font-weight: bold;
           h3{
             display: block;
-            padding-left:16px;
-            padding-right:16px;
+            padding-left: 16px;
+            padding-right: 16px;
             height: 40px;
             line-height: 40px;
             text-align: center;
             color: #4178bc;
-            border:1px solid #4178bc;
+            border: 1px solid #4178bc;
           }
           a {
             display: block;
-            padding-left:16px;
-            padding-right:16px;
+            padding-left: 16px;
+            padding-right: 16px;
             height: 40px;
             line-height: 40px;
             text-align: center;
-            color:#fff;
+            color: #fff;
+            background-color: #6693ca;
             &:hover {
-              //background: $dark-gray;
               background-color: #4178bc;
             }
-            background-color:#6693ca;
-
-
           }
 
         }

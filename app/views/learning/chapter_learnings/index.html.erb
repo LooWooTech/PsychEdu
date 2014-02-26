@@ -26,16 +26,14 @@
         </div>
       </div>
 
-      <% if current_topic_learning.announcements.any? || true %>
-          <div class='announcements'>
-            <h1>通知公告</h1>
-            <ul>
-              <% current_topic_learning.announcements.each do |announcement| %>
-                  <li><%= link_to announcement.title, announcement %></li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
+      <div class='announcements'>
+        <h1>通知公告</h1>
+        <ul>
+          <% current_topic_learning.announcements.each do |announcement| %>
+              <li><%= link_to announcement.title, announcement %></li>
+          <% end %>
+        </ul>
+      </div>
   </div>
 
   <div class='banner'>

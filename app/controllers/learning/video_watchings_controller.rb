@@ -1,9 +1,11 @@
 module Learning
   class VideoWatchingsController < LearningController
-    helper_method :current_chapter_learning
     before_action :find_video_watching, :only => [:show, :update]
 
-    def show; end
+    def show
+      @unit_learning = @video_watching.unit_learning
+      @chapter_learning = @unit_learning.chapter_learning
+    end
 
     def update
       @video_watching.update_attribute :playing_data, params[:data]
@@ -16,8 +18,5 @@ module Learning
       @video_watching = VideoWatching.find params[:id]
     end
 
-    def current_chapter_learning
-      @video_watching.chapter_learning
-    end
   end
 end

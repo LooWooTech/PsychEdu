@@ -9,9 +9,9 @@ $ ->
     h = abs/60/60
     m = (h % 1) * 60
     s = (m % 1) * 60
-    $('#countdown time').text "#{if seconds < 0 then '-' else ''}#{Math.floor h}:#{Math.floor m}:#{Math.floor s}"
+    $('#countdown .rest').text "#{if seconds < 0 then '-' else ''}#{Math.floor h}:#{Math.floor m}:#{Math.floor s}"
 
-  seconds = $('time').text()
+  seconds = $('.rest').text()
   format_countdown seconds
 
   if $('#countdown').size() > 0

@@ -5,7 +5,7 @@
       <h1><%= @unit_exam.name %>测试</h1>
       <div>开始时间：<%= l @unit_exam.created_at, :format => :time_only %></div>
       <div>结束时间：<%= l @unit_exam.end_at, :format => :time_only %></div>
-      <div>剩余时间：<time class='rest'><%= @unit_exam.rest_seconds %></time></div>
+      <div>剩余时间：<span class='rest'><%= @unit_exam.rest_seconds %></span></div>
       <input type='button' value='哪些题目未做？' class='mark'/>
       <input type='button' value='交卷' class='submit'/>
       <%= f.hidden_field :submitted, :class => 'submitted' %>

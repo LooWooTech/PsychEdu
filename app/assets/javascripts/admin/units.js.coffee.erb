@@ -14,3 +14,8 @@ $ ->
       stylesheets: ['<%= asset_path 'admin/manifest.css'%>'],
       useLineBreaks: false,
       autoLink: true
+
+  $('#question-import').submit ->
+    if $(this).find('input[type=file]').val().trim() is ""
+      alert "请先选择要导入的题库文件。"
+      false

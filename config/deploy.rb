@@ -11,8 +11,8 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :user, 'deploy'    # Username in the server to SSH to.
-#set :domain, '198.74.101.229'
-set :domain, '192.168.1.107'
+set :domain, '198.74.101.229'
+#set :domain, '192.168.1.107'
 set :deploy_to, "/home/#{user}/web/psychedu.com"
 set :repository, 'git@github.com:LooWooTech/PsychEdu.git'
 set :branch, 'master'

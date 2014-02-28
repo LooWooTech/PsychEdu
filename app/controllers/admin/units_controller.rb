@@ -1,7 +1,7 @@
 module Admin
   class UnitsController < AdminController
     before_action :find_chapter, :only => [:new, :create]
-    before_action :find_unit, :only => [:edit, :update, :show, :destroy]
+    before_action :find_unit, :only => [:edit, :update, :show, :destroy, :import_questions]
 
     def new
       @unit = @chapter.units.build
@@ -35,14 +35,19 @@ module Admin
       redirect_to @unit.chapter
     end
 
+    def import_questions
+      @importer = QuestionImporter.new(@unit, params[:file].path)
+      flash[:notice] = @importer.result
+      redirect_to @unit
+    end
+
     private
 
     def unit_params
       params.require(:unit).permit(
         :name, :singular_choice_count, 
         :multiple_choice_count, :case_count,
-        :question_repository_file, :exam_minutes,
-        :summary, :review,
+        :exam_minutes, :summary, :review,
         :videos_attributes => [:url, :teacher_names, :_destroy, :id, :name]
       )
     end

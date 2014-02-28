@@ -46,7 +46,11 @@ PsychEdu::Application.routes.draw do
         resources :topics, :only => [:new, :create, :index, :show, :edit, :update, :destroy] do
           resources :announcements, :only => [:new, :create, :edit, :update, :destroy]
           resources :chapters, :only => [:new, :create, :show, :edit, :update, :destroy] do
-            resources :units, :only => [:new, :create, :show, :edit, :update, :destroy]
+            resources :units, :only => [:new, :create, :show, :edit, :update, :destroy] do
+              member do
+                post :import_questions
+              end
+            end
           end
         end
       end

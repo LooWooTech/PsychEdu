@@ -18,10 +18,6 @@
     <%= f.number_field :exam_minutes %>
   </div>
   <div>
-    <%= f.label :name, '题库文件' %>
-    <%= f.file_field :question_repository_file %>
-  </div>
-  <div>
     <%= render :partial => 'admin/shared/rich_text_toolbar', :locals => {:toolbar_id => 'unit-summary-editor-toolbar'} %>
     <%= f.label :name, '单元提要' %>
     <%= f.text_area :summary, :id => 'unit-summary' %>

@@ -1,14 +1,10 @@
 class Unit < ActiveRecord::Base
   include LearnableChild
-  include QuestionImporter
-
 
   has_many :videos, :dependent => :destroy
   has_many :unit_learnings, :dependent => :destroy
   has_many :singular_choice_questions, :dependent => :destroy
   has_many :multiple_choice_questions, :dependent => :destroy
-
-  mount_uploader :question_repository_file, QuestionRepositoryUploader
 
   acts_as_list :scope => :chapter
 

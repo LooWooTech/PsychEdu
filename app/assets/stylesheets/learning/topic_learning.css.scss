@@ -99,13 +99,13 @@ $topic-name-size: 32px;
         margin: 20px 0;
         overflow: hidden;
 
-        &.open, &.guide {
+        &.open, &.non-unit {
           > h2 {
             background: $blue;
           }
         }
 
-        &.guide {
+        &.non-unit {
           a {
             line-height: 35px;
             padding-right: 20px;

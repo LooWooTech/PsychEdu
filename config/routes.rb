@@ -12,7 +12,7 @@ PsychEdu::Application.routes.draw do
       shallow do
         resources :topic_learnings, :only => :show do
           member do
-            get :guide
+            get :guide, :review
           end
           resources :announcements, :only => :show
           resources :chapter_learnings, :only => :show do

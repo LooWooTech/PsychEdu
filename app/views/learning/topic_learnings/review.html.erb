@@ -1,0 +1,25 @@
+<% content_for(:title){ "专题小结：#{current_topic_learning.name}" } %>
+<% @body_id = 'topic-learning-review' %>
+<h1><%= current_topic_learning.name %>专题小结</h1>
+<div class='player'>
+  <video id='video'></video>
+</div>
+
+<% content_for :head do %>
+<script type='text/javascript'>
+    var flashvers = {};
+    flashvers.mp4_url = "<%= current_topic_learning.review_video_url %>";
+    flashvers.dianping = "false";
+    flashvers.save_dx = 10;
+    flashvers.over_per = 1.5;
+    flashvers.flash_xml = '<flash start_time="0" played_time="0">  <e s="0"/>  <e s="0"/>  <e s="2"/>  <e s="2"/>  <e s="0"/>  <e s="0"/>  <e s="0"/>  <e s="0"/></flash>';
+    
+    var params = {};
+    params.menu="false";
+    params.allowFullScreen="true";
+    params.allowScriptAccess="sameDomain";
+    params.wmode="opaque";
+    
+    swfobject.embedSWF("/flashplayer/player.swf", "video", "100%", "480px", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
+</script>
+<% end %>

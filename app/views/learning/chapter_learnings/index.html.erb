@@ -45,11 +45,14 @@
 <div id='chapters'>
   <h1>专题目录</h1>
   <ul>
-    <li class='guide'>
+    <li class='non-unit'>
       <h2>专题导学</h2><%= link_to '查看内容', guide_topic_learning_path(current_topic_learning) %>
     </li>
     <%= render :partial => 'learning/chapter_learnings/chapter_learning', :collection => chapter_learnings %>
-    <li class='guide'>
+    <li class='non-unit'>
+      <h2>专题小结</h2><%= link_to '查看内容', review_topic_learning_path(current_topic_learning) %>
+    </li>
+    <li class='non-unit'>
       <h2>专题考核</h2><%= link_to '开始考核', {:controller => "final_exams", :action => "show"} %>
     </li>
   </ul>

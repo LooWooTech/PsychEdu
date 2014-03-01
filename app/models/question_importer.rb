@@ -2,8 +2,6 @@ require 'csv'
 
 class QuestionImporter
 
-  attr_reader :unit
-
   def initialize(unit, file)
     @unit = unit
     @table = CSV.read file, :encoding => 'UTF-8'
@@ -45,24 +43,28 @@ class QuestionImporter
     table_head.index '正确答案'
   end
 
+  def import_multiple_choice_questions(content)
+    @unit.multiple_choice_questions.create :content => content
+  end
+
+  def import_singular_choice_questions(content)
+    @unit.singular_choice_questions.create :content => content
+  end
+
   class Row
-    def initialize(raw_data, table)
-      @raw_data = raw_data
-      @table = table
+    def initialize(data, importer)
+      @data = data
+      @importer = importer
       if singular_choice?
-        @question = unit.singular_choice_questions.create :content => question
+        @question = @importer.import_singular_choice_questions question
       else
-        @question = unit.multiple_choice_questions.create :content => question
+        @question = @importer.import_multiple_choice_questions question
       end
       add_choices
     end
 
-    def unit
-      @table.unit
-    end
-
     def question_type
-      @raw_data[@table.question_type_position]
+      @data[@importer.question_type_position]
     end
 
     def singular_choice?
@@ -74,20 +76,20 @@ class QuestionImporter
     end
 
     def question
-      @raw_data[@table.question_position].strip
+      @data[@importer.question_position].strip
     end
 
     def add_choices
       if !duplicate?
-        @table.choice_indexes.map do |k, i|
-          @question.choices.create :content => @raw_data[i].strip,
+        @importer.choice_indexes.map do |k, i|
+          @question.choices.create :content => @data[i].strip,
             :correct => correct_choice.include?(k)
         end
       end
     end
 
     def correct_choice
-      @raw_data[@table.correct_choice_position].downcase
+      @data[@importer.correct_choice_position].downcase
     end
 
     def duplicate?

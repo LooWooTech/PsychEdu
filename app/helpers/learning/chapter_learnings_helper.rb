@@ -5,7 +5,11 @@ module Learning
         if unit_learning.unfinished_exam
           link_to '继续上次练习', unit_exam_path(unit_learning.unfinished_exam), :class => 'start-exam'
         else
-          link_to '开始练习', unit_learning_unit_exams_path(unit_learning), :method => :post, :class => 'start-exam'
+          if unit_learning.exam_limited?
+            raw "<span class='start-exam'>开始练习</span>"
+          else
+            link_to '开始练习', unit_learning_unit_exams_path(unit_learning), :method => :post, :class => "start-exam"
+          end
         end
       end
     end

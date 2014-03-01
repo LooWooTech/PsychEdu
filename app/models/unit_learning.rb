@@ -1,4 +1,7 @@
 class UnitLearning < ActiveRecord::Base
+
+  EXAM_TIMES_LIMIT = 3
+  
   belongs_to :chapter_learning
   belongs_to :unit
 
@@ -12,6 +15,10 @@ class UnitLearning < ActiveRecord::Base
   has_many :exams, :class_name => 'UnitExam', :dependent => :destroy
 
   after_create :create_video_watchings
+
+  def exam_limited?
+    passed_exams.count >= EXAM_TIMES_LIMIT
+  end
 
   def unfinished_exam
     exams.find{|exam| !exam.over? }
@@ -30,7 +37,11 @@ class UnitLearning < ActiveRecord::Base
   end
 
   def passed?
-    exams.any?{|exam| exam.passed? }
+    passed_exams.any?
+  end
+
+  def passed_exams
+    exams.select{|exam| exam.passed? }
   end
 
   def generate_exam

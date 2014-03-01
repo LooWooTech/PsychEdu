@@ -166,17 +166,21 @@ $topic-name-size: 32px;
             font-size: 35px;
             color: $yellow;
           }
-          a {
+          .start-exam, .start-learning {
             padding-left: 10px;
             padding-right: 10px;
             border-radius: 3px;
             color: $white;
-            &.start-learning {
-              background: $blue;
-            }
-            &.start-exam {
-              background: $yellow;
-            }
+          }
+          .start-learning {
+            background: $blue;
+          }
+          a.start-exam {
+            background: $yellow;
+          }
+          span.start-exam {
+            background: $dark-gray;
+            cursor: default;
           }
         }
       }

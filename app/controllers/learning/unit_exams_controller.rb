@@ -5,8 +5,12 @@ module Learning
 
     def create
       @unit_learning = UnitLearning.find params[:unit_learning_id]
-      @unit_exam = @unit_learning.generate_exam
-      redirect_to @unit_exam
+      if @unit_learning.exam_limited?
+        render :text => '您已经3次通过练习，无法继续练习。'
+      else
+        @unit_exam = @unit_learning.generate_exam
+        redirect_to @unit_exam
+      end
     end
 
     def show; end

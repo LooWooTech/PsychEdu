@@ -8,13 +8,31 @@
   <div>题库总题数：<%= @unit.exam_question_count %></div>
   <div>考试时间：<%= @unit.exam_minutes %> 分钟</div>
   <%= link_to '修改', edit_unit_path(@unit) %>
-  <%= form_tag import_questions_unit_path(@unit), :method => :post, :multipart => true, :id => 'question-import' do %>
-    <%= flash[:notice] %>
-    <div>
-      <label>导入题库：<%= file_field_tag :file %></label>
-    </div>
-    <div>
-      <input type='submit' value='导入'/>
-    </div>
-  <% end %>
 </div>
+<%= form_tag import_questions_unit_path(@unit), :method => :post, :multipart => true, :id => 'question-import' do %>
+  <%= flash[:notice] %>
+  <div>
+    <label>导入题库：<%= file_field_tag :file %></label>
+  </div>
+  <div>
+    <input type='submit' value='导入'/>
+  </div>
+<% end %>
+<table>
+  <tr>
+    <th>题目</th>
+    <th>操作</th>
+  </tr>
+  <% @unit.singular_choice_questions.each do |question| %>
+    <tr>
+      <td><%= question.content %></td>
+      <td><%= link_to '修改', edit_singular_choice_question_path(question) %></td>
+    </tr>
+  <% end %>
+  <% @unit.multiple_choice_questions.each do |question| %>
+    <tr>
+      <td><%= question.content %></td>
+      <td><%= link_to '修改', edit_multiple_choice_question_path(question) %></td>
+    </tr>
+  <% end %>
+</table>

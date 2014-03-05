@@ -7,5 +7,7 @@ module ChoiceQuestion
     has_many :choices, :as => :choice_question, :dependent => :destroy
 
     validates :content, :uniqueness => {:scope => :unit_id}
+
+    accepts_nested_attributes_for :choices, :update_only => true
   end
 end

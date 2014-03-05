@@ -1,0 +1,18 @@
+<%= form_for @question do |f| %>
+  <%= flash[:notice] %>
+  <div>
+    <%= f.label :content, '题干' %>
+    <%= f.text_area :content %>
+  </div>
+  <% @question.choices.each_with_index do |choice, index| %>
+    <%= f.fields_for :choices, choice do |choice_fields| %>
+      <div>
+        <%= choice_fields.label :content, "选项#{index + 1}" %>
+        <%= choice_fields.text_field :content %>
+      </div>
+    <% end %>
+  <% end %>
+  <div>
+    <%= f.submit '保存' %>
+  </div>
+<% end %>

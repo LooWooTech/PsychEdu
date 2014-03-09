@@ -24,9 +24,7 @@ class Student < ActiveRecord::Base
 
   belongs_to :added_by, :class_name => 'Administrator'
 
-  validates :name, :presence => true
-  validates :gender, :presence => true
-  validates :unit_code, :presence => true
+  validates :name, :gender, :unit_code, :presence => true
 
   def change_current_topic_learning(topic_learning)
     transaction do

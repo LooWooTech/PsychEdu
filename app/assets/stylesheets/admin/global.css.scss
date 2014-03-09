@@ -1,0 +1,36 @@
+$error-red: #f66;
+
+.page-header {
+  margin-top: 0px;
+  li {
+    float: right;
+    margin: 20px 0 0 10px;
+    list-style: none;
+  }
+  h1 {
+    float: left;
+  }
+}
+
+.table-detail {
+  th {
+    width: 150px;
+  }
+}
+
+form {
+  label.error {
+    color: $error-red;
+    margin-top: 5px;
+  }
+
+  ul.errors {
+    color: $error-red;
+    margin-bottom: 20px;
+    padding: 0;
+    li {
+      list-style: none;
+      margin: 5px 0;
+    }
+  }
+}

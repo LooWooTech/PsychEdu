@@ -1,37 +1,72 @@
-<div> <%= @student.name %> </div>
-<div> 登录名：<%= @student.username %> </div>
-<div> 性别：<%= t @student.gender %> </div>
-<div> 状态：在学 </div>
+<div class='well'>
+  <div class='page-header clearfix'>
+    <h1>学员信息</h1>
+  </div>
+  <table class='table table-hover table-condensed table-detail'>
+    <tr>
+      <th>姓名：</th>
+      <td><%= @student.name %></td>
+    </tr>
+    <tr>
+      <th>用户名：</th>
+      <td><%= @student.username %></td>
+    </tr>
+    <tr>
+      <th>性别：</th>
+      <td><%= t @student.gender%></td>
+    </tr>
+    <tr>
+      <th>状态：</th>
+      <td>在学</td>
+    </tr>
+    <tr>
+      <th>开通的专题：</th>
+      <td>
+        <% if @student.topic_learnings.any? %>
+          <% @student.topic_learnings.each do |topic_learning| %>
+            <div><%= topic_learning.name %></div>
+          <% end %>
+        <% else %>
+          <div>该学员未开通任何专题</div>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+  
+  <%= link_to '修改信息', edit_student_path(@student), :class => 'btn btn-default' %>
+</div>
 
-<% if @student.topic_learnings.any? %>
-  <h2>在学专题：</h2>
-  <ul>
-    <% @student.topic_learnings.each do |topic_learning| %>
-      <li><%= topic_learning.name %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <div>该生没有开通任何专题</div>
-<% end %>
-<%= link_to '修改信息', edit_student_path(@student)%>
 <% if @unopened_topics.any? %>
-  <%= form_for [@student, @topic_learning], :html => {:id => 'open-topic-learning'} do |f| %>
-    <div>
-      <%= f.label :topic_id, '要开通的专题' %>
-      <%= f.select :topic_id, options_from_collection_for_select(@unopened_topics, :id, :name) %>
-    </div>
-    <%= f.fields_for :learning_periods do |period_field| %>
-      <div>
-        <%= period_field.label :start_on, '开始日期' %>
-        <%= period_field.date_field :start_on %>
-      </div>
-      <div>
-        <%= period_field.label :end_on, '结束日期' %>
-        <%= period_field.date_field :end_on %>
-      </div>
+  <div class='well'>
+    <%= form_for [@student, @topic_learning], :html => {:id => 'open-topic-learning', :class => 'form-horizontal'} do |f| %>
+      <fieldset>
+        <legend>开通专题</legend>
+        <div class='form-group'>
+          <%= f.label :topic_id, '*要开通的专题', :class => 'control-label col-lg-2' %>
+          <div class='col-lg-10'>
+            <%= f.select :topic_id, options_from_collection_for_select(@unopened_topics, :id, :name),{}, :class => 'form-control' %>
+          </div>
+        </div>
+        <%= f.fields_for :learning_periods do |period_field| %>
+          <div class='form-group'>
+            <%= period_field.label :start_on, '*开始日期', :class => 'control-label col-lg-2' %>
+            <div class='col-lg-10'>
+              <%= period_field.date_field :start_on, :class => 'form-control' %>
+            </div>
+          </div>
+          <div class='form-group'>
+            <%= period_field.label :end_on, '*结束日期', :class => 'control-label col-lg-2' %>
+            <div class='col-lg-10'>
+              <%= period_field.date_field :end_on, :class => 'form-control' %>
+            </div>
+          </div>
+        <% end %>
+        <div class='form-group'>
+          <div class='col-lg-10 col-lg-offset-2'>
+            <%= f.submit '开通', :class => 'btn btn-primary' %>
+          </div>
+        </div>
+      </fieldset>
     <% end %>
-    <div>
-    <%= f.submit '开通专题' %>
-    </div>
-  <% end %>
+  </div>
 <% end %>

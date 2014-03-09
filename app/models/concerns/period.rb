@@ -23,7 +23,7 @@ module Period
   private
 
   def should_not_shorter_than_30_days
-    errors.add(:base, :shorter_than_30_days) if end_on - start_on + 1 < 30
+    errors.add(:base, :should_not_shorter_than_30_days) if end_on - start_on + 1 < 30
   end
 
 end

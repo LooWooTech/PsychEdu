@@ -5,20 +5,23 @@
     <%= stylesheet_link_tag "admin/manifest", media: "all" %>
     <%= javascript_include_tag "admin/manifest" %>
     <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+      <%= javascript_include_tag 'html5shiv', 'respond' %>
+    <![endif]-->
   </head>
   <body id='<%= @body_id %>'>
-    <div id='navigation'>
-      <ul class='categories'>
-        <li>
-          <h2>内容维护</h2>
-          <ul>
-            <li><%= link_to '学员管理', students_path %></li>
-            <li><%= link_to '课程管理', topics_path %></li>
-          </ul>
-        </li>
-      </ul>
+    <div class='navbar navbar-default'>
+      <div class='navbar-header'>
+        <a class='navbar-brand' href='/'>建德教育</a>
+      </div>
+      <div class='navbar-collapse'>
+        <ul class='nav navbar-nav'>
+          <li><%= link_to '学员管理', students_path %></li>
+          <li><%= link_to '课程管理', topics_path %></li>
+        </ul>
+      </div>
     </div>
-    <div id='content'>
+    <div class='container'>
       <%= yield %>
     </div>
   </body>

@@ -77,7 +77,7 @@
     flashvers.public_root = "/sound/";
     flashvers.event_sound_root = "<%= @video_watching.root_path %>";
     //flashvers.flash_xml = '';
-    flashvers.flash_xml = '<flash start_time="0" played_time="0">  <e s="0"/>  <e s="0"/>  <e s="2"/>  <e s="2"/>  <e s="0"/>  <e s="0"/>  <e s="0"/>  <e s="0"/></flash>';
+    flashvers.flash_xml = '<%= raw @video_watching.playing_data %>';
     
     var params = {};
     params.menu="false";

@@ -200,7 +200,7 @@ zh:
         learning_period:
           attributes:
             base:
-              shorter_than_30_days: '少于30天'
+              should_not_shorter_than_30_days: '不能少于30天'
               conflict: '与另一周期冲突'
 
     attributes:

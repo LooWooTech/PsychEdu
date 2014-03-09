@@ -1,6 +1,6 @@
 /*
-*= require reset
 *= require jquery-ui
 *= require wysihtml5_content
+*= require bootstrap-lumen
 *= require_tree .
 */

@@ -177,15 +177,21 @@ $video-selector-width: $content-width - $player-width;
           }
         }
         .pagination {
-          span.current, span a {
+          li {
             display: inline-block;
             width: 20px;
             height: 20px;
             line-height: 20px;
             text-align: center;
             background: $dark-gray;
+            &:hover {
+              background: $gray;
+            }
+            a {
+              display: block;
+            }
           }
-          span.current {
+          li.disabled {
             background: $gray;
           }
         }

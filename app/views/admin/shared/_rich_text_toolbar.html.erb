@@ -1,16 +1,29 @@
-<div id="<%= toolbar_id %>" style="display: none;">
-  <a data-wysihtml5-command="bold">加粗</a>
-  <a data-wysihtml5-command="italic">斜体</a>
-  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value='h1'>一级标题</a>
-  <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value='h2'>二级标题</a>
-  <a data-wysihtml5-command="insertUnorderedList">无序列表</a>
-  <a data-wysihtml5-command="insertOrderedList">有序列表</a>
+<div class='btn-group wysihtml5-editor-toolbar' id="<%= toolbar_id %>" style="display: none;">
+  <button class='btn btn-default bold' data-wysihtml5-command="bold"></button>
+  <button class='btn btn-default italic' data-wysihtml5-command="italic"></button>
+  <button class='btn btn-default title-1' data-wysihtml5-command="formatBlock" data-wysihtml5-command-value='h1'></button>
+  <button class='btn btn-default title-2' data-wysihtml5-command="formatBlock" data-wysihtml5-command-value='h2'></button>
+  <button class='btn btn-default ul' data-wysihtml5-command="insertUnorderedList"></button>
+  <button class='btn btn-default ol' data-wysihtml5-command="insertOrderedList"></button>
   <!-- Some wysihtml5 commands like 'createLink' require extra paramaters specified by the user (eg. href) -->
-  <a data-wysihtml5-command="createLink">插入链接</a>
-  <div data-wysihtml5-dialog="createLink" style="display: none;">
-    <label>
-      URL: <input data-wysihtml5-dialog-field="href" value="http://" class="text">
-    </label>
-    <a data-wysihtml5-dialog-action="save">完成</a> <a data-wysihtml5-dialog-action="cancel">取消</a>
+  <div class='modal' data-wysihtml5-dialog="createLink" style="display: none;">
+    <div class='modal-dialog'>
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <button class='close' type='button' data-dismiss='modal' aira-hidden='true'>&times;</button>
+          <h4>插入链接</h4>
+        </div>
+        <div class='modal-body'>
+          <label>
+            URL: <input data-wysihtml5-dialog-field="href" value="http://" class="text"/>
+          </label>
+        </div>
+        <div class='modal-footer'>
+          <a class='btn btn-xs btn-primary' data-wysihtml5-dialog-action="save">完成</a>
+          <a class='btn btn-xs btn-default' data-wysihtml5-dialog-action="cancel">取消</a>
+        </div>
+      </div>
+    </div>
   </div>
+  <button class='btn btn-default link' data-wysihtml5-command="createLink"></button>
 </div>

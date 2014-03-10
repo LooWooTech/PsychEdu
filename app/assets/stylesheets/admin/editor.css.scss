@@ -8,3 +8,46 @@
 .wysihtml5-editor {
   @include wysihtml5-content;
 }
+
+.wysihtml5-editor-toolbar {
+  margin-bottom: 5px;
+  &> button {
+    width: 40px;
+    height: 30px;
+    &, &:active {
+      background-image: image-url('wysihtml5/wysihtml5_toolbar.png');
+      background-repeat: no-repeat;
+    }
+    &.bold {
+      background-position-x: 8px;
+    }
+    &.italic {
+      background-position-x: -63px;
+    }
+    &.title-1 {
+      background-position-x: -359px;
+    }
+    &.title-2 {
+      background-position-x: -444px;
+    }
+    &.ul {
+      background-position-x: -131px;
+    }
+    &.ol {
+      background-position-x: -214px;
+    }
+    &.link {
+      background-position-x: -287px;
+    }
+    &.wysihtml5-command-active {
+      margin-top: 1px;
+      border-bottom-width: 3px;
+      background-color: #fff;
+    }
+  }
+
+  .modal {
+    display: block;
+  }
+
+}

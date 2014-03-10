@@ -10,7 +10,7 @@ class Unit < ActiveRecord::Base
 
   delegate :name, :to => :chapter, :prefix => true
 
-  validates :name, :uniqueness => {:scope => :chapter_id}
+  validates :name, :uniqueness => {:scope => :chapter_id}, :presence => true
 
   accepts_nested_attributes_for :videos, 
     :reject_if => proc {|attrs| attrs['url'].blank?},
@@ -22,11 +22,11 @@ class Unit < ActiveRecord::Base
   alias next lower_item
 
   def ready_for_exam?
-    exam_question_count > 0
+    exam_questions.count > 0
   end
 
-  def exam_question_count
-    singular_choice_questions.count + multiple_choice_questions.count
+  def exam_questions
+    singular_choice_questions + multiple_choice_questions
   end
 
   def duration

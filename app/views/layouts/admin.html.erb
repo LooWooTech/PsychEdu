@@ -8,6 +8,7 @@
     <!--[if lt IE 9]>
       <%= javascript_include_tag 'html5shiv', 'respond' %>
     <![endif]-->
+
   </head>
   <body id='<%= @body_id %>'>
     <div class='navbar navbar-default'>
@@ -18,11 +19,15 @@
         <ul class='nav navbar-nav'>
           <li><%= link_to '学员管理', students_path %></li>
           <li><%= link_to '课程管理', topics_path %></li>
+          <li><%= link_to '通知管理', '#' %></li>
         </ul>
       </div>
     </div>
     <div class='container'>
       <%= yield %>
+      <footer>
+        &copy;建德教育
+      </footer>
     </div>
   </body>
 </html>

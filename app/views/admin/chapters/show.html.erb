@@ -1,16 +1,32 @@
-<div id='info'>
-  <h1>
-    <%= link_to @chapter.topic_name, @chapter.topic %>：
-    <%= @chapter.name %>
-  </h1>
-  <%= link_to '修改', edit_chapter_path(@chapter) %>
+<div class='well'>
+  <div class='page-header clearfix'>
+    <h1> 章节信息 </h1>
+  </div>
+  <table class='table table-hover table-condensed table-detail'>
+    <tr>
+      <th>名称：</th>
+      <td><%= @chapter.name %></td>
+    </tr>
+    <tr>
+      <th>所属专题：</th>
+      <td><%= link_to @chapter.topic_name, @chapter.topic %></td>
+    </tr>
+  </table>
+  <%= link_to '修改', edit_chapter_path(@chapter), :class => 'btn btn-default' %>
+  <%= link_to '返回', :back, :class => 'btn btn-default' %>
 </div>
 
-<div id='table'>
-  <%= link_to '添加单元', new_chapter_unit_path(@chapter) %>
-  <table>
+<div class='page-header clearfix'>
+  <h2>单元列表</h2>
+  <ul>
+    <li><%= link_to '添加单元', new_chapter_unit_path(@chapter), :class => 'btn btn-default' %></li>
+  </ul>
+</div>
+
+<% if @chapter.units.any? %>
+  <table class='table table-horizontal table-striped table-hover'>
     <tr>
-      <th>单元名称</th>
+      <th class='col-lg-11'>单元名称</th>
       <th>操作</th>
     </tr>
     <% @chapter.units.each do |unit| %>
@@ -23,4 +39,4 @@
       </tr>
     <% end %>
   </table>
-</div>
+<% end %>

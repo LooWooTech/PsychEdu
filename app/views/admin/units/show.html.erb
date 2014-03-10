@@ -1,38 +1,77 @@
-<div id='info'>
-  <h1>
-    <%= link_to @unit.chapter_name , @unit.chapter %>：
-    <%= @unit.name %>
-  </h1>
-  <div>出卷单选题数：<%= @unit.singular_choice_count %></div>
-  <div>出卷多选题数：<%= @unit.multiple_choice_count %></div>
-  <div>题库总题数：<%= @unit.exam_question_count %></div>
-  <div>考试时间：<%= @unit.exam_minutes %> 分钟</div>
-  <%= link_to '修改', edit_unit_path(@unit) %>
+<div class='well'>
+  <div class='page-header clearfix'>
+    <h1> 单元信息 </h1>
+  </div>
+  <table class='table table-hover table-condensed table-detail'>
+    <tr>
+      <th>名称：</th>
+      <td><%= @unit.name %></td>
+    </tr>
+    <tr>
+      <th>所属章节：</th>
+      <td><%= link_to @unit.chapter_name , @unit.chapter %></td>
+    </tr>
+    <tr>
+      <th>出卷单选题数：</th>
+      <td><%= @unit.singular_choice_count %></td>
+    </tr>
+    <tr>
+      <th>出卷多选题数：</th>
+      <td><%= @unit.multiple_choice_count %></td>
+    </tr>
+    <tr>
+      <th>题库总题数：</th>
+      <td><%= @unit.exam_questions.count %></td>
+    </tr>
+    <tr>
+      <th>考试时间：</th>
+      <td><%= @unit.exam_minutes %> 分钟</td>
+    </tr>
+  </table>
+  <%= link_to '修改', edit_unit_path(@unit), :class => 'btn btn-default' %>
 </div>
-<%= form_tag import_questions_unit_path(@unit), :method => :post, :multipart => true, :id => 'question-import' do %>
-  <%= flash[:notice] %>
-  <div>
-    <label>导入题库：<%= file_field_tag :file %></label>
-  </div>
-  <div>
-    <input type='submit' value='导入'/>
-  </div>
+
+<div class='page-header clearfix'>
+  <h3>题库</h3>
+</div>
+<%= form_tag import_questions_unit_path(@unit), :method => :post, :multipart => true, :id => 'question-import', :class => 'form-horizontal' do %>
+  
+  <% if flash[:notice].present? %>
+    <div class='alert alert-success'>
+      <button type='button' class='close' data-dismiss='alert'>&times;</button>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  <fieldset>
+    <div class='form-group'>
+      <div class='col-lg-10'>
+        <%= file_field_tag :file %>
+      </div>
+    </div>
+    <div class='form-group'>
+      <div class='col-lg-10'>
+        <input class='btn btn-default' type='submit' value='导入'/>
+      </div>
+    </div>
+  </fieldset>
 <% end %>
-<table>
-  <tr>
-    <th>题目</th>
-    <th>操作</th>
-  </tr>
-  <% @unit.singular_choice_questions.each do |question| %>
+<% if @unit.exam_questions.any? %>
+  <table class='table table-striped table-hover'>
     <tr>
-      <td><%= question.content %></td>
-      <td><%= link_to '修改', edit_singular_choice_question_path(question) %></td>
+      <th class='col-lg-11'>题目</th>
+      <th>操作</th>
     </tr>
-  <% end %>
-  <% @unit.multiple_choice_questions.each do |question| %>
-    <tr>
-      <td><%= question.content %></td>
-      <td><%= link_to '修改', edit_multiple_choice_question_path(question) %></td>
-    </tr>
-  <% end %>
-</table>
+    <% @unit.singular_choice_questions.each do |question| %>
+      <tr>
+        <td><%= question.content %></td>
+        <td><%= link_to '修改', edit_singular_choice_question_path(question) %></td>
+      </tr>
+    <% end %>
+    <% @unit.multiple_choice_questions.each do |question| %>
+      <tr>
+        <td><%= question.content %></td>
+        <td><%= link_to '修改', edit_multiple_choice_question_path(question) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

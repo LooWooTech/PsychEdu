@@ -2,12 +2,15 @@ $error-red: #f66;
 
 .page-header {
   margin-top: 0px;
-  li {
+  ul {
     float: right;
-    margin: 20px 0 0 10px;
-    list-style: none;
+    li {
+      float: left;
+      margin: 20px 0 0 10px;
+      list-style: none;
+    }
   }
-  h1 {
+  h1, h2, h3, h4, h5, h6 {
     float: left;
   }
 }
@@ -33,4 +36,10 @@ form {
       margin: 5px 0;
     }
   }
+
+}
+
+footer {
+  text-align: center;
+  margin: 50px 0;
 }

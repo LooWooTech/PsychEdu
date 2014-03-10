@@ -1,57 +1,91 @@
 <% @unit.videos.build if @unit.videos.empty? %>
-
-<%= form_for [@chapter, @unit], :html => {:multipart => true} do |f| %>
-  <div>
-    <%= f.label :name, '单元名称' %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :singular_choice_count, '单选题数' %>
-    <%= f.number_field :singular_choice_count %>
-  </div>
-  <div>
-    <%= f.label :multiple_choice_count, '多选题数' %>
-    <%= f.number_field :multiple_choice_count %>
-  </div>
-  <div>
-    <%= f.label :exam_minutes, '考试时间（分钟）' %>
-    <%= f.number_field :exam_minutes %>
-  </div>
-  <div>
-    <%= render :partial => 'admin/shared/rich_text_toolbar', :locals => {:toolbar_id => 'unit-summary-editor-toolbar'} %>
-    <%= f.label :name, '单元提要' %>
-    <%= f.text_area :summary, :id => 'unit-summary' %>
-  </div>
-  <div>
-    <%= render :partial => 'admin/shared/rich_text_toolbar', :locals => {:toolbar_id => 'unit-review-editor-toolbar'} %>
-    <%= f.label :name, '单元小结' %>
-    <%= f.text_area :review, :id => 'unit-review' %>
-  </div>
-  <ol class='video-fields'>
-  <%= f.fields_for :videos do |videos| %>
-    <li>
-      <div>
-        <%= videos.label :name, '名称' %>
-        <%= videos.text_field :name%>
+<div class='well'>
+  <%= form_for [@chapter, @unit], :html => {:id => 'edit-unit', :multipart => true, :class => 'form-horizontal'} do |f| %>
+    <fieldset>
+      <legend><%= @unit.new_record? ? '添加' : '修改' %>单元</legend>
+      <div class='form-group'>
+        <%= f.label :name, '*单元名称', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.text_field :name, :class => 'form-control' %>
+        </div>
       </div>
-      <div>
-        <%= videos.label :teacher_names, '讲师' %>
-        <%= videos.text_field :teacher_names %>
+      <div class='form-group'>
+        <%= f.label :singular_choice_count, '单选题数', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.number_field :singular_choice_count, :class => 'form-control' %>
+        </div>
       </div>
-      <div>
-        <%= videos.label :url, '视频地址' %>
-        <%= videos.text_field :url %>
+      <div class='form-group'>
+        <%= f.label :multiple_choice_count, '多选题数', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.number_field :multiple_choice_count, :class => 'form-control' %>
+        </div>
       </div>
-      <div>
-        <%= videos.label :_destroy, '删除' %>
-        <%= videos.check_box :_destroy%>
+      <div class='form-group'>
+        <%= f.label :exam_minutes, '考试时间（分钟）', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.number_field :exam_minutes, :class => 'form-control' %>
+        </div>
       </div>
-    </li>
+      <div class='form-group'>
+        <div class='col-lg-10 col-lg-offset-2'>
+          <%= render :partial => 'admin/shared/rich_text_toolbar', :locals => {:toolbar_id => 'unit-summary-editor-toolbar'} %>
+        </div>
+        <%= f.label :name, '单元提要', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.text_area :summary, :id => 'unit-summary' %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <div class='col-lg-10 col-lg-offset-2'>
+          <%= render :partial => 'admin/shared/rich_text_toolbar', :locals => {:toolbar_id => 'unit-review-editor-toolbar'} %>
+        </div>
+        <%= f.label :name, '单元小结', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.text_area :review, :id => 'unit-review' %>
+        </div>
+      </div>
+      <ol class='video-fields list-group col-lg-10 col-lg-offset-2'>
+      <%= f.fields_for :videos do |videos| %>
+        <li class='list-group-item'>
+          <div class='form-group'>
+            <%= videos.label :name, '视频名称', :class => 'col-lg-2 control-label' %>
+            <div class='col-lg-10'>
+              <%= videos.text_field :name, :class => 'form-control'%>
+            </div>
+          </div>
+          <div class='form-group'>
+            <%= videos.label :teacher_names, '讲师', :class => 'col-lg-2 control-label' %>
+            <div class='col-lg-10'>
+              <%= videos.text_field :teacher_names, :class => 'form-control' %>
+            </div>
+          </div>
+          <div class='form-group'>
+            <%= videos.label :url, '视频地址', :class => 'col-lg-2 control-label' %>
+            <div class='col-lg-10'>
+              <%= videos.text_field :url, :class => 'form-control' %>
+            </div>
+          </div>
+          <div class='form-group'>
+            <%= videos.label :_destroy, '删除', :class => 'col-lg-2 control-label' %>
+            <div class='col-lg-10'>
+              <%= videos.check_box :_destroy %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+      </ol>
+      <div class='form-group'>
+        <div class='col-lg-10 col-lg-offset-2'>
+        </div>
+      </div>
+      <div class='form-group'>
+        <div class='col-lg-10 col-lg-offset-2'>
+          <%= f.submit '保存', :class => 'btn btn-primary' %>
+          <a class='add-video btn btn-default' href='javascript:;'>添加视频</a>
+          <%= link_to '返回', :back, :class => 'btn btn-default' %>
+        </div>
+      </div>
+    <fieldset>
   <% end %>
-  </ol>
-  <div><a class='add-video' href='javascript:;'>添加视频</a></div>
-  <div>
-    <%= link_to '返回', :back %>
-    <%= f.submit '保存' %>
-  </div>
-<% end %>
+</div>

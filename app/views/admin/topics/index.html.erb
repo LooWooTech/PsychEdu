@@ -1,21 +1,23 @@
-<div id='info'>
+<div class='page-header clearfix'>
   <h1>专题管理</h1>
+  <ul>
+    <li><%= link_to '添加专题', new_topic_path, :class => 'btn btn-default' %></li>
+  </ul>
 </div>
-<div id='table'>
-  <%= link_to '新建专题', new_topic_path %>
-  <table>
+<table class='table table-striped table-hover'>
+  <thead>
     <tr>
-      <th>专题名称</th>
-      <th>操作</th>
+      <th class='col-lg-7'>专题名称</th>
+      <th class='col-lg-1'>操作</th>
     </tr>
-    <% @topics.each do |topic| %>
-      <tr>
-        <td><%= link_to topic.name, topic %></td>
-        <td>
-          <%= link_to '修改', edit_topic_path(topic) %>
-          <%= link_to '删除', topic, :method => :delete, :data => {:confirm => "确实要删除“#{topic.name}”吗？"} %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
-</div>
+  </thead>
+  <% @topics.each do |topic| %>
+    <tr>
+      <td><%= link_to topic.name, topic %></td>
+      <td>
+        <%= link_to '修改', edit_topic_path(topic) %>
+        <%= link_to '删除', topic, :method => :delete, :data => {:confirm => "确实要删除“#{topic.name}”吗？"} %>
+      </td>
+    </tr>
+  <% end %>
+</table>

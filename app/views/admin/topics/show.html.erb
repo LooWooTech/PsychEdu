@@ -1,25 +1,43 @@
-<div id='info'>
-  <h1><%= @topic.name %></h1>
-  <div>
-    <label>简介：<%= @topic.introduction %></label>
+<div class='well'>
+  <div class='page-header clearfix'>
+    <h1>专题信息</h1>
   </div>
-  <div>
-    <label>章节数量：<%= @topic.chapter_count %></label>
-  </div>
-  <div>
-    <label>时长：<%= @topic.duration %></label>
-  </div>
-  <%= link_to '修改', edit_topic_path(@topic) %>
-</div>
-
-<div id='table'>
-  <%= link_to '添加章节', new_topic_chapter_path(@topic) %>
-  <%= link_to '发布通知', new_topic_announcement_path(@topic) %>
-  <table>
+  <table class='table table-hover table-condensed table-detail'>
     <tr>
-      <th>章节名称</th>
-      <th>操作</th>
+      <th>名称：</th>
+      <td><%= @topic.name %></td>
     </tr>
+    <tr>
+      <th>章节数量：</th>
+      <td><%= @topic.chapter_count %></td>
+    </tr>
+    <tr>
+      <th>时长：</th>
+      <td><%= @topic.duration %></td>
+    </tr>
+    <tr>
+      <th>简介：</th>
+      <td><%= @topic.introduction %></td>
+    </tr>
+  </table>
+  <%= link_to '修改', edit_topic_path(@topic), :class => 'btn btn-default' %>
+</div>
+  
+
+<div class='page-header clearfix'>
+  <h2>章节列表</h2>
+  <ul>
+    <li><%= link_to '添加章节', new_topic_chapter_path(@topic), :class => 'btn btn-default' %></li>
+  </ul>
+</div>
+<% if @topic.chapters.any? %>
+  <table class='table table-horizontal table-striped table-hover'>
+    <thead>
+      <tr>
+        <th class='col-lg-11'>名称</th>
+        <th class='col-lg-1'>操作</th>
+      </tr>
+    </thead>
     <% @topic.chapters.each do |chapter| %>
       <tr>
         <td><%= link_to chapter.name, chapter %></td>
@@ -30,19 +48,20 @@
       </tr>
     <% end %>
   </table>
-  <table>
-    <tr>
-      <th>通知标题</th>
-      <th>操作</th>
-    </tr>
-    <% @topic.announcements.each do |announcement| %>
+<% end %>
+
+    <!--table>
       <tr>
-        <td><%= announcement.title %></td>
-        <td>
-          <%= link_to '修改', edit_announcement_path(announcement) %>
-          <%= link_to '删除', announcement, :method => :delete, :data => {:confirm => "确实要删除这条通知吗？"} %>
-        </td>
+        <th>通知标题</th>
+        <th>操作</th>
       </tr>
-    <% end %>
-  </table>
-</div>
+      <% @topic.announcements.each do |announcement| %>
+        <tr>
+          <td><%= announcement.title %></td>
+          <td>
+            <%= link_to '修改', edit_announcement_path(announcement) %>
+            <%= link_to '删除', announcement, :method => :delete, :data => {:confirm => "确实要删除这条通知吗？"} %>
+          </td>
+        </tr>
+      <% end %>
+    </table-->

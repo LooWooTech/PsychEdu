@@ -10,4 +10,8 @@ module ChoiceQuestion
 
     accepts_nested_attributes_for :choices, :update_only => true
   end
+
+  def published?
+    answers.any?
+  end
 end

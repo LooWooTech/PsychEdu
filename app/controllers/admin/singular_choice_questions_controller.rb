@@ -13,6 +13,16 @@ module Admin
       end
     end
 
+    def destroy
+      if @question.published?
+        render :status => 400, :text => '不允许删除'
+      else
+        flash[:notice] = '删除成功'
+        @question.destroy
+        redirect_to @question.unit
+      end
+    end
+
     private
 
     def find_question

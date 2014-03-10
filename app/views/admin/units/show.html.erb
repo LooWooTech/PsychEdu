@@ -64,13 +64,19 @@
     <% @unit.singular_choice_questions.each do |question| %>
       <tr>
         <td><%= question.content %></td>
-        <td><%= link_to '修改', edit_singular_choice_question_path(question) %></td>
+        <td>
+          <%= link_to '修改', edit_singular_choice_question_path(question) %>
+          <%= link_to '删除', question, :method => :delete, 'data-confirm' => '确实要删除吗？' unless question.published? %>
+        </td>
       </tr>
     <% end %>
     <% @unit.multiple_choice_questions.each do |question| %>
       <tr>
         <td><%= question.content %></td>
-        <td><%= link_to '修改', edit_multiple_choice_question_path(question) %></td>
+        <td>
+          <%= link_to '修改', edit_multiple_choice_question_path(question) %>
+          <%= link_to '删除', question, :method => :delete, 'data-confirm' => '确实要删除吗？' unless question.published? %>
+        </td>
       </tr>
     <% end %>
   </table>

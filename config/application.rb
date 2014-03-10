@@ -25,7 +25,7 @@ module PsychEdu
       'learning/manifest.js', 'learning/manifest.css',
       'ask/manifest.css', 'ask/manifest.js',
       'admin/manifest.css', 'admin/manifest.js',
-      'jquery-ui/*', 'bootstrap3/*'
+      'jquery-ui/*', 'bootstrap3/*', 'wysihtml5/*'
     ]
   end
 end

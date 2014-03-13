@@ -43,7 +43,8 @@ $topic-name-size: 32px;
         width: 240px;
         .user-info {
           width: 100%;
-          height: 80px;
+          overflow: hidden;
+          padding-bottom: 20px;
           .avatar {
             float: left;
             width: 64px;

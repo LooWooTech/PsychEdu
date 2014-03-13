@@ -10,8 +10,5 @@ module Learning
       end
     end
 
-    def period(topic_learning)
-      raw "从#{I18n.l topic_learning.current_learning_period.start_on, :format => :long }<br/>到#{I18n.l topic_learning.current_learning_period.actually_end_on, :format => :long}"
-    end
   end
 end

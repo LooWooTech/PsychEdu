@@ -26,7 +26,7 @@ class LearningController < ApplicationController
   end
 
   def chapter_learnings
-    @chapter_learnings ||= current_topic_learning.chapter_learnings.page(params[:page]).per(10)
+    @chapter_learnings ||= current_topic_learning.chapter_learnings
   end
 
   def page_title

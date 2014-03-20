@@ -36,7 +36,7 @@
   <%= link_to '修改信息', edit_student_path(@student), :class => 'btn btn-default' %>
 </div>
 
-<% if @unopened_topics.any? %>
+<% if @unopen_topics.any? %>
   <div class='well'>
     <%= form_for [@student, @topic_learning], :html => {:id => 'open-topic-learning', :class => 'form-horizontal'} do |f| %>
       <fieldset>
@@ -44,7 +44,7 @@
         <div class='form-group'>
           <%= f.label :topic_id, '*要开通的专题', :class => 'control-label col-lg-2' %>
           <div class='col-lg-10'>
-            <%= f.select :topic_id, options_from_collection_for_select(@unopened_topics, :id, :name),{}, :class => 'form-control' %>
+            <%= f.select :topic_id, options_from_collection_for_select(@unopen_topics, :id, :name),{}, :class => 'form-control' %>
           </div>
         </div>
         <%= f.fields_for :learning_periods do |period_field| %>

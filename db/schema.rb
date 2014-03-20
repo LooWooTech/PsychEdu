@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228075422) do
+ActiveRecord::Schema.define(version: 20140318074244) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -263,6 +263,18 @@ ActiveRecord::Schema.define(version: 20140228075422) do
 
   add_index "topic_learnings", ["student_id"], name: "index_topic_learnings_on_student_id", using: :btree
   add_index "topic_learnings", ["topic_id"], name: "index_topic_learnings_on_topic_id", using: :btree
+
+  create_table "topic_testings", force: true do |t|
+    t.integer  "topic_id"
+    t.string   "title"
+    t.text     "content"
+    t.text     "requirements"
+    t.text     "grading_rules"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topic_testings", ["topic_id"], name: "index_topic_testings_on_topic_id", using: :btree
 
   create_table "topics", force: true do |t|
     t.string   "name"

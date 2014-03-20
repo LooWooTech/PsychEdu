@@ -55,6 +55,7 @@ PsychEdu::Application.routes.draw do
             end
           end
         end
+        resources :topic_testings, :only => [:new, :create, :show, :edit, :update, :index]
       end
       root 'students#index', :as => :admin
     end

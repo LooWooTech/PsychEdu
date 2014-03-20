@@ -1,0 +1,27 @@
+<div class='page-header clearfix'>
+  <h1>专题考核列表</h1>
+  <ul>
+    <li><%= link_to '新增专题考核', new_topic_testing_path, :class => 'btn btn-default' %></li>
+  </ul>
+</div>
+<table class='table table-striped table-hover'>
+  <thead>
+    <tr>
+      <th class='col-lg-3'>题目</th>
+      <th class='col-lg-3'>内容</th>
+      <th class='col-lg-3'>所属专题</th>
+      <th class='col-lg-3'>操作</th>
+    </tr>
+  </thead>
+  <% @topic_testings.each do |topic_testing| %>
+    <tr>
+      <td><%= link_to topic_testing.title, topic_testing %></td>
+      <td><%= truncate strip_tags(topic_testing.content), :length => 10 %></td>
+      <td><%= link_to topic_testing.topic_name, topic_testing.topic %></td>
+      <td>
+        <%= link_to '修改', edit_topic_testing_path(topic_testing) %>
+      </td>
+    </tr>
+  <% end%>
+</table>
+<%= paginate @topic_testings %>

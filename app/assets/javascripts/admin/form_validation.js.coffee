@@ -59,3 +59,13 @@ $ ->
     messages:
       'unit[name]':
         'required': '请输入单元名'
+
+  $('#edit-topic-testing').validate
+    rules:
+      'topic_testing[topic_id]': 'required'
+      'topic_testing[title]': 'required'
+    messages:
+      'topic_testing[topic_id]':
+        'required': '请选择专题'
+      'topic_testing[title]':
+        'required': '请输入题目'

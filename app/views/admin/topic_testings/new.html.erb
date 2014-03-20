@@ -1,0 +1,52 @@
+<div class='well'>
+  <%= form_for @topic_testing, :html => {:id => 'edit-topic-testing', :class => 'form-horizontal'} do |f| %>
+    <fieldset>
+      <legend><%= @topic_testing.new_record? ? '添加' : '修改' %>专题考核</legend>
+      <div class='form-group'>
+        <%= f.label :topic_id, '*所属专题', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.select :topic_id, options_from_collection_for_select(@topics, :id, :name, @topic_testing.topic_id), {}, :class => 'form-control' %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <%= f.label :title, '*题目', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.text_field :title, :class => 'form-control' %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <div class='col-lg-10 col-lg-offset-2'>
+          <%= render :partial => 'admin/shared/rich_text_toolbar', :locals => {:toolbar_id => 'topic-testing-content-editor-toolbar'} %>
+        </div>
+        <%= f.label :content, '内容', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.text_area :content, :id => 'topic-testing-content' %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <div class='col-lg-10 col-lg-offset-2'>
+          <%= render :partial => 'admin/shared/rich_text_toolbar', :locals => {:toolbar_id => 'topic-testing-requirements-editor-toolbar'} %>
+        </div>
+        <%= f.label :requirements, '要求', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.text_area :requirements, :id => 'topic-testing-requirements' %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <div class='col-lg-10 col-lg-offset-2'>
+          <%= render :partial => 'admin/shared/rich_text_toolbar', :locals => {:toolbar_id => 'topic-testing-grading-rules-editor-toolbar'} %>
+        </div>
+        <%= f.label :grading_rules, '评分', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.text_area :grading_rules, :id => 'topic-testing-grading-rules' %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <div class='col-lg-10 col-lg-offset-2'>
+          <%= f.submit '保存', :class => 'btn btn-primary' %>
+          <%= link_to '返回', :back, :class => 'btn btn-default' %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+</div>

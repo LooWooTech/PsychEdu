@@ -8,41 +8,6 @@
     <%= stylesheet_link_tag "ask/manifest", media: "all" %>
     <%= javascript_include_tag "ask/manifest" %>
   </head>
-  <body id='<%= @body_id %>'>
-    <div id='header'>
-      <div class='wrap'>
-        <form action='#' id='search'>
-          <input placeholder='搜索' type='text'/>
-        </form>
-        <%= link_to '提问', new_question_path, :id => 'ask', :remote => true %>
-      </div>
-    </div>
-    <div id='main'>
-      <ul id='categories'>
-        <li>
-          <h2>分类1</h2>
-          <ul class='forums'>
-            <li><a href='javascript:;'>版面1</a></li>
-            <li><a href='javascript:;'>版面2</a></li>
-            <li><a href='javascript:;'>版面3</a></li>
-          </ul>
-        </li>
-        <li>
-          <h2>分类2</h2>
-          <ul class='forums'>
-            <li><a href='javascript:;'>版面4</a></li>
-            <li><a href='javascript:;'>版面5</a></li>
-            <li><a href='javascript:;'>版面6</a></li>
-          </ul>
-        </li>
-      </ul>
-      <div id='content'>
-        <%= yield %>
-      </div>
-    </div>
-    <div id='footer'>
-      <p>&copy; LoowooTech 2013</p>
-    </div>
-    <div id='mask'></div>
+  <body>
   </body>
 </html>

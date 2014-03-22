@@ -24,8 +24,7 @@ module PsychEdu
     config.assets.precompile += [
       'learning/manifest.js', 'learning/manifest.css',
       'ask/manifest.css', 'ask/manifest.js',
-      'admin/manifest.css', 'admin/manifest.js',
-      'jquery-ui/*', 'bootstrap3/*', 'wysihtml5/*'
+      'admin/manifest.css', 'admin/manifest.js'
     ]
   end
 end

@@ -25,3 +25,5 @@
 
 # Ignore RubyMine files
 .idea/*
+
+/vendor/assets/bower_components

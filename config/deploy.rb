@@ -64,6 +64,7 @@ task :deploy => :environment do
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
+    invoke :'bower:install'
     invoke :'rails:assets_precompile'
 
     to :launch do
@@ -81,6 +82,12 @@ namespace :puma do
 
   task :stop do
     queue "kill -SIGTERM `cat #{pidfile}`"
+  end
+end
+
+namespace :bower do
+  task :install do
+    queue "rake bower:install"
   end
 end
 

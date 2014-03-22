@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140318074244) do
+ActiveRecord::Schema.define(version: 20140321022853) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -252,6 +252,27 @@ ActiveRecord::Schema.define(version: 20140318074244) do
   end
 
   add_index "students", ["added_by_id"], name: "index_students_on_added_by_id", using: :btree
+
+  create_table "topic_exam_materials", force: true do |t|
+    t.integer  "topic_exam_id"
+    t.string   "file"
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topic_exam_materials", ["topic_exam_id"], name: "index_topic_exam_materials_on_topic_exam_id", using: :btree
+
+  create_table "topic_exams", force: true do |t|
+    t.integer  "topic_learning_id"
+    t.text     "review"
+    t.boolean  "submitted",         default: false
+    t.integer  "score",             default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topic_exams", ["topic_learning_id"], name: "index_topic_exams_on_topic_learning_id", using: :btree
 
   create_table "topic_learnings", force: true do |t|
     t.integer  "student_id"

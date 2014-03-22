@@ -12,7 +12,13 @@ PsychEdu::Application.routes.draw do
       shallow do
         resources :topic_learnings, :only => :show do
           member do
-            get :guide, :review
+            get :guide, :review, :exam
+          end
+          resources :topic_exams, :only => [:show] do
+            member do
+              patch :submit
+            end
+            resources :topic_exam_materials, :only => [:create, :destroy, :edit, :update]
           end
           resources :announcements, :only => :show
           resources :chapter_learnings, :only => :show do

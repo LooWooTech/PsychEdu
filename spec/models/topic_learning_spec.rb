@@ -50,4 +50,33 @@ describe TopicLearning do
     end
   end
 
+  describe '#last_exam' do
+    it 'returns new TopicExam' do
+      expect{subject.last_exam}.to change(TopicExam, :count)
+    end
+
+    context 'there is an topic exam' do
+      before do
+        @topic_exam = FactoryGirl.create(:topic_exam)
+        subject.exams << @topic_exam
+      end
+
+      context 'which is unsubmitted' do
+        it 'returns the unsubmitted topic exam' do
+          expect(subject.last_exam).to eq(@topic_exam)
+        end
+      end
+
+      context 'which is submitted' do
+        before do
+          @topic_exam.update_attribute :submitted, true
+        end
+
+        it 'returns new TopicExam' do
+          expect{subject.last_exam}.to change(TopicExam, :count)
+        end
+      end
+    end
+  end
+
 end

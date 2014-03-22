@@ -14,6 +14,8 @@ gem 'cancan'
 gem 'puma'
 gem 'acts_as_list'
 
+gem 'carrierwave'
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false

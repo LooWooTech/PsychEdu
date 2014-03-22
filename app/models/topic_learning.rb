@@ -14,6 +14,10 @@ class TopicLearning < ActiveRecord::Base
 
   after_create :create_chapter_learnings
 
+  def unreviewed_exam
+    exams.unreviewed.last
+  end
+
   def ready_for_exam?
     testing && exam_history.all?(&:reviewed?)
   end

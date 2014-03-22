@@ -1,11 +1,11 @@
 module Admin
   class TopicExamsController < AdminController
     def index
-      @topic_exams = TopicExam.page(params[:page]).per(10)
+      @topic_exams = TopicExam.submitted.page(params[:page]).per(10)
     end
 
     def show
-      @topic_exam = TopicExam.find params[:id]
+      @topic_exam = TopicExam.submitted.find params[:id]
     end
 
     def review

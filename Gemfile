@@ -16,6 +16,7 @@ gem 'acts_as_list'
 gem 'carrierwave'
 
 gem 'bower-rails'
+gem 'compass-rails'
 
 group :test, :development do
   gem 'rspec-rails'

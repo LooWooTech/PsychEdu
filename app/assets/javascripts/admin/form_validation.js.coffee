@@ -69,3 +69,15 @@ $ ->
         'required': '请选择专题'
       'topic_testing[title]':
         'required': '请输入题目'
+
+
+  $('#review-topic-exam').validate
+    rules:
+      'topic_exam[score]': 'required'
+      'topic_exam[review]': 'required'
+    messages:
+      'topic_exam[score]':
+        'required': '请输入得分'
+        'number': '请输入数字'
+      'topic_exam[review]':
+        'required': '请输入点评内容'

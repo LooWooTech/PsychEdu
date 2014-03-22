@@ -9,6 +9,7 @@ class TopicLearning < ActiveRecord::Base
   validates :topic, :uniqueness => {:scope => :student}
 
   delegate :name, :guide_video_url, :review_video_url, :announcements, :testing, :to => :topic
+  delegate :name, :unit_code, :to => :student, :prefix => true
 
   accepts_nested_attributes_for :learning_periods, :reject_if => lambda{|attr| attr[:start_on].blank? || attr[:end_on].blank?}
 

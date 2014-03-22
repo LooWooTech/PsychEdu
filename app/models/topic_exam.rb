@@ -8,6 +8,7 @@ class TopicExam < ActiveRecord::Base
   scope :unreviewed, lambda{ where :review => nil }
 
   delegate :title, :content, :requirements, :grading_rules, :to => :topic_testing
+  delegate :name, :student_name, :student_unit_code, :to => :topic_learning
 
   def unsubmitted?
     !submitted?
@@ -18,7 +19,7 @@ class TopicExam < ActiveRecord::Base
   end
 
   def reviewed?
-    review.present?
+    !review.nil?
   end
 
   def submit

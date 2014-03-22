@@ -10,4 +10,8 @@ class TopicExamMaterial < ActiveRecord::Base
   def filename
     File.basename(file.path)
   end
+
+  def url
+    file.url
+  end
 end

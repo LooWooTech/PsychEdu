@@ -48,10 +48,10 @@
         <tbody>
           <% @topic_exam.materials.each do |material| %>
           <tr>
-            <td><%= material.filename %></td>
+            <td><%= link_to material.filename, material.url %></td>
             <td><%= truncate material.note %></td>
             <td><%= l material.created_at, :format => :long %></td>
-            <td><%= link_to '删除', material, :method => :delete, :data => {:confirm => '确实要删除吗？'} %></td>
+            <td><%= link_to '删除', material, :method => :delete, :data => {:confirm => '确实要删除吗？'} unless @topic_exam.reviewed? %></td>
           </tr>
           <% end %>
         </tbody>
@@ -73,15 +73,15 @@
           </div>
         </div>
       <% end %>
-      <%= form_tag submit_topic_exam_path(@topic_exam), :method => :patch, :id => 'topic-exam-submit' do |f| %>
+      <%= form_tag submit_topic_exam_path(@topic_exam), :method => :patch, :id => 'topic-exam-submit' do %>
         <%= submit_tag '交卷' %>
       <% end %>
     <% end %>
   </div>
 
   <% if @topic_exam.reviewed? %>
-    <h2>考核结果</h2>
-    <div><%= @topic_exam.reivew %></div>
+    <h2>考核点评</h2>
+    <div><%= @topic_exam.review %></div>
     <h2>考试分数</h2>
     <div><%= @topic_exam.score %></div>
   <% end %>
@@ -93,14 +93,18 @@
       <thead>
       <tr>
         <th>时间</th>
-        <th>结果</th>
+        <th>点评</th>
+        <th>得分</th>
+        <th>操作</th>
       </tr>
       </thead>
       <tbody>
       <% current_topic_learning.exam_history.each do |exam| %>
       <tr>
         <td><%= l exam.created_at, :format => :long %></td>
-        <td><%= exam.reviewed? ? exam.review : '未审核' %></td>
+        <td><%= exam.reviewed? ? truncate(exam.review) : '未审核' %></td>
+        <td><%= exam.score %></td>
+        <td><%= link_to '查看', exam %></td>
       </tr>
       <% end %>
       </tbody>

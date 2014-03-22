@@ -1,0 +1,60 @@
+<div class='well'>
+  <div class='page-header clearfix'>
+    <h1><%= @topic_exam.student_name %>的<%= @topic_exam.name %>专题考核</h1>
+  </div>
+  <table class='table table-hover table-condensed table-detail'>
+    <tr>
+      <th>题目</th>
+      <td><%= @topic_exam.title %></td>
+    </tr>
+    <tr>
+      <th>内容</th>
+      <td><%= @topic_exam.content %></td>
+    </tr>
+    <tr>
+      <th>要求</th>
+      <td><%= @topic_exam.requirements %></td>
+    </tr>
+    <tr>
+      <th>评分</th>
+      <td><%= @topic_exam.grading_rules %></td>
+    </tr>
+    <tr>
+      <th>上传材料</th>
+      <td>
+        <% @topic_exam.materials.each do |material| %>
+          <div><%= link_to material.filename, material.url %></div>
+          <div>备注：<%= material.note %></div>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>审核</th>
+      <td>
+        <% if @topic_exam.reviewed? %>
+          <div>
+          得分：<%= @topic_exam.score %>
+          </div>
+          <div>
+          点评：<%= @topic_exam.review %>
+          </div>
+        <% else %>
+          <%= form_for @topic_exam, :url => review_topic_exam_path(@topic_exam),
+            :method => :patch, :html => {:id => 'review-topic-exam', :class => 'form-horizontal'} do |f| %>
+            <fieldset>
+              <div class='form-grop'>
+                <%= f.label :score, '*得分', :class => 'control-label' %>
+                <%= f.number_field :score %>
+              </div>
+              <div class='form-grop'>
+                <%= f.label :review, '*点评', :class => 'control-label' %>
+                <%= f.text_area :review %>
+              </div>
+              <%= f.submit '评分', :class => 'btn btn-default' %>
+            </fieldset>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</div>

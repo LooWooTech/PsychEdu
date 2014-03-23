@@ -1,3 +1,4 @@
+@import "bootstrap";
 @import "compass";
 
 body {
@@ -33,5 +34,22 @@ header {
     input.form-control {
       width: 360px;
     }
+  }
+}
+
+footer {
+  
+  margin-top: 60px;
+
+  > .container {
+    border-top: solid 1px #e5e5e5;
+    padding-top: 15px;
+  }
+
+  p {
+    margin-bottom: 0;
+    font-size: 12px;
+    text-align: center;
+    color: $gray-light;
   }
 }

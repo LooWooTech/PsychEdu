@@ -1,0 +1,34 @@
+@import "../bootstrap-sass/bootstrap/variables";
+@import "../bootstrap-sass/bootstrap/mixins";
+
+// Default
+// -------------------------
+ul.nav-side {
+  > li {
+
+    > a {
+      padding: 4px 12px;
+      border-radius: $nav-pills-border-radius;
+      color: $gray-light;
+
+      > span {
+        float: right;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        color: $gray-dark;
+      }
+    }
+
+    &.active > a {
+      &,
+      &:hover,
+      &:focus {
+        color: $nav-pills-active-link-hover-bg;
+        font-weight: bold;
+      }
+    }
+  }
+}

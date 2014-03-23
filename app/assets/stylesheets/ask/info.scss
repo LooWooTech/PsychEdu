@@ -1,0 +1,102 @@
+@import "compass/utilities/general/clearfix";
+@import "compass/css3/transition";
+
+.info {
+
+}
+
+.info-heading {
+
+	border-bottom: solid 1px #ddd;
+	margin-bottom: 20px;
+	@include clearfix();
+
+	h2 {
+		float: left;
+		font-size: 18px;
+		color: #333;
+	}
+}
+
+.info-bar {
+	float: right;
+
+	ul.nav {
+
+		padding-top: 15px;
+
+		> li {
+			float: left;
+			> a {
+				padding: 5px 10px;
+				color: #ccc;
+			}
+
+			&.active {
+				> a {
+					color: #666;
+				}
+			}
+		}
+	}
+}
+
+.info-body {
+
+}
+
+.media-items {
+	.media {
+		border-bottom: solid 1px #eee;
+		padding-bottom: 15px;
+	}
+}
+
+.media {
+	a.pull-left {
+		margin-right: 30px;
+	}
+}
+
+.media-object {
+	border: solid 5px #ccc;
+
+	@include transition(border-color .2s);
+
+	&:hover {
+		border-color: #428bca;
+	}
+}
+
+.media-body {
+	padding-top: 15px;
+
+	p {
+		color: #ccc;
+		font-size: 13px;
+	}
+}
+
+.media-heading {
+	a {
+		color: #333;
+		font-size: 22px;
+	}
+}
+
+.media-status {
+
+	&.pull-right {
+		margin-left: 30px;
+	}
+
+	> p {
+		color: #bbb;
+
+		> strong {
+			font-size: 26px;
+			font-weight: normal;
+			color: #aaa;
+		}
+	}
+}

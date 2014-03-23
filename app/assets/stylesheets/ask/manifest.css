@@ -2,4 +2,5 @@
 *= require bootstrap-sass/bootstrap
 *= require ask/layout
 *= require ask/info
+*= require ask/navs
 */

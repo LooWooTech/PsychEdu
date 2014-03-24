@@ -18,6 +18,8 @@ gem 'carrierwave'
 gem 'bower-rails'
 gem 'compass-rails'
 
+gem 'bootstrap_form'
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false

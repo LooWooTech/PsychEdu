@@ -27,9 +27,19 @@
 .media-body {
 	padding-top: 15px;
 
-	.actions {
+	> .contents {
+		color: $text-color;
+		line-height: $line-height-base * 1.2;
+		padding: 20px 0;
+	}
+
+	> .actions {
 		color: #ccc;
 		font-size: 13px;
+
+		a {
+			color: #ccc;
+		}
 	}
 }
 
@@ -62,6 +72,16 @@
 			font-size: 26px;
 			font-weight: normal;
 			color: #666;
+		}
+	}
+}
+
+.media-post-vote {
+	width: 40px;
+
+	> a.btn {
+		> hr {
+			margin: 5px 0;
 		}
 	}
 }

@@ -42,11 +42,9 @@
   <div class="media-body">
     <div>张三, 互联网布道者</div>
     <div class="contents">
-  	  <%= form_for [@question, @answer || Answer.new], :html => {:class => 'form'} do |f| %>
-  	  	<div class="form-group">
-  		    <%= f.text_area :content, :class => 'form-control', :rows => 5, :placeholder => '添加您的回答' %>
-  		  </div>
-  	    <%= f.submit '发布回答', :class => "btn btn-primary" %>
+  	  <%= bootstrap_form_for [@question, @answer || Answer.new] do |f| %>
+  		<%= f.text_area :content, :rows => 5, :placeholder => '添加您的回答', hide_label: true %>
+  	    <%= f.submit '发布回答' %>
   	  <% end %>
     </div>
   </div>

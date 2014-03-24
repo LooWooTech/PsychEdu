@@ -1,27 +1,53 @@
-<% @body_id = 'question-show' %>
-
-<div class='question'>
-  <h1><%= @question.title %></h1>
-  <div class='content'><%= @question.content %> </div>
-  <div class='addition'>
-    <span><%= @question.questioner.name %></span>
-    <span><%= l @question.created_at %></span>
-  </div>
-  <div class='actions'>
-    <%= link_to '修改', edit_question_path(@question), :remote => true, :class => 'edit' if can?(:edit, @question) %>
-    <%= link_to '删除', @question, :method => :delete, :data => {:confirm => '确实要删除这个问题吗？'} if can?(:destroy, @question) %>
-    <%= link_to "评论(#{@question.comments.count})", question_comments_path(@question), :remote => true, :class => 'comments' %>
-    <%= link_to "举报", new_question_complaint_path(@question), :remote => true, :class => 'complain' %>
-    <%= top_link %>
-    <%= refine_link %>
-  </div>
+<div class="media">
+	<a class="pull-left" href="#">
+		<img class="media-object img-circle" src="<%= image_path 'avatar/1.jpg' %>" width="80" height="80">
+	</a>
+	<div class="media-body">
+		<h4 class="media-heading"><%= @question.title %></h4>
+		<div class='contents'><%= @question.content %></div>
+		<div class="actions">
+			<span class="glyphicon glyphicon-tasks"></span> 一天前 / 张三
+			<%= link_to '修改', edit_question_path(@question), :remote => true, :class => 'edit' if can?(:edit, @question) %>
+			<%= link_to '删除', @question, :method => :delete, :data => {:confirm => '确实要删除这个问题吗？'} if can?(:destroy, @question) %>
+			<%= link_to "评论(#{@question.comments.count})", question_comments_path(@question), :remote => true, :class => 'comments' %>
+			<%= link_to "举报", new_question_complaint_path(@question), :remote => true, :class => 'complain' %>
+			<%= top_link %>
+			<%= refine_link %>
+		</div>
+	</div>
 </div>
 
-<ul class='answers'>
-  <%= render :collection => @question.answers, :partial => 'ask/questions/answer' %>
-</ul>
+<div class="info">
+	<div class="info-heading">
+		<h2>共3个回答</h2>
+		<div class="info-bar">
+			<ul class="nav">
+				<li class="active"><a href="#">得票数</a></li>
+				<li><a href="#">时间先后</a></li>
+			</ul>
+		</div>
+	</div>
 
-<%= form_for [@question, @answer || Answer.new], :html => {:class => 'new-answer'} do |f| %>
-  <%= f.text_area :content %>
-  <%= f.submit '回答' %>
-<% end %>
+	<div class="info-body">
+		<%= render :collection => @question.answers, :partial => 'ask/questions/answer' %>
+	</div>
+</div>
+
+<hr>
+
+<div class="media">
+  <a class="pull-left" href="#">
+    <img class="media-object img-circle" src="<%= image_path 'avatar/5.jpg' %>" width="80" height="80">
+  </a>
+  <div class="media-body">
+    <div>张三, 互联网布道者</div>
+    <div class="contents">
+  	  <%= form_for [@question, @answer || Answer.new], :html => {:class => 'form'} do |f| %>
+  	  	<div class="form-group">
+  		    <%= f.text_area :content, :class => 'form-control', :rows => 5, :placeholder => '添加您的回答' %>
+  		  </div>
+  	    <%= f.submit '发布回答', :class => "btn btn-primary" %>
+  	  <% end %>
+    </div>
+  </div>
+</div>

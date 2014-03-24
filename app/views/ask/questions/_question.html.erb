@@ -1,4 +1,17 @@
-<li>
-  <h3><%= question_link question %></h3>
-  <div class='content'><%= question.content %></div>
-</li>
+<div class="media">
+	<a class="pull-left" href="#">
+		<img class="media-object img-circle" src="<%= image_path 'avatar/1.jpg' %>" width="80" height="80">
+	</a>
+	<div class="media-status pull-right">
+		<p><strong>7</strong></p>
+		<p><span class="glyphicon glyphicon-comment"></span></p>
+	</div>
+	<div class="media-status pull-right">
+		<p><strong>2</strong></p>
+		<p><span class="glyphicon glyphicon-thumbs-up"></span></p>
+	</div>
+	<div class="media-body">
+		<h4 class="media-heading"><%= question_link question %></a></h4>
+		<p><span class="glyphicon glyphicon-tasks"></span> 一天前 / 张三</p>
+	</div>
+</div>

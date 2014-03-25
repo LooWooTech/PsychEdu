@@ -11,7 +11,7 @@ module Ask
     def new
       @title = '提问'
       @question = Question.new
-      render :new, :layout => 'modal_box'
+      render :new, :layout => false
     end
   
     def create

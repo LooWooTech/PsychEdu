@@ -6,7 +6,7 @@ module Ask
     def new
       @complaint = Complaint.new
       @title = '举报'
-      render :new, :layout => 'modal_box'
+      render :new, :layout => false
     end
   
     def create

@@ -2,6 +2,9 @@ $(document).ready(function() {
 
 	'use strict';
 
+	// jQuery element
+	var $element = $('.btn-modal');
+
 	// modal template
 	var modal = [
 		'<div class="modal fade" id="ask-modal">',
@@ -12,7 +15,7 @@ $(document).ready(function() {
 		'</div>'
 	].join();
   
-  $('#ask-btn').click(function(e) {
+  $element.click(function(e) {
     
     $(modal)
     	.modal({

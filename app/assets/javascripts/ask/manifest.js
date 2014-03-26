@@ -4,4 +4,5 @@
 *= require holderjs
 *= require ask/modal
 *= require ask/ask
+*= require ask/complaints
 */

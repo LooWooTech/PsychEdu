@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 	// modal template
 	var modal = [
-		'<div class="modal fade" id="ask-modal">',
+		'<div class="modal fade">',
 			'<div class="modal-dialog">',
 				'<div class="modal-content">',
 				'</div>',
@@ -17,11 +17,15 @@ $(document).ready(function() {
   
   $element.click(function(e) {
     
-    $(modal)
+    var $modal = $(modal)
     	.modal({
       	remote: $(this).attr('href')
     	})
-    	.appendTo($('body'));
+    	.appendTo($('body'))
+    	// 绑定销毁事件
+    	.on('hidden.bs.modal', function() {
+    		$(this).remove();
+    	});
 
     e.preventDefault();
   });

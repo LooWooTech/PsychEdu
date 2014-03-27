@@ -36,14 +36,16 @@
       <nav class="navbar navbar-default navbar-site">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">Alexander answer</a>
+            <a class="navbar-brand" href="/">Alexander answer</a>
           </div>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="搜索问题">
             </div>
             <button type="submit" class="btn btn-default">搜索</button>
-          </form>
+          </form>          
+          <%= link_to '提问', new_question_path, :class => 'btn btn-primary navbar-btn navbar-right J_askBtn' %>
+
         </div>
       </nav>
     </header>

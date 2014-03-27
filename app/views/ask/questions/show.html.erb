@@ -10,7 +10,7 @@
 			<%= link_to '修改', edit_question_path(@question), :remote => true, :class => 'edit' if can?(:edit, @question) %>
 			<%= link_to '删除', @question, :method => :delete, :data => {:confirm => '确实要删除这个问题吗？'} if can?(:destroy, @question) %>
 			<%= link_to "评论(#{@question.comments.count})", question_comments_path(@question), :remote => true, :class => 'comments' %>
-			<%= link_to "举报", new_question_complaint_path(@question), :class => 'modal-btn-complaints' %>
+			<%= link_to "举报", new_question_complaint_path(@question), :class => 'J_complaintsBtn' %>
 			<%= top_link %>
 			<%= refine_link %>
 		</div>

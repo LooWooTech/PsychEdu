@@ -14,6 +14,7 @@ PsychEdu::Application.routes.draw do
           member do
             get :guide, :review, :exam
           end
+          resources :heartbeats, :only => [:create]
           resources :topic_exams, :only => [:show] do
             member do
               patch :submit
@@ -45,10 +46,11 @@ PsychEdu::Application.routes.draw do
 
   scope :module => :admin do
     constraints :subdomain => 'admin' do
-      resources :students, :only => [:new, :create, :show, :edit, :update, :index] do
-        resources :topic_learnings, :only => [:create]
-      end
       shallow do
+        resources :monthly_online_trackings, :only => [:index]
+        resources :students, :only => [:new, :create, :show, :edit, :update, :index] do
+          resources :topic_learnings, :only => [:create]
+        end
         resources :topic_testings, :only => [:new, :create, :show, :edit, :update, :index]
         resources :topic_exams, :only => [:show, :index] do
           member do

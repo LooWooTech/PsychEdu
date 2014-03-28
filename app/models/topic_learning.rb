@@ -5,15 +5,20 @@ class TopicLearning < ActiveRecord::Base
   has_many :learning_periods, :dependent => :destroy, :inverse_of => :topic_learning
   has_many :chapter_learnings, :dependent => :destroy
   has_many :exams, :dependent => :destroy, :class_name => 'TopicExam'
+  has_many :monthly_online_trackings, :dependent => :destroy
 
   validates :topic, :uniqueness => {:scope => :student}
 
   delegate :name, :guide_video_url, :review_video_url, :announcements, :testing, :to => :topic
-  delegate :name, :unit_code, :to => :student, :prefix => true
+  delegate :username, :name, :unit_code, :to => :student, :prefix => true
 
   accepts_nested_attributes_for :learning_periods, :reject_if => lambda{|attr| attr[:start_on].blank? || attr[:end_on].blank?}
 
   after_create :create_chapter_learnings
+
+  def heartbeat
+    monthly_online_trackings.current.heartbeat
+  end
 
   def unreviewed_exam
     exams.unreviewed.last

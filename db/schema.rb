@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321022853) do
+ActiveRecord::Schema.define(version: 20140328053707) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -148,6 +148,15 @@ ActiveRecord::Schema.define(version: 20140321022853) do
 
   add_index "leaving_periods", ["learning_period_id"], name: "index_leaving_periods_on_learning_period_id", using: :btree
   add_index "leaving_periods", ["reviewer_id"], name: "index_leaving_periods_on_reviewer_id", using: :btree
+
+  create_table "monthly_online_trackings", force: true do |t|
+    t.integer  "topic_learning_id"
+    t.integer  "seconds",           default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "monthly_online_trackings", ["topic_learning_id"], name: "index_monthly_online_trackings_on_topic_learning_id", using: :btree
 
   create_table "multiple_choice_answers", force: true do |t|
     t.integer  "multiple_choice_question_id"

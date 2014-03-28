@@ -1,0 +1,57 @@
+<div class='page-header clearfix'>
+  <h1>时间跟踪</h1>
+</div>
+  <%= search_form_for @search, :url => monthly_online_trackings_path do |f| %>
+    <div class='col-lg-4'>
+      <%= f.label :topic_learning_student_account_username_cont, '用户名' %>
+      <%= f.text_field :topic_learning_student_account_username_cont %>
+    </div>
+    <div class='col-lg-4'>
+      <%= f.label :topic_learning_student_name_cont, '姓名' %>
+      <%= f.text_field :topic_learning_student_name_cont %>
+    </div>
+    <div class='col-lg-4'>
+      <%= f.label :topic_learning_student_unit_code_eq, '单位编号' %>
+      <%= f.text_field :topic_learning_student_unit_code_eq %>
+    </div>
+    <div class='col-lg-4'>
+      <%= f.label :topic_learning_topic_id_eq, '专题' %>
+      <%= f.select :topic_learning_topic_id_eq, options_from_collection_for_select(Topic.all, :id, :name), :include_blank => '--全部--' %>
+    </div>
+    <div class='col-lg-4'>
+      <%= select_tag :compare, options_for_select({ '大于或等于' => '>=', '小于或等于' => '<=' }, params[:compare]) %>
+      <%= number_field_tag :hours, params[:hours] %>小时
+    </div>
+    <div class='col-lg-4'>
+      <%= select_tag :year, options_for_select(10.years.ago.year..Date.today.year, params[:year])%>年
+      <%= select_tag :month, options_for_select(1..12, params[:month]), :include_blank => true %>月
+      <button type='submit'>搜索</button>
+    </div>
+  <% end %>
+<table class='table table-striped table-hover'>
+  <thead>
+    <tr>
+      <th>登录名</th>
+      <th>姓名</th>
+      <th>单位编码</th>
+      <th>所学专题</th>
+      <% months = (@start..@end).select{|d| d.day == 1 }.map(&:month) %>
+      <% months.each do |month| %>
+        <th><%= month %>月</th>
+      <% end %>
+      <th>合计</th>
+  </thead>
+  <% Hash[@table].each do |topic_learning, trackings| %>
+    <tr>
+      <td><%= topic_learning.student_username %></td>
+      <td><%= topic_learning.student_name %></td>
+      <td><%= topic_learning.student_unit_code %></td>
+      <td><%= topic_learning.name %></td>
+      <% months.each do |month| %>
+        <td><%= ((trackings.find{|tracking| tracking.updated_at.month == month}.try(:seconds) || 0) / 60.0 / 60.0).round(2) %></td>
+      <% end %>
+      <td><%= (trackings.sum(&:seconds) / 60.0 / 60.0).round(2) %></td>
+    </tr>
+  <% end%>
+</table>
+<%= paginate @table %>

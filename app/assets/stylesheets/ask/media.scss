@@ -54,9 +54,11 @@
 }
 
 .media-heading {
+
+	padding-top: 10px;
+
 	a {
-		color: #333;
-		font-size: 22px;
+		color: $gray-dark;
 
 		@include transition(color .2s);
 

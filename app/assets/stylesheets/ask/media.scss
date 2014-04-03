@@ -36,16 +36,19 @@
 	> .actions {
 		color: $gray-light;
 		font-size: 13px;
-		@include opacity(0);
-		@include transition-duration(500ms);
 
 		a {
 			color: $gray-light;
 		}
 	}
 
+	.media-fade {
+		@include opacity(0);
+		@include transition-duration(500ms);
+	}
+
 	&:hover {
-		> .actions {
+		.media-fade {
 			@include opacity(1);
 			@include transition-duration(500ms);
 			@include transition-property(opacity);

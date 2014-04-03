@@ -14,7 +14,8 @@
       "wysihtml5": "0.3.0",
       "jquery-ui": "git://github.com/components/jqueryui.git",
       "holderjs": "*",
-      "ckeditor": "*"
+      "ckeditor": "*",
+      "fontawesome": "*"
     }
   }
 }

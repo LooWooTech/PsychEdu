@@ -5,6 +5,7 @@ module Learning
     def show
       @unit_learning = @video_watching.unit_learning
       @chapter_learning = @unit_learning.chapter_learning
+      @video_watching.update_attribute :with_comment, params[:with_comment] if params[:with_comment].present?
     end
 
     def update

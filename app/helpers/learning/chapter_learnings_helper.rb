@@ -17,5 +17,10 @@ module Learning
     def unit_name(unit_learning)
       unit_learning.only_child? ? unit_learning.chapter_name : unit_learning.name
     end
+
+    def mode_switch_link(video_watching)
+      text = video_watching.with_comment? ? '非点评版' : '点评版'
+      link_to text, video_watching_path(video_watching, :with_comment => !video_watching.with_comment?)
+    end
   end
 end

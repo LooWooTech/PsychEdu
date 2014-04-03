@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328053707) do
+ActiveRecord::Schema.define(version: 20140403022020) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -360,6 +360,7 @@ ActiveRecord::Schema.define(version: 20140328053707) do
     t.datetime "updated_at"
     t.float    "seconds",          default: 0.0
     t.text     "playing_data"
+    t.boolean  "with_comment",     default: true
   end
 
   add_index "video_watchings", ["unit_learning_id"], name: "index_video_watchings_on_unit_learning_id", using: :btree

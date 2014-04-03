@@ -6,6 +6,11 @@
     <%= javascript_include_tag "learning/manifest" %>
     <%= yield :head %>
     <%= csrf_meta_tags %>
+    <%= javascript_tag  do %>
+      setInterval(function(){
+        $.post('<%= topic_learning_heartbeats_path current_topic_learning %>');
+      }, <%= MonthlyOnlineTracking::INTERVAL_MILLISECONDS %>);
+    <% end %>
   </head>
   <body id='<%= @body_id %>'>
     <div id='header'>

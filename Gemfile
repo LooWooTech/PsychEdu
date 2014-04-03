@@ -20,6 +20,8 @@ gem 'compass-rails'
 
 gem 'bootstrap_form'
 
+gem 'ransack'
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false

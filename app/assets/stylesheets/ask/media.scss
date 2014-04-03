@@ -16,29 +16,39 @@
 
 .media-object {
 	border: solid 5px #ccc;
-
-	@include transition(border-color .2s);
+	@include transition-duration(500ms);
 
 	&:hover {
 		border-color: $brand-primary;
+		@include transition-duration(500ms);
+		@include transition-property(border-color);
 	}
 }
 
 .media-body {
-	padding-top: 15px;
-
 	> .contents {
 		color: $text-color;
 		line-height: $line-height-base * 1.2;
 		padding: 20px 0;
+		font-size: 1.2em;
 	}
 
 	> .actions {
-		color: #ccc;
+		color: $gray-light;
 		font-size: 13px;
+		@include opacity(0);
+		@include transition-duration(500ms);
 
 		a {
-			color: #ccc;
+			color: $gray-light;
+		}
+	}
+
+	&:hover {
+		> .actions {
+			@include opacity(1);
+			@include transition-duration(500ms);
+			@include transition-property(opacity);
 		}
 	}
 }
@@ -82,6 +92,7 @@
 	> a.btn {
 		> hr {
 			margin: 5px 0;
+			border-color: lighten($gray-light, 22%);
 		}
 	}
 }

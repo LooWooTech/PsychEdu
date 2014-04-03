@@ -27,10 +27,13 @@
 
 .media-body {
 	> .contents {
-		color: $text-color;
+		color: #000;
 		line-height: $line-height-base * 1.2;
 		padding: 20px 0;
-		font-size: 1.2em;
+	}
+
+	> .author {
+		color: $gray-light;
 	}
 
 	> .actions {

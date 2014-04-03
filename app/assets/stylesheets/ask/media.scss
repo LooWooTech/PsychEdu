@@ -58,13 +58,11 @@
 	padding-top: 10px;
 
 	a {
-		color: $gray-dark;
-
-		@include transition(color .2s);
+		color: $gray;
 
 		&:hover,
 		&:focus {
-			color: $brand-primary;
+			color: $gray-darker;
 			text-decoration: none;
 		}
 	}

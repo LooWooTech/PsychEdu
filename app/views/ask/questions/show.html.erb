@@ -44,9 +44,15 @@
     <div>张三, 互联网布道者</div>
     <div class="contents">
   	  <%= bootstrap_form_for [@question, @answer || Answer.new] do |f| %>
-  		<%= f.text_area :content, :class => 'bootstrap-editor', :rows => 5, :placeholder => '添加您的回答', hide_label: true %>
+  		<%= f.text_area :content, :id => 'answer-editor', :rows => 5, :placeholder => '添加您的回答', hide_label: true %>
   	    <%= f.submit '发布回答' %>
   	  <% end %>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#answer-editor').editor();
+	});
+</script>

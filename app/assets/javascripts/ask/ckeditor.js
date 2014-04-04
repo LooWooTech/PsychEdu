@@ -1,35 +1,39 @@
 //*= require ckeditor/ckeditor.js
 
-$(document).ready(function() {
+(function() {
 
-	var className = 'bootstrap-editor';
+	"use strict";
 
-	CKEDITOR.replaceAll(function(textarea, config) {
+	var config = {
+		toolbar: [
+			[
+				'Styles',
+				'Bold',
+				'Italic',
+				'-',
+				'NumberedList',
+				'BulletedList',
+				'Blockquote',
+				'-',
+				'Link',
+				'Unlink',
+				'-',
+				'Maximize'
+			]
+		]
+	};
 
-		if ($(textarea).hasClass(className)) {
+	var Editor = function(el, opts) {
 
-			// 工具条配置
-			config.toolbar = [
-				[
-					'Styles',
-					'Bold',
-					'Italic',
-					'-',
-					'NumberedList',
-					'BulletedList',
-					'Blockquote',
-					'-',
-					'Link',
-					'Unlink',
-					'-',
-					'Maximize'
-				]
-			];
+		config = $.extend(config, opts);
 
-			return true;
-		}
-		else {
-			return false;
-		}
-	});
-});
+		CKEDITOR.replace(el, config);
+	}
+
+	$.fn.editor = function(opts) {
+		this.each(function() {
+			var editor = new Editor(this, opts);
+		});
+	}
+
+})();

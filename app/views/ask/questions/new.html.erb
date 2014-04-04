@@ -7,7 +7,7 @@
 
 <div class="modal-body">
   <%= f.text_field :title, label: '标题', placeholder: '写下您问题的标题' %>
-  <%= f.text_area :content, label: '问题说明', rows: 8, placeholder: '描述一下您的问题' %>
+  <%= f.text_area :content, id: 'ask-editor', label: '问题说明', rows: 8, placeholder: '描述一下您的问题' %>
 </div>
 
 <div class="modal-footer">
@@ -16,3 +16,9 @@
 </div>
 
 <% end %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#ask-editor').editor();
+	});
+</script>

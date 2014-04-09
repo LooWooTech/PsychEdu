@@ -21,6 +21,7 @@ gem 'compass-rails'
 gem 'bootstrap_form'
 
 gem 'ransack'
+gem 'smarter_csv'
 
 group :test, :development do
   gem 'rspec-rails'

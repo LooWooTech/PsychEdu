@@ -208,6 +208,15 @@ zh:
         topic: '专题'
       learning_periods:
         base: '学习周期'
+      student:
+        account: '账号'
+        name: '姓名'
+        unit_code: '单位编码'
+      account:
+        username: '用户名'
+        password: '密码'
+        password_confirmation: '确认密码'
+
 
   views:
     pagination:

@@ -23,7 +23,6 @@ $ ->
       'student[name]': 'required'
       'student[account_attributes][password]': 'required'
       'student[account_attributes][password_confirmation]': 'required'
-      'student[gender]': 'required'
       'student[unit_code]': 'required'
     messages:
       'student[account_attributes][username]':
@@ -34,8 +33,6 @@ $ ->
         'required': '请确认密码'
       'student[name]':
         'required': '请输入姓名'
-      'student[gender]':
-        'required': '请选择性别'
       'student[unit_code]':
         'required': '请输入单位编码'
 

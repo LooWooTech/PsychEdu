@@ -4,7 +4,7 @@ describe Student do
   subject{FactoryGirl.create :student}
   specify {expect(subject).to be_valid}
 
-  it_behaves_like 'requiring attributes', :name, :gender, :unit_code
+  it_behaves_like 'requiring attributes', :name, :unit_code
   it_behaves_like 'having an account'
 
   describe '#current_topic_learning' do

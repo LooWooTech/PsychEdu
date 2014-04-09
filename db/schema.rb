@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140403022020) do
+ActiveRecord::Schema.define(version: 20140407090722) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -254,10 +254,29 @@ ActiveRecord::Schema.define(version: 20140403022020) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "gender"
+    t.integer  "gender",              default: 2
     t.string   "unit_code"
     t.string   "note"
     t.integer  "added_by_id"
+    t.string   "cipher"
+    t.string   "cipher_answer"
+    t.string   "telephone"
+    t.string   "mobile"
+    t.string   "email"
+    t.string   "qq"
+    t.string   "identification"
+    t.date     "birthday"
+    t.string   "province"
+    t.string   "unit_name"
+    t.string   "address"
+    t.string   "zip_code"
+    t.string   "education"
+    t.string   "special_field"
+    t.string   "level"
+    t.string   "certificate_number"
+    t.date     "certify_date"
+    t.text     "training_experience"
+    t.text     "psychology_job"
   end
 
   add_index "students", ["added_by_id"], name: "index_students_on_added_by_id", using: :btree

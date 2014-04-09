@@ -5,4 +5,6 @@
 *= require ask/modal
 *= require ask/ask
 *= require ask/complaints
+*= require ask/questions
+*= require ask/ckeditor
 */

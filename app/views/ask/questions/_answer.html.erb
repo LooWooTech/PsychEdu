@@ -18,16 +18,21 @@
   </div>
 
   <div class="media-body">
-    <div><%= answer.answerer.name %>, 互联网布道者</div>
+    <div class="author">
+      <a href="#"><%= answer.answerer.name %></a>, 特级英语教师
+    </div>
     <div class="contents">
       <%= answer.content %>
     </div>
     <div class="actions">
-      <span class="glyphicon glyphicon-tasks"></span> 一天前 / 李四
-      <%= link_to '修改', edit_answer_path(answer), :class => 'edit', :remote => true if can?(:edit, answer) %>
-      <%= link_to '删除', answer, :method => :delete, :class => 'delete', :data => {:confirm => '确实要删除这个回答吗？'} if can?(:destroy, answer) %>
-      <%= link_to "评论(#{answer.comments.count})", answer_comments_path(answer), :remote => true, :class => 'comments' %>
-      <%= link_to "举报", new_answer_complaint_path(answer), :class => 'J_complaintsBtn' %>
+      <span class="fa fa-calendar"></span> 一天前 / <span class="fa fa-user"></span> 邱茂源
+      <span class="media-fade">
+        /
+        <%= link_to '修改', edit_answer_path(answer), :class => 'edit', :remote => true if can?(:edit, answer) %>
+        <%= link_to '删除', answer, :method => :delete, :class => 'delete', :data => {:confirm => '确实要删除这个回答吗？'} if can?(:destroy, answer) %>
+        <%= link_to "评论(#{answer.comments.count})", answer_comments_path(answer), :remote => true, :class => 'comments' %>
+        <%= link_to "举报", new_answer_complaint_path(answer), :class => 'J_complaintsBtn' %>
+      </span>
     </div>
   </div>
 </div>

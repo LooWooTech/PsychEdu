@@ -6,13 +6,16 @@
 		<h4 class="media-heading"><%= @question.title %></h4>
 		<div class='contents'><%= @question.content %></div>
 		<div class="actions">
-			<span class="glyphicon glyphicon-tasks"></span> 一天前 / 张三
-			<%= link_to '修改', edit_question_path(@question), :remote => true, :class => 'edit' if can?(:edit, @question) %>
-			<%= link_to '删除', @question, :method => :delete, :data => {:confirm => '确实要删除这个问题吗？'} if can?(:destroy, @question) %>
-			<%= link_to "评论(#{@question.comments.count})", question_comments_path(@question), :remote => true, :class => 'comments' %>
-			<%= link_to "举报", new_question_complaint_path(@question), :class => 'J_complaintsBtn' %>
-			<%= top_link %>
-			<%= refine_link %>
+			<span class="fa fa-calendar"></span> 一天前 / <span class="fa fa-user"></span> 张兰
+			<span class="media-fade">
+				/
+				<%= link_to '修改', edit_question_path(@question), :remote => true, :class => 'J_editQuestionBtn' if can?(:edit, @question) %>
+				<%= link_to '删除', @question, :method => :delete, :data => {:confirm => '确实要删除这个问题吗？'} if can?(:destroy, @question) %>
+				<%= link_to "评论(#{@question.comments.count})", question_comments_path(@question), :remote => true, :class => 'comments' %>
+				<%= link_to "举报", new_question_complaint_path(@question), :class => 'J_complaintsBtn' %>
+				<%= top_link %>
+				<%= refine_link %>
+			</span>
 		</div>
 	</div>
 </div>
@@ -28,12 +31,10 @@
 		</div>
 	</div>
 
-	<div class="info-body">
+	<div class="info-body media-items">
 		<%= render :collection => @question.answers, :partial => 'ask/questions/answer' %>
 	</div>
 </div>
-
-<hr>
 
 <div class="media">
   <a class="pull-left" href="#">
@@ -43,9 +44,15 @@
     <div>张三, 互联网布道者</div>
     <div class="contents">
   	  <%= bootstrap_form_for [@question, @answer || Answer.new] do |f| %>
-  		<%= f.text_area :content, :rows => 5, :placeholder => '添加您的回答', hide_label: true %>
+  		<%= f.text_area :content, :id => 'answer-editor', :rows => 5, :placeholder => '添加您的回答', hide_label: true %>
   	    <%= f.submit '发布回答' %>
   	  <% end %>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#answer-editor').editor();
+	});
+</script>

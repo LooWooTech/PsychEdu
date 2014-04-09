@@ -13,7 +13,9 @@
       "modernizr": "2.7.2",
       "wysihtml5": "0.3.0",
       "jquery-ui": "git://github.com/components/jqueryui.git",
-      "holderjs": "*"
+      "holderjs": "*",
+      "ckeditor": "*",
+      "fontawesome": "*"
     }
   }
 }

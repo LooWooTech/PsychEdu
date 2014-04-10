@@ -17,12 +17,31 @@ $ ->
           location.pathname = path
       false
 
-  $('#edit-student').validate
+  $('form[id^=edit_student]').validate
+    rules:
+      'student[account_attributes][username]': 'required'
+      'student[name]': 'required'
+      'student[account_attributes][password_confirmation]':
+        'equalTo': '[name="student[account_attributes][password]"]'
+      'student[unit_code]': 'required'
+    messages:
+      'student[account_attributes][username]':
+        'required': '请输入用户名'
+      'student[account_attributes][password_confirmation]':
+        'equalTo': '两次密码输入不一致'
+      'student[name]':
+        'required': '请输入姓名'
+      'student[unit_code]':
+        'required': '请输入单位编码'
+
+  $('#new_student').validate
     rules:
       'student[account_attributes][username]': 'required'
       'student[name]': 'required'
       'student[account_attributes][password]': 'required'
       'student[account_attributes][password_confirmation]': 'required'
+      'student[account_attributes][password_confirmation]':
+        'equalTo': '[name="student[account_attributes][password]"]'
       'student[unit_code]': 'required'
     messages:
       'student[account_attributes][username]':
@@ -31,6 +50,7 @@ $ ->
         'required': '请输入密码'
       'student[account_attributes][password_confirmation]':
         'required': '请确认密码'
+        'equalTo': '两次密码输入不一致'
       'student[name]':
         'required': '请输入姓名'
       'student[unit_code]':

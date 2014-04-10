@@ -7,6 +7,8 @@ module HasAnAccount
     delegate :username, :username=,
       :password, :password=,
       :password_confirmation, :password_confirmation=,
+      :cipher, :cipher=,
+      :cipher_answer, :cipher_answer=,
       :change_password, :to => :account
 
     validates :account, :presence => true

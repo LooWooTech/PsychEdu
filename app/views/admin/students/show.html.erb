@@ -20,6 +20,10 @@
       <td>在学</td>
     </tr>
     <tr>
+      <th>添加人：</th>
+      <td><%= @student.added_by_username %></td>
+    </tr>
+    <tr>
       <th>开通的专题：</th>
       <td>
         <% if @student.topic_learnings.any? %>

@@ -37,6 +37,10 @@ class Student < ActiveRecord::Base
 
   validates :name, :unit_code, :presence => true
 
+  def added_by_username
+    added_by.try(:username) || '无'
+  end
+
   def change_current_topic_learning(topic_learning)
     transaction do
       current_topic_learning.update_attribute :current, false

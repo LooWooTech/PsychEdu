@@ -5,6 +5,31 @@
     <li><%= link_to '新增学员', new_student_path, :class => 'btn btn-default' %></li>
   </ul>
 </div>
+<%= search_form_for @search do |f| %>
+  <div class='col-lg-4'>
+    <%= f.label :account_username_cont, '用户名' %>
+    <%= f.text_field :account_username_cont %>
+  </div>
+  <div class='col-lg-4'>
+    <%= f.label :name_cont, '姓名' %>
+    <%= f.text_field :name_cont %>
+  </div>
+  <div class='col-lg-4'>
+    <%= f.label :unit_code_cont, '单位编号' %>
+    <%= f.text_field :unit_code_cont %>
+  </div>
+  <div class='col-lg-4'>
+    <%= f.label :province_eq, '省份' %>
+    <%= f.select :province_eq, Student::PROVINCES, :include_blank => '全部' %>
+  </div>
+  <div class='col-lg-4'>
+    <%= f.label :topic_learnings_topic_id_eq, '在学专题' %>
+    <%= f.select :topic_learnings_topic_id_eq, options_from_collection_for_select(Topic.all, :id, :name, @search.topic_learnings_topic_id_eq), :include_blank => '全部' %>
+  </div>
+  <div class='col-lg-4'>
+    <button type='submit'>搜索</button>
+  </div>
+<% end %>
 <table class='table table-striped table-hover'>
   <thead>
     <tr>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407090722) do
+ActiveRecord::Schema.define(version: 20140410062114) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20140407090722) do
     t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "cipher"
+    t.string   "cipher_answer"
   end
 
   add_index "accounts", ["owner_id", "owner_type"], name: "index_accounts_on_owner_id_and_owner_type", using: :btree
@@ -258,8 +260,6 @@ ActiveRecord::Schema.define(version: 20140407090722) do
     t.string   "unit_code"
     t.string   "note"
     t.integer  "added_by_id"
-    t.string   "cipher"
-    t.string   "cipher_answer"
     t.string   "telephone"
     t.string   "mobile"
     t.string   "email"

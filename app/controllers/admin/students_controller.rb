@@ -3,7 +3,8 @@ module Admin
     before_action :find_student, :only => [:show, :edit, :update]
 
     def index
-      @students = Student.page(params[:page]).per(10)
+      @search = Student.search params[:q]
+      @students = @search.result.page(params[:page]).per(10)
     end
 
     def new

@@ -24,6 +24,11 @@
       color: #fff;
       @include transition(200ms color);
     }
+
+    span {
+      color: $appInverse;
+      font-size: .8em;
+    }
   }
 
   .navbar-nav {
@@ -63,7 +68,14 @@
 }
 
 .navbar-form {
+  margin-top: 12px;
   input.form-control {
-    width: 360px;
+    @include border-radius(2px);
+    width: 240px;
+    border: none;
+    height: 26px;
+    background-color: darken($appPrimary, 5%);
+    @include box-shadow(none);
+    @include placeholder($appPrimary);
   }
 }

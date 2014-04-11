@@ -1,0 +1,60 @@
+@import "../app";
+@import "../bootstrap";
+@import "compass";
+
+.navbar-global,
+.navbar-site {
+  border-width: 0 0 1px;
+  margin-bottom: 0;
+  @include border-radius(0);
+}
+
+.navbar-global {
+
+  background-color: $appDarker;
+  @include box-shadow(0 3px 2px rgba(0,0,0,.1));
+  border-bottom: none;
+
+  .navbar-brand {
+    @include transition-duration(200ms);
+    &:hover,
+    &:focus {
+      color: #fff;
+      @include transition(200ms color);
+    }
+  }
+
+  .navbar-nav {
+    > li > a {
+      padding-top: 12px;
+      // padding-bottom: 9px;
+
+      border-top: solid 3px transparent;
+      @include transition-duration(200ms);
+
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        border-top-color: $appPrimary;
+        color: $appPrimary;
+        @include transition(200ms border-top-color,color);
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        border-top-color: $appPrimary;
+        color: $appPrimary;
+        @include transition(200ms border-top-color,color);
+      }
+    }
+  }
+}
+
+.navbar-form {
+  input.form-control {
+    width: 360px;
+  }
+}

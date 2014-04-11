@@ -11,31 +11,6 @@ header {
   left: 0;
   position: fixed;
   z-index: 99;
-
-  .navbar-global,
-  .navbar-site {
-    border-width: 0 0 1px;
-    margin-bottom: 0;
-    @include border-radius(0);
-  }
-
-  .navbar-global {
-    min-height: 0;
-    ul.navbar-nav {
-      > li {
-        > a {
-          padding-top: 9px;
-          padding-bottom: 9px;
-        }
-      }
-    }
-  }
-
-  .navbar-form {
-    input.form-control {
-      width: 360px;
-    }
-  }
 }
 
 footer {

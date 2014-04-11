@@ -12,13 +12,13 @@
 .navbar-global {
 
   background-color: $appPrimary;
-  @include box-shadow(0 3px 2px rgba(0,0,0,.1));
+  @include box-shadow(0 0 16px rgba(0,0,0,.175));
   border-bottom: none;
 
   .navbar-brand {
     color: #fff;
     @include transition-duration(200ms);
-    
+
     &:hover,
     &:focus {
       color: #fff;

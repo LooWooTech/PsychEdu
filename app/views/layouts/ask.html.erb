@@ -36,23 +36,67 @@
 
     <div class="container">
       <div class="row">
-        
-        <div class="col-md-2">
-          <h5>类别1</h5>
-          <ul class="nav nav-side nav-stacked">
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span>版面1</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span>版面2</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span>版面3</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span>版面4</a></li>
-          </ul>
-          <h5>类别2</h5>
-          <ul class="nav nav-side nav-stacked">
-            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span>版面1</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span>版面2</a></li>
-          </ul>
-        </div>
+
         <div class="col-md-9">
           <%= yield %>
+        </div>
+        
+        <div class="col-md-3">
+          
+
+          <div class="panel-group panel-accordion" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    类别1
+                  </a>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <ul class="panel-nav">
+                    <li class="active"><a href="#">SUBCATEGORY (30)</a></li>
+                    <li><a href="#">SUBCATEGORY (12)</a></li>
+                    <li><a href="#">SUBCATEGORY (1)</a></li>
+                    <li><a href="#">SUBCATEGORY (99+)</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                  类别2
+                </a>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <ul class="panel-nav">
+                    <li class="active"><a href="#">SUBCATEGORY (30)</a></li>
+                    <li><a href="#">SUBCATEGORY (12)</a></li>
+                    <li><a href="#">SUBCATEGORY (1)</a></li>
+                    <li><a href="#">SUBCATEGORY (99+)</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                  类别3
+                </a>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <ul class="panel-nav">
+                    <li class="active"><a href="#">SUBCATEGORY (30)</a></li>
+                    <li><a href="#">SUBCATEGORY (12)</a></li>
+                    <li><a href="#">SUBCATEGORY (1)</a></li>
+                    <li><a href="#">SUBCATEGORY (99+)</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

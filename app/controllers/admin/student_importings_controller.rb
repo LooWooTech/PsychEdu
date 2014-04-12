@@ -3,7 +3,7 @@ module Admin
     def create
       @importer = StudentImporter.new(params[:file].path, params[:topic_ids])
       if @importer.failed?
-        flash[:error] = @importer.errors.join('<br />')
+        flash[:error] = raw @importer.errors.join('<br />')
       else
         flash[:notice] = '导入成功'
       end

@@ -1,19 +1,5 @@
 <div class='well'>
   <%= form_tag student_importings_path, :multipart => true, :class => 'form-horizontal', :id => 'student-importing' do %>
-
-    <% if flash[:notice].present? %>
-      <div class='alert alert-success'>
-        <button type='button' class='close' data-dismiss='alert'>&times;</button>
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
-
-    <% if flash[:error].present? %>
-      <div class='alert alert-danger'>
-        <button type='button' class='close' data-dismiss='alert'>&times;</button>
-        <%= raw flash[:error] %>
-      </div>
-    <% end %>
     <fieldset>
       <legend>批量报名</legend>
       <div class='form-group'>

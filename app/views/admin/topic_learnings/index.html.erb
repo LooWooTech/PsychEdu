@@ -1,0 +1,42 @@
+<div class='page-header clearfix'>
+  <h1>专题开通列表</h1>
+  <ul>
+    <li><%= link_to '批量报名', student_importings_path, :class => 'btn btn-default' %></li>
+  </ul>
+</div>
+<%= search_form_for @search do |f| %>
+  <div class='col-lg-4'>
+    <%= f.label :student_account_username_cont, '用户名' %>
+    <%= f.text_field :student_account_username_cont %>
+  </div>
+  <div class='col-lg-4'>
+    <%= f.label :studen_name_cont, '姓名' %>
+    <%= f.text_field :student_name_cont %>
+  </div>
+  <div class='col-lg-4'>
+    <%= f.label :topic_id_eq, '在学专题' %>
+    <%= f.select :topic_id_eq, options_from_collection_for_select(Topic.all, :id, :name, @search.topic_id_eq), :include_blank => '全部' %>
+  </div>
+  <div class='col-lg-12'>
+    <button type='submit'>搜索</button>
+  </div>
+<% end %>
+<table class='table table-striped table-hover'>
+  <thead>
+    <tr>
+      <th>用户名</th>
+      <th>姓名</th>
+      <th>所报专题</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <% @topic_learnings.each do |topic_learning| %>
+    <tr>
+      <td><%= topic_learning.student_username %></td>
+      <td><%= topic_learning.student_name %></td>
+      <td><%= topic_learning.name %></td>
+      <td><%= link_to '删除', topic_learning, :method => :delete, :data => {:confirm => "确实要删除#{topic_learning.student_name}的#{topic_learning.name}报名吗？"} %></td>
+    </tr>
+  <% end%>
+</table>
+<%= paginate @topic_learnings %>

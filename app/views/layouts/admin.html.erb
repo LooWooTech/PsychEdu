@@ -22,7 +22,7 @@
             <ul class='dropdown-menu'>
               <li><%= link_to '学员管理', students_path %></li>
               <li><%= link_to '时间跟踪', monthly_online_trackings_path %></li>
-              <li><%= link_to '批量报名', student_importings_path %></li>
+              <li><%= link_to '报名管理', topic_learnings_path %></li>
             </ul>
           </li>
           <li><%= link_to '课程管理', topics_path %></li>
@@ -38,7 +38,21 @@
         </ul>
       </div>
     </div>
-    <div class='container'> <%= yield %> </div>
+    <div class='container'>
+      <% if flash[:notice].present? %>
+        <div class='alert alert-success'>
+          <button type='button' class='close' data-dismiss='alert'>&times;</button>
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+      <% if flash[:error].present? %>
+        <div class='alert alert-danger'>
+          <button type='button' class='close' data-dismiss='alert'>&times;</button>
+          <%= flash[:error] %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
     <footer> &copy;建德教育 </footer>
   </body>
 </html>

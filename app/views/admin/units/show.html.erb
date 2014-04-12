@@ -35,13 +35,6 @@
   <h3>题库</h3>
 </div>
 <%= form_tag import_questions_unit_path(@unit), :method => :post, :multipart => true, :id => 'question-import', :class => 'form-horizontal' do %>
-  
-  <% if flash[:notice].present? %>
-    <div class='alert alert-success'>
-      <button type='button' class='close' data-dismiss='alert'>&times;</button>
-      <%= flash[:notice] %>
-    </div>
-  <% end %>
   <fieldset>
     <div class='form-group'>
       <div class='col-lg-10'>

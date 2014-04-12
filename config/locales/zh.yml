@@ -190,6 +190,7 @@ zh:
       long: ! '%Y年%b%d日 %H:%M'
       short: ! '%b%d日 %H:%M'
       time_only: ! '%H:%M:%S'
+      date_only: ! '%Y年%b%d日'
     pm: 下午
 
 

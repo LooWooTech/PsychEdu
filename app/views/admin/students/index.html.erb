@@ -33,18 +33,24 @@
 <table class='table table-striped table-hover'>
   <thead>
     <tr>
-      <th>登录名</th>
+      <th>用户名</th>
       <th>姓名</th>
+      <th>添加人</th>
       <th>性别</th>
       <th>单位编码</th>
+      <th>注册日期</th>
+      <th>操作</th>
     </tr>
   </thead>
   <% @students.each do |student| %>
     <tr>
       <td><%= link_to student.username, student %></td>
       <td><%= student.name %></td>
+      <td><%= student.added_by_username %></td>
       <td><%= show_gender student %></td>
       <td><%= student.unit_code %></td>
+      <td><%= l student.created_at, :format => :date_only %></td>
+      <td><%= link_to '删除', student, :method => :delete, :data => {:confirm => "确定删除#{student.name}吗？"} %></td>
     </tr>
   <% end%>
 </table>

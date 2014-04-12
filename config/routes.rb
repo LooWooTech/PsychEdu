@@ -48,7 +48,7 @@ PsychEdu::Application.routes.draw do
     constraints :subdomain => 'admin' do
       shallow do
         resources :monthly_online_trackings, :only => [:index]
-        resources :students, :only => [:new, :create, :show, :edit, :update, :index] do
+        resources :students do
           resources :topic_learnings, :only => [:create]
         end
         resources :topic_learnings, :only => [:index, :destroy]

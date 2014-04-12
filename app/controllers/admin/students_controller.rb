@@ -39,6 +39,13 @@ module Admin
       end
     end
 
+    def destroy
+      @student = Student.find params[:id]
+      @student.destroy
+      flash[:notice] = "学员#{@student.name}已经被删除"
+      redirect_to students_path
+    end
+
     private
 
     def student_params

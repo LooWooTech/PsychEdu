@@ -1,0 +1,6 @@
+@import "../app";
+@import "../bootstrap";
+
+.btn-inverse {
+  @include button-variant(#fff, $appInverse, $appInverse);
+}

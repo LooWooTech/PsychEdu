@@ -24,6 +24,9 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">John Doe <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="#">个人主页</a></li>
+                <li><a href="#">学员申请</a></li>
+                <li class="divider"></li>
+                <li><a href="#">修改密码</a></li>
                 <li><a href="#">设置</a></li>
                 <li class="divider"></li>
                 <li><a href="#">退出</a></li>
@@ -44,6 +47,14 @@
         <div class="col-md-3">
 
           <div class="well well-board">
+            <!-- <a href="#" class="btn btn-warning btn-block btn-lg">
+              <span class="glyphicon glyphicon-plus"></span>
+              提问
+            </a> -->
+            <%= link_to '提问', new_question_path, :class => 'btn btn-inverse btn-block J_askBtn' %>
+          </div>
+
+          <div class="well well-board">
             <form role="search">
               <div class="input-group" style="margin-bottom: 10px;">
                   <input type="text" class="form-control" placeholder="找问题">
@@ -55,7 +66,7 @@
           </div>
 
           <!-- <div class="well well-board">
-            <%= link_to '提问', new_question_path, :class => 'btn btn-default btn-block J_askBtn' %>
+            
           </div> -->
 
           <div class="panel-group panel-accordion" id="accordion">

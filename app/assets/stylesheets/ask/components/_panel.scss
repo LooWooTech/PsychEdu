@@ -1,0 +1,71 @@
+@import "../app";
+@import "../bootstrap";
+
+.panel-group {
+
+}
+
+.panel-title {
+
+}
+
+.panel-accordion {
+	> .panel {
+		> .panel-heading {
+			padding: 0;
+
+			> a {
+				display: block;
+				font-size: 14px;
+				padding: 10px 15px;
+				text-decoration: none;
+				color: $gray;
+
+				&:hover {
+					color: $gray-dark;
+				}
+			}
+		}
+	}
+}
+
+.panel-nav {
+
+	&,
+	& > li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	> li {
+		border-bottom: solid 1px $gray-lighter;
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+
+	> li > a {
+		display: block;
+		color: $gray-light;
+		padding: 5px 0;
+		font-size: 12px;
+		font-weight: bold;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			color: $appInverse;
+		}
+	}
+
+	> .active > a {
+		&,
+		&:hover,
+		&:focus {
+			color: $appPrimary;
+		}
+	}
+
+}

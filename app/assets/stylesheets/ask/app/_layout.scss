@@ -1,0 +1,37 @@
+@import "../bootstrap";
+@import "compass";
+
+body {
+  margin-top: 70px;
+}
+
+header {
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 99;
+}
+
+footer {
+  
+  margin-top: 60px;
+
+  > .container {
+    border-top: solid 1px #e5e5e5;
+    padding-top: 15px;
+  }
+
+  p {
+    margin-bottom: 0;
+    font-size: 12px;
+    text-align: center;
+    color: $gray-light;
+  }
+}
+
+.well-board {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}

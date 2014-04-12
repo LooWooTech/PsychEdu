@@ -9,20 +9,19 @@
     <%= javascript_include_tag "ask/manifest" %>
   </head>
   <body>
+
     <header>
       <nav class="navbar navbar-inverse navbar-global">
         <div class="container">
-          <ul class="nav navbar-nav">
+          <a class="navbar-brand" href="/">Alexander <span>问答</span></a>
+          <ul class="nav navbar-nav navbar-right">
             <li><a href="#">首页</a></li>
             <li><a href="#">教学</a></li>
             <li><a href="#">习题</a></li>
             <li><a href="#">督导</a></li>
             <li class="active"><a href="#">社区</a></li>
-            <li><a href="#">帮助</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">张三 <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">John Doe <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="#">个人主页</a></li>
                 <li><a href="#">设置</a></li>
@@ -33,42 +32,85 @@
           </ul>
         </div>
       </nav>
-      <nav class="navbar navbar-default navbar-site">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="/">Alexander answer</a>
-          </div>
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="搜索问题">
-            </div>
-            <button type="submit" class="btn btn-default">搜索</button>
-          </form>          
-          <%= link_to '提问', new_question_path, :class => 'btn btn-primary navbar-btn navbar-right J_askBtn' %>
-
-        </div>
-      </nav>
     </header>
 
     <div class="container">
       <div class="row">
-        
-        <div class="col-md-2">
-          <h5>类别1</h5>
-          <ul class="nav nav-side nav-stacked">
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span>版面1</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span>版面2</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span>版面3</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span>版面4</a></li>
-          </ul>
-          <h5>类别2</h5>
-          <ul class="nav nav-side nav-stacked">
-            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span>版面1</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span>版面2</a></li>
-          </ul>
-        </div>
+
         <div class="col-md-9">
           <%= yield %>
+        </div>
+        
+        <div class="col-md-3">
+
+          <div class="well well-board">
+            <form role="search">
+              <div class="input-group" style="margin-bottom: 10px;">
+                  <input type="text" class="form-control" placeholder="找问题">
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">搜索</button>
+                  </span>
+              </div>
+            </form>
+          </div>
+
+          <!-- <div class="well well-board">
+            <%= link_to '提问', new_question_path, :class => 'btn btn-default btn-block J_askBtn' %>
+          </div> -->
+
+          <div class="panel-group panel-accordion" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    类别1
+                  </a>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <ul class="panel-nav">
+                    <li class="active"><a href="#">SUBCATEGORY (30)</a></li>
+                    <li><a href="#">SUBCATEGORY (12)</a></li>
+                    <li><a href="#">SUBCATEGORY (1)</a></li>
+                    <li><a href="#">SUBCATEGORY (99+)</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                  类别2
+                </a>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <ul class="panel-nav">
+                    <li class="active"><a href="#">SUBCATEGORY (30)</a></li>
+                    <li><a href="#">SUBCATEGORY (12)</a></li>
+                    <li><a href="#">SUBCATEGORY (1)</a></li>
+                    <li><a href="#">SUBCATEGORY (99+)</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                  类别3
+                </a>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <ul class="panel-nav">
+                    <li class="active"><a href="#">SUBCATEGORY (30)</a></li>
+                    <li><a href="#">SUBCATEGORY (12)</a></li>
+                    <li><a href="#">SUBCATEGORY (1)</a></li>
+                    <li><a href="#">SUBCATEGORY (99+)</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

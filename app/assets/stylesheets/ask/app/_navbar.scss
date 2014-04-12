@@ -1,0 +1,81 @@
+@import "../app";
+@import "../bootstrap";
+@import "compass";
+
+.navbar-global,
+.navbar-site {
+  border-width: 0 0 1px;
+  margin-bottom: 0;
+  @include border-radius(0);
+}
+
+.navbar-global {
+
+  background-color: $appPrimary;
+  @include box-shadow(0 0 16px rgba(0,0,0,.175));
+  border-bottom: none;
+
+  .navbar-brand {
+    color: #fff;
+    @include transition-duration(200ms);
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      @include transition(200ms color);
+    }
+
+    span {
+      color: $appInverse;
+      font-size: .8em;
+    }
+  }
+
+  .navbar-nav {
+    > li > a {
+      color: lighten($appPrimary, 22%);
+      padding-top: 12px;
+      border-top: solid 3px transparent;
+      @include transition-duration(200ms);
+
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        border-top-color: $appInverse;
+        color: $appInverse;
+        @include transition(200ms border-top-color,color);
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        border-top-color: $appInverse;
+        color: $appInverse;
+        @include transition(200ms border-top-color,color);
+      }
+    }
+
+    > .open > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: $appDark;
+      }
+    }
+  }
+}
+
+.navbar-form {
+  margin-top: 12px;
+  input.form-control {
+    @include border-radius(2px);
+    width: 240px;
+    border: none;
+    height: 26px;
+    background-color: darken($appPrimary, 5%);
+    @include box-shadow(none);
+    @include placeholder($appPrimary);
+  }
+}

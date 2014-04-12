@@ -11,7 +11,7 @@
 
 .navbar-global {
 
-  background-color: $appPrimary;
+  background-color: $app-primary;
   @include box-shadow(0 0 16px rgba(0,0,0,.175));
   border-bottom: none;
 
@@ -26,14 +26,14 @@
     }
 
     span {
-      color: $appInverse;
+      color: $app-inverse;
       font-size: .8em;
     }
   }
 
   .navbar-nav {
     > li > a {
-      color: lighten($appPrimary, 22%);
+      color: lighten($app-primary, 22%);
       padding-top: 12px;
       border-top: solid 3px transparent;
       @include transition-duration(200ms);
@@ -41,8 +41,8 @@
       &:hover,
       &:focus {
         background-color: transparent;
-        border-top-color: $appInverse;
-        color: $appInverse;
+        border-top-color: $app-inverse;
+        color: $app-inverse;
         @include transition(200ms border-top-color,color);
       }
     }
@@ -51,8 +51,8 @@
       &:hover,
       &:focus {
         background-color: transparent;
-        border-top-color: $appInverse;
-        color: $appInverse;
+        border-top-color: $app-inverse;
+        color: $app-inverse;
         @include transition(200ms border-top-color,color);
       }
     }
@@ -61,7 +61,7 @@
       &,
       &:hover,
       &:focus {
-        background-color: $appDark;
+        background-color: $app-dark;
       }
     }
   }
@@ -74,8 +74,8 @@
     width: 240px;
     border: none;
     height: 26px;
-    background-color: darken($appPrimary, 5%);
+    background-color: darken($app-primary, 5%);
     @include box-shadow(none);
-    @include placeholder($appPrimary);
+    @include placeholder($app-primary);
   }
 }

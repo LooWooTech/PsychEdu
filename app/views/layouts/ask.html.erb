@@ -47,11 +47,10 @@
         <div class="col-md-3">
 
           <div class="well well-board">
-            <!-- <a href="#" class="btn btn-warning btn-block btn-lg">
+            <%= link_to(new_question_path, :class => 'btn btn-inverse btn-block J_askBtn') do %>
               <span class="glyphicon glyphicon-plus"></span>
               提问
-            </a> -->
-            <%= link_to '提问', new_question_path, :class => 'btn btn-inverse btn-block J_askBtn' %>
+            <% end %>
           </div>
 
           <div class="well well-board">
@@ -59,7 +58,7 @@
               <div class="input-group" style="margin-bottom: 10px;">
                   <input type="text" class="form-control" placeholder="找问题">
                   <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default">搜索</button>
+                    <button type="submit" class="btn btn-default" style="height: 34px;">搜索</button>
                   </span>
               </div>
             </form>

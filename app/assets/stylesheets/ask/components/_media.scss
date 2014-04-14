@@ -1,3 +1,4 @@
+@import "../app";
 @import "../bootstrap";
 @import "compass/css3/transition";
 
@@ -15,11 +16,12 @@
 }
 
 .media-object {
-	border: solid 5px #ccc;
+	border: solid 3px #ddd;
 	@include transition-duration(500ms);
 
 	&:hover {
 		border-color: $brand-primary;
+		border-color: $app-complement;
 		@include transition-duration(500ms);
 		@include transition-property(border-color);
 	}

@@ -5,6 +5,10 @@ module Admin
     def index
       @search = Student.search params[:q]
       @students = @search.result.page(params[:page]).per(10)
+      respond_to do |format|
+        format.html
+        format.csv { send_data StudentExporter.new(@search.result).export }
+      end
     end
 
     def new

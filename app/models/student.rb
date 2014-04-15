@@ -11,7 +11,7 @@ class Student < ActiveRecord::Base
     甘肃 青海 台湾 内蒙
     广西 西藏 宁夏 新疆
     香港 澳门
-  ]
+  ].freeze
 
   include HasAnAccount
 

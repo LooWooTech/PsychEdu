@@ -27,7 +27,7 @@ class StudentImporter
     :psychology_job => :现从事哪些心理服务工作,
     :note => :备注信息,
     :created_at => :添加时间
-  }
+  }.freeze
 
   def initialize(file, topic_id_list)
     @file = file

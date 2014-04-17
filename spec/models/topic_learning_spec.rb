@@ -25,7 +25,7 @@ describe TopicLearning do
       before do
         @leave_start = @learning_start + 5.days
         @leave_end = @leave_start + 29.days
-        subject.ask_for_leave @leave_start, @leave_end
+        subject.leave @leave_start, @leave_end
       end
 
       it 'returns false if the date is during leaving period' do
@@ -38,7 +38,7 @@ describe TopicLearning do
     before do
       @leave_start = @learning_start + 5.days
       @leave_end = @leave_start + 29.days
-      subject.ask_for_leave @leave_start, @leave_end
+      subject.leave @leave_start, @leave_end
     end
 
     it 'returns true if the date is during leaving period' do

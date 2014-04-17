@@ -1,0 +1,17 @@
+<li>
+  <h3>
+    学期申请<%= learning_period_counter + 1 %>：<%= review_state learning_period %>
+    <%= link_to '撤消', learning_period, :method => :delete, :data => {:confirm => '确实要撤消这次申请吗？'}  if learning_period.unreviewed? %>
+  </h3>
+  <span>开始日期：<%= learning_period.start_on %></span>
+  <span>结束日期：<%= learning_period.end_on %></span>
+  <span>实际结束日期：<%= learning_period.actually_end_on %></span>
+  <% if learning_period.accepted? %>
+    <% if learning_period.leaving_periods.any? %>
+      <h2>休学</h2>
+      <ul class='leaving-periods'>
+        <%= render :partial => 'leaving_period', :collection => learning_period.leaving_periods %>
+      </ul>
+    <% end %>
+  <% end %>
+</li>

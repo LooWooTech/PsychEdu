@@ -3,6 +3,7 @@ class TopicLearning < ActiveRecord::Base
   belongs_to :topic
 
   has_many :learning_periods, :dependent => :destroy, :inverse_of => :topic_learning
+  has_many :leaving_periods, :through => :learning_periods
   has_many :chapter_learnings, :dependent => :destroy
   has_many :exams, :dependent => :destroy, :class_name => 'TopicExam'
   has_many :monthly_online_trackings, :dependent => :destroy
@@ -15,6 +16,10 @@ class TopicLearning < ActiveRecord::Base
   accepts_nested_attributes_for :learning_periods, :reject_if => lambda{|attr| attr[:start_on].blank? || attr[:end_on].blank?}
 
   after_create :create_chapter_learnings
+
+  def has_unreviewed_application?
+    learning_periods.any? &:has_unreviewed_application?
+  end
 
   def heartbeat
     monthly_online_trackings.current.heartbeat
@@ -45,11 +50,15 @@ class TopicLearning < ActiveRecord::Base
   end
 
   def start(start_on, end_on)
-    learning_periods.create(:start_on => start_on, :end_on => end_on).valid?
+    learning_periods.create :start_on => start_on, :end_on => end_on
   end
 
-  def ask_for_leave(start_on, end_on)
-    learning_periods_include_date(start_on).leave start_on, end_on
+  def leave(start_on, end_on)
+    learning_periods_include_date(start_on).try :leave, start_on, end_on
+  end
+
+  def resume(start_on)
+    leaving_periods_include_date(start_on).try :resume, start_on
   end
 
   def ongoing?(date=Date.today)
@@ -74,6 +83,10 @@ class TopicLearning < ActiveRecord::Base
 
   def learning_periods_include_date(date)
     learning_periods.find{|period| period.include_date? date }
+  end
+
+  def leaving_periods_include_date(date)
+    leaving_periods.find{|period| period.include_date? date }
   end
 
   def chapters

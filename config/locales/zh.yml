@@ -202,7 +202,16 @@ zh:
           attributes:
             base:
               should_not_shorter_than_30_days: '不能少于30天'
-              conflict: '与另一周期冲突'
+              conflict: '与另一学习周期冲突'
+        leaving_period:
+          attributes:
+            start_on:
+              out_of_range: '不在学习周期内'
+              conflict: '与另一休学周期冲突'
+        resuming:
+          attributes:
+            date:
+              out_of_range: '不在休学周期内'
 
     attributes:
       topic_learning:
@@ -226,3 +235,9 @@ zh:
       previous: '&lsaquo;'
       next: '&rsaquo;'
       truncate: '...'
+
+  period:
+    review_state:
+      unreviewed: '未审核'
+      accepted: '通过'
+      rejected: '拒绝'

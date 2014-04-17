@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe LeavingPeriod do
-  subject{FactoryGirl.build :leaving_period }
+  subject{FactoryGirl.create :leaving_period }
   it_behaves_like 'period'
 
   it 'should not start out of any learning period' do
@@ -18,13 +18,15 @@ describe LeavingPeriod do
 
   describe '#actually_end_on' do
     it 'returns end_on date' do
-      expect(subject.actually_end_on).to be_equal subject.end_on
+      expect(subject.actually_end_on).to eq subject.end_on
     end
 
-    it 'returns resuming date if it was resumed' do
-      resuming_date = subject.start_on + 5.days
-      subject.resume resuming_date
-      expect(subject.actually_end_on).to be_equal resuming_date
+    it 'returns the earliest resuming date if it was resumed' do
+      earlier_date = subject.start_on + 5.days
+      later_date = subject.start_on + 6.days
+      subject.resume later_date
+      subject.resume earlier_date
+      expect(subject.actually_end_on).to eq earlier_date
     end
   end
 end

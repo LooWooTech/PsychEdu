@@ -1,0 +1,20 @@
+<li>
+  <h2> <%= topic_learning.name %>：<%= topic_learning_state topic_learning %> </h2>
+  <% if !topic_learning.has_unreviewed_application? %>
+    <%= form_tag topic_learning_periods_path(topic_learning), :class => 'period-application' do %>
+      <div class='type'>
+      类型：<%= select_tag 'type', options_for_select({'延学' => 'learning', '休学' => 'leaving', '恢复' => 'resuming'}), :include_blank => true %>
+      </div>
+      <div class='start'>
+      开始日期：<%= date_field_tag 'start_on' %>
+      </div>
+      <div class='end'>
+      结束日期：<%= date_field_tag 'end_on' %>
+      </div>
+      <%= submit_tag '申请' %>
+    <% end %>
+  <% end %>
+  <ul class='learning_periods'>
+    <%= render :partial => 'learning_period', :collection => topic_learning.learning_periods %>
+  </ul>
+</li>

@@ -1,0 +1,7 @@
+<h1>学习周期变更申请</h1>
+<% if flash[:notice].present? %>
+  <span class='notice'><%= flash[:notice] %></span>
+<% end %>
+<ul class='learning-periods'>
+  <%= render :partial => 'topic_learning', :collection => current_user.topic_learnings %>
+</ul>

@@ -205,9 +205,11 @@ zh:
               conflict: '与另一学习周期冲突'
         leaving_period:
           attributes:
+            base:
+              should_not_shorter_than_30_days: '不能少于30天'
+              conflict: '与另一休学周期冲突'
             start_on:
               out_of_range: '不在学习周期内'
-              conflict: '与另一休学周期冲突'
         resuming:
           attributes:
             date:

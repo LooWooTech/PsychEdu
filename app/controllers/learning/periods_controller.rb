@@ -25,7 +25,7 @@ module Learning
           end
         end
         if @period.invalid?
-          render :plain => @period.errors.full_messages.join, :status => 400
+          render :plain => @period.errors.full_messages.join(", "), :status => 400
         else
           render :plain => '申请成功，请等待审核。', :status => 200
         end

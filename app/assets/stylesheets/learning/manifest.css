@@ -1,6 +1,7 @@
 /*
 *= require reset
 *= require wysihtml5_content
+*= require '../datepicker'
 *= require_tree .
 *
 */

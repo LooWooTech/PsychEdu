@@ -1,3 +1,6 @@
+#*= require 'modernizr/modernizr'
+#*= require jquery-ui
+#*= require 'jquery-ui/ui/i18n/jquery.ui.datepicker-zh-CN'
 $ ->
   $.datepicker.setDefaults($.datepicker.regional['zh-CN'])
 

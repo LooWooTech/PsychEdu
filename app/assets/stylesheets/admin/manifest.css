@@ -1,6 +1,6 @@
 /*
-*= require "jquery-ui/themes/base/jquery-ui"
 *= require wysihtml5_content
 *= require bootstrap-lumen
+*= require '../datepicker'
 *= require_tree .
 */

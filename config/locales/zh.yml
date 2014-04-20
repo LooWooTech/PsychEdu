@@ -218,6 +218,9 @@ zh:
         topic: '专题'
       learning_periods:
         base: '学习周期'
+      leaving_period:
+        start_on: '开始日期'
+        end_on: '结束日期'
       student:
         account: '账号'
         name: '姓名'

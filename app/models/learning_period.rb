@@ -1,9 +1,11 @@
-class LearningPeriod < ActiveRecord::Base
+class LearningPeriod < PeriodApplication
   include Period
-  include PeriodApplication
 
-  has_many :leaving_periods, :dependent => :destroy
-  belongs_to :topic_learning, :inverse_of => :learning_periods
+  belongs_to :topic_learning
+
+  has_many :leaving_periods,
+    :foreign_key => :parent_id,
+    :dependent => :destroy
 
   validates :topic_learning, :presence => true
   validate :should_not_intersect_with_other_learning_period
@@ -25,7 +27,7 @@ class LearningPeriod < ActiveRecord::Base
   end
 
   def leave(start_on, end_on)
-    leaving_periods.create(:start_on => start_on, :end_on => end_on)
+    leaving_periods.create(:start_on => start_on, :end_on => end_on, :topic_learning => topic_learning)
   end
 
   def leaving?(date=Date.today)

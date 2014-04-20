@@ -1,9 +1,13 @@
-class LeavingPeriod < ActiveRecord::Base
+class LeavingPeriod < PeriodApplication
   include Period
-  include PeriodApplication
 
-  belongs_to :learning_period
-  has_many :resumings, :dependent => :destroy
+  belongs_to :topic_learning
+  belongs_to :learning_period, :foreign_key => :parent_id
+
+  has_many :resumings,
+    :class_name => 'LeavingPeriodResuming',
+    :foreign_key => :parent_id,
+    :dependent => :destroy
 
   validate :should_start_during_learning_period
   validate :should_not_intersect_with_other_leaving_period
@@ -13,12 +17,13 @@ class LeavingPeriod < ActiveRecord::Base
   end
 
   def resume(date)
-    resumings.create :date => date
+    resumings.create :start_on => date, :topic_learning => topic_learning
   end
 
   def actually_end_on
-    resumings.earliest.try(:date) || end_on
+    resumings.earliest.try(:start_on) || end_on
   end
+
 
   private
 

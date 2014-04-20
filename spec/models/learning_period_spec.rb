@@ -1,12 +1,17 @@
 require 'spec_helper'
 
 describe LearningPeriod do
-  subject{FactoryGirl.build :learning_period}
+
+  before do
+    @topic_learning = FactoryGirl.create :topic_learning
+  end
+
+  subject{ FactoryGirl.build :learning_period, :topic_learning => @topic_learning }
 
   it_behaves_like 'period'
 
   context 'when other learning periods were created' do
-    before{ @another_learning_period = FactoryGirl.create :learning_period }
+    before{ @another_learning_period = FactoryGirl.create :learning_period, :topic_learning => @topic_learning }
 
     it 'should not intersect with any other learning periods that in the same topic learning' do
       subject.topic_learning = @another_learning_period.topic_learning.reload

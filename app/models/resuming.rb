@@ -1,5 +1,4 @@
-class Resuming < ActiveRecord::Base
-  include PeriodApplication
+class Resuming < PeriodApplication
 
   belongs_to :leaving_period
   belongs_to :reviewer

@@ -10,10 +10,13 @@ module Period
   end
 
   def intersected?(period)
-    (start_on..actually_end_on).cover?(period.start_on) ||
-    (start_on..actually_end_on).cover?(period.actually_end_on) ||
-    ((period.start_on..period.actually_end_on).cover?(start_on) &&
-    (period.start_on..period.actually_end_on).cover?(actually_end_on))
+    include_date?(period.start_on) ||
+    include_date?(period.actually_end_on) ||
+    cover?(period)
+  end
+
+  def cover?(period)
+    include_date?(period.start_on) && include_date?(period.actually_end_on)
   end
 
   def duration

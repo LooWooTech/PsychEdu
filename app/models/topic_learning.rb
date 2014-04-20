@@ -2,8 +2,10 @@ class TopicLearning < ActiveRecord::Base
   belongs_to :student
   belongs_to :topic
 
-  has_many :learning_periods, :dependent => :destroy, :inverse_of => :topic_learning
-  has_many :leaving_periods, :through => :learning_periods
+  has_many :period_applications, :dependent => :destroy
+  has_many :learning_periods
+  has_many :leaving_periods
+  has_many :leaving_period_resumings
   has_many :chapter_learnings, :dependent => :destroy
   has_many :exams, :dependent => :destroy, :class_name => 'TopicExam'
   has_many :monthly_online_trackings, :dependent => :destroy
@@ -54,11 +56,11 @@ class TopicLearning < ActiveRecord::Base
   end
 
   def leave(start_on, end_on)
-    learning_periods_include_date(start_on).try :leave, start_on, end_on
+    learning_period_include_date(start_on).try :leave, start_on, end_on
   end
 
   def resume(start_on)
-    leaving_periods_include_date(start_on).try :resume, start_on
+    leaving_period_include_date(start_on).try :resume, start_on
   end
 
   def ongoing?(date=Date.today)
@@ -81,11 +83,11 @@ class TopicLearning < ActiveRecord::Base
     learning_periods.select{|period| period != learning_period && period.intersected?(learning_period) }
   end
 
-  def learning_periods_include_date(date)
+  def learning_period_include_date(date)
     learning_periods.find{|period| period.include_date? date }
   end
 
-  def leaving_periods_include_date(date)
+  def leaving_period_include_date(date)
     leaving_periods.find{|period| period.include_date? date }
   end
 

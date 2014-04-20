@@ -18,7 +18,7 @@ gem 'carrierwave'
 gem 'bower-rails'
 gem 'compass-rails'
 
-gem 'bootstrap_form'
+gem 'bootstrap_form', '~> 2.1.0'
 
 gem "ransack"
 gem 'smarter_csv'

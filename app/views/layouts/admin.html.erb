@@ -6,9 +6,8 @@
     <%= javascript_include_tag "admin/manifest" %>
     <%= csrf_meta_tags %>
     <!--[if lt IE 9]>
-      <%= javascript_include_tag 'html5shiv', 'respond' %>
+    <%= javascript_include_tag 'html5shiv', 'respond' %>
     <![endif]-->
-
   </head>
   <body id='<%= @body_id %>'>
     <div class='navbar navbar-default'>
@@ -23,6 +22,8 @@
               <li><%= link_to '学员管理', students_path %></li>
               <li><%= link_to '时间跟踪', monthly_online_trackings_path %></li>
               <li><%= link_to '报名管理', topic_learnings_path %></li>
+              <li><%= link_to '报名管理', topic_learnings_path %></li>
+              <li><%= link_to '申请处理', period_applications_path %></li>
             </ul>
           </li>
           <li><%= link_to '课程管理', topics_path %></li>

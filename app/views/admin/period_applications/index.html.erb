@@ -1,0 +1,59 @@
+<div class='page-header clearfix'>
+  <h1>学业申请列表</h1>
+</div>
+<%= search_form_for @search do |f| %>
+  <div class='col-lg-3'>
+    <%= f.label :topic_learning_student_account_username_cont, '用户名' %>
+    <%= f.text_field :topic_learning_student_account_username_cont %>
+  </div>
+  <div class='col-lg-3'>
+    <%= f.label :type_eq, '申请类型' %>
+    <%= f.select :type_eq, {:延学 => LearningPeriod.name, :休学 => LeavingPeriod.name, :恢复 => LeavingPeriodResuming.name }, :include_blank => '全部' %>
+  </div>
+  <div class='col-lg-3'>
+    <%= f.label :review_state_eq, '审核状态' %>
+    <%= f.select :review_state_eq, {:待审核 => PeriodApplication.review_states[:unreviewed],
+      :通过 => PeriodApplication.review_states[:accepted],
+      :拒绝 => PeriodApplication.review_states[:rejected] }
+      %>
+  </div>
+  <div class='col-lg-3'>
+    <button type='submit'>搜索</button>
+  </div>
+<% end %>
+<table class='table table-striped table-hover'>
+  <thead>
+    <tr>
+      <th>用户名</th>
+      <th>姓名</th>
+      <th>申请专题</th>
+      <th>状态</th>
+      <th>申请</th>
+      <th>开始日期</th>
+      <th>结束日期</th>
+      <th>审核状态</th>
+      <th>申请日期</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <% @period_applications.each do |period_application| %>
+    <tr>
+      <td><%= period_application.student_username %></td>
+      <td><%= period_application.student_name %></td>
+      <td><%= period_application.name %></td>
+      <td><%= topic_learning_state period_application.topic_learning %></td>
+      <td><%= t "period_application.type.#{period_application.type}" %></td>
+      <td><%= l period_application.start_on, :format => :long %></td>
+      <td><%= l period_application.end_on, :format => :long %></td>
+      <td><%= t "period_application.review_state.#{period_application.review_state}" %></td>
+      <td><%= l period_application.created_at, :format => :date_only %></td>
+      <td>
+        <% if period_application.unreviewed? %>
+          <%= link_to '同意', accept_period_application_path(period_application), :method => :patch, :data => {:confirm => '确定要同意申请吗？'} %>
+          <%= link_to '拒绝', reject_period_application_path(period_application), :method => :patch, :data => {:confirm => '确定要拒绝申请吗？'} %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<%= paginate @period_applications %>

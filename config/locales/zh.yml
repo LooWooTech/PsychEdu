@@ -244,3 +244,13 @@ zh:
       unreviewed: '未审核'
       accepted: '通过'
       rejected: '拒绝'
+
+  period_application:
+    type:
+      LearningPeriod: '延学'
+      LeavingPeriod: '休学'
+      LeavingPeriodResuming: '恢复'
+    review_state:
+      unreviewed: '未审核'
+      accepted: '通过'
+      rejected: '拒绝'

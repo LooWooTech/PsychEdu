@@ -29,8 +29,7 @@ PsychEdu::Application.routes.draw do
           resources :chapter_learnings, :only => :show do
             resources :unit_learnings, :only => :show do
               member do
-                get :summary
-                get :review
+                get :summary, :review
               end
               resources :video_watchings, :only => [:show, :update] do
                 resources :notes, :only => [:create, :destroy, :index]
@@ -51,6 +50,11 @@ PsychEdu::Application.routes.draw do
   scope :module => :admin do
     constraints :subdomain => 'admin' do
       shallow do
+        resources :period_applications, :only => [:index] do
+          member do
+            patch :accept, :reject
+          end
+        end
         resources :monthly_online_trackings, :only => [:index]
         resources :students do
           resources :topic_learnings, :only => [:create]
@@ -98,8 +102,7 @@ PsychEdu::Application.routes.draw do
           :concerns => [:commentable, :complainable] do
 
           member do
-            patch 'top'
-            patch 'refine'
+            patch 'top', 'refine'
           end
 
           resources :answers,

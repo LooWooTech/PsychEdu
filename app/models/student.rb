@@ -48,6 +48,10 @@ class Student < ActiveRecord::Base
     end
   end
 
+  def ongoing_topic_learnings
+    topic_learnings.select &:ongoing?
+  end
+
   def current_topic_learning
     topic_learnings.where(:current => true).first || topic_learnings.order('created_at ASC').first
   end

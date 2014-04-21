@@ -10,10 +10,8 @@ PsychEdu::Application.routes.draw do
       resource :profile, :only => [:show]
       resource :final_exams, :only=> [:show]
       shallow do
-        resources :periods, :only => [:index]
-        resources :learning_periods, :only => [:destroy]
-        resources :leaving_periods, :only => [:destroy]
-        resources :topic_learnings, :only => :show do
+        resources :periods, :only => [:index, :destroy]
+        resources :topic_learnings, :only => [:show, :index] do
           member do
             get :guide, :review, :exam
           end

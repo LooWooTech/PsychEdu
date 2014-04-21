@@ -1,5 +1,9 @@
 module Learning
   class PasswordsController < LearningController
+
+    skip_before_action :ensure_topic_open
+    skip_before_action :ensure_topic_learning_is_ongoing
+
     def edit; end
 
     def update

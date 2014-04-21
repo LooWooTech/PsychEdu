@@ -1,8 +1,11 @@
 module Learning
   class TopicLearningsController < LearningController
+
+    skip_before_action :ensure_topic_learning_is_ongoing, :only => [:index, :show]
+
     def show
       self.current_topic_learning = current_user.topic_learnings.find params[:id]
-      render 'learning/chapter_learnings/index'
+      redirect_to learning_path
     end
 
     def exam

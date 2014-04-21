@@ -1,0 +1,7 @@
+<li>
+  <strong>
+    复学申请<%= resuming_counter + 1 %>：<%= review_state resuming %>
+    <%= link_to '撤消', period_path(resuming), :method => :delete, :data => {:confirm => '确实要撤消这次申请吗？'}  if resuming.unreviewed? %>
+  </strong>
+  <span>日期：<%= resuming.start_on %></span>
+</li>

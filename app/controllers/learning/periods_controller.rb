@@ -1,5 +1,7 @@
 module Learning
   class PeriodsController < LearningController
+    skip_before_action :ensure_topic_learning_is_ongoing
+
     def create
       @start_on = Date.parse params[:start_on]
       @end_on = Date.parse params[:end_on] if params[:end_on].present?
@@ -30,6 +32,13 @@ module Learning
           render :plain => '申请成功，请等待审核。', :status => 200
         end
       end
+    end
+
+    def destroy
+      @period_application = PeriodApplication.find params[:id]
+      @period_application.destroy
+      flash[:notice] = '撤消成功'
+      redirect_to periods_path
     end
   end
 end

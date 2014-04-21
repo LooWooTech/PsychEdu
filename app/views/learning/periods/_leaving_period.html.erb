@@ -1,9 +1,12 @@
 <li>
+  <h3>
+    休学申请<%= leaving_period_counter + 1%>：<%= review_state leaving_period %>
+  </h3>
   <span>开始日期：<%= leaving_period.start_on %></span>
   <span>结束日期：<%= leaving_period.end_on %></span>
   <span>审核状态：<%= review_state leaving_period %></span>
   <% if leaving_period.resumings.any? %>
-    <span>恢复日期：<%= leaving_period.actually_end_on %></span>
+    <span>恢复日期：<%= leaving_period.actually_end_on + 1.day %></span>
     <%= review_state leaving_period.resumings.earliest %>
   <% end %>
 </li>

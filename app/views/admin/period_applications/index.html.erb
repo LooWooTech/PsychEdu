@@ -44,7 +44,7 @@
       <td><%= topic_learning_state period_application.topic_learning %></td>
       <td><%= t "period_application.type.#{period_application.type}" %></td>
       <td><%= l period_application.start_on, :format => :long %></td>
-      <td><%= l period_application.end_on, :format => :long %></td>
+      <td><%= l period_application.end_on, :format => :long unless period_application.is_a? LeavingPeriodResuming %></td>
       <td><%= t "period_application.review_state.#{period_application.review_state}" %></td>
       <td><%= l period_application.created_at, :format => :date_only %></td>
       <td>

@@ -21,14 +21,21 @@ class LeavingPeriod < PeriodApplication
   end
 
   def actually_end_on
-    resumings.earliest.try(:start_on) || end_on
+    resumed? ? accepted_resumings.earliest.start_on.yesterday : end_on
   end
 
+  def resumed?
+    accepted_resumings.any?
+  end
+
+  def accepted_resumings
+    resumings.accepted
+  end
 
   private
 
   def should_start_during_learning_period
-    errors.add(:start_on, :out_of_range) unless learning_period.include_date? start_on
+    errors.add(:start_on, :out_of_range) if !learning_period.include_date? start_on
   end
 
   def should_not_intersect_with_other_leaving_period

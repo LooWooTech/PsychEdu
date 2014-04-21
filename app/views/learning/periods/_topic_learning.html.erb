@@ -6,10 +6,10 @@
       类型：<%= select_tag 'type', options_for_select({'延学' => 'learning', '休学' => 'leaving', '恢复' => 'resuming'}), :include_blank => true %>
       </div>
       <div class='start'>
-      开始日期：<%= date_field_tag 'start_on' %>
+      开始日期：<%= date_field_tag 'start_on', nil, :id => "start-on-#{topic_learning.id}" %>
       </div>
       <div class='end'>
-      结束日期：<%= date_field_tag 'end_on' %>
+      结束日期：<%= date_field_tag 'end_on', nil, :id => "end-on-#{topic_learning.id}" %>
       </div>
       <%= submit_tag '申请' %>
     <% end %>

@@ -210,9 +210,9 @@ zh:
               conflict: '与另一休学周期冲突'
             start_on:
               out_of_range: '不在学习周期内'
-        resuming:
+        leaving_period_resuming:
           attributes:
-            date:
+            start_on:
               out_of_range: '不在休学周期内'
 
     attributes:
@@ -223,6 +223,8 @@ zh:
       leaving_period:
         start_on: '开始日期'
         end_on: '结束日期'
+      leaving_period_resuming:
+        start_on: '恢复日期'
       student:
         account: '账号'
         name: '姓名'

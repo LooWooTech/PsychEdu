@@ -15,7 +15,7 @@ class LearningPeriod < PeriodApplication
   end
 
   def leaving_periods_intersected_with(leaving_period)
-    leaving_periods.select{|period| period != leaving_period && period.intersected?(leaving_period) }
+    accepted_leaving_periods.select{|period| period != leaving_period && period.intersected?(leaving_period) }
   end
 
   def has_unreviewed_application?
@@ -23,7 +23,11 @@ class LearningPeriod < PeriodApplication
   end
 
   def actually_end_on
-    end_on + leaving_periods.to_a.sum(&:duration)
+    end_on + accepted_leaving_periods.to_a.sum(&:duration)
+  end
+
+  def accepted_leaving_periods
+    leaving_periods.accepted
   end
 
   def leave(start_on, end_on)
@@ -31,7 +35,7 @@ class LearningPeriod < PeriodApplication
   end
 
   def leaving?(date=Date.today)
-    leaving_periods.any?{|period| period.include_date? date }
+    accepted_leaving_periods.any?{|period| period.include_date? date }
   end
 
   private

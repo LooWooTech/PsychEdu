@@ -68,11 +68,11 @@ class TopicLearning < ActiveRecord::Base
   end
 
   def leaving?(date=Date.today)
-    learning_periods.any?{|period| period.leaving?(date) }
+    accepted_learning_periods.any?{|period| period.leaving?(date) }
   end
 
   def out_of_period?(date=Date.today)
-    !learning_periods.any?{|period| period.include_date?(date) }
+    !accepted_learning_periods.any?{|period| period.include_date?(date) }
   end
 
   def has_intersected_learning_periods?(target)
@@ -80,11 +80,11 @@ class TopicLearning < ActiveRecord::Base
   end
 
   def learning_periods_intersected_with(learning_period)
-    learning_periods.select{|period| period != learning_period && period.intersected?(learning_period) }
+    accepted_learning_periods.select{|period| period != learning_period && period.intersected?(learning_period) }
   end
 
   def learning_period_include_date(date)
-    learning_periods.find{|period| period.include_date? date }
+    accepted_learning_periods.find{|period| period.include_date? date }
   end
 
   def leaving_period_include_date(date)
@@ -96,7 +96,11 @@ class TopicLearning < ActiveRecord::Base
   end
 
   def current_learning_period
-    learning_periods.find{|period| period.include_date?(Date.today) }
+    accepted_learning_periods.find{|period| period.include_date?(Date.today) }
+  end
+
+  def accepted_learning_periods
+    learning_periods.accepted
   end
 
   private

@@ -8,7 +8,6 @@
   <span>实际结束日期：<%= learning_period.actually_end_on %></span>
   <% if learning_period.accepted? %>
     <% if learning_period.leaving_periods.any? %>
-      <h2>休学</h2>
       <ul class='leaving-periods'>
         <%= render :partial => 'leaving_period', :collection => learning_period.leaving_periods %>
       </ul>

@@ -9,7 +9,7 @@ describe TopicLearning do
   before do
     @learning_start = Date.parse('2013-01-01')
     @learning_end = Date.parse('2013-01-31')
-    subject.start @learning_start, @learning_end
+    subject.start(@learning_start, @learning_end).accepted!
   end
 
   describe '#ongoing?' do
@@ -25,7 +25,7 @@ describe TopicLearning do
       before do
         @leave_start = @learning_start + 5.days
         @leave_end = @leave_start + 29.days
-        subject.leave @leave_start, @leave_end
+        subject.leave(@leave_start, @leave_end).accepted!
       end
 
       it 'returns false if the date is during leaving period' do
@@ -38,7 +38,7 @@ describe TopicLearning do
     before do
       @leave_start = @learning_start + 5.days
       @leave_end = @leave_start + 29.days
-      subject.leave @leave_start, @leave_end
+      subject.leave(@leave_start, @leave_end).accepted!
     end
 
     it 'returns true if the date is during leaving period' do

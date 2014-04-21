@@ -11,6 +11,7 @@ class LeavingPeriod < PeriodApplication
 
   validate :should_start_during_learning_period
   validate :should_not_intersect_with_other_leaving_period
+  validate :should_not_intersect_with_more_than_on_learning_period
 
   def has_unreviewed_application?
     unreviewed? || resumings.any?(&:unreviewed?)
@@ -40,5 +41,12 @@ class LeavingPeriod < PeriodApplication
 
   def should_not_intersect_with_other_leaving_period
     errors.add(:base, :conflict) if learning_period.has_intersected_leaving_periods? self
+  end
+
+  def should_not_intersect_with_more_than_on_learning_period
+    tail_learning_period = topic_learning.learning_period_include_date(end_on)
+    if tail_learning_period && tail_learning_period != learning_period
+      errors.add(:base, :out_of_bound)
+    end
   end
 end

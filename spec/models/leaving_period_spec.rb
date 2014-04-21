@@ -31,6 +31,20 @@ describe LeavingPeriod do
     expect(subject).to be_valid
   end
 
+  it 'should not be intersected with more than one learning period' do
+    another_learning_period = FactoryGirl.create :learning_period, 
+      :topic_learning => @topic_learning,
+      :start_on => @learning_period.end_on + 2.days,
+      :end_on => @learning_period.end_on + 32.days
+
+    leaving_period = FactoryGirl.build :leaving_period,
+      :topic_learning => @topic_learning,
+      :learning_period => @learning_period,
+      :start_on => @learning_period.start_on + 1.day,
+      :end_on => another_learning_period.start_on + 1.day
+    expect(leaving_period).to be_invalid
+  end
+
   describe '#actually_end_on' do
     it 'returns end_on date' do
       expect(subject.actually_end_on).to eq subject.end_on

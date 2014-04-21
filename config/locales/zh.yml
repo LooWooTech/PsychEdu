@@ -208,6 +208,7 @@ zh:
             base:
               should_not_shorter_than_30_days: '不能少于30天'
               conflict: '与另一休学周期冲突'
+              out_of_bound: '不能同时跨越两个学期'
             start_on:
               out_of_range: '不在学习周期内'
         leaving_period_resuming:

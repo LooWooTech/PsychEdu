@@ -40,6 +40,8 @@
       <th>性别</th>
       <th>单位编码</th>
       <th>注册日期</th>
+      <th>习题记录</th>
+      <th>考试记录</th>
       <th>操作</th>
     </tr>
   </thead>
@@ -51,6 +53,8 @@
       <td><%= show_gender student %></td>
       <td><%= student.unit_code %></td>
       <td><%= l student.created_at, :format => :date_only %></td>
+      <td><%= link_to '习题记录', student_unit_exams_path(student), :target => '_blank' %>
+      <td><%= link_to '考试记录', '#' %>
       <td><%= link_to '删除', student, :method => :delete, :data => {:confirm => "确定删除#{student.name}吗？"} %></td>
     </tr>
   <% end%>

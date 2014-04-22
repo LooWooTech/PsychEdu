@@ -2,12 +2,14 @@ class UnitExam < ActiveRecord::Base
 
   FULL_MARKS = 100.0
   PASS_LINE = 60.0
+
+  scope :submitted, lambda{ where :submitted => true }
   
   belongs_to :unit_learning
   has_many :singular_choice_answers, :dependent => :destroy
   has_many :multiple_choice_answers, :dependent => :destroy
 
-  delegate :chapter_name, :to => :unit_learning
+  delegate :topic_name, :chapter_name, :to => :unit_learning
 
   accepts_nested_attributes_for :singular_choice_answers, :multiple_choice_answers, :update_only => true
 
@@ -44,6 +46,10 @@ class UnitExam < ActiveRecord::Base
 
   def correct_answers_count
     singular_choice_answers.select(&:correct?).count + multiple_choice_answers.select(&:correct?).count
+  end
+
+  def used_seconds
+    updated_at - created_at
   end
 
   private

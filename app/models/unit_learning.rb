@@ -8,7 +8,7 @@ class UnitLearning < ActiveRecord::Base
   delegate :name, :chapter, :first?, :last?, 
     :videos, :chapter_name, :singular_choice_count, :multiple_choice_count,
     :singular_choice_questions, :multiple_choice_questions, :ready_for_exam?,
-    :only_child?, :summary, :review,
+    :only_child?, :summary, :review, :topic_name,
     :to => :unit
 
   has_many :video_watchings, :dependent => :destroy

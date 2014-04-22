@@ -56,6 +56,7 @@ PsychEdu::Application.routes.draw do
         resources :monthly_online_trackings, :only => [:index]
         resources :students do
           resources :topic_learnings, :only => [:create]
+          resources :unit_exams, :only => [:index]
         end
         resources :topic_learnings, :only => [:index, :destroy]
         resources :student_importings, :only => [:index, :create]

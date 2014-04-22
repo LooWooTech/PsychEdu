@@ -9,6 +9,7 @@ class TopicLearning < ActiveRecord::Base
   has_many :chapter_learnings, :dependent => :destroy
   has_many :exams, :dependent => :destroy, :class_name => 'TopicExam'
   has_many :monthly_online_trackings, :dependent => :destroy
+  has_many :unit_exams, :through => :chapter_learnings
 
   validates :topic, :uniqueness => {:scope => :student}
 

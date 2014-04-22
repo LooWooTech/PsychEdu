@@ -9,6 +9,7 @@ class Unit < ActiveRecord::Base
   acts_as_list :scope => :chapter
 
   delegate :name, :to => :chapter, :prefix => true
+  delegate :topic_name, :to => :chapter
 
   validates :name, :uniqueness => {:scope => :chapter_id}, :presence => true
 

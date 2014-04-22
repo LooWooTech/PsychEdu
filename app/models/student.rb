@@ -32,6 +32,7 @@ class Student < ActiveRecord::Base
     :dependent => :nullify
 
   has_many :topic_learnings, :dependent => :destroy
+  has_many :unit_exams, :through => :topic_learnings
 
   belongs_to :added_by, :class_name => 'Administrator'
 

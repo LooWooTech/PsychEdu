@@ -6,6 +6,7 @@ class TopicExam < ActiveRecord::Base
   scope :unsubmitted, lambda{ where :submitted => false }
   scope :submitted, lambda{ where :submitted => true }
   scope :unreviewed, lambda{ where :review => nil }
+  scope :reviewed, lambda{ where.not(:review => nil) }
 
   delegate :title, :content, :requirements, :grading_rules, :to => :topic_testing
   delegate :name, :student_name, :student_unit_code, :to => :topic_learning

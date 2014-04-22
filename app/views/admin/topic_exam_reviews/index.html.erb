@@ -15,7 +15,7 @@
       <td><%= link_to exam.student_name, exam %></td>
       <td><%= exam.student_unit_code %></td>
       <td><%= exam.name %></td>
-      <td><%= link_to exam.reviewed? ? '查看' : '审核', exam %></td>
+      <td><%= link_to exam.reviewed? ? '查看' : '审核', topic_exam_review_path(exam) %></td>
     </tr>
   <% end%>
 </table>

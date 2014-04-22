@@ -1,5 +1,5 @@
 module Admin
-  class TopicExamsController < AdminController
+  class TopicExamReviewsController < AdminController
     def index
       @topic_exams = TopicExam.submitted.page(params[:page]).per(10)
     end
@@ -8,10 +8,10 @@ module Admin
       @topic_exam = TopicExam.submitted.find params[:id]
     end
 
-    def review
-      @topic_exam = TopicExam.unreviewed.find params[:id]
+    def update
+      @topic_exam = TopicExam.find params[:id]
       if @topic_exam.update_attributes review_params
-        redirect_to topic_exam_path(@topic_exam)
+        redirect_to topic_exam_review_path(@topic_exam)
       else
         render :show
       end

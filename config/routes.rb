@@ -62,6 +62,7 @@ PsychEdu::Application.routes.draw do
         resources :student_importings, :only => [:index, :create]
         resources :topic_testings, :only => [:new, :create, :show, :edit, :update, :index]
         resources :topic_exam_reviews, :only => [:show, :index, :update]
+        resources :topic_exams, :only => [:index]
         resources :topics, :only => [:new, :create, :index, :show, :edit, :update, :destroy] do
           resources :announcements, :only => [:new, :create, :edit, :update, :destroy]
           resources :chapters, :only => [:new, :create, :show, :edit, :update, :destroy] do

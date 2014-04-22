@@ -15,8 +15,8 @@
     <%= f.text_field :name_cont %>
   </div>
   <div class='col-lg-4'>
-    <%= f.label :unit_code_cont, '单位编号' %>
-    <%= f.text_field :unit_code_cont %>
+    <%= f.label :unit_code_eq, '单位编号' %>
+    <%= f.text_field :unit_code_eq %>
   </div>
   <div class='col-lg-4'>
     <%= f.label :province_eq, '省份' %>
@@ -54,7 +54,7 @@
       <td><%= student.unit_code %></td>
       <td><%= l student.created_at, :format => :date_only %></td>
       <td><%= link_to '习题记录', student_unit_exams_path(student), :target => '_blank' %>
-      <td><%= link_to '考试记录', '#' %>
+      <td><%= link_to '考试记录', topic_exams_path('q[topic_learning_student_id_eq]' => student.id), :target => '_blank' %>
       <td><%= link_to '删除', student, :method => :delete, :data => {:confirm => "确定删除#{student.name}吗？"} %></td>
     </tr>
   <% end%>

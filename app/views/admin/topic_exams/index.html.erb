@@ -1,0 +1,47 @@
+<div class='page-header clearfix'>
+  <h1>专题考核列表</h1>
+</div>
+<%= search_form_for @search do |f| %>
+  <div class='col-lg-3'>
+    <%= f.label :topic_learning_student_account_username_cont, '用户名' %>
+    <%= f.text_field :topic_learning_student_account_username_cont %>
+  </div>
+  <div class='col-lg-3'>
+    <%= f.label :topic_learning_student_name_cont, '姓名' %>
+    <%= f.text_field :topic_learning_student_name_cont %>
+  </div>
+  <div class='col-lg-3'>
+    <%= f.label :topic_learning_student_unit_code_eq , '单位编号' %>
+    <%= f.text_field :topic_learning_student_unit_code_eq %>
+  </div>
+  <div class='col-lg-2'>
+    <%= f.label :topic_learning_topic_id_eq, '专题' %>
+    <%= f.select :topic_learning_topic_id_eq, options_from_collection_for_select(Topic.all, :id, :name, @search.topic_learning_topic_id_eq), :include_blank => '全部专题' %>
+  </div>
+  <div class='col-lg-1'>
+    <button type='submit'>搜索</button>
+  </div>
+<% end %>
+<table class='table table-striped table-hover'>
+  <thead>
+    <tr>
+      <th>用户名</th>
+      <th>姓名</th>
+      <th>专题</th>
+      <th>成绩</th>
+      <th>结业</th>
+      <th>结业日期</th>
+    </tr>
+  </thead>
+  <% @topic_exams.each do |exam| %>
+    <tr>
+      <td><%= exam.student_username %></td>
+      <td><%= exam.student_name %></td>
+      <td><%= exam.name %></td>
+      <td><%= exam.score %></td>
+      <td><%= exam.passed? ? '结业' : '未结业' %></td>
+      <td><%= l(exam.passed_at, :format => :date_only) if exam.passed_at %></td>
+    </tr>
+  <% end%>
+</table>
+<%= paginate @topic_exams %>

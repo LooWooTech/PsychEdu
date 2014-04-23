@@ -27,12 +27,13 @@ class StudentImporter
     :psychology_job => :现从事哪些心理服务工作,
     :note => :备注信息,
     :created_at => :添加时间
-  }.freeze
+  }
 
-  def initialize(file, topic_id_list)
+  def initialize(file, topic_id_list, admin)
     @file = file
     @errors = []
     @topic_id_list = topic_id_list || []
+    @admin = admin
     begin
       parse_file
       import if !failed?
@@ -53,7 +54,7 @@ class StudentImporter
 
   def import
     @data.each_with_index do |row_data, index|
-      row = Row.new(row_data, @topic_id_list)
+      row = Row.new(row_data, @topic_id_list, @admin)
       @errors << "第#{index + 1}行：#{row.error_message}" if row.failed?
     end
   end
@@ -75,10 +76,11 @@ class StudentImporter
 
     attr_reader :error_message
 
-    def initialize(row, topic_id_list)
+    def initialize(row, topic_id_list, admin)
       @row = row
       @error_message = ''
       @topic_id_list = topic_id_list
+      @admin = admin
       import
     end
 
@@ -93,7 +95,10 @@ class StudentImporter
         student.update_attributes COLUMNS.keys.inject({}){|result, key| result.merge key => __send__(key) }
         if student.valid?
           @topic_id_list.each do |topic_id|
-            student.topic_learnings.create :topic_id => topic_id
+            unless student.topic_learnings.where(:topic_id => topic_id).first
+              topic_learning = student.topic_learnings.create :topic_id => topic_id
+              topic_learning.learning_periods.create :start_on => Date.today, :end_on => (Date.today + 365.days)
+            end
           end
         else
           @error_message = student.errors.full_messages.join('、') if student.invalid?
@@ -106,7 +111,7 @@ class StudentImporter
     def student
       return @student if @student
       account = Account.where(:username => username, :owner_type => 'Student').first
-      @student = account.nil? ? Student.new : account.owner
+      @student = account.nil? ? Student.new(:added_by => @admin) : account.owner
       @student.account ||= Account.new
       @student
     end

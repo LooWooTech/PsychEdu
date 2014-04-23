@@ -1,7 +1,7 @@
 module Admin
   class StudentImportingsController < AdminController
     def create
-      @importer = StudentImporter.new(params[:file].path, params[:topic_ids])
+      @importer = StudentImporter.new(params[:file].path, params[:topic_ids], current_user)
       if @importer.failed?
         flash[:error] = raw @importer.errors.join('<br />')
       else

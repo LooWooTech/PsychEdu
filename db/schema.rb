@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422140845) do
+ActiveRecord::Schema.define(version: 20140423035549) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -37,8 +37,10 @@ ActiveRecord::Schema.define(version: 20140422140845) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "publisher_id"
   end
 
+  add_index "announcements", ["publisher_id"], name: "index_announcements_on_publisher_id", using: :btree
   add_index "announcements", ["topic_id"], name: "index_announcements_on_topic_id", using: :btree
 
   create_table "answers", force: true do |t|

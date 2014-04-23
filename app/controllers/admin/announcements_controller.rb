@@ -1,14 +1,19 @@
 module Admin
   class AnnouncementsController < AdminController
-    before_action :find_topic, :only => [:new, :create]
-    before_action :find_announcement, :only => [:edit, :update, :destroy]
+    before_action :find_announcement, :only => [:show, :edit, :update, :destroy]
+
+    def index
+      @search = Announcement.search params[:q]
+      @announcements = @search.result.page(params[:page]).per(10)
+    end
+
     def new
-      @announcement = @topic.announcements.build
+      @announcement = Announcement.new
     end
 
     def create
-      @announcement = @topic.announcements.create announcement_params
-      redirect_to @topic
+      @announcement = current_user.announcements.create announcement_params
+      redirect_to announcement_path(@announcement)
     end
 
     def edit
@@ -17,26 +22,22 @@ module Admin
 
     def update
       @announcement.update_attributes announcement_params
-      redirect_to @announcement.topic
+      redirect_to announcement_path(@announcement)
     end
 
     def destroy
       @announcement.destroy
-      redirect_to @announcement.topic
+      redirect_to announcements_path
     end
 
     private
 
     def announcement_params
-      params.require(:announcement).permit(:title, :content)
+      params.require(:announcement).permit(:title, :content, :topic_id)
     end
 
     def find_announcement
       @announcement = Announcement.find params[:id]
-    end
-
-    def find_topic
-      @topic = Topic.find params[:topic_id]
     end
   end
 end

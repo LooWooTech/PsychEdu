@@ -12,7 +12,7 @@ $ ->
       $(form).ajaxSubmit
         error: (xhr) ->
           $(form).find('.errors').remove()
-          $(form).find('legend').after('<ul class="errors">#{xhr.responseText}</ul>')
+          $(form).find('legend').after("<ul class='errors'>#{xhr.responseText}</ul>")
         success: (path) ->
           location.pathname = path
       false

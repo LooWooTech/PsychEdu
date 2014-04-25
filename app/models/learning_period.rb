@@ -1,7 +1,7 @@
 class LearningPeriod < PeriodApplication
   include Period
 
-  belongs_to :topic_learning
+  belongs_to :topic_learning, :inverse_of => :learning_periods
 
   has_many :leaving_periods,
     :foreign_key => :parent_id,

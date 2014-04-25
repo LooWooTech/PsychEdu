@@ -3,7 +3,7 @@ class TopicLearning < ActiveRecord::Base
   belongs_to :topic
 
   has_many :period_applications, :dependent => :destroy
-  has_many :learning_periods
+  has_many :learning_periods, :inverse_of => :topic_learning
   has_many :leaving_periods
   has_many :leaving_period_resumings
   has_many :chapter_learnings, :dependent => :destroy

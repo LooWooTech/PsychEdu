@@ -55,7 +55,10 @@
       <td><%= l student.created_at, :format => :date_only %></td>
       <td><%= link_to '习题记录', student_unit_exams_path(student), :target => '_blank' %>
       <td><%= link_to '考试记录', topic_exams_path('q[topic_learning_student_id_eq]' => student.id), :target => '_blank' %>
-      <td><%= link_to '删除', student, :method => :delete, :data => {:confirm => "确定删除#{student.name}吗？"} %></td>
+      <td>
+        <%= link_to '修改', edit_student_path(student) %>
+        <%= link_to '删除', student, :method => :delete, :data => {:confirm => "确定删除#{student.name}吗？"} %>
+      </td>
     </tr>
   <% end%>
 </table>

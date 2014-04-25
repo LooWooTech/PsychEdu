@@ -1,4 +1,7 @@
 /*
+*= require 'modernizr/modernizr'
+*= require 'html5shiv/dist/html5shiv'
+*= require respond
 *= require jquery
 *= require jquery_ujs
 *= require jquery-form

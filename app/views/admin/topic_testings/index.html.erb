@@ -8,15 +8,15 @@
   <thead>
     <tr>
       <th class='col-lg-3'>题目</th>
-      <th class='col-lg-3'>内容</th>
-      <th class='col-lg-3'>所属专题</th>
-      <th class='col-lg-3'>操作</th>
+      <th class='col-lg-7'>内容</th>
+      <th class='col-lg-1'>所属专题</th>
+      <th class='col-lg-1'>操作</th>
     </tr>
   </thead>
   <% @topic_testings.each do |topic_testing| %>
     <tr>
       <td><%= link_to topic_testing.title, topic_testing %></td>
-      <td><%= truncate strip_tags(topic_testing.content), :length => 10 %></td>
+      <td><%= truncate sanitize(strip_tags(topic_testing.content)), :length => 45 %></td>
       <td><%= link_to topic_testing.topic_name, topic_testing.topic %></td>
       <td>
         <%= link_to '修改', edit_topic_testing_path(topic_testing) %>

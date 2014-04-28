@@ -16,12 +16,80 @@
       <td><%= show_gender @student %></td>
     </tr>
     <tr>
-      <th>状态：</th>
-      <td>在学</td>
-    </tr>
-    <tr>
       <th>添加人：</th>
       <td><%= @student.added_by_username %></td>
+    </tr>
+    <tr>
+      <th>单位编码：</th>
+      <td><%= @student.unit_code %></td>
+    </tr>
+    <tr>
+      <th>单位名称：</th>
+      <td><%= @student.unit_name %></td>
+    </tr>
+    <tr>
+      <th>手机：</th>
+      <td><%= @student.mobile %></td>
+    </tr>
+    <tr>
+      <th>固定电话：</th>
+      <td><%= @student.telephone %></td>
+    </tr>
+    <tr>
+      <th>QQ：</th>
+      <td><%= @student.qq %></td>
+    </tr>
+    <tr>
+      <th>证件号码：</th>
+      <td><%= @student.identification %></td>
+    </tr>
+    <tr>
+      <th>生日：</th>
+      <td><%= l @student.birthday %></td>
+    </tr>
+    <tr>
+      <th>所在省：</th>
+      <td><%= @student.province %></td>
+    </tr>
+    <tr>
+      <th>地址：</th>
+      <td><%= @student.address %></td>
+    </tr>
+    <tr>
+      <th>邮编：</th>
+      <td><%= @student.zip_code %></td>
+    </tr>
+    <tr>
+      <th>学历：</th>
+      <td><%= @student.education %></td>
+    </tr>
+    <tr>
+      <th>所学专业：</th>
+      <td><%= @student.special_field %></td>
+    </tr>
+    <tr>
+      <th>已获心理咨询师级别：</th>
+      <td><%= @student.level %></td>
+    </tr>
+    <tr>
+      <th>证书编号：</th>
+      <td><%= @student.certificate_number %></td>
+    </tr>
+    <tr>
+      <th>获得日期：</th>
+      <td><%= @student.certify_date %></td>
+    </tr>
+    <tr>
+      <th>培训经历：</th>
+      <td><%= @student.training_experience %></td>
+    </tr>
+    <tr>
+      <th>所从事心理服务相关工作：</th>
+      <td><%= @student.psychology_job %></td>
+    </tr>
+    <tr>
+      <th>备注：</th>
+      <td><%= @student.note %></td>
     </tr>
     <tr>
       <th>开通的专题：</th>

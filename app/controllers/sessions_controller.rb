@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
       sign_in @account
       redirect_back_or_root
     else
+      flash.now[:notice] = '用户名或密码不正确'
       render :new
     end
   end

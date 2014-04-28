@@ -97,7 +97,7 @@ class StudentImporter
           @topic_id_list.each do |topic_id|
             unless student.topic_learnings.where(:topic_id => topic_id).first
               topic_learning = student.topic_learnings.create :topic_id => topic_id
-              topic_learning.learning_periods.create :start_on => Date.today, :end_on => (Date.today + 365.days)
+              topic_learning.learning_periods.create(:start_on => Date.today, :end_on => (Date.today + 365.days)).accepted!
             end
           end
         else

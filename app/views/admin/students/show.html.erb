@@ -45,7 +45,7 @@
     </tr>
     <tr>
       <th>生日：</th>
-      <td><%= l @student.birthday %></td>
+      <td><%= l @student.birthday if @student.birthday %></td>
     </tr>
     <tr>
       <th>所在省：</th>

@@ -11,7 +11,7 @@ gem 'mysql2'
 gem 'kaminari'
 gem 'cancan'
 gem 'puma'
-gem 'acts_as_list'
+gem 'acts_as_list', '0.3.0'
 
 gem 'carrierwave'
 

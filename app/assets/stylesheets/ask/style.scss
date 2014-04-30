@@ -1,4 +1,17 @@
+// bootstrap 变量覆盖
+$brand-primary: #4496D2;
+$brand-complement: #45C7D4;
+$brand-inverse: #F0A920;
+$brand-dark: #383C4A;
+$brand-darker: #262A32;
+
+// 图标路径
+$icon-font-path: "../bootstrap-sass/bootstrap/fonts/";
+
+// 加载 bootstrap
 @import "../bootstrap-sass/bootstrap";
+
+// 加载组件
 @import "components/navs";
 @import "components/media";
 @import "components/panel";
@@ -6,4 +19,6 @@
 @import "components/navbar";
 @import "components/well";
 @import "components/info";
+
+// 加载项目
 @import "app/layout";

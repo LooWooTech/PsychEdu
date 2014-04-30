@@ -1,4 +1,4 @@
-@import "../app";
+// @import "../app";
 
 .navbar-global,
 .navbar-site {
@@ -9,7 +9,7 @@
 
 .navbar-global {
 
-  background-color: $app-primary;
+  background-color: $brand-primary;
   @include box-shadow(0 0 16px rgba(0,0,0,.175));
   border-bottom: none;
 
@@ -24,14 +24,14 @@
     }
 
     span {
-      color: $app-inverse;
+      color: $brand-inverse;
       font-size: .8em;
     }
   }
 
   .navbar-nav {
     > li > a {
-      color: lighten($app-primary, 22%);
+      color: lighten($brand-primary, 22%);
       padding-top: 12px;
       border-top: solid 3px transparent;
       @include transition-duration(200ms);
@@ -39,8 +39,8 @@
       &:hover,
       &:focus {
         background-color: transparent;
-        border-top-color: $app-inverse;
-        color: $app-inverse;
+        border-top-color: $brand-inverse;
+        color: $brand-inverse;
         @include transition(200ms border-top-color,color);
       }
     }
@@ -49,8 +49,8 @@
       &:hover,
       &:focus {
         background-color: transparent;
-        border-top-color: $app-inverse;
-        color: $app-inverse;
+        border-top-color: $brand-inverse;
+        color: $brand-inverse;
         @include transition(200ms border-top-color,color);
       }
     }
@@ -59,7 +59,7 @@
       &,
       &:hover,
       &:focus {
-        background-color: $app-dark;
+        background-color: $brand-dark;
       }
     }
   }
@@ -72,8 +72,8 @@
     width: 240px;
     border: none;
     height: 26px;
-    background-color: darken($app-primary, 5%);
+    background-color: darken($brand-primary, 5%);
     @include box-shadow(none);
-    @include placeholder($app-primary);
+    @include placeholder($brand-primary);
   }
 }

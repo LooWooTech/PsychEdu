@@ -1,19 +1,14 @@
-// @import "../app";
+.navbar-global {
 
-.navbar-global,
-.navbar-site {
   border-width: 0 0 1px;
   margin-bottom: 0;
   border-radius: 0;
-}
-
-.navbar-global {
-
   background-color: $brand-primary;
   @include box-shadow(0 0 16px rgba(0,0,0,.175));
   border-bottom: none;
 
   .navbar-brand {
+    font-size: 22px;
     color: #fff;
     @include transition-duration(200ms);
 
@@ -25,7 +20,7 @@
 
     span {
       color: $brand-inverse;
-      font-size: .8em;
+      font-size: .6em;
     }
   }
 

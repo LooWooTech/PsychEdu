@@ -1,12 +1,10 @@
 @import "../app";
-@import "../bootstrap";
-@import "compass";
 
 .navbar-global,
 .navbar-site {
   border-width: 0 0 1px;
   margin-bottom: 0;
-  @include border-radius(0);
+  border-radius: 0;
 }
 
 .navbar-global {
@@ -70,7 +68,7 @@
 .navbar-form {
   margin-top: 12px;
   input.form-control {
-    @include border-radius(2px);
+    border-radius: 2px;
     width: 240px;
     border: none;
     height: 26px;

@@ -12,7 +12,7 @@ class QuestionImporter
   end
 
   def table_head
-    @table[0]
+    @table_head ||= @table[0].compact
   end
 
   def result
@@ -35,6 +35,7 @@ class QuestionImporter
 
   def choice_indexes
     return @choice_indexes if defined? @choice_indexes
+    Rails.logger.debug table_head
     choices = table_head.select{|data| data.downcase =~ /[a-z]/ }
     @choice_indexes = choices.inject({}){|result, choice| result.merge choice.downcase => table_head.index(choice) }
   end

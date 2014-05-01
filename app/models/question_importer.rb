@@ -9,6 +9,7 @@ class QuestionImporter
     @table = CSV.read file, :encoding => 'GBK'
   ensure
     @rows = @table[1..-1].map{|row_data| Row.new row_data, self }
+    @rows.select!{|row| !row.empty? }
   end
 
   def table_head
@@ -35,7 +36,6 @@ class QuestionImporter
 
   def choice_indexes
     return @choice_indexes if defined? @choice_indexes
-    Rails.logger.debug table_head
     choices = table_head.select{|data| data.downcase =~ /[a-z]/ }
     @choice_indexes = choices.inject({}){|result, choice| result.merge choice.downcase => table_head.index(choice) }
   end
@@ -55,6 +55,7 @@ class QuestionImporter
   class Row
     def initialize(data, importer)
       @data = data
+      return if empty?
       @importer = importer
       if singular_choice?
         @question = @importer.import_singular_choice_questions question
@@ -95,6 +96,10 @@ class QuestionImporter
 
     def duplicate?
       @question.invalid?
+    end
+
+    def empty?
+      @data.compact.empty?
     end
 
   end

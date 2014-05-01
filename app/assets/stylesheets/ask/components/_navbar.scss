@@ -1,21 +1,14 @@
-@import "../app";
-@import "../bootstrap";
-@import "compass";
-
-.navbar-global,
-.navbar-site {
-  border-width: 0 0 1px;
-  margin-bottom: 0;
-  @include border-radius(0);
-}
-
 .navbar-global {
 
-  background-color: $app-primary;
+  border-width: 0 0 1px;
+  margin-bottom: 0;
+  border-radius: 0;
+  background-color: $brand-primary;
   @include box-shadow(0 0 16px rgba(0,0,0,.175));
   border-bottom: none;
 
   .navbar-brand {
+    font-size: 22px;
     color: #fff;
     @include transition-duration(200ms);
 
@@ -26,14 +19,14 @@
     }
 
     span {
-      color: $app-inverse;
-      font-size: .8em;
+      color: $brand-inverse;
+      font-size: .6em;
     }
   }
 
   .navbar-nav {
     > li > a {
-      color: lighten($app-primary, 22%);
+      color: lighten($brand-primary, 22%);
       padding-top: 12px;
       border-top: solid 3px transparent;
       @include transition-duration(200ms);
@@ -41,8 +34,8 @@
       &:hover,
       &:focus {
         background-color: transparent;
-        border-top-color: $app-inverse;
-        color: $app-inverse;
+        border-top-color: $brand-inverse;
+        color: $brand-inverse;
         @include transition(200ms border-top-color,color);
       }
     }
@@ -51,8 +44,8 @@
       &:hover,
       &:focus {
         background-color: transparent;
-        border-top-color: $app-inverse;
-        color: $app-inverse;
+        border-top-color: $brand-inverse;
+        color: $brand-inverse;
         @include transition(200ms border-top-color,color);
       }
     }
@@ -61,7 +54,7 @@
       &,
       &:hover,
       &:focus {
-        background-color: $app-dark;
+        background-color: $brand-dark;
       }
     }
   }
@@ -70,12 +63,12 @@
 .navbar-form {
   margin-top: 12px;
   input.form-control {
-    @include border-radius(2px);
+    border-radius: 2px;
     width: 240px;
     border: none;
     height: 26px;
-    background-color: darken($app-primary, 5%);
+    background-color: darken($brand-primary, 5%);
     @include box-shadow(none);
-    @include placeholder($app-primary);
+    @include placeholder($brand-primary);
   }
 }

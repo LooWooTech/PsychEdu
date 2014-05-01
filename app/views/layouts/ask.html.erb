@@ -2,10 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>问答频道</title>
+    <title>问答频道 / 建德教育</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag "ask/manifest", media: "all" %>
+    <!--[if lt IE 9]>
+      <%= javascript_include_tag "ask/ie" %>
+    <![endif]-->
     <%= javascript_include_tag "ask/manifest" %>
   </head>
   <body>
@@ -13,13 +17,13 @@
     <header>
       <nav class="navbar navbar-inverse navbar-global">
         <div class="container">
-          <a class="navbar-brand" href="/">Alexander <span>问答</span></a>
+          <a class="navbar-brand" href="/">建德教育 <span>问答</span></a>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">首页</a></li>
-            <li><a href="#">教学</a></li>
-            <li><a href="#">习题</a></li>
-            <li><a href="#">督导</a></li>
-            <li class="active"><a href="#">社区</a></li>
+            <li><a href="#"><i class="fa fa-home"></i> 首页</a></li>
+            <li><a href="#"><i class="fa fa-tag"></i> 教学</a></li>
+            <li><a href="#"><i class="fa fa-clipboard"></i> 习题</a></li>
+            <li><a href="#"><i class="fa fa-github-alt"></i> 督导</a></li>
+            <li class="active"><a href="#"><i class="fa fa-comment"></i> 社区</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">John Doe <b class="caret"></b></a>
               <ul class="dropdown-menu">

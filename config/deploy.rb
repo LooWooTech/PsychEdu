@@ -77,7 +77,7 @@ namespace :puma do
   task :start => :environment do
     ['sockets', 'pids'].each {|tmpdir| queue! %[mkdir -p "tmp/#{tmpdir}"]}
     queue "cd #{deploy_to}/#{current_path}"
-    queue "[ -f #{pidfile} ] && kill -SIGUSR2 `cat #{pidfile}` || #{bundle_prefix} puma --bind unix://#{sockfile} --pidfile #{pidfile} --daemon"
+    queue "[ -f #{pidfile} ] && kill -SIGUSR2 `cat #{pidfile}` || #{bundle_prefix} puma --bind unix://#{sockfile} --pidfile #{pidfile} --daemon -e production"
   end
 
   task :stop do

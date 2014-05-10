@@ -98,3 +98,13 @@ $ ->
         'number': '请输入数字'
       'topic_exam[review]':
         'required': '请输入点评内容'
+
+  $('#edit-case-analysis').validate
+    rules:
+      'case_analysis[topic_id]': 'required'
+      'case_analysis[title]': 'required'
+    messages:
+      'case_analysis[topic_id]':
+        'required': '请选择专题'
+      'case_analysis[title]':
+        'required': '请输入标题'

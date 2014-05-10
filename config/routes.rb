@@ -48,6 +48,7 @@ PsychEdu::Application.routes.draw do
   scope :module => :admin do
     constraints :subdomain => 'admin' do
       shallow do
+        resources :case_analyses
         resources :period_applications, :only => [:index] do
           member do
             patch :accept, :reject

@@ -48,21 +48,27 @@
       <% end %>
       </ol>
       <ol class='attachment-fields list-group col-lg-10 col-lg-offset-2'>
-        <%= f.fields_for :attachments do |attachment_field|%>
-        <li class='list-group-item'>
-          <div class='form-group'>
-            <%= attachment_field.label :file, '附件', :class => 'col-lg-2 control-label' %>
-            <div class='col-lg-10'>
-              <%= attachment_field.file_field :file %>
+        <% @case_analysis.attachments.each do |attachment| %>
+          <%= f.fields_for :attachments, attachment do |attachment_field|%>
+          <li class='list-group-item'>
+            <div class='form-group'>
+              <%= attachment_field.label :file, '附件', :class => 'col-lg-2 control-label' %>
+              <div class='col-lg-10'>
+          <% if attachment.new_record? %>
+                <%= attachment_field.file_field :file %>
+          <% else %>
+                <%= link_to attachment.file.file.filename, attachment.file.url  %>
+          <% end %>
+              </div>
             </div>
-          </div>
-          <div class='form-group'>
-            <%= attachment_field.label :_destroy, '删除', :class => 'col-lg-2 control-label' %>
-            <div class='col-lg-10'>
-              <%= attachment_field.check_box :_destroy %>
+            <div class='form-group'>
+              <%= attachment_field.label :_destroy, '删除', :class => 'col-lg-2 control-label' %>
+              <div class='col-lg-10'>
+                <%= attachment_field.check_box :_destroy %>
+              </div>
             </div>
-          </div>
-        </li>
+          </li>
+          <% end %>
         <% end %>
       </ol>
       <div class='form-group'>

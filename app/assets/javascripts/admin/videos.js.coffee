@@ -1,6 +1,6 @@
 $ ->
   $('a.add-video').click (e)->
-    new_video_fields = $('.video-fields li:nth(0)').clone()
+    new_video_fields = $('.video-fields li:last').clone()
     new_id = new Date().getTime()
     new_video_fields.html(new_video_fields.html().replace(/_0_/g, "_#{new_id}_"))
     new_video_fields.html(new_video_fields.html().replace(/\[0\]/g, "[#{new_id}]"))

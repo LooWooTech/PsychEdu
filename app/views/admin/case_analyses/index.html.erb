@@ -43,7 +43,10 @@
       <td><%= case_analysis.created_by.username %></td>
       <td><%= l case_analysis.created_at, :format => :short %></td>
       <td><%= l case_analysis.updated_at, :format => :short %></td>
-      <td><%= link_to '删除' %></td>
+      <td>
+        <%= link_to '编辑', edit_case_analysis_path(case_analysis) %>
+        <%= link_to '删除' %>
+      </td>
     </tr>
   <% end%>
 </table>

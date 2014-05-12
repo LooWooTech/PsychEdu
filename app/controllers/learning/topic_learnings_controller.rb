@@ -16,5 +16,11 @@ module Learning
         render :text => '该专题目前不能进行考试', :status => 400
       end
     end
+
+    def guide
+      @video_url = current_topic_learning.guide_video_url
+      @title = "专题导学：#{current_topic_learning.name}"
+      render 'learning/shared/video_watching'
+    end
   end
 end

@@ -10,6 +10,9 @@ PsychEdu::Application.routes.draw do
       resource :profile, :only => [:show]
       resource :final_exams, :only=> [:show]
       shallow do
+        resources :case_analyses, :only => [:index, :show] do
+          resources :case_videos, :only => [:show]
+        end
         resources :periods, :only => [:index, :destroy]
         resources :topic_learnings, :only => [:show, :index] do
           member do

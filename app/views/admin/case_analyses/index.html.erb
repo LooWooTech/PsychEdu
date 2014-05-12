@@ -38,8 +38,8 @@
   </thead>
   <% @case_analyses.each do |case_analysis| %>
     <tr>
-      <td><%= link_to case_analysis.title, case_analysis %></td>
-      <td><%= truncate strip_tags(case_analysis.content), :length => 45 %></td>
+      <td><%= case_analysis.title %></td>
+      <td><%= truncate sanitize(strip_tags(case_analysis.content)), :length => 45 %></td>
       <td><%= case_analysis.created_by.username %></td>
       <td><%= l case_analysis.created_at, :format => :short %></td>
       <td><%= l case_analysis.updated_at, :format => :short %></td>

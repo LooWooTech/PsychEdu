@@ -1,4 +1,4 @@
-class CaseAttachment < ActiveRecord::Base
+class TopicMaterialAttachment < ActiveRecord::Base
   belongs_to :case_analysis
   mount_uploader :file, AttachmentsUploader
 

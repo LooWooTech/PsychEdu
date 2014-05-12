@@ -13,6 +13,9 @@ PsychEdu::Application.routes.draw do
         resources :case_analyses, :only => [:index, :show] do
           resources :topic_material_videos, :only => [:show]
         end
+        resources :extended_topic_materials, :only => [:index, :show] do
+          resources :topic_material_videos, :only => [:show]
+        end
         resources :periods, :only => [:index, :destroy]
         resources :topic_learnings, :only => [:show, :index] do
           member do

@@ -13,8 +13,8 @@ class TopicLearning < ActiveRecord::Base
 
   validates :topic, :uniqueness => {:scope => :student}
 
-  delegate :case_analyses, :name, :guide_video_url,
-    :review_video_url, :announcements, :testing,
+  delegate :extended_topic_materials, :case_analyses, :name,
+    :guide_video_url, :review_video_url, :announcements, :testing,
     :to => :topic
   delegate :username, :name, :unit_code, :to => :student, :prefix => true
 

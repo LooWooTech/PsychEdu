@@ -19,7 +19,7 @@
         <ul id='navigator'>
           <li class='home <%=controller.is_a?(LearningController) ? 'current' : ''%>'><%= link_to '课程学习', learning_path %></li>
           <li class='cases'><%= link_to '案例解读', case_analyses_path %></li>
-          <li class='guide'><a href='#'>资料扩展</a></li>
+          <li class='guide'><%= link_to '资料扩展', extended_topic_materials_path %></li>
           <li class='ask'><a href='#'>问答社区</a></li>
           <li class='supervision'><a href='#'>案例督导</a></li>
         </ul>

@@ -1,0 +1,2 @@
+class ExtendedTopicMaterial < TopicMaterial
+end

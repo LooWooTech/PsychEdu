@@ -1,17 +1,3 @@
-<!-- <div class="media-comments">
-  <ul class="nav media-comments-nav">
-    <%= render :collection => commentable.comments, :partial => 'ask/comments/comment' %>
-  </ul>
-  <%= bootstrap_form_for [commentable, Comment.new], :remote => true, :html => {:class => 'new-comment'} do |f| %>
-    <%= f.text_area :content %>
-    <%= f.submit '评论' %>
-  <% end %>
-</div>
-
-
-
- -->
-
 <div class="media-comments">
 	<div class="media-items">
 		<%= render :collection => commentable.comments, :partial => 'ask/comments/comment' %>

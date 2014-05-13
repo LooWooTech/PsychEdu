@@ -1,6 +1,6 @@
-<% content_for(:title){ "专题导学：#{current_topic_learning.name}" } %>
-<% @body_id = 'topic-learing-guide' %>
-<h1><%= current_topic_learning.name %>专题导学</h1>
+<% content_for(:title){ @title } %>
+<% @body_id = 'video-watching-page' %>
+<h1><%= @title %></h1>
 <div class='player'>
   <video id='video'></video>
 </div>
@@ -8,7 +8,7 @@
 <% content_for :head do %>
 <script type='text/javascript'>
     var flashvers = {};
-    flashvers.mp4_url = "<%= current_topic_learning.guide_video_url %>";
+    flashvers.mp4_url = "<%= @video_url %>";
     flashvers.dianping = "false";
     flashvers.save_dx = 10;
     flashvers.over_per = 1.5;

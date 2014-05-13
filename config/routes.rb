@@ -10,6 +10,12 @@ PsychEdu::Application.routes.draw do
       resource :profile, :only => [:show]
       resource :final_exams, :only=> [:show]
       shallow do
+        resources :case_analyses, :only => [:index, :show] do
+          resources :topic_material_videos, :only => [:show]
+        end
+        resources :extended_topic_materials, :only => [:index, :show] do
+          resources :topic_material_videos, :only => [:show]
+        end
         resources :periods, :only => [:index, :destroy]
         resources :topic_learnings, :only => [:show, :index] do
           member do
@@ -48,6 +54,7 @@ PsychEdu::Application.routes.draw do
   scope :module => :admin do
     constraints :subdomain => 'admin' do
       shallow do
+        resources :topic_materials, :except => :show
         resources :period_applications, :only => [:index] do
           member do
             patch :accept, :reject

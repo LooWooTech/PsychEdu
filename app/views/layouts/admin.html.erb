@@ -25,7 +25,13 @@
               <li><%= link_to '申请处理', period_applications_path %></li>
             </ul>
           </li>
-          <li><%= link_to '课程管理', topics_path %></li>
+          <li class='dropdown'>
+            <a href='javascript:;' class='dropdown-toggle' data-toggle='dropdown'>内容维护<b class='caret'></b></a>
+            <ul class='dropdown-menu'>
+              <li><%= link_to '课程管理', topics_path %></li>
+              <li><%= link_to '案例与资料', topic_materials_path %></li>
+            </ul>
+          </li>
           <li class='dropdown'>
             <a href='javascript:;' class='dropdown-toggle' data-toggle='dropdown'>专题考核<b class='caret'></b></a>
             <ul class='dropdown-menu'>

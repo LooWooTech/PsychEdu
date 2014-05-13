@@ -1,0 +1,91 @@
+<div class='well'>
+  <%= form_for @topic_material, :as => 'topic_material',
+    :url => @topic_material.new_record? ? topic_materials_path : topic_material_path(@topic_material),
+    :multipart => true, :html => {:class => 'form-horizontal', :id => 'edit-case-analysis'} do |f| %>
+    <fieldset>
+      <legend><%= @topic_material.new_record? ? '新增资料' : '编辑资料'%></legend>
+      <div class='form-group'>
+        <%= f.label :type, '*类型', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.select :type, {'案例解读' => 'CaseAnalysis', '资料扩展' => 'ExtendedTopicMaterial'}, {},  :class => 'form-control' %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <%= f.label :topic_id, '*所属专题', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.select :topic_id, options_from_collection_for_select(Topic.all, :id, :name, @topic_material.topic_id), {:include_blank => '请选择'},  :class => 'form-control' %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <%= f.label :title, '*标题', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.text_field :title, :class => 'form-control' %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <div class='col-lg-10 col-lg-offset-2'>
+          <%= render :partial => 'admin/shared/rich_text_toolbar', :locals => {:toolbar_id => 'case-analysis-content-editor-toolbar'} %>
+        </div>
+        <%= f.label :content, '*内容', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.text_area :content, :id => 'case-analysis-content' %>
+        </div>
+      </div>
+      <ol class='video-fields list-group col-lg-10 col-lg-offset-2'>
+      <%= f.fields_for :videos do |video_field| %>
+        <li class='list-group-item'>
+          <div class='form-group'>
+            <%= video_field.label :name, '视频名称', :class => 'col-lg-2 control-label' %>
+            <div class='col-lg-10'>
+              <%= video_field.text_field :name, :class => 'form-control'%>
+            </div>
+          </div>
+          <div class='form-group'>
+            <%= video_field.label :url, '视频地址', :class => 'col-lg-2 control-label' %>
+            <div class='col-lg-10'>
+              <%= video_field.text_field :url, :class => 'form-control' %>
+            </div>
+          </div>
+          <div class='form-group'>
+            <%= video_field.label :_destroy, '删除', :class => 'col-lg-2 control-label' %>
+            <div class='col-lg-10'>
+              <%= video_field.check_box :_destroy %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+      </ol>
+      <ol class='attachment-fields list-group col-lg-10 col-lg-offset-2'>
+        <% @topic_material.attachments.each do |attachment| %>
+          <%= f.fields_for :attachments, attachment do |attachment_field|%>
+          <li class='list-group-item'>
+            <div class='form-group'>
+              <%= attachment_field.label :file, '附件', :class => 'col-lg-2 control-label' %>
+              <div class='col-lg-10'>
+          <% if attachment.new_record? %>
+                <%= attachment_field.file_field :file %>
+          <% else %>
+                <%= link_to attachment.file.file.filename, attachment.file.url  %>
+          <% end %>
+              </div>
+            </div>
+            <div class='form-group'>
+              <%= attachment_field.label :_destroy, '删除', :class => 'col-lg-2 control-label' %>
+              <div class='col-lg-10'>
+                <%= attachment_field.check_box :_destroy %>
+              </div>
+            </div>
+          </li>
+          <% end %>
+        <% end %>
+      </ol>
+      <div class='form-group'>
+        <div class='col-lg-10 col-lg-offset-2'>
+          <%= f.submit '保存', :class => 'btn btn-primary' %>
+          <a class='add-video btn btn-default' href='javascript:;'>添加视频</a>
+          <a class='add-attachment btn btn-default' href='javascript:;'>添加附件</a>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+</div>

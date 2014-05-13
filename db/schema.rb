@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423035549) do
+ActiveRecord::Schema.define(version: 20140512115445) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -165,6 +165,7 @@ ActiveRecord::Schema.define(version: 20140423035549) do
   end
 
   add_index "multiple_choices", ["choice_id"], name: "index_multiple_choices_on_choice_id", using: :btree
+  add_index "multiple_choices", ["multiple_choice_answer_id"], name: "index_multiple_choices_on_multiple_choice_answer_id", using: :btree
 
   create_table "notes", force: true do |t|
     t.integer  "video_watching_id"
@@ -290,6 +291,38 @@ ActiveRecord::Schema.define(version: 20140423035549) do
   add_index "topic_learnings", ["student_id"], name: "index_topic_learnings_on_student_id", using: :btree
   add_index "topic_learnings", ["topic_id"], name: "index_topic_learnings_on_topic_id", using: :btree
 
+  create_table "topic_material_attachments", force: true do |t|
+    t.string   "file"
+    t.integer  "topic_material_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topic_material_attachments", ["topic_material_id"], name: "index_topic_material_attachments_on_topic_material_id", using: :btree
+
+  create_table "topic_material_videos", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "topic_material_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topic_material_videos", ["topic_material_id"], name: "index_topic_material_videos_on_topic_material_id", using: :btree
+
+  create_table "topic_materials", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "topic_id"
+    t.integer  "created_by_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
+  end
+
+  add_index "topic_materials", ["created_by_id"], name: "index_topic_materials_on_created_by_id", using: :btree
+  add_index "topic_materials", ["topic_id"], name: "index_topic_materials_on_topic_id", using: :btree
+
   create_table "topic_testings", force: true do |t|
     t.integer  "topic_id"
     t.string   "title"
@@ -304,10 +337,10 @@ ActiveRecord::Schema.define(version: 20140423035549) do
 
   create_table "topics", force: true do |t|
     t.string   "name"
+    t.text     "introduction"
     t.string   "teacher_names"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "introduction"
     t.string   "guide_video_url"
     t.string   "review_video_url"
   end

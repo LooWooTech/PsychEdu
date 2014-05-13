@@ -1,0 +1,2 @@
+class CaseAnalysis < TopicMaterial
+end

@@ -10,7 +10,7 @@
 				'</div>',
 			'</div>',
 		'</div>'
-	].join();
+	].join('');
 
 	// 类
 	var showModal = function(el, callback, options) {

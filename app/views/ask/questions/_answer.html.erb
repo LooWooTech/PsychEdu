@@ -30,9 +30,10 @@
         /
         <%= link_to '修改', edit_answer_path(answer), :class => 'edit', :remote => true if can?(:edit, answer) %>
         <%= link_to '删除', answer, :method => :delete, :class => 'delete', :data => {:confirm => '确实要删除这个回答吗？'} if can?(:destroy, answer) %>
-        <%= link_to "评论(#{answer.comments.count})", answer_comments_path(answer), :remote => true, :class => 'comments' %>
+        <%= link_to "评论(#{answer.comments.count})", answer_comments_path(answer), :remote => true, :class => 'comments J_commentsBtn' %>
         <%= link_to "举报", new_answer_complaint_path(answer), :class => 'J_complaintsBtn' %>
       </span>
+      <div class="action-comments-box"></div>
     </div>
   </div>
 </div>

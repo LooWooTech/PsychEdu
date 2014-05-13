@@ -57,6 +57,19 @@
 			@include transition-property(opacity);
 		}
 	}
+
+	.action-comments-box {
+		display: none;
+	}
+
+	> .actions.open {
+		.media-fade {
+			@include opacity(1);
+		}
+		.action-comments-box {
+			display: block;
+		}
+	}
 }
 
 .media-heading {
@@ -102,4 +115,16 @@
 			border-color: lighten($gray-light, 22%);
 		}
 	}
+}
+
+.media-comments {
+
+	border: solid 1px #e5e5e5;
+	padding: 15px;
+	border-radius: 5px;
+	margin-top: 15px;
+
+	.media-object {
+		border: none;
+	}	
 }

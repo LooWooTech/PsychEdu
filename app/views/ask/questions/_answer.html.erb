@@ -19,7 +19,7 @@
 
   <div class="media-body">
     <div class="author">
-      <a href="#"><%= answer.answerer.name %></a>, 特级英语教师
+      <a href="#"><%= answer.answerer.name %></a><% if answer.answerer.note %> / <%= answer.answerer.note %><% end %>
     </div>
     <div class="contents">
       <%= answer.content %>

@@ -3,9 +3,7 @@
   <h4 class="modal-title">举报</h4>
 </div>
 
-<%= bootstrap_form_for [@complainable, @complaint],
-  :remote => true,
-  :html => {'data-type' => 'text'} do |f| %>
+<%= bootstrap_form_for [@complainable, @complaint], 'data-modal' => 'form' do |f| %>
 
 <div class="modal-body">
   <%= f.text_area :content, label: '举报理由', placeholder: '描述一下您的举报理由', rows: 5 %>

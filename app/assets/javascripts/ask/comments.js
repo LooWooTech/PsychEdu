@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('.J_commentsBtn').on('click', function(e) {
+	$('#mainarea').delegate('[data-toggle="comments"]', 'click', function(e) {
 
 		e.preventDefault();
 

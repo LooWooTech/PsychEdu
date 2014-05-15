@@ -4,7 +4,6 @@
 *= require bootstrap
 *= require holderjs
 *= require ask/shared
-*= require ask/ask
 *= require ask/complaints
 *= require ask/questions
 *= require ask/comments

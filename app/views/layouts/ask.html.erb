@@ -51,7 +51,7 @@
         <div class="col-md-3">
 
           <div class="well well-board">
-            <%= link_to(new_question_path, :class => 'btn btn-inverse btn-block', 'data-toggle' => 'ask') do %>
+            <%= link_to(new_question_path, :class => 'btn btn-inverse btn-block', :remote => true, :data => {:event => 'question.new'}) do %>
               <span class="glyphicon glyphicon-plus"></span>
               提问
             <% end %>

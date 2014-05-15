@@ -9,7 +9,7 @@
 			<span class="fa fa-calendar"></span> 一天前 / <span class="fa fa-user"></span> 张兰
 			<span class="media-fade">
 				/
-				<%= link_to '修改', edit_question_path(@question), :remote => true, :class => 'J_editQuestionBtn' if can?(:edit, @question) %>
+				<%= link_to '修改', edit_question_path(@question), :remote => true, :data => {:event => 'question.edit'} if can?(:edit, @question) %>
 				<%= link_to '删除', @question, :method => :delete, :data => {:confirm => '确实要删除这个问题吗？'} if can?(:destroy, @question) %>
 				<%= link_to "评论(#{@question.comments.count})", question_comments_path(@question), :remote => true, :data => {:event => 'comment.query'} %>
 				<%= link_to "举报", new_question_complaint_path(@question), :remote => true, :data => {:event => 'complaints'} %>

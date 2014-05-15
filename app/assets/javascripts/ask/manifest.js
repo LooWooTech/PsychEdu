@@ -3,7 +3,7 @@
 *= require jquery_ujs
 *= require bootstrap
 *= require holderjs
-*= require ask/buildModal
+*= require ask/shared
 *= require ask/ask
 *= require ask/complaints
 *= require ask/questions

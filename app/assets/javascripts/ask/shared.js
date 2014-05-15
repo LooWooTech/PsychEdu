@@ -3,6 +3,7 @@
 	'use strict';
 
 	var defaults = {
+		contentClass: '.modal-content',
 		template: function() {
 			return [
 				'<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">',
@@ -20,41 +21,41 @@
 	}
 
 	BuildModal.prototype = {
-		/**
-		 * 获得 html 模板，可定制 html 模板
-		 * html 模板支持 function 或 string 生成
-		 */
-		_template: function(html) {
-			var template = html ? html : this.options.template;
-			return $.isFunction(template) ? template() : template;
-		},
-		/**
-		 * 渲染 modal 并加入到 body 中
-		 * 绑定必要的事件
-		 * 返回 modal 对象
-		 */
 		render: function() {
-			if (!this.el) this.build();
+			// 判断 template 是函数还是字符串
+			var template = $.isFunction(this.options.template) ?
+				this.options.template() : this.options.template;
 
+			this.el = $(template);
+
+			// 绑定 modal 加入 body
 			this.el
-				.modal(this.options)
+				.modal()
 				.appendTo($('body'))
 				.on('hidden.bs.modal', function() {
 					$(this).remove();	// modal隐藏结束后销毁modal
 				});
 			return this;
 		},
-		/**
-		 * 创建 jQuery element
-		 */
-		build: function(html) {
-			this.el = $(this._template(html));
-			return this;
+		getElement: function() {
+			return this.el;
 		}
 	};
 
 	$.buildModal = function(options) {
 		return new BuildModal(options);
+	}
+
+	$.fn.buildModal = function(options) {
+		// 实例化对象
+		var buildModal = new BuildModal(options);
+
+		// 渲染 modal，得到 modal 元素，替换 modal-content，返回 modal 对象
+		return buildModal
+			.render()
+			.getElement()
+			.find(buildModal.options.contentClass)
+			.html(this);
 	}
 
 })(jQuery);

@@ -1,6 +1,9 @@
 $(document).ready(function() {
-	$(document).delegate('[data-toggle="comments"]', 'click', function(e) {
 
+	$el = $('#mainarea');
+
+	// show comments
+	$el.delegate('[data-event="comments"]', 'click', function(e) {
 		e.preventDefault();
 
 		var $this = $(this),
@@ -17,5 +20,20 @@ $(document).ready(function() {
 				$action.find('.action-comments-box').html($comments);
 			});
 		}
+	});
+
+	// remove comment
+	$el.delegate('[data-event="remove"]', 'ajax:success', function(e, data) {
+		$(this)
+			.closest('.media')
+			.fadeOut('slow', function() {
+				$(this).remove();
+			});
+	});
+
+	// publish comment
+	$el.delegate('[data-event="comment.publish"]', 'ajax:success', function(e, data) {
+		$(this).prev('.media-items').append(data);
+		$(this).find('textarea').val('');
 	});
 });

@@ -51,11 +51,15 @@
 		var buildModal = new BuildModal(options);
 
 		// 渲染 modal，得到 modal 元素，替换 modal-content，返回 modal 对象
-		return buildModal
+		var modal = buildModal
 			.render()
-			.getElement()
+			.getElement();
+
+		modal
 			.find(buildModal.options.contentClass)
 			.html(this);
+
+		return modal;
 	}
 
 })(jQuery);

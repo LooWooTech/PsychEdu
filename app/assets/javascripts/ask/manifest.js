@@ -8,6 +8,5 @@
 *= require ask/complaints
 *= require ask/questions
 *= require ask/comments
-*= require ask/remove
 *= require ask/ckeditor
 */

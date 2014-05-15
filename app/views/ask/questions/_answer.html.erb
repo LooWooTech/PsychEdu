@@ -28,10 +28,10 @@
       <span class="fa fa-calendar"></span> 一天前 / <span class="fa fa-user"></span> 邱茂源
       <span class="media-fade">
         /
-        <%= link_to '修改', edit_answer_path(answer), :class => 'edit', :remote => true if can?(:edit, answer) %>
-        <%= link_to '删除', answer, :method => :delete, :class => 'delete', :data => {:confirm => '确实要删除这个回答吗？'} if can?(:destroy, answer) %>
-        <%= link_to "评论(#{answer.comments.count})", answer_comments_path(answer), 'data-toggle' => 'comments' %>
-        <%= link_to "举报", new_answer_complaint_path(answer), 'data-toggle' => 'complaints' %>
+        <%= link_to '修改', edit_answer_path(answer), :remote => true, :data => {:event => 'edit'} if can?(:edit, answer) %>
+        <%= link_to '删除', answer, :remote => true, :method => 'delete', :data => {:event => 'remove'} if can?(:destroy, answer) %>
+        <%= link_to "评论(#{answer.comments.count})", answer_comments_path(answer), :remote => true, :data => {:event => 'comments'} %>
+        <%= link_to "举报", new_answer_complaint_path(answer), :remote => true, :data => {:event => 'complaints'} %>
       </span>
       <div class="action-comments-box"></div>
     </div>

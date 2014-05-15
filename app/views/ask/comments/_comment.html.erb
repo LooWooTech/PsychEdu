@@ -12,8 +12,8 @@
 
 		<div class="actions">
 		  <span><%= l comment.created_at %></span>
-		  <%= link_to '删除', comment, :method => 'delete', :remote => true, :data => { :confirm => '确实要删除这个评论吗？', :event => 'remove' } if can?(:destroy, comment) %>
-		  <%= link_to '举报', new_comment_complaint_path(comment), :data => { :event => 'complaints' } %>
+		  <%= link_to '删除', comment, :method => 'delete', :remote => true, :data => { :confirm => '确实要删除这个评论吗？', :event => 'comment.remove' } if can?(:destroy, comment) %>
+		  <%= link_to '举报', new_comment_complaint_path(comment), :remote => true, :data => { :event => 'complaints' } %>
 		</div>
 	</div>
 </div>

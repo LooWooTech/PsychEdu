@@ -3,7 +3,7 @@ $(document).ready(function() {
 	$el = $('#mainarea');
 
 	// show comments
-	$el.delegate('[data-event="comments"]', 'ajax:success', function(e, data) {
+	$el.delegate('[data-event="comment.query"]', 'ajax:success', function(e, data) {
 		$(this)
 			.closest('.actions')
 			.toggleClass('open')
@@ -12,7 +12,7 @@ $(document).ready(function() {
 	});
 
 	// remove comment
-	$el.delegate('[data-event="remove"]', 'ajax:success', function(e, data) {
+	$el.delegate('[data-event="comment.remove"]', 'ajax:success', function(e, data) {
 		$(this)
 			.closest('.media')
 			.fadeOut(function() {

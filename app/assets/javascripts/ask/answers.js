@@ -9,6 +9,9 @@ $(document).ready(function() {
 			$('#mainarea .media[data-answer-id="'+ id +'"]').replaceWith(data);
 			modal.modal('hide');
 		});
+
+		// editor
+		modal.find('[data-event="editor"]').editor();
 	});
 
 });

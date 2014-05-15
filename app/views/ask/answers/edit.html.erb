@@ -6,7 +6,7 @@
 <%= bootstrap_form_for @answer, :remote => true, :data => {:event => 'answer.publish', :'event-id' => @answer.id} do |f| %>
 
 <div class="modal-body">
-  <%= f.text_area :content, id: 'ask-editor', label: '问题说明', rows: 8, placeholder: '描述一下您的答案' %>
+  <%= f.text_area :content, :data => {:event => 'editor'}, label: '问题说明', rows: 8, placeholder: '描述一下您的答案' %>
 </div>
 
 <div class="modal-footer">
@@ -15,9 +15,3 @@
 </div>
 
 <% end %>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#ask-editor').editor();
-	});
-</script>

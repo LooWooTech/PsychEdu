@@ -1,12 +1,6 @@
 /*
-*= require jquery
-*= require jquery_ujs
-*= require bootstrap
-*= require holderjs
-*= require ask/shared
-*= require ask/complaints
-*= require ask/questions
-*= require ask/answers
-*= require ask/comments
-*= require ask/ckeditor
+*= require common/main
+*= require common/jquery.buildModal
+*= require common/jquery.editor
+*= require_tree .
 */

@@ -19,6 +19,9 @@ $icon-font-path: "../bootstrap-sass/bootstrap/fonts/";
 @import "components/navbar";
 @import "components/well";
 @import "components/info";
+@import "components/type";
+@import "components/grid";
+@import "components/profile";
 
 // 加载项目
 @import "app/layout";

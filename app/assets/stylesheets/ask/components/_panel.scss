@@ -28,6 +28,12 @@
 	}
 }
 
+.panel-heading {
+	> .actions {
+		float: right;
+	}
+}
+
 .panel-nav {
 
 	&,

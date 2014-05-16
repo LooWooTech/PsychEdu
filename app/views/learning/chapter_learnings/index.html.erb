@@ -86,7 +86,36 @@
   </div>
   <hr>
   <div class="row">
-    <div class="col-md-9"></div>
+    <div class="col-md-9">
+
+      <div>
+        <h5>专题目录</h5>
+        <ul>
+          <li class='non-unit'>
+            <h2>专题导学</h2>
+            <%= link_to '查看内容', guide_topic_learning_path(current_topic_learning) %>
+          </li>
+
+          <%= render :partial => 'learning/chapter_learnings/chapter_learning', :collection => chapter_learnings %>
+
+          <li class='non-unit'>
+            <h2>专题小结</h2><%= link_to '查看内容', review_topic_learning_path(current_topic_learning) %>
+          </li>
+          
+          <% if current_topic_learning.testing %>
+          <li class='non-unit'>
+            <h2>专题考核</h2>
+            <% if current_topic_learning.ready_for_exam? %>
+              <%= link_to '开始考核', exam_topic_learning_path(current_topic_learning) %>
+            <% else %>
+              <%= link_to '查看', current_topic_learning.unreviewed_exam %>
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+
+    </div>
     <div class="col-md-3">
 
       <div class="panel panel-default">
@@ -116,29 +145,3 @@
     </div>
   </div>
 </div>
-
-<!--
-<div id='chapters'>
-  <h1>专题目录</h1>
-  <ul>
-    <li class='non-unit'>
-      <h2>专题导学</h2><%= link_to '查看内容', guide_topic_learning_path(current_topic_learning) %>
-    </li>
-    <%= render :partial => 'learning/chapter_learnings/chapter_learning', :collection => chapter_learnings %>
-    <li class='non-unit'>
-      <h2>专题小结</h2><%= link_to '查看内容', review_topic_learning_path(current_topic_learning) %>
-    </li>
-    <% if current_topic_learning.testing %>
-      <li class='non-unit'>
-        <h2>专题考核</h2>
-        <% if current_topic_learning.ready_for_exam? %>
-          <%= link_to '开始考核', exam_topic_learning_path(current_topic_learning) %>
-        <% else %>
-          <%= link_to '查看', current_topic_learning.unreviewed_exam %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-</div>
--->
-<div id='ask-and-supervision'>

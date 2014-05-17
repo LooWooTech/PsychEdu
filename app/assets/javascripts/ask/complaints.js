@@ -1,9 +1,11 @@
 $(document).ready(function() {
+	$('#mainarea').delegate('[data-event="complaints"]', 'ajax:success', function(e, data) {
+		var modal = $(data).buildModal();
 
-	$('.J_complaintsBtn').showModal(function(modal) {
-		$(modal).on('shown.bs.modal', function() {
-			// 添加绑定事件检查 Form validation
+		// publish edited answer
+		modal.delegate('[data-event="complaint.publish"]', 'ajax:success', function(e, data) {
+			alert(data);
+			modal.modal('hide');
 		});
 	});
-
 });

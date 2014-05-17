@@ -8,7 +8,7 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag "ask/manifest", media: "all" %>
     <!--[if lt IE 9]>
-      <%= javascript_include_tag "ask/ie" %>
+      <%= javascript_include_tag "common/ie" %>
     <![endif]-->
     <%= javascript_include_tag "ask/manifest" %>
   </head>
@@ -25,7 +25,7 @@
             <li><a href="#"><i class="fa fa-github-alt"></i> 督导</a></li>
             <li class="active"><a href="#"><i class="fa fa-comment"></i> 社区</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">John Doe <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %> <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="#">个人主页</a></li>
                 <li><a href="#">学员申请</a></li>
@@ -44,14 +44,14 @@
     <div class="container">
       <div class="row">
 
-        <div class="col-md-9">
+        <div class="col-md-9" id="mainarea">
           <%= yield %>
         </div>
         
         <div class="col-md-3">
 
           <div class="well well-board">
-            <%= link_to(new_question_path, :class => 'btn btn-inverse btn-block J_askBtn') do %>
+            <%= link_to(new_question_path, :class => 'btn btn-inverse btn-block', :remote => true, :data => {:event => 'question.new'}) do %>
               <span class="glyphicon glyphicon-plus"></span>
               提问
             <% end %>

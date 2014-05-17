@@ -1,4 +1,4 @@
-<div class="media">
+<div class="media" data-answer-id="<%= answer.id %>">
   <a class="pull-right" href="#">
     <img class="media-object img-circle" src="<%= image_path 'avatar/2.jpg' %>" width="48" height="48">
   </a>
@@ -19,7 +19,7 @@
 
   <div class="media-body">
     <div class="author">
-      <a href="#"><%= answer.answerer.name %></a>, 特级英语教师
+      <a href="#"><%= answer.answerer.name %></a><% if answer.answerer.note %> / <%= answer.answerer.note %><% end %>
     </div>
     <div class="contents">
       <%= answer.content %>
@@ -28,11 +28,12 @@
       <span class="fa fa-calendar"></span> 一天前 / <span class="fa fa-user"></span> 邱茂源
       <span class="media-fade">
         /
-        <%= link_to '修改', edit_answer_path(answer), :class => 'edit', :remote => true if can?(:edit, answer) %>
-        <%= link_to '删除', answer, :method => :delete, :class => 'delete', :data => {:confirm => '确实要删除这个回答吗？'} if can?(:destroy, answer) %>
-        <%= link_to "评论(#{answer.comments.count})", answer_comments_path(answer), :remote => true, :class => 'comments' %>
-        <%= link_to "举报", new_answer_complaint_path(answer), :class => 'J_complaintsBtn' %>
+        <%= link_to '修改', edit_answer_path(answer), :remote => true, :data => {:event => 'answer.edit'} if can?(:edit, answer) %>
+        <%= link_to '删除', answer, :remote => true, :method => 'delete', :data => {:event => 'remove'} if can?(:destroy, answer) %>
+        <%= link_to "评论(#{answer.comments.count})", answer_comments_path(answer), :remote => true, :data => {:event => 'comment.query'} %>
+        <%= link_to "举报", new_answer_complaint_path(answer), :remote => true, :data => {:event => 'complaints'} %>
       </span>
+      <div class="action-comments-box"></div>
     </div>
   </div>
 </div>

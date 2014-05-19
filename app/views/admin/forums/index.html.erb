@@ -20,7 +20,7 @@
       <td><%= l forum.created_at, :format => :short %></td>
       <td>
         <%= link_to '修改', edit_forum_path(forum) %>
-        <%= link_to '删除', '' %>
+        <%= link_to '删除', forum, :method => :delete, :data => {:confirm => "确实要删除#{forum.name}吗？"} %>
       </td>
     </tr>
   <% end%>

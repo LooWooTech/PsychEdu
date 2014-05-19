@@ -33,6 +33,12 @@ module Admin
       end
     end
 
+    def destroy
+      @forum.destroy
+      flash[:notice] = "您删除了 #{@forum.name}"
+      redirect_to forums_path
+    end
+
     private
 
     def find_forum

@@ -29,7 +29,7 @@
       <span class="media-fade">
         /
         <%= link_to '修改', edit_answer_path(answer), :remote => true, :data => {:event => 'answer.edit'} if can?(:edit, answer) %>
-        <%= link_to '删除', answer if can?(:destroy, answer) %>
+        <%= link_to '删除', answer, :method => 'delete' if can?(:destroy, answer) %>
         <%= link_to "评论(#{answer.comments.count})", answer_comments_path(answer), :remote => true, :data => {:event => 'comment.query'} %>
         <%= link_to "举报", new_answer_complaint_path(answer), :remote => true, :data => {:event => 'complaints'} %>
       </span>

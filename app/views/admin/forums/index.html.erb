@@ -19,7 +19,7 @@
       <td><%= forum.catalog_name %></td>
       <td><%= l forum.created_at, :format => :short %></td>
       <td>
-        <%= link_to '修改', '' %>
+        <%= link_to '修改', edit_forum_path(forum) %>
         <%= link_to '删除', '' %>
       </td>
     </tr>

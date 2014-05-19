@@ -115,3 +115,10 @@ $ ->
     messages:
       'forum_catalog[name]':
         'required': '请输入名称'
+
+  $('#edit-forum').validate
+    rules:
+      'forum[name]': 'required'
+    messages:
+      'forum[name]':
+        'required': '请输入名称'

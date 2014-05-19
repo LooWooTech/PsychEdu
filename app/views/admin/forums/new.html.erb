@@ -1,0 +1,24 @@
+<div class='well'>
+  <%= form_for @forum, :html => {:class => 'form-horizontal', :id => 'edit-forum'} do |f| %>
+    <fieldset>
+      <legend><%= @forum.new_record? ? '添加分类' : '修改分类'%></legend>
+      <div class='form-group'>
+        <%= f.label :name, '*名称', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.text_field :name, :class => 'form-control' %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <%= f.label :catalog_id, '所属分类', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.select :catalog_id, options_from_collection_for_select(ForumCatalog.all, :id, :name), {:include_blank => '无'}, :class => 'form-control' %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <div class='col-lg-10 col-lg-offset-2'>
+          <%= f.submit '保存', :class => 'btn btn-primary' %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+</div>

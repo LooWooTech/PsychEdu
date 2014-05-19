@@ -54,6 +54,7 @@ PsychEdu::Application.routes.draw do
   scope :module => :admin do
     constraints :subdomain => 'admin' do
       shallow do
+        resources :forums, :except => :show
         resources :forum_catalogs, :except => :show
         resources :topic_materials, :except => :show
         resources :period_applications, :only => [:index] do

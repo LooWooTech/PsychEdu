@@ -4,4 +4,8 @@ class ForumCatalog < ActiveRecord::Base
   validates :name, :presence => true
 
   acts_as_paranoid
+
+  def empty?
+    forums.empty?
+  end
 end

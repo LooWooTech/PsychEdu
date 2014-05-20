@@ -2,10 +2,13 @@ module Ask
   class QuestionsController < AskController
   
     load_and_authorize_resource :only => [:edit, :update, :destroy, :top, :refine]
+
+    before_action :find_forum, :only => [:new, :create, :index]
   
     def index
       @top = Question.top
-      @questions = Question.nontop.page(params[:page]).per(10)
+      @order = params[:order] || 'vote_score'
+      @questions = Question.nontop.order("#@order DESC").page(params[:page]).per(10)
     end
   
     def new
@@ -15,7 +18,8 @@ module Ask
     end
   
     def create
-      @question = current_user.questions.build question_params
+      @question = @forum.questions.build question_params
+      @question.questioner = current_user
       if @question.save
         redirect_to @question
       else
@@ -25,6 +29,8 @@ module Ask
   
     def show
       @question = Question.find params[:id]
+      @order = params[:order] || 'vote_score'
+      @answers = @question.answers.order("#@order DESC")
     end
   
     def edit
@@ -58,6 +64,10 @@ module Ask
   
     def question_params
       params.require(:question).permit(:title, :content)
+    end
+
+    def find_forum
+      @forum = Forum.find params[:forum_id] if params[:forum_id].present?
     end
   
   end

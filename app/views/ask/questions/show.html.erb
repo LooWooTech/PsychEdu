@@ -4,9 +4,10 @@
 	</a>
 	<div class="media-body">
 		<h4 class="media-heading"><%= @question.title %></h4>
-		<div class='contents'><%= @question.content %></div>
+		<div class='contents'><%= sanitize @question.content %></div>
 		<div class="actions">
-			<span class="fa fa-calendar"></span> 一天前 / <span class="fa fa-user"></span> 张兰
+			<span class="fa fa-calendar"></span> <%= l @question.created_at, :format => :short %> / <span class="fa fa-user"></span>
+      <%= @question.questioner_name %>
 			<span class="media-fade">
 				/
 				<%= link_to '修改', edit_question_path(@question), :remote => true, :data => {:event => 'question.edit'} if can?(:edit, @question) %>
@@ -23,11 +24,11 @@
 
 <div class="info">
 	<div class="info-heading">
-		<h2>共3个回答</h2>
+		<h2>共<%= @question.answers.count %>个回答</h2>
 		<div class="info-bar">
 			<ul class="nav">
-				<li class="active"><a href="#">得票数</a></li>
-				<li><a href="#">时间先后</a></li>
+				<li <%= raw('class="active"') if @order == 'vote_score' %>><a href="?order=vote_score">得票数</a></li>
+				<li <%= raw('class="active"') if @order == 'created_at' %>><a href="?order=created_at">时间先后</a></li>
 			</ul>
 		</div>
 	</div>
@@ -42,7 +43,7 @@
     <img class="media-object img-circle" src="<%= image_path 'avatar/5.jpg' %>" width="48" height="48">
   </a>
   <div class="media-body">
-    <div>张三, 互联网布道者</div>
+    <div><%= current_user.name %></div>
     <div class="contents">
   	  <%= bootstrap_form_for [@question, @answer || Answer.new] do |f| %>
   		<%= f.text_area :content, :id => 'answer-editor', :rows => 5, :placeholder => '添加您的回答', hide_label: true %>

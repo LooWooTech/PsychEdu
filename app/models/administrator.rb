@@ -10,4 +10,8 @@ class Administrator < ActiveRecord::Base
     true
   end
 
+  def name
+    username
+  end
+
 end

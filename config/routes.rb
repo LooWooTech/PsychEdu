@@ -102,17 +102,20 @@ PsychEdu::Application.routes.draw do
       end
 
       shallow do
-        resources :questions,
-          :only => [:new, :create, :show, :edit, :update, :destroy],
-          :concerns => [:commentable, :complainable] do
+        resources :answer_votes, :only => :create
+        resources :forums, :only => :show do
+          resources :questions,
+            :only => [:new, :create, :show, :edit, :update, :destroy],
+            :concerns => [:commentable, :complainable] do
 
-          member do
-            patch 'top', 'refine'
+            member do
+              patch 'top', 'refine'
+            end
+
+            resources :answers,
+              :only => [:create, :edit, :update, :destroy],
+              :concerns => [:commentable, :complainable]
           end
-
-          resources :answers,
-            :only => [:create, :edit, :update, :destroy],
-            :concerns => [:commentable, :complainable]
         end
       end
       root 'questions#index', :as => :ask

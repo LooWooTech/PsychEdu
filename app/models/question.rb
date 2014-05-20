@@ -12,6 +12,8 @@ class Question < ActiveRecord::Base
   scope :top, -> {where :top => true}
   scope :nontop, -> {where :top => false}
 
+  delegate :name, :to => :questioner, :prefix => true
+
   def no_answer?
     answers.empty?
   end
@@ -22,6 +24,10 @@ class Question < ActiveRecord::Base
 
   def toggle_refined
     update_attribute :refined, !refined?
+  end
+
+  def calculate_vote_score
+    update_attribute :vote_score, answers.sum(:vote_score)
   end
 
 end

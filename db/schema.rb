@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140518082651) do
+ActiveRecord::Schema.define(version: 20140520014908) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 20140518082651) do
   add_index "announcements", ["publisher_id"], name: "index_announcements_on_publisher_id", using: :btree
   add_index "announcements", ["topic_id"], name: "index_announcements_on_topic_id", using: :btree
 
+  create_table "answer_votes", force: true do |t|
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.integer  "answer_id"
+    t.boolean  "up"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answer_votes", ["answer_id"], name: "index_answer_votes_on_answer_id", using: :btree
+  add_index "answer_votes", ["voter_id", "voter_type"], name: "index_answer_votes_on_voter_id_and_voter_type", using: :btree
+
   create_table "answers", force: true do |t|
     t.integer  "question_id"
     t.text     "content"
@@ -50,6 +62,7 @@ ActiveRecord::Schema.define(version: 20140518082651) do
     t.datetime "updated_at"
     t.integer  "answerer_id"
     t.string   "answerer_type"
+    t.integer  "vote_score",    default: 0
   end
 
   add_index "answers", ["answerer_id", "answerer_type"], name: "index_answers_on_answerer_id_and_answerer_type", using: :btree
@@ -209,6 +222,7 @@ ActiveRecord::Schema.define(version: 20140518082651) do
     t.integer  "questioner_id"
     t.integer  "forum_id"
     t.string   "questioner_type"
+    t.integer  "vote_score",      default: 0
   end
 
   add_index "questions", ["forum_id"], name: "index_questions_on_forum_id", using: :btree

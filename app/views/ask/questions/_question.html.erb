@@ -3,18 +3,18 @@
 		<img class="media-object img-circle" src="<%= image_path 'avatar/1.jpg' %>" width="48" height="48">
 	</a>
 	<div class="media-status pull-right">
-		<p><strong>7</strong></p>
+		<p><strong><%= question.answers.count %></strong></p>
 		<p><span class="glyphicon glyphicon-comment"></span></p>
 	</div>
 	<div class="media-status pull-right">
-		<p><strong>2</strong></p>
+		<p><strong><%= question.vote_score %></strong></p>
 		<p><span class="glyphicon glyphicon-thumbs-up"></span></p>
 	</div>
 	<div class="media-body">
 		<h4 class="media-heading"><%= question_link question %></h4>
 		<div class="contents">
-			<%= question.content %>
+			<%= sanitize question.content %>
 		</div>
-		<div class="actions">一天前 / 张三</div>
+		<div class="actions"><%= l question.created_at, :format => :short %> / <%= question.questioner_name %></div>
 	</div>
 </div>

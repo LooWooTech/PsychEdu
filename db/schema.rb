@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140512115445) do
+ActiveRecord::Schema.define(version: 20140520014908) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 20140512115445) do
   add_index "announcements", ["publisher_id"], name: "index_announcements_on_publisher_id", using: :btree
   add_index "announcements", ["topic_id"], name: "index_announcements_on_topic_id", using: :btree
 
+  create_table "answer_votes", force: true do |t|
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.integer  "answer_id"
+    t.boolean  "up"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answer_votes", ["answer_id"], name: "index_answer_votes_on_answer_id", using: :btree
+  add_index "answer_votes", ["voter_id", "voter_type"], name: "index_answer_votes_on_voter_id_and_voter_type", using: :btree
+
   create_table "answers", force: true do |t|
     t.integer  "question_id"
     t.text     "content"
@@ -50,6 +62,7 @@ ActiveRecord::Schema.define(version: 20140512115445) do
     t.datetime "updated_at"
     t.integer  "answerer_id"
     t.string   "answerer_type"
+    t.integer  "vote_score",    default: 0
   end
 
   add_index "answers", ["answerer_id", "answerer_type"], name: "index_answers_on_answerer_id_and_answerer_type", using: :btree
@@ -121,11 +134,22 @@ ActiveRecord::Schema.define(version: 20140512115445) do
   add_index "complaints", ["complainable_id", "complainable_type"], name: "index_complaints_on_complainable_id_and_complainable_type", using: :btree
   add_index "complaints", ["complainer_id", "complainer_type"], name: "index_complaints_on_complainer_id_and_complainer_type", using: :btree
 
+  create_table "forum_catalogs", force: true do |t|
+    t.string   "name"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "forums", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "catalog_id"
+    t.datetime "deleted_at"
   end
+
+  add_index "forums", ["catalog_id"], name: "index_forums_on_catalog_id", using: :btree
 
   create_table "monthly_online_trackings", force: true do |t|
     t.integer  "topic_learning_id"
@@ -165,7 +189,6 @@ ActiveRecord::Schema.define(version: 20140512115445) do
   end
 
   add_index "multiple_choices", ["choice_id"], name: "index_multiple_choices_on_choice_id", using: :btree
-  add_index "multiple_choices", ["multiple_choice_answer_id"], name: "index_multiple_choices_on_multiple_choice_answer_id", using: :btree
 
   create_table "notes", force: true do |t|
     t.integer  "video_watching_id"
@@ -199,6 +222,7 @@ ActiveRecord::Schema.define(version: 20140512115445) do
     t.integer  "questioner_id"
     t.integer  "forum_id"
     t.string   "questioner_type"
+    t.integer  "vote_score",      default: 0
   end
 
   add_index "questions", ["forum_id"], name: "index_questions_on_forum_id", using: :btree
@@ -337,10 +361,10 @@ ActiveRecord::Schema.define(version: 20140512115445) do
 
   create_table "topics", force: true do |t|
     t.string   "name"
-    t.text     "introduction"
     t.string   "teacher_names"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "introduction"
     t.string   "guide_video_url"
     t.string   "review_video_url"
   end

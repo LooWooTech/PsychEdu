@@ -33,6 +33,7 @@ class Student < ActiveRecord::Base
 
   has_many :topic_learnings, :dependent => :destroy
   has_many :unit_exams, :through => :topic_learnings
+  has_many :answer_votes, :as => :voter, :dependent => :destroy
 
   belongs_to :added_by, :class_name => 'Administrator'
 

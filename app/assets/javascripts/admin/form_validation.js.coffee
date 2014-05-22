@@ -108,3 +108,17 @@ $ ->
         'required': '请选择专题'
       'case_analysis[title]':
         'required': '请输入标题'
+
+  $('#edit-forum-catalog').validate
+    rules:
+      'forum_catalog[name]': 'required'
+    messages:
+      'forum_catalog[name]':
+        'required': '请输入名称'
+
+  $('#edit-forum').validate
+    rules:
+      'forum[name]': 'required'
+    messages:
+      'forum[name]':
+        'required': '请输入名称'

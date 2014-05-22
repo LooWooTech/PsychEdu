@@ -1,0 +1,25 @@
+<div class='page-header clearfix'>
+  <h1>版块分类</h1>
+  <ul>
+    <li><%= link_to '新增分类', new_forum_catalog_path, :class => 'btn btn-default' %></li>
+  </ul>
+</div>
+<table class='table table-striped table-hover'>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>创建时间</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <% @forum_catalogs.each do |forum_catalog| %>
+    <tr>
+      <td><%= forum_catalog.name %></td>
+      <td><%= l forum_catalog.created_at, :format => :short %></td>
+      <td>
+        <%= link_to '修改', edit_forum_catalog_path(forum_catalog) %>
+        <%= link_to '删除', forum_catalog, :method => :delete, :data => {:confirm => "确实要删除 #{forum_catalog.name} 吗？"} %>
+      </td>
+    </tr>
+  <% end%>
+</table>

@@ -12,6 +12,7 @@ gem 'kaminari'
 gem 'cancan'
 gem 'puma'
 gem 'acts_as_list', '0.3.0'
+gem 'paranoia', '~> 2.0'
 
 gem 'carrierwave'
 

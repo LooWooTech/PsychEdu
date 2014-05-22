@@ -2,34 +2,30 @@
   <a class="pull-right" href="#">
     <img class="media-object img-circle" src="<%= image_path 'avatar/2.jpg' %>" width="48" height="48">
   </a>
-  <!-- <div class="media-status pull-left">
-    <p><strong>2</strong></p>
-    <p><span class="glyphicon glyphicon-thumbs-up"></span></p>
-  </div> -->
 
   <div class="media-post-vote pull-left">
-    <a href="#" class="btn btn-default btn-sm btn-block">
-      <strong>0</strong><hr>
+    <a href="<%= answer_votes_path %>" class="btn btn-default btn-sm btn-block vote-up" data-answer-id='<%= answer.id %>'>
+      <strong><%= answer.vote_score %></strong><hr>
       <span class="glyphicon glyphicon-thumbs-up"></span> 赞
     </a>
-    <a href="#" class="btn btn-default btn-sm btn-block">
+    <a href="<%= answer_votes_path %>" class="btn btn-default btn-sm btn-block vote-down" data-answer-id='<%= answer.id %>'>
       <span class="glyphicon glyphicon-thumbs-down"></span> 踩
     </a>
   </div>
 
   <div class="media-body">
     <div class="author">
-      <a href="#"><%= answer.answerer.name %></a><% if answer.answerer.note %> / <%= answer.answerer.note %><% end %>
+      <a href="#"><%= answer.answerer_name %></a><% if answer.answerer.note %> / <%= answer.answerer.note %><% end %>
     </div>
     <div class="contents">
-      <%= answer.content %>
+      <%= sanitize answer.content %>
     </div>
     <div class="actions">
-      <span class="fa fa-calendar"></span> 一天前 / <span class="fa fa-user"></span> 邱茂源
+      <span class="fa fa-calendar"></span> <%= l answer.created_at, :format => :short %> / <span class="fa fa-user"></span> <%= answer.answerer_name %>
       <span class="media-fade">
         /
         <%= link_to '修改', edit_answer_path(answer), :remote => true, :data => {:event => 'answer.edit'} if can?(:edit, answer) %>
-        <%= link_to '删除', answer, :method => 'delete' if can?(:destroy, answer) %>
+        <%= link_to '删除', answer, :method => :delete, :data => {:confirm => '确实要删除这个回答吗？', :event => 'remove'} if can?(:destroy, answer) %>
         <%= link_to "评论(#{answer.comments.count})", answer_comments_path(answer), :remote => true, :data => {:event => 'comment.query'} %>
         <%= link_to "举报", new_answer_complaint_path(answer), :remote => true, :data => {:event => 'complaints'} %>
       </span>

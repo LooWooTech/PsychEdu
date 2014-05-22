@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>问答频道 / 建德教育</title>
+    <title>问答社区<%= "/#{@forum.name}" if @forum %></title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag "ask/manifest", media: "all" %>
     <!--[if lt IE 9]>
@@ -50,12 +50,14 @@
         
         <div class="col-md-3">
 
+          <% if @forum %>
           <div class="well well-board">
-            <%= link_to(new_question_path, :class => 'btn btn-inverse btn-block', :remote => true, :data => {:event => 'question.new'}) do %>
+            <%= link_to(new_forum_question_path(@forum), :class => 'btn btn-inverse btn-block', :remote => true, :data => {:event => 'question.new'}) do %>
               <span class="glyphicon glyphicon-plus"></span>
               提问
             <% end %>
           </div>
+          <% end %>
 
           <div class="well well-board">
             <form role="search">
@@ -69,57 +71,48 @@
           </div>
 
           <div class="panel-group panel-accordion" id="accordion">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                    类别1
-                  </a>
-              </div>
-              <div id="collapseOne" class="panel-collapse collapse in">
-                <div class="panel-body">
-                  <ul class="panel-nav">
-                    <li class="active"><a href="#">SUBCATEGORY (30)</a></li>
-                    <li><a href="#">SUBCATEGORY (12)</a></li>
-                    <li><a href="#">SUBCATEGORY (1)</a></li>
-                    <li><a href="#">SUBCATEGORY (99+)</a></li>
-                  </ul>
+            <% ForumCatalog.find_each do |forum_catalog| %>
+              <% if !forum_catalog.empty? %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    <%= forum_catalog.name %>
+                    </a>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                    <ul class="panel-nav">
+                      <% forum_catalog.forums.each do |forum| %>
+                      <li class="active">
+                        <%= link_to forum.name, forum %>
+                      </li>
+                      <% end %>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
+              <% end %>
+            <% end %>
+            <% if Forum.uncataloged.any? %>
             <div class="panel panel-default">
               <div class="panel-heading">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                  类别2
+                  未分类
                 </a>
               </div>
               <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
                   <ul class="panel-nav">
-                    <li class="active"><a href="#">SUBCATEGORY (30)</a></li>
-                    <li><a href="#">SUBCATEGORY (12)</a></li>
-                    <li><a href="#">SUBCATEGORY (1)</a></li>
-                    <li><a href="#">SUBCATEGORY (99+)</a></li>
+                    <% Forum.uncataloged.each do |forum| %>
+                    <li class="active">
+                      <%= link_to forum.name, forum %>
+                    </li>
+                    <% end %>
                   </ul>
                 </div>
               </div>
             </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                  类别3
-                </a>
-              </div>
-              <div id="collapseThree" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <ul class="panel-nav">
-                    <li class="active"><a href="#">SUBCATEGORY (30)</a></li>
-                    <li><a href="#">SUBCATEGORY (12)</a></li>
-                    <li><a href="#">SUBCATEGORY (1)</a></li>
-                    <li><a href="#">SUBCATEGORY (99+)</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <% end %>
           </div>
 
           <div class="well well-board">

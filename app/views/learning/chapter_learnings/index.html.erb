@@ -117,8 +117,27 @@
 -->
 
       <div class="timeline">
-        <div class="timeline-entry" style="width: 100px;">
+
+        <!-- 专题导学 -->
+        <div class="timeline-entry">
+          <div class="timeline-status timeline-status-success">
+            <span class="glyphicon glyphicon-ok"></span>
+          </div>
+          <div class="timeline-body panel panel-timeline">
+            <div class="panel-heading">
+              专题导学
+            </div>
+            <div class="panel-body">
+              <p>
+                Hi! Welcome to the edX demonstration course. We built this to help you become more familiar with taking a course on edX prior to your first day of class. In a live course, this section is where all of the latest course announcements and updates would be. To get started with this demo course, view the courseware page and click “Example Week 1” in the left hand navigation.
+              </p>
+                <%= link_to '更多信息', guide_topic_learning_path(current_topic_learning), :class => 'btn btn-sm btn-primary' %>
+            </div>
+          </div>
         </div>
+
+        <%= render :partial => 'learning/chapter_learnings/chapter_learning', :collection => chapter_learnings %>
+
         <div class="timeline-entry">
           <div class="timeline-status timeline-status-success">
             <span class="glyphicon glyphicon-ok"></span>

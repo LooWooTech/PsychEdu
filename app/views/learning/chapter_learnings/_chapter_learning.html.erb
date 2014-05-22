@@ -1,25 +1,36 @@
-<li class='<%= "open" if chapter_learning.open? %>'>
-  <h2>第<%= chapter_learning_counter + 1 %>节</h2>
-  <div class='learning'>
-    <div>
-      <h3><%= chapter_learning.name %></h3>
-      <a class='detail' href='javascript:;'>详情</a>
+<div class="timeline-entry">
+  
+  <% if chapter_learning.open? %>
+  <div class="timeline-status timeline-status-success">
+    <span class="glyphicon glyphicon-ok"></span>
+  </div>
+  <% else %>
+  <div class="timeline-status">
+    <span class="glyphicon glyphicon-record"></span>
+  </div>
+  <% end %>
+
+  <div class="timeline-body panel panel-timeline">
+    <div class="panel-heading">
+      <small>第<%= chapter_learning_counter + 1 %>节</small>
+      <%= chapter_learning.name %>
+    </div>
+    <div class="panel-body">
+      <%= link_to '更多信息', guide_topic_learning_path(current_topic_learning), :class => 'btn btn-sm btn-primary' %>
+      <% if chapter_learning.has_only_one_unit? && chapter_learning.open? %>
+        <% unit_learning = chapter_learning.unit_learnings.first %>
+        <hr>
+        <em class="pull-right"><%= unit_learning.average_score %></em>
+        <div class="btn-group">
+          <%= link_to '开始学习', unit_learning, :class => 'btn btn-sm btn-primary' %>
+          <%= unit_exam_link unit_learning %>
+        </div>
+      <% end %>
     </div>
     <% if !chapter_learning.has_only_one_unit? %>
-      <a class='expand' href='javascript:;'>展开课程</a>
-    <% end %>
-    <% if !chapter_learning.has_only_one_unit? %>
-      <ul class='units'>
-        <%= render :collection => chapter_learning.unit_learnings, :partial => 'learning/chapter_learnings/unit_learning' %>
-      </ul>
+    <div class="panel-body panel-body-items">
+      <%= render :collection => chapter_learning.unit_learnings, :partial => 'learning/chapter_learnings/unit_learning' %>
+    </div>
     <% end %>
   </div>
-  <% if chapter_learning.has_only_one_unit? && chapter_learning.open? %>
-    <% unit_learning = chapter_learning.unit_learnings.first %>
-    <div class='buttons'>
-      <span class='average-score'><%= unit_learning.average_score %></span>
-      <%= link_to '开始学习', unit_learning, :class => 'start-learning' %>
-      <%= unit_exam_link unit_learning %>
-    </div>
-  <% end %>
-</li>
+</div>

@@ -1,15 +1,18 @@
-<li class='<%= 'open' if unit_learning.open? %>'>
-  <h2>第<%= unit_learning_counter + 1 %>单元</h2>
-  <div class='learning'>
-    <div><h3><%= unit_learning.name %></h3></div>
-    <%= link_to '单元提要', summary_unit_learning_path(unit_learning) %>
-    <%= link_to '单元小结', review_unit_learning_path(unit_learning) %>
-  </div>
+<div class="item<%= ' active' if unit_learning.open? %>">
+
+  <em class="pull-right"><%= unit_learning.average_score %></em>
+  <h4>
+    <small>第<%= unit_learning_counter + 1 %>单元</small>
+    <%= unit_learning.name %>
+  </h4>
+  <%= link_to '单元提要', summary_unit_learning_path(unit_learning) %>
+  <%= link_to '单元小结', review_unit_learning_path(unit_learning) %>
+
+
   <% if unit_learning.open? %>
-    <div class='buttons'>
-      <span class='average-score'><%= unit_learning.average_score %></span>
-      <%= link_to '开始学习', unit_learning, :class => 'start-learning' %>
+    <div class="btn-group pull-right">
+      <%= link_to '开始学习', unit_learning, :class => 'btn btn-sm btn-inverse' %>
       <%= unit_exam_link unit_learning %>
     </div>
   <% end %>
-</li>
+</div>

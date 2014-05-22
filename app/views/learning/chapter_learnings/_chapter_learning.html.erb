@@ -1,10 +1,10 @@
 <li class='<%= "open" if chapter_learning.open? %>'>
   <h2>第<%= chapter_learning_counter + 1 %>节</h2>
   <div class='learning'>
-    <header>
+    <div>
       <h3><%= chapter_learning.name %></h3>
       <a class='detail' href='javascript:;'>详情</a>
-    </header>
+    </div>
     <% if !chapter_learning.has_only_one_unit? %>
       <a class='expand' href='javascript:;'>展开课程</a>
     <% end %>

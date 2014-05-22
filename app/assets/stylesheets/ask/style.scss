@@ -8,6 +8,8 @@ $brand-darker: #262A32;
 // 图标路径
 $icon-font-path: "../bootstrap-sass/bootstrap/fonts/";
 
+$timeline-axis-offset-horizontal: 22px;
+
 // 加载 bootstrap
 @import "../bootstrap-sass/bootstrap";
 
@@ -19,6 +21,10 @@ $icon-font-path: "../bootstrap-sass/bootstrap/fonts/";
 @import "components/navbar";
 @import "components/well";
 @import "components/info";
+@import "components/type";
+@import "components/grid";
+@import "components/profile";
+@import "components/timeline";
 
 // 加载项目
 @import "app/layout";

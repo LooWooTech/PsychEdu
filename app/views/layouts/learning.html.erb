@@ -1,44 +1,55 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : '建德教育心理教学实操平台' %></title>
-    <%= stylesheet_link_tag "learning/manifest", media: "all" %>
-    <%= javascript_include_tag "learning/manifest" %>
-    <%= yield :head %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>问答频道 / 建德教育</title>
     <%= csrf_meta_tags %>
-    <%= javascript_tag  do %>
-      setInterval(function(){
-        $.post('<%= topic_learning_heartbeats_path current_topic_learning %>');
-      }, <%= MonthlyOnlineTracking::INTERVAL_MILLISECONDS %>);
-    <% end %>
+    <%= stylesheet_link_tag "ask/manifest", media: "all" %>
+    <!--[if lt IE 9]>
+      <%= javascript_include_tag "common/ie" %>
+    <![endif]-->
+    <%= javascript_include_tag "ask/manifest" %>
+    <%= yield :head %>
   </head>
-  <body id='<%= @body_id %>'>
-    <div id='header'>
-      <div class='wrapper'>
-        <h1>建德教育</h1>
-        <ul id='navigator'>
-          <li class='home <%=controller.is_a?(LearningController) ? 'current' : ''%>'><%= link_to '课程学习', learning_path %></li>
-          <li class='cases'><%= link_to '案例解读', case_analyses_path %></li>
-          <li class='guide'><%= link_to '资料扩展', extended_topic_materials_path %></li>
-          <li class='ask'><a href='#'>问答社区</a></li>
-          <li class='supervision'><a href='#'>案例督导</a></li>
-        </ul>
-        <div id='account'>
-          <%= image_tag 'learning/avatar.jpg', :class => 'avatar' %>
-          <span class='current-user'><%= current_user.name %></span>
-          <ul class='menu'>
-            <li><%= link_to '密码修改', edit_password_path %></li>
-            <li><%= link_to '学员信息', profile_path %></li>
-            <li><%= link_to '学员申请', periods_path %></li>
-            <li><a href='#'>平台设置</a></li>
-            <li><%= link_to '退出登录', session_path, :method => :delete %></li>
+  <body>
+
+    <header>
+      <nav class="navbar navbar-inverse navbar-global">
+        <div class="container">
+          <a class="navbar-brand" href="/">建德教育 <span>课程学习</span></a>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="#"><i class="fa fa-home"></i> 课程学习</a></li>
+            <li><a href="#"><i class="fa fa-tag"></i> 案例解读</a></li>
+            <li><a href="#"><i class="fa fa-clipboard"></i> 资料</a></li>
+            <li><a href="#"><i class="fa fa-comment"></i> 社区</a></li>
+            <li><a href="#"><i class="fa fa-github-alt"></i> 督导</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">个人主页</a></li>
+                <li><a href="#">学员申请</a></li>
+                <li class="divider"></li>
+                <li><a href="#">修改密码</a></li>
+                <li><a href="#">设置</a></li>
+                <li class="divider"></li>
+                <li><a href="#">退出</a></li>
+              </ul>
+            </li>
           </ul>
         </div>
+      </nav>
+    </header>
+
+    <%= yield %>
+
+    <footer>
+      <div class="container">
+        <p>Copyright © 2011-2014 Alexander.</p>
+        <p>浙ICP备12004937号</p>
       </div>
-    </div>
-    <div id='content'> <%= yield %> </div>
-    <div id='footer'>
-      <span id='copyright'>&copy; 建德教育</div>
-    </div>
+    </footer>
+
   </body>
 </html>

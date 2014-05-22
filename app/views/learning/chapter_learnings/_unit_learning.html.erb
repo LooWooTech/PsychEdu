@@ -1,7 +1,7 @@
 <li class='<%= 'open' if unit_learning.open? %>'>
   <h2>第<%= unit_learning_counter + 1 %>单元</h2>
   <div class='learning'>
-    <header><h3><%= unit_learning.name %></h3></header>
+    <div><h3><%= unit_learning.name %></h3></div>
     <%= link_to '单元提要', summary_unit_learning_path(unit_learning) %>
     <%= link_to '单元小结', review_unit_learning_path(unit_learning) %>
   </div>

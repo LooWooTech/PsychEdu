@@ -1,87 +1,165 @@
-<% @body_id = 'topic-learning' %>
-<div class='current-topic-learning'>
-  <h1><%= current_topic_learning.name %></h1>
-  <% if current_topic_learning.siblings.any? %>
-    <div class='chapter-selector'>
-      <span>切换专题</span>
-      <ul>
-        <% current_topic_learning.siblings.each do |topic_learning| %>
-          <li><%= link_to topic_learning.name, topic_learning %></li>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="page-header" style="margin-top: 0;">
+        <h1 class="pull-left" style="margin-top: 0;"><%= current_topic_learning.name %></h1>
+        <% if current_topic_learning.siblings.any? %>
+        <div class="btn-group pull-right">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            切换专题 <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <% current_topic_learning.siblings.each do |topic_learning| %>
+              <li><%= link_to topic_learning.name, topic_learning %></li>
+            <% end %>
+          </ul>
+        </div>
         <% end %>
-      </ul>
+      </div>
     </div>
-  <% end %>
-</div>
+  </div>
+  <div class="row">
+    <div class="col-md-9">
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
 
-<div class='user-info-and-announcements'>
-  <div id="user-and-announcements">
-      <div class='user-info'>
-        <%= image_tag 'learning/avatar.jpg', :class => 'avatar' %>
-        <div class='info'>
-          <h1><%= current_user.name %>(<%= current_user.username %>)</h1>
-          <div class='state'><strong>状态：</strong><%= topic_learning_state current_topic_learning %></div>
-          <div class='period'>
-            <% if !current_topic_learning.out_of_period? %><strong>有效期：</strong><%= current_topic_learning.current_learning_period.actually_end_on %><% end %>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="holder.js/758x240">
+            <div class="carousel-caption">
+            </div>
+          </div>
+          <div class="item">
+            <img src="holder.js/758x240">
+            <div class="carousel-caption">
+            </div>
+          </div>
+          <div class="item">
+            <img src="holder.js/758x240">
+            <div class="carousel-caption">
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-3">
+
+      <div class="profile">
+        <img src="<%= image_path 'avatar/3.jpg' %>" class="profile-object img-circle">
+        <div class="profile-body">
+          <%= current_user.name %>(<%= current_user.username %>)
+          <div class="state">
+            <strong>状态：</strong><%= topic_learning_state current_topic_learning %>
+          </div>
+          <div class="period">
+            <% if !current_topic_learning.out_of_period? %>
+            <strong>有效期：</strong><%= current_topic_learning.current_learning_period.actually_end_on %>
+            <% end %>
           </div>
         </div>
       </div>
 
-      <div class='announcements'>
-        <h1>通知公告</h1>
-        <ul>
+      <div class="panel panel-default">
+        <div class="panel-heading">通知公告</div>
+        <ul class="list-group">
           <% current_topic_learning.announcements.each do |announcement| %>
-              <li><%= link_to announcement.title, announcement %></li>
+              <li class="list-group-item"><%= link_to announcement.title, announcement %></li>
           <% end %>
         </ul>
       </div>
+
+    </div>
   </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-9">
+<!--
+      <div>
+        <h5>专题目录</h5>
+        <ul>
+          <li class='non-unit'>
+            <h2>专题导学</h2>
+            <%= link_to '查看内容', guide_topic_learning_path(current_topic_learning) %>
+          </li>
 
-  <div class='banner'>
-    <%= image_tag 'learning/learning001.jpg', :class => 'banner-pic' %>
-  </div>
+          <%= render :partial => 'learning/chapter_learnings/chapter_learning', :collection => chapter_learnings %>
 
-</div>
+          <li class='non-unit'>
+            <h2>专题小结</h2><%= link_to '查看内容', review_topic_learning_path(current_topic_learning) %>
+          </li>
+          
+          <% if current_topic_learning.testing %>
+          <li class='non-unit'>
+            <h2>专题考核</h2>
+            <% if current_topic_learning.ready_for_exam? %>
+              <%= link_to '开始考核', exam_topic_learning_path(current_topic_learning) %>
+            <% else %>
+              <%= link_to '查看', current_topic_learning.unreviewed_exam %>
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+-->
 
-<div id='chapters'>
-  <h1>专题目录</h1>
-  <ul>
-    <li class='non-unit'>
-      <h2>专题导学</h2><%= link_to '查看内容', guide_topic_learning_path(current_topic_learning) %>
-    </li>
-    <%= render :partial => 'learning/chapter_learnings/chapter_learning', :collection => chapter_learnings %>
-    <li class='non-unit'>
-      <h2>专题小结</h2><%= link_to '查看内容', review_topic_learning_path(current_topic_learning) %>
-    </li>
-    <% if current_topic_learning.testing %>
-      <li class='non-unit'>
-        <h2>专题考核</h2>
-        <% if current_topic_learning.ready_for_exam? %>
-          <%= link_to '开始考核', exam_topic_learning_path(current_topic_learning) %>
-        <% else %>
-          <%= link_to '查看', current_topic_learning.unreviewed_exam %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-</div>
+      <div class="timeline">
+        <div class="timeline-entry" style="width: 100px;">
+        </div>
+        <div class="timeline-entry">
+          <div class="timeline-status timeline-status-success">
+            <span class="glyphicon glyphicon-ok"></span>
+          </div>
+          <div class="timeline-body panel panel-default"></div>
+        </div>
+        <div class="timeline-entry">
+          <div class="timeline-status">
+            <span class="glyphicon glyphicon-remove"></span>
+          </div>
+          <div class="timeline-body panel panel-default"></div>
+        </div>
+      </div>
 
-<div id='ask-and-supervision'>
+    </div>
+    <div class="col-md-3">
 
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          我的问答
+          <div class="actions">
+            <a href="#">更多</a>
+          </div>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item"><a href='#'>什么是黄金规则和反黄金规则？</a></li>
+        </ul>
+      </div>
 
-  <div id='ask'>
-    <h1>我的问答</h1>
-    <ul>
-      <li><a href='#'><h2>什么是黄金规则和反黄金规则？</h2></a>
-      </li>
-    </ul>
-    <a class='more' href='#'>更多 &gt;</a>
-  </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          我的督导
+          <div class="actions">
+            <a href="#">更多</a>
+          </div>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item"><a href='#'>暂未开通</a></li>
+        </ul>
+      </div>
 
-  <div id='supervision'>
-    <h1>我的督导</h1>
-    <ul>
-      <li>暂未开通</li>
-    </ul>
-    <a class='more' href='#'>更多 &gt;</a>
+    </div>
   </div>
 </div>

@@ -57,6 +57,17 @@ $timeline-default-border: 				#ddd !default;
 	background: $brand-success;
 }
 
+.timeline-status-inverse {
+	background: $brand-inverse;
+}
+
+.timeline-status-rounded {
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	margin-left: -12px;
+}
+
 .timeline-body {
 	position: relative;
 	min-height: 50px;

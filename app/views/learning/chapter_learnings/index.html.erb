@@ -87,41 +87,13 @@
   <hr>
   <div class="row">
     <div class="col-md-9">
-<!--
-      <div>
-        <h5>专题目录</h5>
-        <ul>
-          <li class='non-unit'>
-            <h2>专题导学</h2>
-            <%= link_to '查看内容', guide_topic_learning_path(current_topic_learning) %>
-          </li>
-
-          <%= render :partial => 'learning/chapter_learnings/chapter_learning', :collection => chapter_learnings %>
-
-          <li class='non-unit'>
-            <h2>专题小结</h2><%= link_to '查看内容', review_topic_learning_path(current_topic_learning) %>
-          </li>
-          
-          <% if current_topic_learning.testing %>
-          <li class='non-unit'>
-            <h2>专题考核</h2>
-            <% if current_topic_learning.ready_for_exam? %>
-              <%= link_to '开始考核', exam_topic_learning_path(current_topic_learning) %>
-            <% else %>
-              <%= link_to '查看', current_topic_learning.unreviewed_exam %>
-            <% end %>
-          </li>
-          <% end %>
-        </ul>
-      </div>
--->
 
       <div class="timeline">
 
         <!-- 专题导学 -->
         <div class="timeline-entry">
-          <div class="timeline-status timeline-status-success">
-            <span class="glyphicon glyphicon-ok"></span>
+          <div class="timeline-status timeline-status-inverse">
+            <span class="glyphicon glyphicon-bookmark"></span>
           </div>
           <div class="timeline-body panel panel-timeline">
             <div class="panel-heading">
@@ -138,20 +110,49 @@
 
         <%= render :partial => 'learning/chapter_learnings/chapter_learning', :collection => chapter_learnings %>
 
+        <!-- 专题小结 -->
         <div class="timeline-entry">
-          <div class="timeline-status timeline-status-success">
-            <span class="glyphicon glyphicon-ok"></span>
+          <div class="timeline-status timeline-status-inverse">
+            <span class="glyphicon glyphicon-bookmark"></span>
           </div>
-          <div class="timeline-body panel panel-default"></div>
+          <div class="timeline-body panel panel-timeline">
+            <div class="panel-heading">
+              专题小结
+            </div>
+            <div class="panel-body">
+              <p>
+                Hi! Welcome to the edX demonstration course. We built this to help you become more familiar with taking a course on edX prior to your first day of class. In a live course, this section is where all of the latest course announcements and updates would be. To get started with this demo course, view the courseware page and click “Example Week 1” in the left hand navigation.
+              </p>
+                <%= link_to '查看内容', review_topic_learning_path(current_topic_learning), :class => 'btn btn-sm btn-primary' %>
+            </div>
+          </div>
         </div>
+
+        <% if current_topic_learning.testing %>
+        <!-- 专题考核 -->
         <div class="timeline-entry">
-          <div class="timeline-status">
-            <span class="glyphicon glyphicon-remove"></span>
+          <div class="timeline-status timeline-status-inverse">
+            <span class="glyphicon glyphicon-bookmark"></span>
           </div>
-          <div class="timeline-body panel panel-default"></div>
+          <div class="timeline-body panel panel-timeline">
+            <div class="panel-heading">
+              专题考核
+            </div>
+            <div class="panel-body">
+                <% if current_topic_learning.ready_for_exam? %>
+                  <%= link_to '开始考核', exam_topic_learning_path(current_topic_learning), :class => 'btn btn-sm btn-primary' %>
+                <% else %>
+                  <%= link_to '查看', current_topic_learning.unreviewed_exam, :class => 'btn btn-sm btn-primary' %>
+                <% end %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <div class="timeline-entry">
+          <div class="timeline-status timeline-status-rounded">
+          </div>
         </div>
       </div>
-
     </div>
     <div class="col-md-3">
 

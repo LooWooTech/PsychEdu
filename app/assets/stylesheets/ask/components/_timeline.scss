@@ -59,7 +59,7 @@ $timeline-default-border: 				#ddd !default;
 
 .timeline-body {
 	position: relative;
-	min-height: 300px;
+	min-height: 50px;
 	margin-left: $timeline-axis-offset-horizontal + 40px;
 
 	&:before {

@@ -45,7 +45,7 @@ $timeline-default-border: 				#ddd !default;
 	background: #ccc;
 	left: $timeline-axis-offset-horizontal;
 	margin-left: -$timeline-status-width / 2;
-	border-radius: 100%;
+	border-radius: 16px;
 	border: solid $timeline-status-border-width #fff;
 	line-height: $timeline-status-width * 0.9;
 	text-align: center;

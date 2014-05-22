@@ -1,6 +1,7 @@
 $timeline-border-radius: 					$border-radius-base !default;
 
 $timeline-axis-width:							4px !default;
+$timeline-axis-offset-vertical:		0 !default;
 $timeline-axis-offset-horizontal:	100px !default;
 $timeline-status-border-width: 		4px !default;
 $timeline-status-width: 					48px !default;
@@ -41,8 +42,8 @@ $timeline-default-border: 				#ddd !default;
 	position: absolute;
 	width: $timeline-status-width;
 	height: $timeline-status-width;
-	// background: $brand-primary;
 	background: #ccc;
+	top: $timeline-axis-offset-vertical;
 	left: $timeline-axis-offset-horizontal;
 	margin-left: -$timeline-status-width / 2;
 	border-radius: 16px;
@@ -72,7 +73,7 @@ $timeline-default-border: 				#ddd !default;
 		position: absolute;
 		left: -9px;
 		right: auto;
-		top: 15px;
+		top: 15px + $timeline-axis-offset-vertical;
 	}
 
 	&:after {
@@ -86,6 +87,6 @@ $timeline-default-border: 				#ddd !default;
 		position: absolute;
 		left: -8px;
 		right: auto;
-		top: 16px;
+		top: 16px + $timeline-axis-offset-vertical;
 	}
 }

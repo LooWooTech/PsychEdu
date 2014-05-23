@@ -1,9 +1,92 @@
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-bottom: 30px; margin-top: -30px;">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="holder.js/758x240">
+      <div class="carousel-caption">
+      </div>
+    </div>
+    <div class="item">
+      <img src="holder.js/758x240">
+      <div class="carousel-caption">
+      </div>
+    </div>
+    <div class="item">
+      <img src="holder.js/758x240">
+      <div class="carousel-caption">
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div>
+
+
 <div class="container">
   
+  <!-- <div class="row">
+    <div class="col-md-12">
+      <div class="topic">
+        <div class="topic-object">
+          <img data-src="holder.js/100%x240">
+        </div>
+      </div>
+    </div>
+  </div> -->
+
   <div class="row">
     <div class="col-md-9">
 
       <div class="timeline">
+
+        <!-- 切换专题 -->
+        <div class="timeline-entry">
+          <div class="timeline-status timeline-status-primary">
+            <span class="glyphicon glyphicon-cloud"></span>
+          </div>
+          <div class="timeline-body panel panel-timeline">
+            <div class="panel-heading">
+              <small>点击标签切换专题</small>
+            </div>
+            <div class="panel-body">
+              <% current_topic_learning.siblings.each do |topic_learning| %>
+                <%= link_to topic_learning.name, topic_learning, :class => 'label label-default' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <!-- 专题简介 -->
+        <div class="timeline-entry">
+          <div class="timeline-status timeline-status-inverse">
+            <span class="glyphicon glyphicon-cloud"></span>
+          </div>
+          <div class="timeline-body panel panel-timeline">
+            <div class="panel-heading">
+              <small>专题</small>
+              <%= current_topic_learning.name %>
+            </div>
+            <div class="panel-body">
+              <img data-src="holder.js/100%x120" class="grid-margin-h">
+              <p>
+                <%= current_topic_learning.topic.introduction %>
+              </p>
+            </div>
+          </div>
+        </div>
 
         <!-- 专题导学 -->
         <div class="timeline-entry">
@@ -70,6 +153,30 @@
       </div>
     </div>
     <div class="col-md-3">
+
+      <div class="profile">
+        <img src="<%= image_path 'avatar/3.jpg' %>" class="profile-object img-circle">
+        <div class="profile-body">
+          <%= current_user.name %>(<%= current_user.username %>)
+          <div class="state">
+            <strong>状态：</strong><%= topic_learning_state current_topic_learning %>
+          </div>
+          <div class="period">
+            <% if !current_topic_learning.out_of_period? %>
+            <strong>有效期：</strong><%= current_topic_learning.current_learning_period.actually_end_on %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">通知公告</div>
+        <ul class="list-group">
+          <% current_topic_learning.announcements.each do |announcement| %>
+              <li class="list-group-item"><%= link_to announcement.title, announcement %></li>
+          <% end %>
+        </ul>
+      </div>
 
       <div class="panel panel-default">
         <div class="panel-heading">

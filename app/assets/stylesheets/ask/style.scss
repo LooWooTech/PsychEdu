@@ -10,6 +10,8 @@ $brand-darker: #262A32;
 $icon-font-path: "../bootstrap-sass/bootstrap/fonts/";
 $hr-border: darken($layout-bg, 3%);
 $page-header-border-color: darken($layout-bg, 3%);
+$well-bg: #fff;
+$well-border: #ddd;
 
 // 组件变量覆盖
 $timeline-axis-offset-horizontal: 22px;
@@ -29,6 +31,7 @@ $timeline-axis-offset-horizontal: 22px;
 @import "components/grid";
 @import "components/profile";
 @import "components/timeline";
+@import "components/topic";
 
 // 加载项目
 @import "app/layout";

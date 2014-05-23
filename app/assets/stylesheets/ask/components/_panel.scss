@@ -28,6 +28,12 @@
 	}
 }
 
+.panel-heading {
+	> .actions {
+		float: right;
+	}
+}
+
 .panel-nav {
 
 	&,
@@ -67,4 +73,39 @@
 		}
 	}
 
+}
+
+.panel-body-items {
+	background: #fefefe;
+	border-top: solid 1px #ddd;
+	@include border-bottom-radius($panel-border-radius);
+
+	> .item {
+		padding: 10px 0;
+		border-top: solid 1px #ddd;
+		@include clearfix();
+		&:first-child {
+			border-top: none;
+		}
+	}
+}
+
+.panel-timeline {
+  @include panel-variant($panel-default-border, $panel-default-text, #fff, $panel-default-border);
+
+  .panel-heading {
+  	border-bottom: none;
+  	font-size: 24px;
+
+  	small {
+  		display: block;
+  		font-size: 12px;
+  		color: #888;
+  		padding-left: 2px;
+  	}
+  }
+
+  .panel-body {
+  	padding-top: 0;
+  }
 }

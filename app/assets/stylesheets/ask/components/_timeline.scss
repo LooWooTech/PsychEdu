@@ -1,0 +1,103 @@
+$timeline-border-radius: 					$border-radius-base !default;
+
+$timeline-axis-width:							4px !default;
+$timeline-axis-offset-vertical:		0 !default;
+$timeline-axis-offset-horizontal:	100px !default;
+$timeline-status-border-width: 		4px !default;
+$timeline-status-width: 					48px !default;
+
+
+$timeline-default-text:						$gray-dark !default;
+$timeline-default-border: 				#ddd !default;
+
+.timeline {
+
+}
+
+.timeline-entry {
+	position: relative;
+	padding-bottom: 20px;
+
+	&:before {
+		content: "";
+		display: block;
+		position: absolute;
+		height: 100%;
+		width: $timeline-axis-width;
+		background: #ddd;
+		top: 0;
+		left: $timeline-axis-offset-horizontal;
+		margin-left: -$timeline-axis-width / 2;
+	}
+}
+
+.timeline-info {
+	width: $timeline-axis-offset-horizontal - $timeline-status-width / 2;
+	float: left;
+	color: #aaa;
+	line-height: $timeline-status-width * 0.9;
+}
+
+.timeline-status {
+	position: absolute;
+	width: $timeline-status-width;
+	height: $timeline-status-width;
+	background: #ccc;
+	top: $timeline-axis-offset-vertical;
+	left: $timeline-axis-offset-horizontal;
+	margin-left: -$timeline-status-width / 2;
+	border-radius: 16px;
+	border: solid $timeline-status-border-width $layout-bg;
+	line-height: $timeline-status-width * 0.9;
+	text-align: center;
+	color: #fff;
+}
+
+.timeline-status-success {
+	background: $brand-success;
+}
+
+.timeline-status-inverse {
+	background: $brand-inverse;
+}
+
+.timeline-status-rounded {
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	margin-left: -12px;
+}
+
+.timeline-body {
+	position: relative;
+	min-height: 50px;
+	margin-left: $timeline-axis-offset-horizontal + 40px;
+
+	&:before {
+		content: "";
+		display: block;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 8px 9px 8px 0;
+		border-color: transparent #e2e2e2 transparent transparent;
+		position: absolute;
+		left: -9px;
+		right: auto;
+		top: 15px + $timeline-axis-offset-vertical;
+	}
+
+	&:after {
+		content: "";
+		display: block;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 7px 8px 7px 0;
+		border-color: transparent #fff transparent transparent;
+		position: absolute;
+		left: -8px;
+		right: auto;
+		top: 16px + $timeline-axis-offset-vertical;
+	}
+}

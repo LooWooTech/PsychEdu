@@ -1,17 +1,18 @@
+// layout 变量
+$layout-bg: #e9eaee;
+
 // bootstrap 变量覆盖
 $brand-primary: #4496D2;
 $brand-complement: #45C7D4;
 $brand-inverse: #F0A920;
 $brand-dark: #383C4A;
 $brand-darker: #262A32;
-
-// 图标路径
 $icon-font-path: "../bootstrap-sass/bootstrap/fonts/";
+$hr-border: darken($layout-bg, 3%);
+$page-header-border-color: darken($layout-bg, 3%);
 
+// 组件变量覆盖
 $timeline-axis-offset-horizontal: 22px;
-
-// 项目定义
-$layout-bg: #e9eaee;
 
 // 加载 bootstrap
 @import "../bootstrap-sass/bootstrap";

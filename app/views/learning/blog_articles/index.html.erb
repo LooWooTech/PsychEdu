@@ -1,0 +1,6 @@
+<%= link_to '写新文章', new_blog_article_path %>
+<ul class='articles'>
+  <% @blog_articles.each do |blog_article| %>
+  <li><%= link_to blog_article.title, blog_article %></li>
+  <% end %>
+</ul>

@@ -13,6 +13,8 @@ class Ability
 
     can(:destroy, Comment){|comment| comment.commenter == user}
 
+    can(:manage, BlogArticle){|blog| blog.writer ==  user}
+
     if user.is_a? Administrator
       can(:manage, Question){|question| user.fourm_admin? question.forum}
     end

@@ -2,13 +2,16 @@ require 'spec_helper'
 
 module Ask
   describe QuestionsController do
-    before{ sign_in }
+    before do
+      sign_in
+      @forum = FactoryGirl.create :forum
+    end
   
     describe '#create' do
   
       context 'with valid params' do
         before do
-          @question_params = {:question => FactoryGirl.attributes_for(:question)}
+          @question_params = {:question => FactoryGirl.attributes_for(:question), :forum_id => @forum.id}
         end
   
         it 'saves a question' do
@@ -25,7 +28,7 @@ module Ask
   
       context 'with invalid params' do
         before do
-          @question_params = {:question => FactoryGirl.attributes_for(:question, :title => nil)}
+          @question_params = {:question => FactoryGirl.attributes_for(:question, :title => nil), :forum_id => @forum.id}
         end
   
         it 'does not save any question' do

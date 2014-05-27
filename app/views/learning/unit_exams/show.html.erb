@@ -1,30 +1,47 @@
-<% @body_id = 'unit-exam' %>
-<%= form_for @unit_exam do |f| %>
-  <% unless @unit_exam.over? %>
-    <div id='countdown'>
-      <h1><%= @unit_exam.name %>测试</h1>
-      <div>开始时间：<%= l @unit_exam.created_at, :format => :time_only %></div>
-      <div>结束时间：<%= l @unit_exam.end_at, :format => :time_only %></div>
-      <div>剩余时间：<span class='rest'><%= @unit_exam.rest_seconds %></span></div>
-      <input type='button' value='哪些题目未做？' class='mark'/>
-      <input type='button' value='交卷' class='submit'/>
-      <%= f.hidden_field :submitted, :class => 'submitted' %>
-    </div>
-  <% else %>
-    <div id='result'>
-      <h1><%= @unit_exam.name %>测试</h1>
-      <div>得分：<span class='score'><%= @unit_exam.score %></span></div>
-      <div><%= @unit_exam.passed? ? '恭喜你通过测试！' : '您没有通过测试。'%></div>
-    </div>
-  <% end %>
-  <div class='questions'>
-    <h1>单元练习</h1>
-    <%= render :partial => 'choice_answers', 
-      :object => @unit_exam.singular_choice_answers, 
-      :locals => {:f => f, :nested_model => :singular_choice_answers, :title => '单选题', :exam_over => @unit_exam.over? } %>
+<div class="container">
+  <%= bootstrap_form_for @unit_exam do |f| %>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="well">
+          <% unless @unit_exam.over? %>
+            <div class="page-header">
+              <h1><%= @unit_exam.name %>测试</h1>
+            </div>
+          <% else %>
+            <div class="page-header">
+              <h1><%= @unit_exam.name %>测试</h1>
+            </div>
 
-    <%= render :partial => 'choice_answers',
-      :object => @unit_exam.multiple_choice_answers,
-      :locals => {:f => f, :nested_model => :multiple_choice_answers, :title => '多选题', :exam_over => @unit_exam.over? } %>
+            <div>得分：<span class='score'><%= @unit_exam.score %></span></div>
+
+            <div class="alert alert-info"><%= @unit_exam.passed? ? '恭喜你通过测试！' : '您没有通过测试。'%></div>
+          <% end %>
+          <div class="questions">
+            <h3>单元练习</h3>
+            <%= render :partial => 'choice_answers', 
+              :object => @unit_exam.singular_choice_answers, 
+              :locals => {:f => f, :nested_model => :singular_choice_answers, :title => '单选题', :exam_over => @unit_exam.over? } %>
+
+            <%= render :partial => 'choice_answers',
+              :object => @unit_exam.multiple_choice_answers,
+              :locals => {:f => f, :nested_model => :multiple_choice_answers, :title => '多选题', :exam_over => @unit_exam.over? } %>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <% unless @unit_exam.over? %>
+      <div class="well">
+        <div>开始时间：<%= l @unit_exam.created_at, :format => :time_only %></div>
+        <div>结束时间：<%= l @unit_exam.end_at, :format => :time_only %></div>
+        <div>剩余时间：<span class='rest'><%= @unit_exam.rest_seconds %></span></div>
+
+        <%= f.button '哪些题目未做？', :class => 'btn btn-primary' %>
+        <%= f.button '交卷', :class => 'btn btn-primary' %>
+        <%= f.hidden_field :submitted, :class => 'submitted' %>
+      </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+  <% end %>
+</div>

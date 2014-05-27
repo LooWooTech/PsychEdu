@@ -1,9 +1,14 @@
-<li>
-  <div>
-    <header>
-      <span class='record-at'>记录于<date><%= l note.created_at, :format => :long %></date></span>
-      <span class='video-time-point'>视频时间：<span><%= note.play_time_point %></span></span>
-    </header>
-    <div class='content'><%= note.content %></div>
+<div class="media">
+  <div class="media-body">
+    <div class="contents">
+      <%= note.content %>
+    </div>
+
+    <div class="actions">
+      <span>
+      	记录于 <%= l note.created_at, :format => :long %> /
+      	视频时间 <%= note.play_time_point %>
+      </span>
+    </div>
   </div>
-</li>
+</div>

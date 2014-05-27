@@ -1,12 +1,17 @@
-<li>
-  <%= image_tag 'learning/avatar.jpg', :class => 'avatar' %>
-  <div class='content'>
-    <header>
-      <span class='name'><%= comment.commenter_name %></span>
-      <span class='time'><%= l comment.created_at, :format => :long %></span>
-    </header>
-    <div class='content'>
+<div class="media">
+  <a class="pull-left" href="#">
+    <%= image_tag '/assets/avatar/2.jpg', :class => 'media-object img-rounded', :width => 64, :height => 64 %>
+  </a>
+  <div class="media-body">
+    <div class="author">
+      <%= comment.commenter_name %>
+    </div>
+    <div class="contents">
       <%= comment.content %>
     </div>
+
+    <div class="actions">
+      <span><%= l comment.created_at, :format => :long %></span>
+    </div>
   </div>
-</li>
+</div>

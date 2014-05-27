@@ -1,69 +1,90 @@
-<% @body_id = 'video-watching' %>
-<header>
-  <% if @video_watching.unit_learning.only_child? %>
-    <h1><%= @video_watching.chapter_name %></h1>
-  <% else %>
-    <h1><%= @video_watching.unit_name %></h1>
-    <div class='unit-selector'>
-      <span>课程列表</span>
-      <ul>
-        <% @chapter_learning.unit_learnings.each do |unit_learning| %>
-          <% if unit_learning.open? %>
-            <li><%= link_to unit_learning.name, unit_learning %></li>
-          <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="well">
+        <% if @video_watching.unit_learning.only_child? %>
+          <h1><%= @video_watching.chapter_name %></h1>
+        <% else %>
+          <h1><%= @video_watching.unit_name %></h1>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <span>时长：<%= @video_watching.duration %>分钟</span>
+        <span>教师：<%= @video_watching.teacher_names %></span>
+      </div>
 
-  <div class='video-info'>
-    <%= mode_switch_link @video_watching %>
-    <span>时长：<%= @video_watching.duration %>分钟</span>
-    <span>教师：<%= @video_watching.teacher_names %></span>
-    <%= unit_exam_link @video_watching.unit_learning %>
-  </div>
-</header>
+      <div class="well">
+        <video id="video"></video>
+      </div>      
 
-<div class='player'>
-  <video id='video'></video>
-</div>
-
-<% if @unit_learning.video_watchings.any? %>
-    <div class='switcher'>
-        <ul class='video-selector'>
-          <li class='list-title'><h3>视频列表</h3></li>
-          <% @unit_learning.video_watchings.each do |video_watching| %>
-            <li><%= link_to video_watching.name, video_watching %></li>
-          <% end %>
+      <div class="well">
+        <ul class="nav nav-pills" style="margin-bottom: 20px;">
+          <li class="active"><a href="#comments" data-toggle="tab">评论</a></li>
+          <li><a href="#notes" data-toggle="tab">笔记</a></li>
         </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="comments">
+
+            <%= render :partial => 'learning/comments/comments', 
+              :object => @video_watching.comments.page(1).per(5), 
+              :locals => {:commentable => @video_watching.video} %>
+
+            <%= bootstrap_form_for [@video_watching.video, Comment.new], :remote => true, :html => {:id => 'video-comment'} do |f| %>
+              <%= f.text_area :content %>
+              <%= f.submit '发表评论' %>
+            <% end %>
+
+          </div>
+          <div class="tab-pane" id="notes">
+
+            <%= render :partial => 'learning/notes/notes',
+              :object => @video_watching.notes.page(1).per(5),
+              :locals => {:video_watching => @video_watching} %>
+
+            <%= bootstrap_form_for [@video_watching, Note.new], :remote => true, :html => {:id => 'video-note'} do |f| %>
+              <%= f.text_area :content %>
+              <%= f.submit '保存记事' %>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+
     </div>
-<% end %>
 
-<div class='comments-and-notes'>
-  <div class='switcher'>
-    <div class='comments' data-control='comments'>课程评论</div>
-    <div class='notes' data-control='notes'>记事本</div>
-  </div>
-  <div class='comments'>
-    <%= render :partial => 'learning/comments/comments', 
-      :object => @video_watching.comments.page(1).per(5), 
-      :locals => {:commentable => @video_watching.video} %>
+    <div class="col-md-4">
 
-    <%= form_for [@video_watching.video, Comment.new], :remote => true, :html => {:id => 'video-comment'} do |f| %>
-      <%= f.text_area :content %>
-      <%= f.submit '发表评论' %>
-    <% end %>
-  </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= unit_exam_link @video_watching.unit_learning, 'btn btn-primary btn-block' %>
+          <%= mode_switch_link @video_watching, 'btn btn-default btn-block' %>
+        </div>
+      </div>
 
-  <div class='notes'>
-    <%= render :partial => 'learning/notes/notes',
-      :object => @video_watching.notes.page(1).per(5),
-      :locals => {:video_watching => @video_watching} %>
+      <% if @video_watching.unit_learning.only_child? %>
+      <% else %>
+      <div class="panel panel-default">
+        <div class="panel-heading">课程列表</div>
+          <ul class="list-group">
+            <% @chapter_learning.unit_learnings.each do |unit_learning| %>
+              <% if unit_learning.open? %>
+                <li class="list-group-item"><%= link_to unit_learning.name, unit_learning %></li>
+              <% end %>
+            <% end %>
+          </ul>
+      </div>
+      <% end %>
 
-    <%= form_for [@video_watching, Note.new], :remote => true, :html => {:id => 'video-note'} do |f| %>
-      <%= f.text_area :content %>
-      <%= f.submit '保存记事' %>
-    <% end %>
+      <div class="panel panel-default">
+        <div class="panel-heading">视频列表</div>
+        <% if @unit_learning.video_watchings.any? %>
+          <ul class="list-group">
+            <% @unit_learning.video_watchings.each do |video_watching| %>
+            <li class="list-group-item"><%= link_to video_watching.name, video_watching %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+
   </div>
 </div>
 

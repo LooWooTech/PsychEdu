@@ -1,30 +1,33 @@
 <% if choice_answers.any? %>
-  <h4><%= title %></h4>
-  <ol class='choice-questions'>
+  <h4 class="choice-heading"><%= title %></h4>
+  <div class="choice-group">
     <% choice_answers.each_with_index do |answer, index| %>
       <% question = answer.question %>
       <%= f.fields_for nested_model, answer do |answer_field| %>
-        <li>
-          <span class='index'><%= index + 1 %></span>
-          <div class='content'>
-            <div class='question'><%= question.content %></div>
-            <ol class='choices'>
+        <div class="choice">
+          <div class="choice-status"><%= index + 1 %></div>
+          <div class="choice-body">
+            <div class="choice-content">
+              <%= question.content %>
+            </div>
+
+            <div class="choice-option-group">
               <% question.choices.each do |choice| %>
-                <li>
-                  
+                <div class="choice-option-group-item">
                     <% if answer.is_a? SingularChoiceAnswer %>
                       <%= answer_field.radio_button :choice_id, choice.id, :disabled => exam_over, :label => choice.content %>
                     <% else %>
-                      <label>
+                      <label class="checkbox">
                       <%= check_box_tag "unit_exam[#{nested_model}_attributes][#{index}]choice_ids[]" , choice.id, answer.choice_ids.include?(choice.id), :disabled => exam_over %>
                       <%= choice.content %>
                       </label>
                     <% end %>
-                </li>
+                </div>
               <% end %>
-            </ol>
+            </div>
+
             <% if exam_over && answer.wrong? %>
-              <div class='correct'> 正确答案：
+              <div class="correct"> 正确答案：
                 <% if answer.is_a? SingularChoiceAnswer %>
                   <%= question.correct_choice.content %>
                 <% else %>
@@ -37,8 +40,8 @@
               </div>
             <% end %>
           </div>
-        </li>
+        </div>
       <% end %>
     <% end %>
-  </ol>
+  </div>
 <% end %>

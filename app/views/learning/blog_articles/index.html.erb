@@ -1,6 +1,21 @@
-<%= link_to '写新文章', new_blog_article_path %>
-<ul class='articles'>
-  <% @blog_articles.each do |blog_article| %>
-  <li><%= link_to blog_article.title, blog_article %></li>
-  <% end %>
-</ul>
+<div class="container">
+	<div class="row">
+		<div class="col-md-8">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">Blog</div>
+				<div class="panel-body">
+					<ul class="panel-nav">
+						<% @blog_articles.each do |blog_article| %>
+						<li><%= link_to blog_article.title, blog_article %></li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+		<div class="col-md-4">
+			<%= link_to '写新文章', new_blog_article_path, :class => 'btn btn-primary' %>
+		</div>
+	</div>
+</div>

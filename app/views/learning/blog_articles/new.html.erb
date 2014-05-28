@@ -1,13 +1,18 @@
-<%= form_for @blog_article do |f| %>
-  <div>
-    <%= f.label :title, '标题' %>
-    <%= f.text_field :title %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Blog
+        </div>
+        <div class="panel-body">
+          <%= bootstrap_form_for @blog_article do |f| %>
+              <%= f.text_field :title, :label => '标题' %>
+              <%= f.text_area :content, :label => '正文' %>
+              <%= f.submit '保存' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.label :content, '内容' %>
-    <%= f.text_area :content %>
-  </div>
-  <div>
-    <%= f.submit '保存' %>
-  </div>
-<% end %>
+</div>

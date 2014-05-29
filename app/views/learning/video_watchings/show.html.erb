@@ -94,7 +94,7 @@
 
 <% content_for :head do %>
 <script type='text/javascript'>
-    /*var flashvers = {};
+    var flashvers = {};
     flashvers.mp4_url = "<%= @video_watching.url %>";
     flashvers.dianping = "<%= @video_watching.with_comment? %>";
     flashvers.save_dx = 10;
@@ -111,13 +111,13 @@
     params.allowScriptAccess="sameDomain";
     params.wmode="opaque";
     
-    swfobject.embedSWF("/flashplayer/player.swf", "video", "850px", "480px", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
+    swfobject.embedSWF("/flashplayer/player.swf", "video", "630px", "480px", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
 
     function swf_save_data(time, xml) {
       $.post('<%= video_watching_path @video_watching %>',{
         _method: 'patch',
         data: xml.replace(/[\r\n]/g,'')
       });
-    }*/
+    }
 </script>
 <% end %>

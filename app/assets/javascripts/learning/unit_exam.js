@@ -38,6 +38,7 @@ $(document).ready(function() {
 
     // 哪些题目未做
     $container.find('[data-event="exam.unmark"]').on('click', function(e) {
+        e.preventDefault();
         // 添加未完成记号
         $container.find('.choice').each(function(index, value) {
             if ($(value).find('input:checked').size() === 0) {

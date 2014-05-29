@@ -5,7 +5,9 @@ $unit_exams_prefix: "choice";
 }
 
 .#{$unit_exams_prefix} {
-
+	&.unfinished {
+		background: #eee;
+	}
 }
 
 .#{$unit_exams_prefix}-heading {

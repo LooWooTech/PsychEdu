@@ -1,7 +1,28 @@
-<h1><%= current_topic_learning.name %>资料扩展</h1>
-<ul class='case-analyses'>
-  <% @materials.each do |material| %>
-    <li><%= link_to material.title, material %></li>
-  <% end %>
-</ul>
-<%= paginate @materials %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><%= link_to raw('首页'), learning_url %></li>
+        <li class="active">资料拓展</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading"><%= current_topic_learning.name %> 资料扩展</div>
+        <div class="panel-body">
+			<ul class='case-analyses'>
+				<% @materials.each do |material| %>
+					<li><%= link_to material.title, material %></li>
+				<% end %>
+			</ul>
+			<%= paginate @materials %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

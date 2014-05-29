@@ -16,7 +16,7 @@
       <%= chapter_learning.name %>
     </div>
     <div class="panel-body">
-      <%= link_to '更多信息', guide_topic_learning_path(current_topic_learning), :class => 'btn btn-sm btn-primary' %>
+      <a href="javascript:void(0);" class="btn btn-sm btn-primary">更多信息</a>
       <% if chapter_learning.has_only_one_unit? && chapter_learning.open? %>
         <% unit_learning = chapter_learning.unit_learnings.first %>
         <hr>

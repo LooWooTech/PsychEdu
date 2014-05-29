@@ -1,17 +1,23 @@
-<li>
-  <table>
-    <caption>《<%= topic_learning.name %>》学期信息</caption>
-    <thead>
-      <tr>
-        <th>起始时间</th>
-        <th>结束时间</th>
-      </tr>
-    </thead>
-    <% topic_learning.learning_periods.each do |learning_period| %>
-      <tr>
-        <td><%= l learning_period.start_on %></td>
-        <td><%= l learning_period.actually_end_on %></td>
-      </tr>
-    <% end %>
-  </table>
-</li>
+<div class="panel panel-default">
+  <div class="panel-heading">《<%= topic_learning.name %>》学期信息</div>
+  <div class="panel-body">
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th>起始时间</th>
+          <th>结束时间</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% topic_learning.learning_periods.each do |learning_period| %>
+          <tr>
+            <td><%= l learning_period.start_on %></td>
+            <td><%= l learning_period.actually_end_on %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>

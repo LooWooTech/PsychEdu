@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="unit_exam">
   <%= bootstrap_form_for @unit_exam do |f| %>
   <div class="row">
     <div class="col-md-8">
@@ -34,11 +34,11 @@
       <div class="well">
         <div>开始时间：<%= l @unit_exam.created_at, :format => :time_only %></div>
         <div>结束时间：<%= l @unit_exam.end_at, :format => :time_only %></div>
-        <div>剩余时间：<span class='rest'><%= @unit_exam.rest_seconds %></span></div>
+        <div>剩余时间：<span data-seconds="<%= @unit_exam.rest_seconds %>"></span></div>
 
-        <%= f.button '哪些题目未做？', :class => 'btn btn-primary' %>
-        <%= f.button '交卷', :class => 'btn btn-primary' %>
-        <%= f.hidden_field :submitted, :class => 'submitted' %>
+        <%= f.button '哪些题目未做？', :class => 'btn btn-primary', :data => {:event => 'exam.unmark'} %>
+        <%= f.button '交卷', :class => 'btn btn-primary', :data => {:event => 'exam.submit'} %>
+        <%= f.hidden_field :submitted, :data => {:event => 'exam.submitted'} %>
       </div>
       <% end %>
     </div>

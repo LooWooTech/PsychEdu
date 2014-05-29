@@ -1,21 +1,28 @@
-<%= form_for :account, :url => password_path, :method => :patch do |f| %>
-  <div>
-    <label>
-      旧密码：
-      <%= f.password_field 'old_password' %>
-    </label>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><%= link_to raw('首页'), learning_url %></li>
+        <li class="active">修改密码</li>
+      </ol>
+    </div>
   </div>
-  <div>
-    <label>
-      新密码：
-      <%= f.password_field 'password' %>
-    </label>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">修改密码</div>
+        <div class="panel-body">
+          <%= bootstrap_form_for :account, :url => password_path, :method => :patch do |f| %>
+            <%= f.password_field 'old_password', :label => '旧密码' %>
+            <%= f.password_field 'password', :label => '新密码' %>
+            <%= f.password_field 'password_confirmation', :label => '确认新密码' %>
+            <%= f.submit '提交', :class => 'btn btn-danger' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    <label>
-      确认新密码：
-      <%= f.password_field 'password_confirmation' %>
-    </label>
-  </div>
-  <div><%= f.submit '提交' %></div>
-<% end %>
+</div>

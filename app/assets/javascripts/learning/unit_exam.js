@@ -63,4 +63,13 @@ $(document).ready(function() {
             submitAnswers();
         }
     });
+
+    $container.find('[data-event="affix"]').affix({
+        offset: {
+            top: 100,
+            bottom: function () {
+                return (this.bottom = $('footer').outerHeight(true))
+            }
+        }
+    })
 });

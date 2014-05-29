@@ -31,7 +31,7 @@
 
     <div class="col-md-4">
       <% unless @unit_exam.over? %>
-      <div class="well">
+      <div class="well" data-event="affix">
         <div>开始时间：<%= l @unit_exam.created_at, :format => :time_only %></div>
         <div>结束时间：<%= l @unit_exam.end_at, :format => :time_only %></div>
         <div>剩余时间：<span data-seconds="<%= @unit_exam.rest_seconds %>"></span></div>

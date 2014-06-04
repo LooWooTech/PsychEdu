@@ -1,10 +1,10 @@
 <div class='page-header clearfix'>
-  <h1>案例分析</h1>
+  <h1>案例与资料</h1>
   <ul>
-    <li><%= link_to '新增案例', new_topic_material_path, :class => 'btn btn-default' %></li>
+    <li><%= link_to '新增资料', new_admin_topic_material_path, :class => 'btn btn-default' %></li>
   </ul>
 </div>
-<%= search_form_for @search do |f| %>
+<%= search_form_for [:admin, @search] do |f| %>
   <div class='row'>
     <div class='col-lg-3'>
       <%= f.label :title_cont, '标题' %>
@@ -52,8 +52,8 @@
       <td><%= l topic_material.created_at, :format => :short %></td>
       <td><%= l topic_material.updated_at, :format => :short %></td>
       <td>
-        <%= link_to '编辑', edit_topic_material_path(topic_material) %>
-        <%= link_to '删除' %>
+        <%= link_to '编辑', edit_admin_topic_material_path(topic_material) %>
+        <%= link_to '删除', admin_topic_material_path(topic_material), :method => :delete, :data => {:confirm => "确定要删除《#{topic_material.title}》吗？"} %>
       </td>
     </tr>
   <% end%>

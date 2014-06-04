@@ -11,7 +11,7 @@ module Admin
     def update
       @topic_exam = TopicExam.find params[:id]
       if @topic_exam.update_attributes review_params
-        redirect_to topic_exam_review_path(@topic_exam)
+        redirect_to admin_topic_exam_review_path(@topic_exam)
       else
         render :show
       end

@@ -105,12 +105,12 @@
     </tr>
   </table>
   
-  <%= link_to '修改信息', edit_student_path(@student), :class => 'btn btn-default' %>
+  <%= link_to '修改信息', edit_admin_student_path(@student), :class => 'btn btn-default' %>
 </div>
 
 <% if @unopen_topics.any? %>
   <div class='well'>
-    <%= form_for [@student, @topic_learning], :html => {:id => 'open-topic-learning', :class => 'form-horizontal'} do |f| %>
+    <%= form_for [:admin, @student, @topic_learning], :html => {:id => 'open-topic-learning', :class => 'form-horizontal'} do |f| %>
       <fieldset>
         <legend>开通专题</legend>
         <div class='form-group'>

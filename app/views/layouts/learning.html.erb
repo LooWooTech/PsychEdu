@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>问答频道 / 建德教育</title>
     <%= csrf_meta_tags %>
+    <%= javascript_tag  do %>
+      setInterval(function(){
+        $.post('<%= learning_heartbeats_path %>');
+      }, <%= MonthlyOnlineTracking::INTERVAL_MILLISECONDS %>);
+    <% end %>
     <%= stylesheet_link_tag "ask/manifest", media: "all" %>
     <!--[if lt IE 9]>
       <%= javascript_include_tag "common/ie" %>
@@ -18,18 +23,18 @@
     <header>
       <nav class="navbar navbar-inverse navbar-global">
         <div class="container">
-          <a class="navbar-brand" href="/">建德教育 <span>课程学习</span></a>
+          <%= link_to raw('建德教育<span>课程学习</span>'), learning_root_path, :class => 'navbar-brand' %>
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><%= link_to raw('<i class="fa fa-home"></i> 课程学习'), learning_url %></li>
-            <li><%= link_to raw('<i class="fa fa-tag"></i> 案例解读'), case_analyses_path %></li>
-            <li><%= link_to raw('<i class="fa fa-clipboard"></i> 资料'), extended_topic_materials_path %></li>
+            <li class="active"><%= link_to raw('<i class="fa fa-home"></i> 课程学习'), learning_root_path %></li>
+            <li><%= link_to raw('<i class="fa fa-tag"></i> 案例解读'), learning_case_analyses_path %></li>
+            <li><%= link_to raw('<i class="fa fa-clipboard"></i> 资料'), learning_extended_topic_materials_path %></li>
             <li><%= link_to raw('<i class="fa fa-comment"></i> 社区'), ask_url %></li>
             <li><a href="#"><i class="fa fa-github-alt"></i> 督导</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %> <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><%= link_to '个人主页', blog_articles_path %></li>
-                <li><%= link_to '学员申请', periods_path %></li>
+                <li><%= link_to '学员申请', learning_periods_path %></li>
                 <li class="divider"></li>
                 <li><%= link_to '修改密码', edit_password_path %></li>
                 <li><%= link_to '学员信息', profile_path %></li>

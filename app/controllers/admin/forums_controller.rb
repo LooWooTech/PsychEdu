@@ -14,7 +14,7 @@ module Admin
       @forum = Forum.new forum_params
       if @forum.save
         flash[:notice] = "您创建了 #{@forum.name}"
-        redirect_to forums_path
+        redirect_to admin_forums_path
       else
         render :new
       end
@@ -27,7 +27,7 @@ module Admin
     def update
       if @forum.update_attributes forum_params
         flash[:notice] = "您修改了 #{@forum.name}"
-        redirect_to forums_path
+        redirect_to admin_forums_path
       else
         render :new
       end
@@ -36,7 +36,7 @@ module Admin
     def destroy
       @forum.destroy
       flash[:notice] = "您删除了 #{@forum.name}"
-      redirect_to forums_path
+      redirect_to admin_forums_path
     end
 
     private

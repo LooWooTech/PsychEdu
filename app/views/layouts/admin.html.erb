@@ -19,36 +19,36 @@
           <li class='dropdown'>
             <a href='javascript:;' class='dropdown-toggle' data-toggle='dropdown'>学员维护<b class='caret'></b></a>
             <ul class='dropdown-menu'>
-              <li><%= link_to '学员管理', students_path %></li>
-              <li><%= link_to '时间跟踪', monthly_online_trackings_path %></li>
-              <li><%= link_to '报名管理', topic_learnings_path %></li>
-              <li><%= link_to '申请处理', period_applications_path %></li>
+              <li><%= link_to '学员管理', admin_students_path %></li>
+              <li><%= link_to '时间跟踪', admin_monthly_online_trackings_path %></li>
+              <li><%= link_to '报名管理', admin_topic_learnings_path %></li>
+              <li><%= link_to '申请处理', admin_period_applications_path %></li>
             </ul>
           </li>
           <li class='dropdown'>
             <a href='javascript:;' class='dropdown-toggle' data-toggle='dropdown'>内容维护<b class='caret'></b></a>
             <ul class='dropdown-menu'>
-              <li><%= link_to '课程管理', topics_path %></li>
-              <li><%= link_to '案例与资料', topic_materials_path %></li>
+              <li><%= link_to '课程管理', admin_topics_path %></li>
+              <li><%= link_to '案例与资料', admin_topic_materials_path %></li>
             </ul>
           </li>
           <li class='dropdown'>
             <a href='javascript:;' class='dropdown-toggle' data-toggle='dropdown'>专题考核<b class='caret'></b></a>
             <ul class='dropdown-menu'>
 
-              <li><%= link_to '出题', topic_testings_path %></li>
-              <li><%= link_to '审核', topic_exam_reviews_path %></li>
-              <li><%= link_to '查询', topic_exams_path %></li>
+              <li><%= link_to '出题', admin_topic_testings_path %></li>
+              <li><%= link_to '审核', admin_topic_exam_reviews_path %></li>
+              <li><%= link_to '查询', admin_topic_exams_path %></li>
             </ul>
           </li>
           <li class='dropdown'>
             <a href='javascript:;' class='dropdown-toggle' data-toggle='dropdown'>问答社区<b class='caret'></b></a>
             <ul class='dropdown-menu'>
-              <li><%= link_to '版块分类', forum_catalogs_path %></li>
-              <li><%= link_to '版块', forums_path %></li>
+              <li><%= link_to '版块分类', admin_forum_catalogs_path %></li>
+              <li><%= link_to '版块', admin_forums_path %></li>
             </ul>
           </li>
-          <li><%= link_to '通知管理', announcements_path %></li>
+          <li><%= link_to '通知管理', admin_announcements_path %></li>
         </ul>
       </div>
     </div>
@@ -56,13 +56,13 @@
       <% if flash[:notice].present? %>
         <div class='alert alert-success'>
           <button type='button' class='close' data-dismiss='alert'>&times;</button>
-          <%= flash[:notice] %>
+          <%= raw flash[:notice] %>
         </div>
       <% end %>
       <% if flash[:error].present? %>
         <div class='alert alert-danger'>
           <button type='button' class='close' data-dismiss='alert'>&times;</button>
-          <%= flash[:error] %>
+          <%= raw flash[:error] %>
         </div>
       <% end %>
       <%= yield %>

@@ -1,24 +1,24 @@
 <div class='page-header clearfix'>
   <h1>专题考核查询</h1>
 </div>
-<%= search_form_for @search do |f| %>
-  <div class='col-lg-3'>
+<%= search_form_for [:admin, @search] do |f| %>
+  <div class='col-lg-4'>
     <%= f.label :topic_learning_student_account_username_cont, '用户名' %>
     <%= f.text_field :topic_learning_student_account_username_cont %>
   </div>
-  <div class='col-lg-3'>
+  <div class='col-lg-4'>
     <%= f.label :topic_learning_student_name_cont, '姓名' %>
     <%= f.text_field :topic_learning_student_name_cont %>
   </div>
-  <div class='col-lg-3'>
+  <div class='col-lg-4'>
     <%= f.label :topic_learning_student_unit_code_eq , '单位编号' %>
     <%= f.text_field :topic_learning_student_unit_code_eq %>
   </div>
-  <div class='col-lg-2'>
+  <div class='col-lg-4'>
     <%= f.label :topic_learning_topic_id_eq, '专题' %>
     <%= f.select :topic_learning_topic_id_eq, options_from_collection_for_select(Topic.all, :id, :name, @search.topic_learning_topic_id_eq), :include_blank => '全部专题' %>
   </div>
-  <div class='col-lg-1'>
+  <div class='col-lg-4'>
     <button type='submit'>搜索</button>
   </div>
 <% end %>

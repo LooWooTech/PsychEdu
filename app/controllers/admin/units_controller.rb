@@ -10,7 +10,7 @@ module Admin
     def create
       @unit = @chapter.units.build unit_params
       if @unit.save
-        redirect_to @unit
+        redirect_to [:admin, @unit]
       else
         render :new
       end
@@ -22,7 +22,7 @@ module Admin
 
     def update
       if @unit.update_attributes unit_params
-        redirect_to @unit
+        redirect_to [:admin, @unit]
       else
         render :new
       end
@@ -32,13 +32,13 @@ module Admin
 
     def destroy
       @unit.destroy
-      redirect_to @unit.chapter
+      redirect_to [:admin, @unit.chapter]
     end
 
     def import_questions
       @importer = QuestionImporter.new(@unit, params[:file].path)
       flash[:notice] = @importer.result
-      redirect_to @unit
+      redirect_to [:admin, @unit]
     end
 
     private

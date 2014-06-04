@@ -1,6 +1,6 @@
 <div class='well'>
   <%= form_for @topic_material, :as => 'topic_material',
-    :url => @topic_material.new_record? ? topic_materials_path : topic_material_path(@topic_material),
+    :url => @topic_material.new_record? ? admin_topic_materials_path : admin_topic_material_path(@topic_material),
     :multipart => true, :html => {:class => 'form-horizontal', :id => 'edit-case-analysis'} do |f| %>
     <fieldset>
       <legend><%= @topic_material.new_record? ? '新增资料' : '编辑资料'%></legend>

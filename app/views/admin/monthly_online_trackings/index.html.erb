@@ -1,7 +1,7 @@
 <div class='page-header clearfix'>
   <h1>时间跟踪</h1>
 </div>
-  <%= search_form_for @search, :url => monthly_online_trackings_path do |f| %>
+  <%= search_form_for @search, :url => admin_monthly_online_trackings_path do |f| %>
     <div class='col-lg-4'>
       <%= f.label :topic_learning_student_account_username_cont, '用户名' %>
       <%= f.text_field :topic_learning_student_account_username_cont %>

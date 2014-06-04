@@ -8,7 +8,7 @@ module Learning
       if current_topic_learning.ready_for_exam?
         @topic_exam.submit
         flash[:notice] = '已交卷，请等待审核。'
-        redirect_to @topic_exam
+        redirect_to [:learning, @topic_exam]
       else
         render :text => '该专题目前不能进行考试', :status => 400
       end

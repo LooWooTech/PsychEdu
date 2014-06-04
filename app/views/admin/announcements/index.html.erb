@@ -1,10 +1,10 @@
 <div class='page-header clearfix'>
   <h1>通知列表</h1>
   <ul>
-    <li><%= link_to '发布通知', new_announcement_path, :class => 'btn btn-default' %></li>
+    <li><%= link_to '发布通知', new_admin_announcement_path, :class => 'btn btn-default' %></li>
   </ul>
 </div>
-<%= search_form_for @search do |f| %>
+<%= search_form_for [:admin, @search] do |f| %>
   <div class='col-lg-4'>
     <%= f.label :topic_id_eq, '所属专题' %>
     <%= f.select :topic_id_eq, Topic.all.map{|topic| [topic.name, topic.id]}, :include_blank => '全部' %>
@@ -44,9 +44,9 @@
       <td><%= announcement.publisher_username %></td>
       <td><%= l announcement.created_at, :format => :date_only %></td>
       <td>
-        <%= link_to '查看', announcement %>
-        <%= link_to '修改', edit_announcement_path(announcement) %>
-        <%= link_to '删除', announcement, :method => :delete, :data => {:confirm => '确定删除这个通知吗？'} %>
+        <%= link_to '查看', [:admin, announcement] %>
+        <%= link_to '修改', edit_admin_announcement_path(announcement) %>
+        <%= link_to '删除', [:admin, announcement], :method => :delete, :data => {:confirm => '确定删除这个通知吗？'} %>
       </td>
     </tr>
   <% end%>

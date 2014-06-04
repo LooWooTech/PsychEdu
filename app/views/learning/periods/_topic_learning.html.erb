@@ -1,7 +1,8 @@
 <li>
   <h2> <%= topic_learning.name %>：<%= topic_learning_state topic_learning %> </h2>
   <% if !topic_learning.has_unreviewed_application? %>
-    <%= form_tag topic_learning_periods_path(topic_learning), :class => 'period-application' do %>
+    <%= form_tag learning_periods_path, :class => 'period-application' do %>
+      <%= hidden_field_tag 'topic_learning_id', topic_learning.id %>
       <div class='type'>
       类型：<%= select_tag 'type', options_for_select({'延学' => 'learning', '休学' => 'leaving', '恢复' => 'resuming'}), :include_blank => true %>
       </div>

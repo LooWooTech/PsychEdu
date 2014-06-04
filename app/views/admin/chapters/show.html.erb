@@ -9,17 +9,17 @@
     </tr>
     <tr>
       <th>所属专题：</th>
-      <td><%= link_to @chapter.topic_name, @chapter.topic %></td>
+      <td><%= link_to @chapter.topic_name, [:admin, @chapter.topic] %></td>
     </tr>
   </table>
-  <%= link_to '修改', edit_chapter_path(@chapter), :class => 'btn btn-default' %>
+  <%= link_to '修改', edit_admin_chapter_path(@chapter), :class => 'btn btn-default' %>
   <%= link_to '返回', :back, :class => 'btn btn-default' %>
 </div>
 
 <div class='page-header clearfix'>
   <h2>单元列表</h2>
   <ul>
-    <li><%= link_to '添加单元', new_chapter_unit_path(@chapter), :class => 'btn btn-default' %></li>
+    <li><%= link_to '添加单元', new_admin_chapter_unit_path(@chapter), :class => 'btn btn-default' %></li>
   </ul>
 </div>
 
@@ -31,10 +31,10 @@
     </tr>
     <% @chapter.units.each do |unit| %>
       <tr>
-        <td><%= link_to unit.name, unit %></td>
+        <td><%= link_to unit.name, [:admin, unit] %></td>
         <td>
-          <%= link_to '修改', edit_unit_path(unit)%>
-          <%= link_to '删除', unit, :method => :delete, :data => {:confirm => "确实要删除“#{unit.name}”吗？"}%>
+          <%= link_to '修改', edit_admin_unit_path(unit)%>
+          <%= link_to '删除', [:admin, unit], :method => :delete, :data => {:confirm => "确实要删除“#{unit.name}”吗？"}%>
         </td>
       </tr>
     <% end %>

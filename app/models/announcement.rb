@@ -4,4 +4,7 @@ class Announcement < ActiveRecord::Base
 
   delegate :username, :to => :publisher, :prefix => true
   delegate :name, :to => :topic, :prefix => true
+
+  validates :title, :presence => true
+  validates :content, :presence => true
 end

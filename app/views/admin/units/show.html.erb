@@ -9,7 +9,7 @@
     </tr>
     <tr>
       <th>所属章节：</th>
-      <td><%= link_to @unit.chapter_name , @unit.chapter %></td>
+      <td><%= link_to @unit.chapter_name , [:admin, @unit.chapter] %></td>
     </tr>
     <tr>
       <th>出卷单选题数：</th>
@@ -28,13 +28,13 @@
       <td><%= @unit.exam_minutes %> 分钟</td>
     </tr>
   </table>
-  <%= link_to '修改', edit_unit_path(@unit), :class => 'btn btn-default' %>
+  <%= link_to '修改', edit_admin_unit_path(@unit), :class => 'btn btn-default' %>
 </div>
 
 <div class='page-header clearfix'>
   <h3>题库</h3>
 </div>
-<%= form_tag import_questions_unit_path(@unit), :method => :post, :multipart => true, :id => 'question-import', :class => 'form-horizontal' do %>
+<%= form_tag import_questions_admin_unit_path(@unit), :method => :post, :multipart => true, :id => 'question-import', :class => 'form-horizontal' do %>
   <fieldset>
     <div class='form-group'>
       <div class='col-lg-10'>
@@ -58,8 +58,8 @@
       <tr>
         <td><%= question.content %></td>
         <td>
-          <%= link_to '修改', edit_singular_choice_question_path(question) %>
-          <%= link_to '删除', question, :method => :delete, 'data-confirm' => '确实要删除吗？' unless question.published? %>
+          <%= link_to '修改', edit_admin_singular_choice_question_path(question) %>
+          <%= link_to '删除', [:admin, question], :method => :delete, 'data-confirm' => '确实要删除吗？' unless question.published? %>
         </td>
       </tr>
     <% end %>
@@ -67,8 +67,8 @@
       <tr>
         <td><%= question.content %></td>
         <td>
-          <%= link_to '修改', edit_multiple_choice_question_path(question) %>
-          <%= link_to '删除', question, :method => :delete, 'data-confirm' => '确实要删除吗？' unless question.published? %>
+          <%= link_to '修改', edit_admin_multiple_choice_question_path(question) %>
+          <%= link_to '删除', [:admin, question], :method => :delete, 'data-confirm' => '确实要删除吗？' unless question.published? %>
         </td>
       </tr>
     <% end %>

@@ -45,11 +45,11 @@ class ApplicationController < ActionController::Base
 
   def redirect_back_or_root
     if current_user.is_a? Student
-      root_url = learning_url
+      root_path = learning_root_path
     else
-      root_url = admin_url
+      root_path = admin_root_path
     end
-    redirect_to(session[:return_to]||root_url)
+    redirect_to(session[:return_to]||root_path)
     session[:return_to] = nil
   end
 

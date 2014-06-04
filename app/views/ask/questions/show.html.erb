@@ -10,10 +10,10 @@
       <%= @question.questioner_name %>
 			<span class="media-fade">
 				/
-				<%= link_to '修改', edit_question_path(@question), :remote => true, :data => {:event => 'question.edit'} if can?(:edit, @question) %>
-				<%= link_to '删除', @question, :method => :delete, :data => {:confirm => '确实要删除这个问题吗？'} if can?(:destroy, @question) %>
-				<%= link_to "评论(#{@question.comments.count})", question_comments_path(@question), :remote => true, :data => {:event => 'comment.query'} %>
-				<%= link_to "举报", new_question_complaint_path(@question), :remote => true, :data => {:event => 'complaints'} %>
+				<%= link_to '修改', edit_ask_question_path(@question), :remote => true, :data => {:event => 'question.edit'} if can?(:edit, @question) %>
+				<%= link_to '删除', [:ask, @question], :method => :delete, :data => {:confirm => '确实要删除这个问题吗？'} if can?(:destroy, @question) %>
+				<%= link_to "评论(#{@question.comments.count})", ask_question_comments_path(@question), :remote => true, :data => {:event => 'comment.query'} %>
+				<%= link_to "举报", new_ask_question_complaint_path(@question), :remote => true, :data => {:event => 'complaints'} %>
 				<%= top_link %>
 				<%= refine_link %>
 			</span>
@@ -45,7 +45,7 @@
   <div class="media-body">
     <div><%= current_user.name %></div>
     <div class="contents">
-  	  <%= bootstrap_form_for [@question, @answer || Answer.new] do |f| %>
+  	  <%= bootstrap_form_for [:ask, @question, @answer || Answer.new] do |f| %>
   		<%= f.text_area :content, :id => 'answer-editor', :rows => 5, :placeholder => '添加您的回答', hide_label: true %>
   	    <%= f.submit '发布回答' %>
   	  <% end %>

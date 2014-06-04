@@ -1,6 +1,6 @@
 <div class='well'>
 <%= sanitize @announcement.content %>
 <div>
-<%= link_to '编辑', edit_announcement_path(@announcement), :class => 'btn btn-default' %>
+<%= link_to '编辑', edit_admin_announcement_path(@announcement), :class => 'btn btn-default' %>
 <%= link_to '返回', :back, :class => 'btn btn-default' %>
 </div>

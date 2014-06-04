@@ -12,13 +12,13 @@ module Admin
     def accept
       @period_application.accepted!
       flash[:notice] = "您同意了#{@period_application.student_name}的申请"
-      redirect_to period_applications_path
+      redirect_to admin_period_applications_path
     end
 
     def reject
       @period_application.rejected!
       flash[:notice] = "您拒绝了#{@period_application.student_name}的申请"
-      redirect_to period_applications_path
+      redirect_to admin_period_applications_path
     end
 
     private

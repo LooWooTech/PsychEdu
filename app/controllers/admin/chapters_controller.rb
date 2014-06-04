@@ -10,7 +10,7 @@ module Admin
     def create
       @chapter = @topic.chapters.build chapter_params
       if @chapter.save
-        redirect_to @chapter
+        redirect_to [:admin, @chapter]
       else
         render :new
       end
@@ -24,7 +24,7 @@ module Admin
 
     def update
       if @chapter.update_attributes chapter_params
-        redirect_to @chapter
+        redirect_to [:admin, @chapter]
       else
         render :new
       end
@@ -32,7 +32,7 @@ module Admin
 
     def destroy
       @chapter.destroy
-      redirect_to @chapter.topic
+      redirect_to [:admin, @chapter.topic]
     end
 
     private

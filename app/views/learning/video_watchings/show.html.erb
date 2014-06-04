@@ -9,7 +9,7 @@
       <ul>
         <% @chapter_learning.unit_learnings.each do |unit_learning| %>
           <% if unit_learning.open? %>
-            <li><%= link_to unit_learning.name, unit_learning %></li>
+            <li><%= link_to unit_learning.name, [:learning, unit_learning] %></li>
           <% end %>
         <% end %>
       </ul>
@@ -33,7 +33,7 @@
         <ul class='video-selector'>
           <li class='list-title'><h3>视频列表</h3></li>
           <% @unit_learning.video_watchings.each do |video_watching| %>
-            <li><%= link_to video_watching.name, video_watching %></li>
+            <li><%= link_to video_watching.name, [:learning, video_watching] %></li>
           <% end %>
         </ul>
     </div>
@@ -49,7 +49,7 @@
       :object => @video_watching.comments.page(1).per(5), 
       :locals => {:commentable => @video_watching.video} %>
 
-    <%= form_for [@video_watching.video, Comment.new], :remote => true, :html => {:id => 'video-comment'} do |f| %>
+    <%= form_for [:learning, @video_watching.video, Comment.new], :remote => true, :html => {:id => 'video-comment'} do |f| %>
       <%= f.text_area :content %>
       <%= f.submit '发表评论' %>
     <% end %>
@@ -60,7 +60,7 @@
       :object => @video_watching.notes.page(1).per(5),
       :locals => {:video_watching => @video_watching} %>
 
-    <%= form_for [@video_watching, Note.new], :remote => true, :html => {:id => 'video-note'} do |f| %>
+    <%= form_for [:learning, @video_watching, Note.new], :remote => true, :html => {:id => 'video-note'} do |f| %>
       <%= f.text_area :content %>
       <%= f.submit '保存记事' %>
     <% end %>
@@ -89,7 +89,7 @@
     swfobject.embedSWF("/flashplayer/player.swf", "video", "850px", "480px", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
 
     function swf_save_data(time, xml) {
-      $.post('<%= video_watching_path @video_watching %>',{
+      $.post('<%= learning_video_watching_path @video_watching %>',{
         _method: 'patch',
         data: xml.replace(/[\r\n]/g,'')
       });

@@ -1,7 +1,7 @@
 <div class='page-header clearfix'>
   <h1>学业申请列表</h1>
 </div>
-<%= search_form_for @search do |f| %>
+<%= search_form_for [:admin, @search] do |f| %>
   <div class='col-lg-3'>
     <%= f.label :topic_learning_student_account_username_cont, '用户名' %>
     <%= f.text_field :topic_learning_student_account_username_cont %>
@@ -49,8 +49,8 @@
       <td><%= l period_application.created_at, :format => :date_only %></td>
       <td>
         <% if period_application.unreviewed? %>
-          <%= link_to '同意', accept_period_application_path(period_application), :method => :patch, :data => {:confirm => '确定要同意申请吗？'} %>
-          <%= link_to '拒绝', reject_period_application_path(period_application), :method => :patch, :data => {:confirm => '确定要拒绝申请吗？'} %>
+          <%= link_to '同意', accept_admin_period_application_path(period_application), :method => :patch, :data => {:confirm => '确定要同意申请吗？'} %>
+          <%= link_to '拒绝', reject_admin_period_application_path(period_application), :method => :patch, :data => {:confirm => '确定要拒绝申请吗？'} %>
         <% end %>
       </td>
     </tr>

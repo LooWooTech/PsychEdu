@@ -12,8 +12,13 @@ module Admin
     end
 
     def create
-      @announcement = current_user.announcements.create announcement_params
-      redirect_to announcement_path(@announcement)
+      @announcement = current_user.announcements.build announcement_params
+      if @announcement.save
+        flash[:notice] = "您创建了通知：#{@announcement.title}"
+        redirect_to [:admin, @announcement]
+      else
+        render :new
+      end
     end
 
     def edit
@@ -22,12 +27,14 @@ module Admin
 
     def update
       @announcement.update_attributes announcement_params
-      redirect_to announcement_path(@announcement)
+      flash[:notice] = "您更新了通知：#{@announcement.title}"
+      redirect_to admin_announcements_path
     end
 
     def destroy
       @announcement.destroy
-      redirect_to announcements_path
+      flash[:notice] = "您删除了通知：#{@announcement.title}"
+      redirect_to admin_announcements_path
     end
 
     private

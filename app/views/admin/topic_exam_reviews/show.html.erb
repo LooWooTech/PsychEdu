@@ -39,7 +39,7 @@
           点评：<%= @topic_exam.review %>
           </div>
         <% else %>
-          <%= form_for @topic_exam, :url => topic_exam_review_path(@topic_exam),
+          <%= form_for @topic_exam, :url => admin_topic_exam_review_path(@topic_exam),
             :method => :patch, :html => {:id => 'review-topic-exam', :class => 'form-horizontal'} do |f| %>
             <fieldset>
               <div class='form-grop'>

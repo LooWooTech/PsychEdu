@@ -21,7 +21,7 @@ module Ask
       @question = @forum.questions.build question_params
       @question.questioner = current_user
       if @question.save
-        redirect_to @question
+        redirect_to [:ask, @question]
       else
         render :new
       end
@@ -39,7 +39,7 @@ module Ask
   
     def update
       if @question.update_attributes question_params
-        redirect_to @question
+        redirect_to [:ask, @question]
       else
         render :new
       end
@@ -47,7 +47,7 @@ module Ask
   
     def destroy
       @question.destroy
-      redirect_to ask_path
+      redirect_to ask_root_path
     end
   
     def top

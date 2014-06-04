@@ -15,7 +15,7 @@ module Admin
       @topic_testing = TopicTesting.new testing_params
       if @topic_testing.save
         flash[:notice] = '专题考核添加成功'
-        redirect_to @topic_testing
+        redirect_to admin_topic_testings_path
       else
         render :new
       end
@@ -31,7 +31,7 @@ module Admin
     def update
       if @topic_testing.update_attributes testing_params
         flash[:notice] = '专题考核修改成功'
-        redirect_to @topic_testing
+        redirect_to admin_topic_testings_path
       else
         render :new
       end

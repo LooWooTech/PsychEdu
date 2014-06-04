@@ -5,7 +5,7 @@ module Learning
 
     def show
       self.current_topic_learning = current_user.topic_learnings.find params[:id]
-      redirect_to learning_path
+      redirect_to learning_root_path
     end
 
     def exam

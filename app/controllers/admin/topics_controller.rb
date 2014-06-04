@@ -10,7 +10,7 @@ module Admin
     def create
       @topic = Topic.new topic_params
       if @topic.save
-        redirect_to @topic
+        redirect_to [:admin, @topic]
       else
         render :new
       end
@@ -28,7 +28,7 @@ module Admin
 
     def update
       if @topic.update_attributes topic_params
-        redirect_to @topic
+        redirect_to [:admin, @topic]
       else
         render :new
       end
@@ -36,7 +36,7 @@ module Admin
 
     def destroy
       @topic.destroy
-      redirect_to topics_path
+      redirect_to admin_topics_path
     end
 
     private

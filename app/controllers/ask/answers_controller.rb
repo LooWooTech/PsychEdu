@@ -8,7 +8,7 @@ module Ask
       @answer = current_user.answers.build(answer_params.merge :question => @question)
   
       if @answer.save
-        redirect_to @question
+        redirect_to [:ask, @question]
       else
         render 'ask/questions/show'
       end
@@ -28,7 +28,7 @@ module Ask
   
     def destroy
       @answer.destroy
-      redirect_to @answer.question
+      redirect_to [:ask, @answer.question]
     end
   
     private

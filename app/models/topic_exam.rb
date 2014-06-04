@@ -11,7 +11,7 @@ class TopicExam < ActiveRecord::Base
   scope :reviewed, lambda{ where.not(:review => nil) }
 
   delegate :title, :content, :requirements, :grading_rules, :to => :topic_testing
-  delegate :name, :student_name, :student_username, :student_unit_code, :to => :topic_learning
+  delegate :name, :student, :student_name, :student_username, :student_unit_code, :to => :topic_learning
 
   before_save :set_passed_at
 

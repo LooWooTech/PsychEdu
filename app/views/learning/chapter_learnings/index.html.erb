@@ -63,7 +63,7 @@
             </div>
             <div class="panel-body">
               <% current_topic_learning.siblings.each do |topic_learning| %>
-                <%= link_to topic_learning.name, topic_learning, :class => 'label label-default' %>
+                <%= link_to topic_learning.name, [:learning, topic_learning], :class => 'label label-default' %>
               <% end %>
             </div>
           </div>
@@ -101,7 +101,7 @@
               <p>
                 Hi! Welcome to the edX demonstration course. We built this to help you become more familiar with taking a course on edX prior to your first day of class. In a live course, this section is where all of the latest course announcements and updates would be. To get started with this demo course, view the courseware page and click “Example Week 1” in the left hand navigation.
               </p>
-                <%= link_to '更多信息', guide_topic_learning_path(current_topic_learning), :class => 'btn btn-sm btn-primary' %>
+                <%= link_to '更多信息', learning_guide_path, :class => 'btn btn-sm btn-primary' %>
             </div>
           </div>
         </div>
@@ -121,7 +121,7 @@
               <p>
                 Hi! Welcome to the edX demonstration course. We built this to help you become more familiar with taking a course on edX prior to your first day of class. In a live course, this section is where all of the latest course announcements and updates would be. To get started with this demo course, view the courseware page and click “Example Week 1” in the left hand navigation.
               </p>
-                <%= link_to '查看内容', review_topic_learning_path(current_topic_learning), :class => 'btn btn-sm btn-primary' %>
+                <%= link_to '查看内容', learning_review_path, :class => 'btn btn-sm btn-primary' %>
             </div>
           </div>
         </div>
@@ -138,7 +138,7 @@
             </div>
             <div class="panel-body">
                 <% if current_topic_learning.ready_for_exam? %>
-                  <%= link_to '开始考核', exam_topic_learning_path(current_topic_learning), :class => 'btn btn-sm btn-primary' %>
+                  <%= link_to '开始考核', learning_exam_path, :class => 'btn btn-sm btn-primary' %>
                 <% else %>
                   <%= link_to '查看', current_topic_learning.unreviewed_exam, :class => 'btn btn-sm btn-primary' %>
                 <% end %>
@@ -173,7 +173,7 @@
         <div class="panel-heading">通知公告</div>
         <ul class="list-group">
           <% current_topic_learning.announcements.each do |announcement| %>
-              <li class="list-group-item"><%= link_to announcement.title, announcement %></li>
+              <li class="list-group-item"><%= link_to announcement.title, [:learning, announcement] %></li>
           <% end %>
         </ul>
       </div>

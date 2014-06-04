@@ -22,7 +22,7 @@ module Ask
   
         it 'redirect to the question path' do
           post :create, @question_params
-          expect(response).to redirect_to(assigns[:question])
+          expect(response).to redirect_to([:ask, assigns[:question]])
         end
       end
   
@@ -60,7 +60,7 @@ module Ask
         end
   
         it 'redirects to the question path' do
-          expect(response).to redirect_to(@question)
+          expect(response).to redirect_to([:ask, @question])
         end
       end
   
@@ -94,7 +94,7 @@ module Ask
   
         it 'redirects to questions list' do
           delete :destroy, :id => @question.id
-          expect(response).to redirect_to(ask_path)
+          expect(response).to redirect_to(ask_root_path)
         end
       end
   

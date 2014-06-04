@@ -1,10 +1,10 @@
 <div class='page-header clearfix'>
   <h1>专题开通列表</h1>
   <ul>
-    <li><%= link_to '批量报名', student_importings_path, :class => 'btn btn-default' %></li>
+    <li><%= link_to '批量报名', admin_student_importings_path, :class => 'btn btn-default' %></li>
   </ul>
 </div>
-<%= search_form_for @search do |f| %>
+<%= search_form_for [:admin, @search] do |f| %>
   <div class='col-lg-4'>
     <%= f.label :student_account_username_cont, '用户名' %>
     <%= f.text_field :student_account_username_cont %>
@@ -35,7 +35,7 @@
       <td><%= topic_learning.student_username %></td>
       <td><%= topic_learning.student_name %></td>
       <td><%= topic_learning.name %></td>
-      <td><%= link_to '删除', topic_learning, :method => :delete, :data => {:confirm => "确实要删除#{topic_learning.student_name}的#{topic_learning.name}报名吗？"} %></td>
+      <td><%= link_to '删除', [:admin, topic_learning], :method => :delete, :data => {:confirm => "确实要删除#{topic_learning.student_name}的《#{topic_learning.name}》报名吗？\n该学员所有该专题相关的学习数据都会被删除。\n包括考试记录、学业申请等。"} %></td>
     </tr>
   <% end%>
 </table>

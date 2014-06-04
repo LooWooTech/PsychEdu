@@ -4,7 +4,7 @@ module Learning
       @topic_exam = TopicExam.find params[:topic_exam_id]
       @topic_exam_material = @topic_exam.materials.build material_params
       if @topic_exam_material.save
-        redirect_to exam_topic_learning_path(@topic_exam.topic_learning)
+        redirect_to learning_exam_path
       else
         render :text => '上传失败', :status => 400
       end
@@ -13,7 +13,7 @@ module Learning
     def destroy
       @topic_exam_material = TopicExamMaterial.find params[:id]
       @topic_exam_material.destroy
-      redirect_to exam_topic_learning_path(@topic_exam_material.topic_learning)
+      redirect_to learning_exam_path
     end
 
     private

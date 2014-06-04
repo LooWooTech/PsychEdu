@@ -18,7 +18,7 @@ class LearningController < ApplicationController
   end
 
   def ensure_topic_learning_is_ongoing
-    redirect_to topic_learnings_path if !current_topic_learning.ongoing?
+    redirect_to learning_topic_learnings_path if !current_topic_learning.ongoing?
   end
 
   def current_topic_learning

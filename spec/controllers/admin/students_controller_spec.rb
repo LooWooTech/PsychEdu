@@ -17,7 +17,7 @@ module Admin
 
       it 'redirects to the show page of the student' do
         post :create, @student_attributes
-        expect(response).to redirect_to(assigns[:student])
+        expect(response).to redirect_to([:admin, assigns[:student]])
       end
 
       context 'when fail' do

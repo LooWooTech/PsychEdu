@@ -51,14 +51,14 @@
             <td><%= link_to material.filename, material.url %></td>
             <td><%= truncate material.note %></td>
             <td><%= l material.created_at, :format => :long %></td>
-            <td><%= link_to '删除', material, :method => :delete, :data => {:confirm => '确实要删除吗？'} unless @topic_exam.reviewed? %></td>
+            <td><%= link_to '删除', [:learning, material], :method => :delete, :data => {:confirm => '确实要删除吗？'} unless @topic_exam.reviewed? %></td>
           </tr>
           <% end %>
         </tbody>
       </table>
     <% end %>
     <% if !@topic_exam.submitted? %>
-      <%= form_for [@topic_exam, @topic_exam.materials.build], :multipart => true, :html => {:id => 'topic-exam-material-upload'} do |f| %>
+      <%= form_for [:learning, @topic_exam, @topic_exam.materials.build], :multipart => true, :html => {:id => 'topic-exam-material-upload'} do |f| %>
         <div class="upload" >
           <div>
             <%= f.label :file, '上传材料' %>
@@ -73,7 +73,7 @@
           </div>
         </div>
       <% end %>
-      <%= form_tag submit_topic_exam_path(@topic_exam), :method => :patch, :id => 'topic-exam-submit' do %>
+      <%= form_tag submit_learning_topic_exam_path(@topic_exam), :method => :patch, :id => 'topic-exam-submit' do %>
         <%= submit_tag '交卷' %>
       <% end %>
     <% end %>
@@ -104,7 +104,7 @@
         <td><%= l exam.created_at, :format => :long %></td>
         <td><%= exam.reviewed? ? truncate(exam.review) : '未审核' %></td>
         <td><%= exam.score %></td>
-        <td><%= link_to '查看', exam %></td>
+        <td><%= link_to '查看', [:learning, exam] %></td>
       </tr>
       <% end %>
       </tbody>

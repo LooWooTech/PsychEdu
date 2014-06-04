@@ -4,11 +4,11 @@
   </a>
 
   <div class="media-post-vote pull-left">
-    <a href="<%= answer_votes_path %>" class="btn btn-default btn-sm btn-block vote-up" data-answer-id='<%= answer.id %>'>
+    <a href="<%= ask_answer_votes_path %>" class="btn btn-default btn-sm btn-block vote-up" data-answer-id='<%= answer.id %>'>
       <strong><%= answer.vote_score %></strong><hr>
       <span class="glyphicon glyphicon-thumbs-up"></span> 赞
     </a>
-    <a href="<%= answer_votes_path %>" class="btn btn-default btn-sm btn-block vote-down" data-answer-id='<%= answer.id %>'>
+    <a href="<%= ask_answer_votes_path %>" class="btn btn-default btn-sm btn-block vote-down" data-answer-id='<%= answer.id %>'>
       <span class="glyphicon glyphicon-thumbs-down"></span> 踩
     </a>
   </div>
@@ -24,10 +24,10 @@
       <span class="fa fa-calendar"></span> <%= l answer.created_at, :format => :short %> / <span class="fa fa-user"></span> <%= answer.answerer_name %>
       <span class="media-fade">
         /
-        <%= link_to '修改', edit_answer_path(answer), :remote => true, :data => {:event => 'answer.edit'} if can?(:edit, answer) %>
-        <%= link_to '删除', answer, :method => :delete, :data => {:confirm => '确实要删除这个回答吗？', :event => 'remove'} if can?(:destroy, answer) %>
-        <%= link_to "评论(#{answer.comments.count})", answer_comments_path(answer), :remote => true, :data => {:event => 'comment.query'} %>
-        <%= link_to "举报", new_answer_complaint_path(answer), :remote => true, :data => {:event => 'complaints'} %>
+        <%= link_to '修改', edit_ask_answer_path(answer), :remote => true, :data => {:event => 'answer.edit'} if can?(:edit, answer) %>
+        <%= link_to '删除', [:ask, answer], :method => :delete, :data => {:confirm => '确实要删除这个回答吗？', :event => 'remove'} if can?(:destroy, answer) %>
+        <%= link_to "评论(#{answer.comments.count})", ask_answer_comments_path(answer), :remote => true, :data => {:event => 'comment.query'} %>
+        <%= link_to "举报", new_ask_answer_complaint_path(answer), :remote => true, :data => {:event => 'complaints'} %>
       </span>
       <div class="action-comments-box"></div>
     </div>

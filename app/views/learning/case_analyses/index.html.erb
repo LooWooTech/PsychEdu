@@ -1,7 +1,7 @@
 <h1><%= current_topic_learning.name %>案例解读</h1>
 <ul class='case-analyses'>
   <% @case_analyses.each do |case_analysis| %>
-    <li><%= link_to case_analysis.title, case_analysis %></li>
+    <li><%= link_to case_analysis.title, [:learning, case_analysis] %></li>
   <% end %>
 </ul>
 <%= paginate @case_analyses %>

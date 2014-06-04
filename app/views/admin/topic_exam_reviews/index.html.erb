@@ -12,10 +12,10 @@
   </thead>
   <% @topic_exams.each do |exam| %>
     <tr>
-      <td><%= link_to exam.student_name, exam %></td>
+      <td><%= link_to exam.student_name, [:admin, exam.student] %></td>
       <td><%= exam.student_unit_code %></td>
       <td><%= exam.name %></td>
-      <td><%= link_to exam.reviewed? ? '查看' : '审核', topic_exam_review_path(exam) %></td>
+      <td><%= link_to exam.reviewed? ? '查看' : '审核', admin_topic_exam_review_path(exam) %></td>
     </tr>
   <% end%>
 </table>

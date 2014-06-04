@@ -8,7 +8,7 @@
   <div class='header'>相关视频：</div>
   <ul>
   <% @material.videos.each do |video| %>
-    <li><%= link_to video.name, video, :target => '_blank' %></li>
+    <li><%= link_to video.name, [:learning, video], :target => '_blank' %></li>
   <% end %>
   </ul>
 </div>

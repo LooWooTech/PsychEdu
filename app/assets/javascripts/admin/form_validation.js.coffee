@@ -122,3 +122,10 @@ $ ->
     messages:
       'forum[name]':
         'required': '请输入名称'
+
+  $('#edit-announcement').validate
+    rules:
+      'announcement[title]': 'required'
+    messages:
+      'announcement[title]':
+        'required': '请输入标题'

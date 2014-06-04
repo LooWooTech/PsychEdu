@@ -1,7 +1,7 @@
 当前专题《<%= current_topic_learning.name %>》<%= topic_learning_state current_topic_learning %>，请选择另一专题进行学习。<br />
-或者<%= link_to '申请变更学业周期', periods_path %>。<br />
+或者<%= link_to '申请变更学业周期', learning_periods_path %>。<br />
 <ul>
   <% current_user.ongoing_topic_learnings.each do |topic_learning| %>
-    <li><%= link_to topic_learning.name, topic_learning %></li>
+    <li><%= link_to topic_learning.name, [:learning, topic_learning] %></li>
   <% end %>
 </ul>

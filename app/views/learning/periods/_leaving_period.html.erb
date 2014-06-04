@@ -1,7 +1,7 @@
 <li>
   <strong>
     休学申请<%= leaving_period_counter + 1%>：<%= review_state leaving_period %>
-    <%= link_to '撤消', period_path(leaving_period), :method => :delete, :data => {:confirm => '确实要撤消这次申请吗？'}  if leaving_period.unreviewed? %>
+    <%= link_to '撤消', learning_period_path(leaving_period), :method => :delete, :data => {:confirm => '确实要撤消这次申请吗？'}  if leaving_period.unreviewed? %>
   </strong>
   <span>开始日期：<%= leaving_period.start_on %></span>
   <span>结束日期：<%= leaving_period.end_on %></span>

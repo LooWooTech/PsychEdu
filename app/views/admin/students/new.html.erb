@@ -1,5 +1,5 @@
 <div class='well'>
-  <%= form_for @student, :html => {:class => 'form-horizontal'} do |f| %>
+  <%= form_for [:admin, @student], :html => {:class => 'form-horizontal'} do |f| %>
     <fieldset>
       <legend><%= @student.new_record? ? '添加学员' : '修改信息'%></legend>
       <%= f.fields_for :account do |account| %>

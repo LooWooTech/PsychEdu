@@ -52,7 +52,7 @@
 
           <% if @forum %>
           <div class="well well-board">
-            <%= link_to(new_forum_question_path(@forum), :class => 'btn btn-inverse btn-block', :remote => true, :data => {:event => 'question.new'}) do %>
+            <%= link_to(new_ask_forum_question_path(@forum), :class => 'btn btn-inverse btn-block', :remote => true, :data => {:event => 'question.new'}) do %>
               <span class="glyphicon glyphicon-plus"></span>
               提问
             <% end %>
@@ -84,7 +84,7 @@
                     <ul class="panel-nav">
                       <% forum_catalog.forums.each do |forum| %>
                       <li class="active">
-                        <%= link_to forum.name, forum %>
+                        <%= link_to forum.name, [:ask, forum] %>
                       </li>
                       <% end %>
                     </ul>
@@ -105,7 +105,7 @@
                   <ul class="panel-nav">
                     <% Forum.uncataloged.each do |forum| %>
                     <li class="active">
-                      <%= link_to forum.name, forum %>
+                      <%= link_to forum.name, [:ask, forum] %>
                     </li>
                     <% end %>
                   </ul>

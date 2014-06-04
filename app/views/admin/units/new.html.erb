@@ -1,6 +1,6 @@
 <% @unit.videos.build if @unit.videos.empty? %>
 <div class='well'>
-  <%= form_for [@chapter, @unit], :html => {:id => 'edit-unit', :multipart => true, :class => 'form-horizontal'} do |f| %>
+  <%= form_for [:admin, @chapter, @unit], :html => {:id => 'edit-unit', :multipart => true, :class => 'form-horizontal'} do |f| %>
     <fieldset>
       <legend><%= @unit.new_record? ? '添加' : '修改' %>单元</legend>
       <div class='form-group'>

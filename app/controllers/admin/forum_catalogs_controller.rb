@@ -10,7 +10,7 @@ module Admin
       @forum_catalog = ForumCatalog.new catalog_params
       if @forum_catalog.save
         flash[:notice] = "您创建了 #{@forum_catalog.name}"
-        redirect_to forum_catalogs_path
+        redirect_to admin_forum_catalogs_path
       else
         render :new
       end
@@ -27,7 +27,7 @@ module Admin
     def update
       if @forum_catalog.update_attributes catalog_params
         flash[:notice] = "您修改了 #{@forum_catalog.name}"
-        redirect_to forum_catalogs_path
+        redirect_to admin_forum_catalogs_path
       else
         render :new
       end
@@ -36,7 +36,7 @@ module Admin
     def destroy
       @forum_catalog.destroy
       flash[:notice] = "您删除了 #{@forum_catalog.name}"
-      redirect_to forum_catalogs_path
+      redirect_to admin_forum_catalogs_path
     end
 
     private

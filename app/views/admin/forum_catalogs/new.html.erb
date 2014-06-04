@@ -1,5 +1,5 @@
 <div class='well'>
-  <%= form_for @forum_catalog, :html => {:class => 'form-horizontal', :id => 'edit-forum-catalog'} do |f| %>
+  <%= form_for [:admin, @forum_catalog], :html => {:class => 'form-horizontal', :id => 'edit-forum-catalog'} do |f| %>
     <fieldset>
       <legend><%= @forum_catalog.new_record? ? '添加分类' : '修改分类'%></legend>
       <div class='form-group'>

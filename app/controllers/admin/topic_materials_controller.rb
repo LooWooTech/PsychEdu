@@ -18,7 +18,7 @@ module Admin
       @topic_material = current_user.topic_materials.build topic_material_params
       if @topic_material.save
         flash[:notice] = "新增了资料：#{@topic_material.title}"
-        redirect_to topic_materials_path
+        redirect_to admin_topic_materials_path
       else
         render :new
       end
@@ -33,10 +33,16 @@ module Admin
     def update
       if @topic_material.update_attributes topic_material_params
         flash[:notice] = "更新了资料：#{@topic_material.title}"
-        redirect_to topic_materials_path
+        redirect_to admin_topic_materials_path
       else
         render :new
       end
+    end
+
+    def destroy
+      @topic_material.destroy
+      flash[:notice] = "删除了资料：#{@topic_material.title}"
+      redirect_to admin_topic_materials_path
     end
 
     private

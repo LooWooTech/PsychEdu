@@ -9,7 +9,7 @@ module Admin
     def update
       if @question.update_attributes question_params
         flash[:notice] = '保存成功'
-        redirect_to edit_multiple_choice_question_path(@question)
+        redirect_to edit_admin_multiple_choice_question_path(@question)
       else
         render :edit
       end
@@ -21,7 +21,7 @@ module Admin
       else
         flash[:notice] = '删除成功'
         @question.destroy
-        redirect_to @question.unit
+        redirect_to [:admin, @question.unit]
       end
     end
 

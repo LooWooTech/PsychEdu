@@ -19,7 +19,7 @@ module Ask
   
         it 'redirects to the question path' do
           post :create, @answer_params
-          expect(response).to redirect_to(@question)
+          expect(response).to redirect_to([:ask, @question])
         end
       end
   

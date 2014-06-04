@@ -38,7 +38,7 @@ module Learning
       @period_application = PeriodApplication.find params[:id]
       @period_application.destroy
       flash[:notice] = '撤消成功'
-      redirect_to periods_path
+      redirect_to learning_periods_path
     end
   end
 end

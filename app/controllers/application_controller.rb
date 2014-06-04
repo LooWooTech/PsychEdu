@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def student_required
+    sign_in_first('请以学员身份登录') if !signed_in? || !current_user.is_a?(Student)
+  end
+
   def user_required
     sign_in_first if !signed_in?
   end

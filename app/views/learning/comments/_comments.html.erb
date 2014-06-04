@@ -1,4 +1,5 @@
-<div class='list'>
-  <ul><%= render :collection => comments, :partial => 'learning/comments/comment'%></ul>
-  <%= paginate comments, :remote => true, :params => {:controller => 'comments', :action => 'index', :video_id => commentable.id, :id => nil} %>
+<div class="media-items">
+	<%= render :collection => comments, :partial => 'learning/comments/comment'%>
 </div>
+
+<%= paginate comments, :remote => true, :params => {:controller => 'comments', :action => 'index', :video_id => commentable.id, :id => nil} %>

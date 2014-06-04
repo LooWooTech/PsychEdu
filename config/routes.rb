@@ -1,8 +1,6 @@
 PsychEdu::Application.routes.draw do
 
   resource :session, :only => [:create, :destroy]
-  resource :password, :only => [:edit, :update], :path_names => {:edit => :change}
-  resource :profile, :only => [:show]
   resources :blog_articles
 
   get 'sign_in' => 'sessions#new'
@@ -13,6 +11,8 @@ PsychEdu::Application.routes.draw do
     get :exam, :to => 'topic_learnings#exam'
 
     shallow do
+      resource :password, :only => [:edit, :update], :path_names => {:edit => :change}
+      resource :profile, :only => [:show]
       resources :topic_learnings, :only => [:show, :index]
       resources :announcements, :only => :show
       resources :periods, :only => [:index, :create, :destroy]

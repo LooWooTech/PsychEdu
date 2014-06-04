@@ -9,18 +9,18 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <img src="holder.js/758x240">
-      <div class="carousel-caption">
+      <div style="width: 100%; background: #ebdcb7;">
+        <img src="<%= image_path 'chapter_learning_example-3.png' %>" style="display:block; margin: 0 auto;">
       </div>
     </div>
     <div class="item">
-      <img src="holder.js/758x240">
-      <div class="carousel-caption">
+      <div style="width: 100%; background: #b6936a;">
+        <img src="<%= image_path 'chapter_learning_example-2.png' %>" style="display:block; margin: 0 auto;">
       </div>
     </div>
     <div class="item">
-      <img src="holder.js/758x240">
-      <div class="carousel-caption">
+      <div style="width: 100%; background: #edffff;">
+        <img src="<%= image_path 'chapter_learning_example-4.png' %>" style="display:block; margin: 0 auto;">
       </div>
     </div>
   </div>
@@ -36,16 +36,6 @@
 
 
 <div class="container">
-  
-  <!-- <div class="row">
-    <div class="col-md-12">
-      <div class="topic">
-        <div class="topic-object">
-          <img data-src="holder.js/100%x240">
-        </div>
-      </div>
-    </div>
-  </div> -->
 
   <div class="row">
     <div class="col-md-9">
@@ -140,7 +130,7 @@
                 <% if current_topic_learning.ready_for_exam? %>
                   <%= link_to '开始考核', learning_exam_path, :class => 'btn btn-sm btn-primary' %>
                 <% else %>
-                  <%= link_to '查看', current_topic_learning.unreviewed_exam, :class => 'btn btn-sm btn-primary' %>
+                  <%= link_to '查看', [:learning, current_topic_learning.unreviewed_exam], :class => 'btn btn-sm btn-primary' %>
                 <% end %>
             </div>
           </div>

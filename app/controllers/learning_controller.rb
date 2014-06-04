@@ -9,10 +9,6 @@ class LearningController < ApplicationController
 
   private
 
-  def student_required
-    sign_in_first('请以学员身份登录') if !signed_in? || !current_user.is_a?(Student)
-  end
-
   def ensure_topic_open
     render :text => '您好，您没有任何正在学习的专题，请在学习期间访问，或联系系统管理员。' if current_user.no_topic_open?
   end

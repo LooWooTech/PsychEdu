@@ -1,10 +1,7 @@
 /*
-*= require 'modernizr/modernizr'
-*= require jquery
-*= require jquery_ujs
+*= require common/main
 *= require jquery-form
 *= require 'jquery-validation/jquery.validate'
 *= require swfobject
-*= require '../datepicker'
 *= require_tree .
 */

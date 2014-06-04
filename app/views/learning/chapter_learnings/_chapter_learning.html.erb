@@ -16,14 +16,14 @@
       <%= chapter_learning.name %>
     </div>
     <div class="panel-body">
-      <%= link_to '更多信息', learning_guide_path, :class => 'btn btn-sm btn-primary' %>
+      <a href="javascript:void(0);" class="btn btn-sm btn-primary">更多信息</a>
       <% if chapter_learning.has_only_one_unit? && chapter_learning.open? %>
         <% unit_learning = chapter_learning.unit_learnings.first %>
         <hr>
         <em class="pull-right"><%= unit_learning.average_score %></em>
         <div class="btn-group">
           <%= link_to '开始学习', unit_learning, :class => 'btn btn-sm btn-primary' %>
-          <%= unit_exam_link unit_learning %>
+          <%= unit_exam_link unit_learning, 'btn btn-sm btn-primary' %>
         </div>
       <% end %>
     </div>

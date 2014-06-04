@@ -9,7 +9,7 @@ module Learning
     def update
       if current_user.change_password password_params
         sign_out
-        redirect_to learning_url
+        redirect_to learning_root_path
       else
         render :edit
       end

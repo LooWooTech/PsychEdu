@@ -1,4 +1,0 @@
-<h1><%= @blog_article.title %></h1>
-<%= sanitize @blog_article.content %>
-<%= link_to '编辑',  edit_blog_article_path(@blog_article) if can?(:edit, @blog_article) %>
-<%= link_to '删除',  @blog_article, :method => :delete, :data => {:confirm => "确实要删除《#{@blog_article.title}》吗？"} if can?(:destroy, @blog_article) %>

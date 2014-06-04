@@ -1,7 +1,28 @@
-<h1><%= current_topic_learning.name %>案例解读</h1>
-<ul class='case-analyses'>
-  <% @case_analyses.each do |case_analysis| %>
-    <li><%= link_to case_analysis.title, [:learning, case_analysis] %></li>
-  <% end %>
-</ul>
-<%= paginate @case_analyses %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><%= link_to '首页', learning_root_path %></li>
+        <li class="active">案例解读</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading"><%= current_topic_learning.name %> 案例解读</div>
+        <div class="panel-body">
+			<ul class='case-analyses'>
+				<% @case_analyses.each do |case_analysis| %>
+					<li><%= link_to case_analysis.title, [:learning, case_analysis] %></li>
+				<% end %>
+			</ul>
+			<%= paginate @case_analyses %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

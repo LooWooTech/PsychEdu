@@ -15,7 +15,7 @@
     <!--[if lt IE 9]>
       <%= javascript_include_tag "common/ie" %>
     <![endif]-->
-    <%= javascript_include_tag "ask/manifest" %>
+    <%= javascript_include_tag "learning/manifest" %>
     <%= yield :head %>
   </head>
   <body>
@@ -28,16 +28,16 @@
             <li class="active"><%= link_to raw('<i class="fa fa-home"></i> 课程学习'), learning_root_path %></li>
             <li><%= link_to raw('<i class="fa fa-tag"></i> 案例解读'), learning_case_analyses_path %></li>
             <li><%= link_to raw('<i class="fa fa-clipboard"></i> 资料'), learning_extended_topic_materials_path %></li>
-            <li><%= link_to raw('<i class="fa fa-comment"></i> 社区'), ask_url %></li>
+            <li><%= link_to raw('<i class="fa fa-comment"></i> 社区'), ask_root_path %></li>
             <li><a href="#"><i class="fa fa-github-alt"></i> 督导</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %> <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><%= link_to '个人主页', blog_articles_path %></li>
+                <li><%= link_to '个人博客', blog_articles_path %></li>
                 <li><%= link_to '学员申请', learning_periods_path %></li>
                 <li class="divider"></li>
-                <li><%= link_to '修改密码', edit_password_path %></li>
-                <li><%= link_to '学员信息', profile_path %></li>
+                <li><%= link_to '修改密码', edit_learning_password_path %></li>
+                <li><%= link_to '学员信息', learning_profile_path %></li>
                 <li><a href='#'>平台设置</a></li>
                 <li class="divider"></li>
                 <li><%= link_to '退出登录', session_path, :method => :delete %></li>

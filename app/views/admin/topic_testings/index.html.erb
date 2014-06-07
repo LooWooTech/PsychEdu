@@ -17,7 +17,7 @@
     <tr>
       <td><%= link_to topic_testing.title, [:admin, topic_testing] %></td>
       <td><%= truncate sanitize(strip_tags(topic_testing.content)), :length => 45 %></td>
-      <td><%= link_to topic_testing.topic_name, topic_testing.topic %></td>
+      <td><%= link_to topic_testing.topic_name, [:admin, topic_testing.topic] %></td>
       <td>
         <%= link_to '修改', edit_admin_topic_testing_path(topic_testing) %>
       </td>

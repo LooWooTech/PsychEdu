@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140521084124) do
+ActiveRecord::Schema.define(version: 20140607032246) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -160,6 +160,18 @@ ActiveRecord::Schema.define(version: 20140521084124) do
   end
 
   add_index "forums", ["catalog_id"], name: "index_forums_on_catalog_id", using: :btree
+
+  create_table "linked_videos", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "master_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "master_type"
+  end
+
+  add_index "linked_videos", ["master_id", "master_type"], name: "index_linked_videos_on_master_id_and_master_type", using: :btree
+  add_index "linked_videos", ["master_id"], name: "index_linked_videos_on_master_id", using: :btree
 
   create_table "monthly_online_trackings", force: true do |t|
     t.integer  "topic_learning_id"
@@ -333,16 +345,6 @@ ActiveRecord::Schema.define(version: 20140521084124) do
   end
 
   add_index "topic_material_attachments", ["topic_material_id"], name: "index_topic_material_attachments_on_topic_material_id", using: :btree
-
-  create_table "topic_material_videos", force: true do |t|
-    t.string   "name"
-    t.string   "url"
-    t.integer  "topic_material_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "topic_material_videos", ["topic_material_id"], name: "index_topic_material_videos_on_topic_material_id", using: :btree
 
   create_table "topic_materials", force: true do |t|
     t.string   "title"

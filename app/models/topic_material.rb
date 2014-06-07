@@ -2,7 +2,7 @@ class TopicMaterial < ActiveRecord::Base
   belongs_to :topic
   belongs_to :created_by, :class_name => 'Administrator'
 
-  has_many :videos, :class_name => 'TopicMaterialVideo', :dependent => :destroy
+  has_many :videos, :class_name => 'LinkedVideo', :as => :master, :dependent => :destroy
   has_many :attachments, :class_name => 'TopicMaterialAttachment', :dependent => :destroy
 
   validates :title, :presence => true

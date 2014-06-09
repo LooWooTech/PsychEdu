@@ -12,9 +12,6 @@
       }, <%= MonthlyOnlineTracking::INTERVAL_MILLISECONDS %>);
     <% end %>
     <%= stylesheet_link_tag "ask/manifest", media: "all" %>
-    <!--[if lt IE 9]>
-      <%= javascript_include_tag "common/ie" %>
-    <![endif]-->
     <%= javascript_include_tag "learning/manifest" %>
     <%= yield :head %>
   </head>

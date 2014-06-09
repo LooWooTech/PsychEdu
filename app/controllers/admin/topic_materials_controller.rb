@@ -17,9 +17,10 @@ module Admin
     def create
       @topic_material = current_user.topic_materials.build topic_material_params
       if @topic_material.save
-        flash[:notice] = "新增了资料：#{@topic_material.title}"
+        flash[:notice] = "您新增了资料：#{@topic_material.title}"
         redirect_to admin_topic_materials_path
       else
+        @topic_material.videos.build if @topic_material.videos.empty?
         render :new
       end
     end

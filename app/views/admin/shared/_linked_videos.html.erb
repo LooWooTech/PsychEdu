@@ -1,0 +1,24 @@
+<ol class='video-fields list-group col-lg-10 col-lg-offset-2'>
+<%= f.fields_for :videos do |video_field| %>
+  <li class='list-group-item'>
+    <div class='form-group'>
+      <%= video_field.label :name, '视频名称', :class => 'col-lg-2 control-label' %>
+      <div class='col-lg-10'>
+        <%= video_field.text_field :name, :class => 'form-control'%>
+      </div>
+    </div>
+    <div class='form-group'>
+      <%= video_field.label :url, '视频地址', :class => 'col-lg-2 control-label' %>
+      <div class='col-lg-10'>
+        <%= video_field.text_field :url, :class => 'form-control' %>
+      </div>
+    </div>
+    <div class='form-group'>
+      <%= video_field.label :_destroy, '删除', :class => 'col-lg-2 control-label' %>
+      <div class='col-lg-10'>
+        <%= video_field.check_box :_destroy %>
+      </div>
+    </div>
+  </li>
+<% end %>
+</ol>

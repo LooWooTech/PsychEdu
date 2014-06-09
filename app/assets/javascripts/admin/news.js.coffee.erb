@@ -1,0 +1,8 @@
+$ ->
+  if $('#news-content').size() > 0
+    reviewEditor = new wysihtml5.Editor 'news-content',
+      toolbar: 'news-editor-toolbar',
+      parserRules: wysihtml5ParserRules,
+      stylesheets: ['<%= asset_path 'admin/manifest.css'%>'],
+      useLineBreaks: false,
+      autoLink: true

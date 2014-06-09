@@ -2,8 +2,11 @@ PsychEdu::Application.routes.draw do
 
   resource :session, :only => [:create, :destroy]
   resources :blog_articles
+  resources :news, :only => [:show]
 
   get 'sign_in' => 'sessions#new'
+
+  root 'welcome#index'
 
   namespace :learning do
     get :guide, :to => 'topic_learnings#guide'
@@ -53,6 +56,7 @@ PsychEdu::Application.routes.draw do
 
   namespace :admin do
     shallow do 
+      resources :news
       resources :forums, :except => [:show]
       resources :forum_catalogs, :except => [:show]
       resources :topic_materials, :except => :show

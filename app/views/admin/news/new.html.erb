@@ -1,0 +1,25 @@
+<div class='well'>
+  <%= form_for [:admin, @news], :html => {:id => 'edit-news', :class => 'form-horizontal'} do |f| %>
+    <fieldset>
+      <legend><%= @news.new_record? ? '发布资讯' : '编辑资讯'%></legend>
+      <div class='form-group'>
+        <%= f.label :title, '标题*', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.text_field :title, :class => 'form-control' %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <%= f.label :content, '内容*', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+    <%= render :partial => 'admin/shared/rich_text_toolbar', :locals => {:toolbar_id => 'news-editor-toolbar'} %>
+          <%= f.text_area :content, :id => 'news-content' %>
+        </div>
+      </div>
+      <%= render :partial => 'admin/shared/linked_videos', :locals => {:f => f} %>
+      <div class='col-lg-10 col-lg-offset-2'>
+        <%= f.submit '发布', :class => 'btn btn-primary' %>
+        <a class='add-video btn btn-default' href='javascript:;'>添加视频</a>
+      </div>
+    </fieldset>
+  <% end %>
+</div>

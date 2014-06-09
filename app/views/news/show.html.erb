@@ -1,0 +1,6 @@
+<h1><%= @news.title %></h1>
+<div>
+  <span>编辑: <%= @news.editor_name %></span>
+  <span>发布时间: <%= l @news.created_at, :format => :long %></span>
+</div>
+<%= sanitize @news.content %>

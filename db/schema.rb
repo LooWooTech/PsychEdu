@@ -71,12 +71,12 @@ ActiveRecord::Schema.define(version: 20140607032246) do
   create_table "blog_articles", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "writer_id"
+    t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "blog_articles", ["writer_id"], name: "index_blog_articles_on_writer_id", using: :btree
+  add_index "blog_articles", ["student_id"], name: "index_blog_articles_on_student_id", using: :btree
 
   create_table "case_questions", force: true do |t|
     t.text     "content"
@@ -211,6 +211,15 @@ ActiveRecord::Schema.define(version: 20140607032246) do
   end
 
   add_index "multiple_choices", ["choice_id"], name: "index_multiple_choices_on_choice_id", using: :btree
+  add_index "multiple_choices", ["multiple_choice_answer_id"], name: "index_multiple_choices_on_multiple_choice_answer_id", using: :btree
+
+  create_table "news", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "editor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "notes", force: true do |t|
     t.integer  "video_watching_id"
@@ -373,10 +382,10 @@ ActiveRecord::Schema.define(version: 20140607032246) do
 
   create_table "topics", force: true do |t|
     t.string   "name"
+    t.text     "introduction"
     t.string   "teacher_names"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "introduction"
     t.string   "guide_video_url"
     t.string   "review_video_url"
   end

@@ -15,26 +15,13 @@ class Student < ActiveRecord::Base
 
   include HasAnAccount
 
-  has_many :questions, 
-    :as => 'questioner', :foreign_key => :questioner_id,
-    :dependent => :nullify
-
-  has_many :answers,
-    :as => 'answerer', :foreign_key => :answerer_id,
-    :dependent => :nullify
-
-  has_many :comments,
-    :as => 'commenter', :foreign_key => :commenter_id,
-    :dependent => :nullify
-
-  has_many :complaints,
-    :as => 'complainer', :foreign_key => :complainer_id,
-    :dependent => :nullify
-
+  has_many :questions, :as => 'questioner', :foreign_key => :questioner_id, :dependent => :nullify
+  has_many :answers, :as => 'answerer', :foreign_key => :answerer_id, :dependent => :nullify
+  has_many :comments, :as => 'commenter', :foreign_key => :commenter_id, :dependent => :nullify
+  has_many :complaints, :as => 'complainer', :foreign_key => :complainer_id, :dependent => :nullify
   has_many :topic_learnings, :dependent => :destroy
   has_many :unit_exams, :through => :topic_learnings
   has_many :answer_votes, :as => :voter, :dependent => :destroy
-
   has_many :blog_articles, :foreign_key => 'writer_id', :dependent => :destroy
 
   belongs_to :added_by, :class_name => 'Administrator'

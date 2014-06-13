@@ -3,7 +3,7 @@ $ ->
     summaryEditor = new wysihtml5.Editor 'unit-summary',
       toolbar: 'unit-summary-editor-toolbar',
       parserRules: wysihtml5ParserRules,
-      stylesheets: ['<%= asset_path 'admin/manifest.css'%>'],
+      stylesheets: ['<%= asset_path 'wysihtml5_editor.css'%>'],
       useLineBreaks: false,
       autoLink: true
 
@@ -11,7 +11,7 @@ $ ->
     reviewEditor = new wysihtml5.Editor 'unit-review',
       toolbar: 'unit-review-editor-toolbar',
       parserRules: wysihtml5ParserRules,
-      stylesheets: ['<%= asset_path 'admin/manifest.css'%>'],
+      stylesheets: ['<%= asset_path 'wysihtml5_editor.css'%>'],
       useLineBreaks: false,
       autoLink: true
 

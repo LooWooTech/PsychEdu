@@ -22,9 +22,8 @@ module PsychEdu
     config.i18n.default_locale = :zh
 
     config.assets.precompile += [
-      'learning/manifest.js', 'learning/manifest.css',
-      'ask/manifest.css', 'ask/manifest.js',
-      'admin/manifest.css', 'admin/manifest.js',
+      'learning.js', 'learning.css', 'ask.css', 'ask.js',
+      'admin.css', 'admin.js', 'wysihtml5_editor.css',
       'wysihtml5/wysihtml5_toolbar.png', 'jquery-ui/themes/base/images/*'
     ]
   end

@@ -5,6 +5,6 @@ $ ->
         reviewEditor = new wysihtml5.Editor text_area_id,
           toolbar: "#{text_area_id}-editor-toolbar",
           parserRules: wysihtml5ParserRules,
-          stylesheets: ['<%= asset_path 'admin/manifest.css'%>'],
+          stylesheets: ['<%= asset_path 'wysihtml5_editor.css'%>'],
           useLineBreaks: false,
           autoLink: true

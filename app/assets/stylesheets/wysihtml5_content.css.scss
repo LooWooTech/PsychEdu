@@ -51,4 +51,18 @@
     vertical-align: middle;
     margin: 2px 5px 5px 0;
   }
+
+  img.center {
+    display: block;
+    margin: 0 auto;
+  }
+
+  img.left {
+    float: left;
+    display: block;
+  }
+  img.right{
+    float: right;
+    display: block;
+  }
 }

@@ -1,0 +1,4 @@
+@import 'wysihtml5_content';
+.wysihtml5-editor {
+  @include wysihtml5-content;
+}

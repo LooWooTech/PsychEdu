@@ -11,8 +11,8 @@
         $.post('<%= learning_heartbeats_path %>');
       }, <%= MonthlyOnlineTracking::INTERVAL_MILLISECONDS %>);
     <% end %>
-    <%= stylesheet_link_tag "ask/manifest", media: "all" %>
-    <%= javascript_include_tag "learning/manifest" %>
+    <%= stylesheet_link_tag "ask", media: "all" %>
+    <%= javascript_include_tag "learning" %>
     <%= yield :head %>
   </head>
   <body>

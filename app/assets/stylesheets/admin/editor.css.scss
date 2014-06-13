@@ -1,5 +1,3 @@
-@import 'wysihtml5_content';
-
 #unit-summary,
 #unit-review,
 #case-analysis-content,
@@ -10,10 +8,6 @@
 #news-content {
   width: 100%;
   height: 30em;
-}
-
-.wysihtml5-editor {
-  @include wysihtml5-content;
 }
 
 .wysihtml5-editor-toolbar {
@@ -45,6 +39,9 @@
     }
     &.link {
       background-position: -287px 0;
+    }
+    &.image {
+      background-position: -529px 0;
     }
     &.wysihtml5-command-active {
       margin-top: 1px;

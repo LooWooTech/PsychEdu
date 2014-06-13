@@ -65,6 +65,7 @@ task :deploy => :environment do
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
     invoke :'bower:install'
+    invoke :'assets:clobber'
     invoke :'rails:assets_precompile'
 
     to :launch do

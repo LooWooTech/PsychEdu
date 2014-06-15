@@ -56,6 +56,7 @@ PsychEdu::Application.routes.draw do
 
   namespace :admin do
     shallow do 
+      resources :images, :only => [:create]
       resources :news
       resources :forums, :except => [:show]
       resources :forum_catalogs, :except => [:show]

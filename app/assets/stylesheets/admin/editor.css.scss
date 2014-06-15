@@ -52,6 +52,23 @@
 
   .modal {
     display: block;
+    .image-list {
+      overflow: auto;
+      height: 300px;
+      list-style: none;
+      padding: 0;
+      li {
+        margin: 10px;
+        display: inline-block;
+        border: 2px solid #fff;
+        img {
+          width: 150px;
+        }
+        &.selected {
+          border-color: #888;
+        }
+      }
+    }
   }
 
 }

@@ -15,7 +15,8 @@
       "jquery-ui": "git://github.com/components/jqueryui.git",
       "holderjs": "*",
       "ckeditor": "*",
-      "fontawesome": "*"
+      "fontawesome": "*",
+      "jquery-file-upload": "*"
     }
   }
 }

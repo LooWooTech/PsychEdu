@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140607032246) do
+ActiveRecord::Schema.define(version: 20140613085112) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -160,6 +160,15 @@ ActiveRecord::Schema.define(version: 20140607032246) do
   end
 
   add_index "forums", ["catalog_id"], name: "index_forums_on_catalog_id", using: :btree
+
+  create_table "images", force: true do |t|
+    t.string   "file"
+    t.integer  "uploader_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["uploader_id"], name: "index_images_on_uploader_id", using: :btree
 
   create_table "linked_videos", force: true do |t|
     t.string   "name"

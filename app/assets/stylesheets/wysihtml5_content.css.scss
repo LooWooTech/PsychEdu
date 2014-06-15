@@ -47,22 +47,8 @@
     list-style: decimal outside;
   }
   
-  li img {
-    vertical-align: middle;
-    margin: 2px 5px 5px 0;
-  }
-
-  img.center {
+  img {
     display: block;
     margin: 0 auto;
-  }
-
-  img.left {
-    float: left;
-    display: block;
-  }
-  img.right{
-    float: right;
-    display: block;
   }
 }

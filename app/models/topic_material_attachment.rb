@@ -7,6 +7,6 @@ class TopicMaterialAttachment < ActiveRecord::Base
   end
 
   def url
-    file.url
+    file ? file.url : ''
   end
 end

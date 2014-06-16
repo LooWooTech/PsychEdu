@@ -25,6 +25,7 @@ module Admin
     end
 
     def edit
+      @news.videos.build if @news.videos.empty?
       render :new
     end
 

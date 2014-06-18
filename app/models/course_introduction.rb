@@ -1,0 +1,2 @@
+class CourseIntroduction < Article
+end

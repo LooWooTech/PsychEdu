@@ -1,0 +1,2 @@
+class TopicIntroduction < Article
+end

@@ -7,7 +7,7 @@
       <div class='form-group'>
         <%= f.label :type, '类型*', :class => 'col-lg-2 control-label' %>
         <div class='col-lg-10'>
-          <%= f.select :type, {'最新资讯' => 'News'}, {:include_blank => '请选择'}, :class => 'form-control' %>
+          <%= f.select :type, {'最新资讯' => 'News', '课程安排' => 'CourseArrangement' , '课程介绍' => 'CourseIntroduction', '专题介绍' => 'TopicIntroduction', '案例分享' => 'CaseSharing', '在线试听' => 'TrialVideo', '常见问题' => 'FAQ', '关于平台' => 'PlatformIntroduction'}, {:include_blank => '请选择'}, :class => 'form-control' %>
         </div>
       </div>
       <div class='form-group'>

@@ -1,0 +1,2 @@
+class FAQ < Article
+end

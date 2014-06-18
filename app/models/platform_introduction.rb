@@ -1,0 +1,2 @@
+class PlatformIntroduction < Article
+end

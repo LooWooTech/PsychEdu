@@ -1,0 +1,2 @@
+class CourseArrangement < Article
+end

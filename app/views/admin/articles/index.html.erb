@@ -7,7 +7,7 @@
 <%= search_form_for [:admin, @search] do |f| %>
   <div class='col-lg-3'>
     <%= f.label :type_eq, '类型' %>
-    <%= f.select :type_eq, [], :include_blank => '全部' %>
+    <%= f.select :type_eq, {'最新资讯' => 'News', '课程安排' => 'CourseArrangement' , '课程介绍' => 'CourseIntroduction', '专题介绍' => 'TopicIntroduction', '案例分享' => 'CaseSharing', '在线试听' => 'TrialVideo', '常见问题' => 'FAQ', '关于平台' => 'PlatformIntroduction'}, {:include_blank => '全部'} %>
   </div>
   <div class='col-lg-3'>
     <%= f.label :title_cont, '标题' %>

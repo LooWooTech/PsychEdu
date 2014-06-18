@@ -1,0 +1,2 @@
+class CaseSharing < Article
+end

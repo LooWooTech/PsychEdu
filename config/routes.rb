@@ -2,7 +2,7 @@ PsychEdu::Application.routes.draw do
 
   resource :session, :only => [:create, :destroy]
   resources :blog_articles
-  resources :news, :only => [:show]
+  resources :articles, :only => [:show, :index]
 
   get 'sign_in' => 'sessions#new'
 

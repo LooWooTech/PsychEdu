@@ -1,0 +1,10 @@
+<ul>
+<% @articles.each do |article| %>
+  <li>
+    <%= image_tag article.cover_url if article.contains_image?  %>
+    <%= link_to article.title, article_path(article) %>
+    <div class='date'><%= l article.created_at, :format => :date_only %></div>
+  </li>
+<% end %>
+</ul>
+<%= paginate @articles %>

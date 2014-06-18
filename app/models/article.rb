@@ -9,4 +9,12 @@ class Article < ActiveRecord::Base
   validates :title, :presence => true
   validates :content, :presence => true
   delegate :name, :to => :editor, :prefix => true
+
+  def contains_image?
+    !!cover_url
+  end
+
+  def cover_url
+    content[/\<img src=['"]([^"']+)['"].+?\>/, 1]
+  end
 end

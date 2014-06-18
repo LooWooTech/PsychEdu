@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140613085112) do
+ActiveRecord::Schema.define(version: 20140616063605) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -67,6 +67,15 @@ ActiveRecord::Schema.define(version: 20140613085112) do
 
   add_index "answers", ["answerer_id", "answerer_type"], name: "index_answers_on_answerer_id_and_answerer_type", using: :btree
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+
+  create_table "articles", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "editor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
+  end
 
   create_table "blog_articles", force: true do |t|
     t.string   "title"
@@ -220,14 +229,6 @@ ActiveRecord::Schema.define(version: 20140613085112) do
   end
 
   add_index "multiple_choices", ["choice_id"], name: "index_multiple_choices_on_choice_id", using: :btree
-
-  create_table "news", force: true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.integer  "editor_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "notes", force: true do |t|
     t.integer  "video_watching_id"

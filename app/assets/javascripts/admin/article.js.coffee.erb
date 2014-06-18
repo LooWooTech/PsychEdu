@@ -1,7 +1,7 @@
 $ ->
-  if $('#news-content').size() > 0
-    reviewEditor = new wysihtml5.Editor 'news-content',
-      toolbar: 'news-editor-toolbar',
+  if $('#article-content').size() > 0
+    reviewEditor = new wysihtml5.Editor 'article-content',
+      toolbar: 'article-editor-toolbar',
       parserRules: wysihtml5ParserRules,
       stylesheets: ['<%= asset_path 'wysihtml5_editor.css'%>'],
       useLineBreaks: false,

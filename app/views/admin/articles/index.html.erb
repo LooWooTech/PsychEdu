@@ -1,10 +1,14 @@
 <div class='page-header clearfix'>
-  <h1>资讯列表</h1>
+  <h1>文章列表</h1>
   <ul>
-    <li><%= link_to '发布资讯', new_admin_news_path, :class => 'btn btn-default' %></li>
+    <li><%= link_to '发布文章', new_admin_article_path, :class => 'btn btn-default' %></li>
   </ul>
 </div>
 <%= search_form_for [:admin, @search] do |f| %>
+  <div class='col-lg-3'>
+    <%= f.label :type_eq, '类型' %>
+    <%= f.select :type_eq, [], :include_blank => '全部' %>
+  </div>
   <div class='col-lg-3'>
     <%= f.label :title_cont, '标题' %>
     <%= f.text_field :title_cont %>
@@ -31,17 +35,17 @@
       <th>操作</th>
     </tr>
   </thead>
-  <% @news.each do |news| %>
+  <% @articles.each do |article| %>
     <tr>
-      <td><%= link_to news.title , [:admin, news] %></td>
-      <td><%= truncate sanitize(strip_tags(news.content)), :length => 45 %></td>
-      <td><%= news.editor_name %></td>
-      <td><%= l news.created_at, :format => :long %></td>
+      <td><%= link_to article.title , admin_article_path(article) %></td>
+      <td><%= truncate sanitize(strip_tags(article.content)), :length => 45 %></td>
+      <td><%= article.editor_name %></td>
+      <td><%= l article.created_at, :format => :long %></td>
       <td>
-        <%= link_to '修改', edit_admin_news_path(news) %>
-        <%= link_to '删除', [:admin, news], :method => :delete, :data => {:confirm => "确定删除《#{news.title}》吗？"} %>
+        <%= link_to '修改', edit_admin_article_path(article) %>
+        <%= link_to '删除', admin_article_path(article), :method => :delete, :data => {:confirm => "确定删除《#{article.title}》吗？"} %>
       </td>
     </tr>
   <% end%>
 </table>
-<%= paginate @news %>
+<%= paginate @articles %>

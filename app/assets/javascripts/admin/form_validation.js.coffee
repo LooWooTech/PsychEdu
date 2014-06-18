@@ -130,9 +130,12 @@ $ ->
       'announcement[title]':
         'required': '请输入标题'
 
-  $('#edit-news').validate
+  $('#edit-article').validate
     rules:
-      'news[title]': 'required'
+      'article[title]': 'required'
+      'article[type]': 'required'
     messages:
-      'news[title]':
+      'article[title]':
         'required': '请输入标题'
+      'article[type]':
+        'required': '请选择类型'

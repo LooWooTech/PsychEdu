@@ -5,9 +5,21 @@
   <% end %>
   <li><%= link_to '登录', sign_in_path %></li>
 </ul>
-<div class='articles'>
+
+<div class='news'>
   <h1>最新资讯</h1>
-  <ul>
+  <ul class='top'>
+  <% News.top.each do |article| %>
+    <li>
+      <%= image_tag article.cover_url if article.contains_image? %>
+      <%= link_to article.title, article_path(article) %>
+      <div class='summary'>
+      <%= truncate(strip_tags(article.content), :length => 100) %>
+      </div>
+    </li>
+  <% end %>
+  </ul>
+  <ul class='non-top'>
     <% @news.each do |news| %>
     <li>
       <%= link_to news.title, article_path(news) %>
@@ -17,8 +29,20 @@
   </ul>
   <%= link_to '更多...', articles_path(:type => 'News') %>
 </div>
+
 <div class='articles'>
   <h1>课程安排</h1>
+  <ul class='top'>
+  <% CourseArrangement.top.each do |article| %>
+    <li>
+      <%= image_tag article.cover_url if article.contains_image? %>
+      <%= link_to article.title, article_path(article) %>
+      <div class='summary'>
+      <%= truncate(strip_tags(article.content), :length => 100) %>
+      </div>
+    </li>
+  <% end %>
+  </ul>
   <ul>
     <% @course_arrangements.each do |arrangement| %>
     <li>
@@ -29,8 +53,20 @@
   </ul>
   <%= link_to '更多...', articles_path(:type => 'CourseArrangement') %>
 </div>
+
 <div class='articles'>
   <h1>课程介绍</h1>
+  <ul class='top'>
+  <% CourseIntroduction.top.each do |article| %>
+    <li>
+      <%= image_tag article.cover_url if article.contains_image? %>
+      <%= link_to article.title, article_path(article) %>
+      <div class='summary'>
+      <%= truncate(strip_tags(article.content), :length => 100) %>
+      </div>
+    </li>
+  <% end %>
+  </ul>
   <ul>
     <% @course_introductions.each do |introduction| %>
     <li>
@@ -41,8 +77,20 @@
   </ul>
   <%= link_to '更多...', articles_path(:type => 'CourseIntroduction') %>
 </div>
+
 <div class='articles'>
   <h1>专题介绍</h1>
+  <ul class='top'>
+  <% TopicIntroduction.top.each do |article| %>
+    <li>
+      <%= image_tag article.cover_url if article.contains_image? %>
+      <%= link_to article.title, article_path(article) %>
+      <div class='summary'>
+      <%= truncate(strip_tags(article.content), :length => 100) %>
+      </div>
+    </li>
+  <% end %>
+  </ul>
   <ul>
     <% @topic_introductions.each do |introduction| %>
     <li>
@@ -53,8 +101,20 @@
   </ul>
   <%= link_to '更多...', articles_path(:type => 'TopicIntroduction') %>
 </div>
+
 <div class='articles'>
   <h1>案例分享</h1>
+  <ul class='top'>
+  <% CaseSharing.top.each do |article| %>
+    <li>
+      <%= image_tag article.cover_url if article.contains_image? %>
+      <%= link_to article.title, article_path(article) %>
+      <div class='summary'>
+      <%= truncate(strip_tags(article.content), :length => 100) %>
+      </div>
+    </li>
+  <% end %>
+  </ul>
   <ul>
     <% @case_sharings.each do |case_sharing| %>
     <li>
@@ -67,6 +127,17 @@
 </div>
 <div class='articles'>
   <h1>常见问题</h1>
+  <ul class='top'>
+  <% FAQ.top.each do |article| %>
+    <li>
+      <%= image_tag article.cover_url if article.contains_image? %>
+      <%= link_to article.title, article_path(article) %>
+      <div class='summary'>
+      <%= truncate(strip_tags(article.content), :length => 100) %>
+      </div>
+    </li>
+  <% end %>
+  </ul>
   <ul>
     <% @faqs.each do |faq| %>
     <li>

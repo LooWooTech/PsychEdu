@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140616063605) do
+ActiveRecord::Schema.define(version: 20140618100959) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20140616063605) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
+    t.boolean  "top",        default: false
   end
 
   create_table "blog_articles", force: true do |t|

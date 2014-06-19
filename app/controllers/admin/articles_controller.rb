@@ -1,11 +1,13 @@
 module Admin
   class ArticlesController < AdminController
-    before_action :find_article, :only => [:edit, :update, :destroy]
+    before_action :find_article, :only => [:show, :edit, :update, :destroy]
 
     def index
       @search = Article.search params[:q]
       @articles = @search.result.page(params[:page]).per(10)
     end
+
+    def show; end
 
     def new
       @article = Article.new

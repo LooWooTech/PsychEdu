@@ -1,0 +1,7 @@
+<div class='well'>
+  <h1><%= @article.title %></h1>
+  <%= sanitize @article.content %>
+  <div>
+    <%= link_to '编辑', edit_admin_article_path(@article) %>
+  </div>
+</div>

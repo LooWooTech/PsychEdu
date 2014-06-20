@@ -5,6 +5,9 @@ class Administrator < ActiveRecord::Base
   has_many :topic_materials, :foreign_key => 'created_by_id', :dependent => :nullify
   has_many :published_articles, :class_name => 'Article', :foreign_key => 'editor_id', :dependent => :nullify
   has_many :uploaded_images, :class_name => 'Image', :foreign_key => :uploader_id, :dependent => :nullify
+  has_many :answers, :as => :answerer
+  has_many :comments, :as => :commenter
+  has_many :complaints, :as => :complainer
 
   include HasAnAccount
   
@@ -14,6 +17,10 @@ class Administrator < ActiveRecord::Base
 
   def name
     username
+  end
+
+  def note
+    '管理员'
   end
 
 end

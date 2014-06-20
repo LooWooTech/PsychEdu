@@ -125,6 +125,20 @@
   </ul>
   <%= link_to '更多...', articles_path(:type => 'CaseSharing') %>
 </div>
+
+<div class='articles'>
+  <h1>学员风采</h1>
+  <ul>
+    <% @blog_articles.each do |article| %>
+    <li>
+      <%= link_to article.title, article %>
+      <span class='date'><%= l article.created_at, :format => :date_only %></span>
+    </li>
+    <% end %>
+  </ul>
+  <%= link_to '更多...', blog_articles_path %>
+</div>
+
 <div class='articles'>
   <h1>常见问题</h1>
   <ul class='top'>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618100959) do
+ActiveRecord::Schema.define(version: 20140619074358) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -81,12 +81,13 @@ ActiveRecord::Schema.define(version: 20140618100959) do
   create_table "blog_articles", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "writer_id"
+    t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "published",  default: false
   end
 
-  add_index "blog_articles", ["writer_id"], name: "index_blog_articles_on_writer_id", using: :btree
+  add_index "blog_articles", ["author_id"], name: "index_blog_articles_on_author_id", using: :btree
 
   create_table "case_questions", force: true do |t|
     t.text     "content"

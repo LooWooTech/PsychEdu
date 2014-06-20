@@ -6,7 +6,7 @@
           Blog
         </div>
         <div class="panel-body">
-          <%= bootstrap_form_for @blog_article do |f| %>
+          <%= bootstrap_form_for [:learning, @blog_article] do |f| %>
               <%= f.text_field :title, :label => '标题' %>
               <%= f.text_area :content, :label => '正文' %>
               <%= f.submit '保存' %>

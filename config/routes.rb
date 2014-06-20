@@ -1,8 +1,8 @@
 PsychEdu::Application.routes.draw do
 
   resource :session, :only => [:create, :destroy]
-  resources :blog_articles
   resources :articles, :only => [:show, :index]
+  resources :blog_articles, :only => [:index, :show]
 
   get 'sign_in' => 'sessions#new'
 
@@ -16,6 +16,7 @@ PsychEdu::Application.routes.draw do
     shallow do
       resource :password, :only => [:edit, :update], :path_names => {:edit => :change}
       resource :profile, :only => [:show]
+      resources :blog_articles
       resources :topic_learnings, :only => [:show, :index]
       resources :announcements, :only => :show
       resources :periods, :only => [:index, :create, :destroy]
@@ -56,6 +57,11 @@ PsychEdu::Application.routes.draw do
 
   namespace :admin do
     shallow do 
+      resources :blog_articles, :only => [:index, :show] do
+        member do
+          patch :publish, :un_publish
+        end
+      end
       resources :articles
       resources :images, :only => [:create]
       resources :forums, :except => [:show]

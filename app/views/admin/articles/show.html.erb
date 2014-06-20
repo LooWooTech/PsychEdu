@@ -3,5 +3,6 @@
   <%= sanitize @article.content %>
   <div>
     <%= link_to '编辑', edit_admin_article_path(@article) %>
+    <%= link_to '返回列表', admin_articles_path %>
   </div>
 </div>

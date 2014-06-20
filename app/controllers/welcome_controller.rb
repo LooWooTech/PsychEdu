@@ -6,5 +6,6 @@ class WelcomeController < ApplicationController
     @topic_introductions = TopicIntroduction.nontop.last(5)
     @case_sharings = CaseSharing.nontop.last(5)
     @faqs = FAQ.nontop.last(5)
+    @blog_articles = BlogArticle.published.last(5)
   end
 end

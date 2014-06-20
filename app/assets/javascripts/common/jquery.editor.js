@@ -1,4 +1,5 @@
-//*= require ckeditor/ckeditor.js
+//*= require ckeditor/override
+//*= require ckeditor/ckeditor
 
 (function() {
 

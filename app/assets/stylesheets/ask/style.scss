@@ -7,7 +7,6 @@ $brand-complement: #45C7D4;
 $brand-inverse: #F0A920;
 $brand-dark: #383C4A;
 $brand-darker: #262A32;
-$icon-font-path: "../bootstrap-sass/bootstrap/fonts/";
 $hr-border: darken($layout-bg, 3%);
 $page-header-border-color: darken($layout-bg, 3%);
 $well-bg: #fff;
@@ -17,7 +16,7 @@ $well-border: #ddd;
 $timeline-axis-offset-horizontal: 22px;
 
 // 加载 bootstrap
-@import "../bootstrap-sass/bootstrap";
+@import "bootstrap";
 
 // 加载组件
 @import "components/navs";

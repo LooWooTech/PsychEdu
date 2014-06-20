@@ -1,5 +1,5 @@
 /*
-*= require common/main
+*= require common
 *= require jquery-form
 *= require 'jquery-validation/jquery.validate'
 *= require swfobject

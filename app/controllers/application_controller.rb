@@ -65,4 +65,28 @@ class ApplicationController < ActionController::Base
     end
     nil
   end
+
+  def belongs_to_module?(name)
+    self.class.belongs_to_module? name
+  end
+
+  class << self
+    def belongs_to_module?(name)
+      modules[name].try :include?, self
+    end
+
+    def belongs_to_module(name)
+      modules[name] << self
+    end
+
+    def modules
+      @modules ||= {
+        :learning => [],
+        :case => [],
+        :material => [],
+        :forum => [],
+        :personal => []
+      }
+    end
+  end
 end

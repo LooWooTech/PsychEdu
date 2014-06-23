@@ -1,5 +1,6 @@
 module Learning
   class UnitExamsController < LearningController
+    belongs_to_module :learning
     before_action :find_unit_exam, :only => [:show, :update]
     after_action :destroy_unpassed_exam, :only => [:show, :update]
 

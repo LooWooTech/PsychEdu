@@ -1,5 +1,6 @@
 module Ask
   class ForumsController < AskController
+    belongs_to_module :forum
     def show
       @forum = Forum.find params[:id]
       @top = @forum.questions.top

@@ -1,5 +1,7 @@
 module Learning
   class ExtendedTopicMaterialsController < LearningController
+    belongs_to_module :material
+
     def index
       @materials = current_topic_learning.extended_topic_materials.order('created_at DESC').page(params[:page]).per(20)
     end

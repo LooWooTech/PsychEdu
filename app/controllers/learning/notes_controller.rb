@@ -1,5 +1,7 @@
 module Learning
   class NotesController < LearningController
+    belongs_to_module :learning
+
     before_action :find_video_watching
 
     def index

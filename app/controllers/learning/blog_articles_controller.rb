@@ -1,5 +1,6 @@
 module Learning
   class BlogArticlesController < ApplicationController
+    belongs_to_module :personal
   
     layout 'learning'
   

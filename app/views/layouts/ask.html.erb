@@ -10,33 +10,7 @@
     <%= javascript_include_tag "ask" %>
   </head>
   <body style="background: #fff;">
-
-    <header>
-      <nav class="navbar navbar-inverse navbar-global">
-        <div class="container">
-          <a class="navbar-brand" href="/">建德教育 <span>问答</span></a>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><i class="fa fa-home"></i> 首页</a></li>
-            <li><a href="#"><i class="fa fa-tag"></i> 教学</a></li>
-            <li><a href="#"><i class="fa fa-clipboard"></i> 习题</a></li>
-            <li><a href="#"><i class="fa fa-github-alt"></i> 督导</a></li>
-            <li class="active"><a href="#"><i class="fa fa-comment"></i> 社区</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %> <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">个人主页</a></li>
-                <li><a href="#">学员申请</a></li>
-                <li class="divider"></li>
-                <li><a href="#">修改密码</a></li>
-                <li><a href="#">设置</a></li>
-                <li class="divider"></li>
-                <li><a href="#">退出</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+    <%= render :partial => 'layouts/navigator', :locals => {:index_link => link_to(raw('建德教育<span>问答社区</span>'), ask_root_path, :class => 'navbar-brand')} %>
 
     <div class="container">
       <div class="row">

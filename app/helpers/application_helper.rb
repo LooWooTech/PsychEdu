@@ -12,4 +12,10 @@ module ApplicationHelper
       '休学'
     end
   end
+
+  def navigator_link(options)
+    content_tag :li, :class => (controller.belongs_to_module?(options[:name]) ? 'active' : '') do
+      link_to raw(options[:text]), options[:url]
+    end
+  end
 end

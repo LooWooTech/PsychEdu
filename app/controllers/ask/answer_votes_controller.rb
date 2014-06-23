@@ -1,5 +1,6 @@
 module Ask
   class AnswerVotesController < AskController
+    belongs_to_module :forum
     def create
       @answer_vote = AnswerVote.new vote_params
       @answer_vote.voter = current_user

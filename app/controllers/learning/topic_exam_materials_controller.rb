@@ -1,5 +1,6 @@
 module Learning
   class TopicExamMaterialsController < LearningController
+    belongs_to_module :learning
     def create
       @topic_exam = TopicExam.find params[:topic_exam_id]
       @topic_exam_material = @topic_exam.materials.build material_params

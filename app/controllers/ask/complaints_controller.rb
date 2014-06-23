@@ -1,5 +1,6 @@
 module Ask
   class ComplaintsController < AskController
+    belongs_to_module :forum
   
     before_action :find_complainable
   

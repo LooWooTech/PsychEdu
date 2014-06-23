@@ -1,5 +1,6 @@
 module Learning
   class CaseAnalysesController < LearningController
+    belongs_to_module :case
     def index
       @case_analyses = current_topic_learning.case_analyses.order('created_at DESC').page(params[:page]).per(20)
     end

@@ -1,5 +1,6 @@
 module Ask
   class CommentsController < AskController
+    belongs_to_module :forum
     include ::CommentsController
 
     def index

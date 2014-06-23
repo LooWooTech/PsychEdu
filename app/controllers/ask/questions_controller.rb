@@ -1,5 +1,6 @@
 module Ask
   class QuestionsController < AskController
+    belongs_to_module :forum
   
     load_and_authorize_resource :only => [:edit, :update, :destroy, :top, :refine]
 

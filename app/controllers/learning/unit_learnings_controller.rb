@@ -1,5 +1,6 @@
 module Learning
   class UnitLearningsController < LearningController
+    belongs_to_module :learning
 
     before_action :find_unit_learning, :only => [:show, :summary, :review]
 

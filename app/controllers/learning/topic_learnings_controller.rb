@@ -1,5 +1,6 @@
 module Learning
   class TopicLearningsController < LearningController
+    belongs_to_module :learning
 
     skip_before_action :ensure_topic_learning_is_ongoing, :only => [:index, :show]
 

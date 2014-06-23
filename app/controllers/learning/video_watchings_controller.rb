@@ -1,5 +1,6 @@
 module Learning
   class VideoWatchingsController < LearningController
+    belongs_to_module :learning
     before_action :find_video_watching, :only => [:show, :update]
 
     def show

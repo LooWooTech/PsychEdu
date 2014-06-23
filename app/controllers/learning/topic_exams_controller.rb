@@ -1,5 +1,6 @@
 module Learning
   class TopicExamsController < LearningController
+    belongs_to_module :learning
     before_action :find_topic_exam
 
     def show; end

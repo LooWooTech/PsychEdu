@@ -1,3 +1,4 @@
+<% content_for(:title){ @blog_article.new_record? ? "新建博客" : "编辑博客:#{@blog_article.title}" } %>
 <div class="container">
   <div class="row">
     <div class="col-md-6">

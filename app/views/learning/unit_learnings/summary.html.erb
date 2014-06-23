@@ -1,8 +1,8 @@
+<% content_for(:title){"单元提要：#{unit_name @unit_learning}"} %>
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="well">
-				<% content_for(:title){"#{unit_name @unit_learning}-单元提要"} %>
 				<%= sanitize @unit_learning.summary %>
 			</div>
 		</div>

@@ -1,3 +1,4 @@
+<% content_for(:title){"单元练习：#{@unit_exam.name}"} %>
 <div class="container" id="unit_exam">
   <%= bootstrap_form_for [:learning, @unit_exam] do |f| %>
   <div class="row">

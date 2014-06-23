@@ -1,3 +1,4 @@
+<% content_for(:title){ "案例：#{@case_analysis.title}" } %>
 <h1><%= @case_analysis.title %></h1>
 <div class='article'>
   <%= sanitize @case_analysis.content %>

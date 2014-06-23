@@ -5,7 +5,7 @@ class LearningController < ApplicationController
   before_action :ensure_topic_open
   before_action :ensure_topic_learning_is_ongoing
 
-  helper_method :current_topic_learning, :chapter_learnings, :page_title
+  helper_method :current_topic_learning, :chapter_learnings
 
   private
 
@@ -28,10 +28,6 @@ class LearningController < ApplicationController
 
   def chapter_learnings
     @chapter_learnings ||= current_topic_learning.chapter_learnings
-  end
-
-  def page_title
-    @page_title || '建德教育心理教学实操平台'
   end
 
 end

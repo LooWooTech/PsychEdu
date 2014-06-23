@@ -1,31 +1,32 @@
+<% content_for(:title){"专题小结：#{current_topic_learning.name}"} %>
 <div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="page-header">
-                <h3><%= current_topic_learning.name %> 专题小结</h3>
-            </div>
-            <div class="well">
-                <video id="video"></video>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="page-header">
+        <h3><%= current_topic_learning.name %> 专题小结</h3>
+      </div>
+      <div class="well">
+        <video id="video"></video>
+      </div>
     </div>
+  </div>
 </div>
 
 <% content_for :head do %>
 <script type='text/javascript'>
-    var flashvers = {};
-    flashvers.mp4_url = "<%= current_topic_learning.review_video_url %>";
-    flashvers.dianping = "false";
-    flashvers.save_dx = 10;
-    flashvers.over_per = 1.5;
-    flashvers.flash_xml = '<flash start_time="0" played_time="0">  <e s="0"/>  <e s="0"/>  <e s="2"/>  <e s="2"/>  <e s="0"/>  <e s="0"/>  <e s="0"/>  <e s="0"/></flash>';
-    
-    var params = {};
-    params.menu="false";
-    params.allowFullScreen="true";
-    params.allowScriptAccess="sameDomain";
-    params.wmode="opaque";
-    
-    swfobject.embedSWF("/flashplayer/player.swf", "video", "100%", "480px", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
+  var flashvers = {};
+  flashvers.mp4_url = "<%= current_topic_learning.review_video_url %>";
+  flashvers.dianping = "false";
+  flashvers.save_dx = 10;
+  flashvers.over_per = 1.5;
+  flashvers.flash_xml = '<flash start_time="0" played_time="0">  <e s="0"/>  <e s="0"/>  <e s="2"/>  <e s="2"/>  <e s="0"/>  <e s="0"/>  <e s="0"/>  <e s="0"/></flash>';
+  
+  var params = {};
+  params.menu="false";
+  params.allowFullScreen="true";
+  params.allowScriptAccess="sameDomain";
+  params.wmode="opaque";
+  
+  swfobject.embedSWF("/flashplayer/player.swf", "video", "100%", "480px", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
 </script>
 <% end %>

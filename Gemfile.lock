@@ -153,7 +153,6 @@ GEM
     rails-assets-jquery-validation (1.12.0)
       rails-assets-jquery (>= 1.6.4)
     rails-assets-modernizr (2.8.2)
-    rails-assets-wysihtml5 (0.3.0)
     railties (4.1.0)
       actionpack (= 4.1.0)
       activesupport (= 4.1.0)
@@ -244,7 +243,6 @@ DEPENDENCIES
   rails-assets-jquery-ui (~> 1.10.4)
   rails-assets-jquery-validation (~> 1.12.0)
   rails-assets-modernizr (~> 2.8.2)
-  rails-assets-wysihtml5 (~> 0.3.0)
   ransack
   rspec-rails
   sass-rails (~> 4.0.0)

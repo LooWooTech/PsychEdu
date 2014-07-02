@@ -33,10 +33,6 @@
               <th>要求</th>
               <td><%= sanitize @topic_exam.requirements %></td>
             </tr>
-            <tr>
-              <th>评分</th>
-              <td><%= sanitize @topic_exam.grading_rules %></td>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -88,7 +84,11 @@
       <div class="panel panel-default">
         <div class="panel-heading">考核点评</div>
         <div class="panel-body">
-          <%= @topic_exam.review %>
+          <ol>
+            <% @topic_exam.scores.each do |score| %>
+              <li><%= score.comment %></li>
+            <% end %>
+          </ol>
         </div>
       </div>
 
@@ -107,8 +107,8 @@
           <thead>
             <tr>
               <th>时间</th>
-              <th>点评</th>
               <th>得分</th>
+              <th>状态</th>
               <th>操作</th>
             </tr>
           </thead>
@@ -116,8 +116,8 @@
             <% current_topic_learning.exam_history.each do |exam| %>
             <tr>
               <td><%= l exam.created_at, :format => :long %></td>
-              <td><%= exam.reviewed? ? truncate(exam.review) : '未审核' %></td>
               <td><%= exam.score %></td>
+              <td><%= exam_state exam %></td>
               <td><%= link_to '查看', [:learning, exam] %></td>
             </tr>
             <% end %>

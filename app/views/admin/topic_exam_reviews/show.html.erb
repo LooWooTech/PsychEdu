@@ -16,10 +16,6 @@
       <td><%= @topic_exam.requirements %></td>
     </tr>
     <tr>
-      <th>评分</th>
-      <td><%= @topic_exam.grading_rules %></td>
-    </tr>
-    <tr>
       <th>上传材料</th>
       <td>
         <% @topic_exam.materials.each do |material| %>
@@ -29,29 +25,28 @@
       </td>
     </tr>
     <tr>
-      <th>审核</th>
+      <th>评分</th>
       <td>
-        <% if @topic_exam.reviewed? %>
-          <div>
-          得分：<%= @topic_exam.score %>
-          </div>
-          <div>
-          点评：<%= @topic_exam.review %>
-          </div>
-        <% else %>
-          <%= form_for @topic_exam, :url => admin_topic_exam_review_path(@topic_exam),
-            :method => :patch, :html => {:id => 'review-topic-exam', :class => 'form-horizontal'} do |f| %>
-            <fieldset>
-              <div class='form-grop'>
-                <%= f.label :score, '*得分', :class => 'control-label' %>
-                <%= f.number_field :score %>
-              </div>
-              <div class='form-grop'>
-                <%= f.label :review, '*点评', :class => 'control-label' %>
-                <%= f.text_area :review %>
-              </div>
-              <%= f.submit '评分', :class => 'btn btn-default' %>
-            </fieldset>
+        <%= form_for @topic_exam, :url => admin_topic_exam_review_path(@topic_exam),
+          :method => :patch, :html => {:class => 'form-horizontal'} do |f| %>
+          <%= f.fields_for :scores do |score_field| %>
+          <ul>
+            <% @topic_exam.scores.each do |score| %>
+            <li>
+              <div> <%= score.rule_name %> </div>
+              <div> <%= score.rule_description %> </div>
+                <div>
+                  <%= score_field.label :score, '得分' %>
+                  <%= score_field.number_field :score %>
+                </div>
+                <div>
+                  <%= score_field.label :comment, '评语' %>
+                  <%= score_field.text_area :comment %>
+                </div>
+            </li>
+            <% end %>
+          </ul>
+          <%= f.submit '提交' %>
           <% end %>
         <% end %>
       </td>

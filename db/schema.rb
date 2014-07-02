@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619074358) do
+ActiveRecord::Schema.define(version: 20140628063139) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -231,6 +231,7 @@ ActiveRecord::Schema.define(version: 20140619074358) do
   end
 
   add_index "multiple_choices", ["choice_id"], name: "index_multiple_choices_on_choice_id", using: :btree
+  add_index "multiple_choices", ["multiple_choice_answer_id"], name: "index_multiple_choices_on_multiple_choice_answer_id", using: :btree
 
   create_table "notes", force: true do |t|
     t.integer  "video_watching_id"
@@ -269,6 +270,17 @@ ActiveRecord::Schema.define(version: 20140619074358) do
 
   add_index "questions", ["forum_id"], name: "index_questions_on_forum_id", using: :btree
   add_index "questions", ["questioner_id", "questioner_type"], name: "index_questions_on_questioner_id_and_questioner_type", using: :btree
+
+  create_table "score_rules", force: true do |t|
+    t.integer  "topic_testing_id"
+    t.string   "name"
+    t.float    "score",            default: 0.0
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "score_rules", ["topic_testing_id"], name: "index_score_rules_on_topic_testing_id", using: :btree
 
   create_table "singular_choice_answers", force: true do |t|
     t.integer  "singular_choice_question_id"
@@ -334,11 +346,21 @@ ActiveRecord::Schema.define(version: 20140619074358) do
 
   add_index "topic_exam_materials", ["topic_exam_id"], name: "index_topic_exam_materials_on_topic_exam_id", using: :btree
 
+  create_table "topic_exam_scores", force: true do |t|
+    t.integer  "topic_exam_id"
+    t.integer  "score_rule_id"
+    t.float    "score",         default: 0.0
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topic_exam_scores", ["score_rule_id"], name: "index_topic_exam_scores_on_score_rule_id", using: :btree
+  add_index "topic_exam_scores", ["topic_exam_id"], name: "index_topic_exam_scores_on_topic_exam_id", using: :btree
+
   create_table "topic_exams", force: true do |t|
     t.integer  "topic_learning_id"
-    t.text     "review"
     t.boolean  "submitted",         default: false
-    t.integer  "score",             default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "passed_at"
@@ -384,7 +406,6 @@ ActiveRecord::Schema.define(version: 20140619074358) do
     t.string   "title"
     t.text     "content"
     t.text     "requirements"
-    t.text     "grading_rules"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -393,10 +414,10 @@ ActiveRecord::Schema.define(version: 20140619074358) do
 
   create_table "topics", force: true do |t|
     t.string   "name"
+    t.text     "introduction"
     t.string   "teacher_names"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "introduction"
     t.string   "guide_video_url"
     t.string   "review_video_url"
   end

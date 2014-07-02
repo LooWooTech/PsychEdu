@@ -44,7 +44,7 @@ module Admin
     end
 
     def testing_params
-      params.require(:topic_testing).permit(:topic_id, :title, :content, :requirements, :grading_rules)
+      params.require(:topic_testing).permit!
     end
   end
 end

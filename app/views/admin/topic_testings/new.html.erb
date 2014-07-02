@@ -1,3 +1,4 @@
+<% @topic_testing.score_rules.build if @topic_testing.score_rules.empty? %>
 <div class='well'>
   <%= form_for [:admin, @topic_testing], :html => {:id => 'edit-topic-testing', :class => 'form-horizontal'} do |f| %>
     <fieldset>
@@ -32,18 +33,40 @@
           <%= f.text_area :requirements, :id => 'topic-testing-requirements' %>
         </div>
       </div>
-      <div class='form-group'>
-        <div class='col-lg-10 col-lg-offset-2'>
-          <%= render :partial => 'admin/shared/rich_text_toolbar', :locals => {:toolbar_id => 'topic-testing-grading-rules-editor-toolbar'} %>
-        </div>
-        <%= f.label :grading_rules, '评分', :class => 'col-lg-2 control-label' %>
-        <div class='col-lg-10'>
-          <%= f.text_area :grading_rules, :id => 'topic-testing-grading-rules' %>
-        </div>
-      </div>
+      <ul class='rule-fields list-group col-lg-10 col-lg-offset-2'>
+        <%= f.fields_for :score_rules do |rule_field|%>
+        <li class='list-group-item'>
+          <div class='form-group'>
+            <%= rule_field.label :name, '评分规则名称', :class => 'col-lg-2 control-label' %>
+            <div class='col-lg-10'>
+            <%= rule_field.text_field :name, :class => 'form-control' %>
+            </div>
+          </div>
+          <div class='form-group'>
+            <%= rule_field.label :description, '评分规则描述', :class => 'col-lg-2 control-label' %>
+            <div class='col-lg-10'>
+            <%= rule_field.text_area :description, :class => 'form-control' %>
+            </div>
+          </div>
+          <div class='form-group'>
+            <%= rule_field.label :score, '分数', :class => 'col-lg-2 control-label' %>
+            <div class='col-lg-10'>
+            <%= rule_field.number_field :score, :class => 'form-control' %>
+            </div>
+          </div>
+          <div class='form-group'>
+            <%= rule_field.label :_destroy, '删除', :class => 'col-lg-2 control-label' %>
+            <div class='col-lg-10'>
+            <%= rule_field.check_box :_destroy %>
+            </div>
+          </div>
+        </li>
+        <% end %>
+      </ul>
       <div class='form-group'>
         <div class='col-lg-10 col-lg-offset-2'>
           <%= f.submit '保存', :class => 'btn btn-primary' %>
+          <a href='javascript:;' class='add-rule btn btn-default'>添加评分规则</a> 
           <%= link_to '返回', :back, :class => 'btn btn-default' %>
         </div>
       </div>

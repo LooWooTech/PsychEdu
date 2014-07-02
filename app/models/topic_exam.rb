@@ -4,19 +4,30 @@ class TopicExam < ActiveRecord::Base
   belongs_to :topic_learning
 
   has_many :materials, :class_name => 'TopicExamMaterial', :dependent => :destroy
+  has_many :scores, :class_name => 'TopicExamScore', :dependent => :destroy
 
   scope :unsubmitted, lambda{ where :submitted => false }
   scope :submitted, lambda{ where :submitted => true }
-  scope :unreviewed, lambda{ where :review => nil }
-  scope :reviewed, lambda{ where.not(:review => nil) }
 
-  delegate :title, :content, :requirements, :grading_rules, :to => :topic_testing
+  delegate :title, :content, :requirements, :to => :topic_testing
   delegate :name, :student, :student_name, :student_username, :student_unit_code, :to => :topic_learning
 
+  accepts_nested_attributes_for :scores,
+                                :reject_if => lambda{|attr| attr[:comment].blank? }
+
   before_save :set_passed_at
+  after_create :create_scores
+
+  def score
+    scores.sum :score
+  end
 
   def passed?
-    score >= PASS_LINE
+    reviewed? && score >= PASS_LINE
+  end
+
+  def unpassed?
+    reviewed? && score < PASS_LINE
   end
 
   def unsubmitted?
@@ -28,7 +39,7 @@ class TopicExam < ActiveRecord::Base
   end
 
   def reviewed?
-    !review.nil?
+    scores.all? &:reviewed?
   end
 
   def submit
@@ -39,5 +50,11 @@ class TopicExam < ActiveRecord::Base
 
   def set_passed_at
     passed_at = Time.now if passed?
+  end
+
+  def create_scores
+    topic_testing.score_rules.each do |rule|
+      scores.create :rule => rule
+    end
   end
 end

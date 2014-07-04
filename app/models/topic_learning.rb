@@ -22,6 +22,10 @@ class TopicLearning < ActiveRecord::Base
 
   after_create :create_chapter_learnings
 
+  def graduate?
+    exams.any? &:passed?
+  end
+
   def has_unreviewed_application?
     learning_periods.any? &:has_unreviewed_application?
   end

@@ -49,7 +49,7 @@ class TopicExam < ActiveRecord::Base
   private
 
   def set_passed_at
-    passed_at = Time.now if passed?
+    self.passed_at = Time.now if passed?
   end
 
   def create_scores

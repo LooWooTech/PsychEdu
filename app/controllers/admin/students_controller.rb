@@ -7,7 +7,7 @@ module Admin
       @students = @search.result.page(params[:page]).per(10)
       respond_to do |format|
         format.html
-        format.csv { send_data StudentExporter.new(@search.result).export }
+        format.csv { send_data StudentExporter.new(@search.result).export, :filename => "学员列表.csv" }
       end
     end
 

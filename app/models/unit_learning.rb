@@ -5,6 +5,7 @@ class UnitLearning < ActiveRecord::Base
   belongs_to :chapter_learning
   belongs_to :unit
 
+  delegate :student_name, :student_username, :to => :chapter_learning
   delegate :name, :chapter, :first?, :last?, 
     :videos, :chapter_name, :singular_choice_count, :multiple_choice_count,
     :singular_choice_questions, :multiple_choice_questions, :ready_for_exam?,

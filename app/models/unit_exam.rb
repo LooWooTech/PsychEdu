@@ -9,7 +9,7 @@ class UnitExam < ActiveRecord::Base
   has_many :singular_choice_answers, :dependent => :destroy
   has_many :multiple_choice_answers, :dependent => :destroy
 
-  delegate :topic_name, :chapter_name, :to => :unit_learning
+  delegate :student_name, :student_username, :topic_name, :chapter_name, :to => :unit_learning
 
   accepts_nested_attributes_for :singular_choice_answers, :multiple_choice_answers, :update_only => true
 
@@ -46,6 +46,10 @@ class UnitExam < ActiveRecord::Base
 
   def correct_answers_count
     singular_choice_answers.select(&:correct?).count + multiple_choice_answers.select(&:correct?).count
+  end
+
+  def used_minutes
+    used_seconds / 60
   end
 
   def used_seconds

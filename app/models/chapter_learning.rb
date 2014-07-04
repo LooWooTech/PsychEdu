@@ -5,7 +5,7 @@ class ChapterLearning < ActiveRecord::Base
   has_many :unit_learnings, :dependent => :destroy
   has_many :unit_exams, :through => :unit_learnings, :source => :exams
 
-  delegate :student, :to => :topic_learning
+  delegate :student, :student_name, :student_username, :to => :topic_learning
   delegate :name, :introduction, :topic, :first?, :last?, :has_only_one_unit?, :to => :chapter
 
   after_create :create_unit_learnings

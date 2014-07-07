@@ -53,8 +53,12 @@
               <small>点击标签切换专题</small>
             </div>
             <div class="panel-body">
-              <% current_topic_learning.siblings.each do |topic_learning| %>
-                <%= link_to topic_learning.name, [:learning, topic_learning], :class => 'label label-default' %>
+              <% current_user.topic_learnings.each do |topic_learning| %>
+                <% if topic_learning == current_topic_learning %>
+                  <span class='label label-default'><%= topic_learning.name %></span>
+                <% else %>
+                  <%= link_to topic_learning.name, [:learning, topic_learning], :class => 'label label-primary' %>
+                <% end %>
               <% end %>
             </div>
           </div>

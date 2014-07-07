@@ -54,10 +54,6 @@ class TopicLearning < ActiveRecord::Base
     exams.unsubmitted.last
   end
 
-  def siblings
-    student.topic_learnings - [self]
-  end
-
   def start(start_on, end_on)
     learning_periods.create :start_on => start_on, :end_on => end_on
   end

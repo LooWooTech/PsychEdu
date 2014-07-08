@@ -1,5 +1,6 @@
-class TopicMaterialAttachment < ActiveRecord::Base
-  belongs_to :case_analysis
+class ArticleAttachment < ActiveRecord::Base
+  belongs_to :article, :polymorphic => true
+
   mount_uploader :file, AttachmentsUploader
 
   def filename

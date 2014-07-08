@@ -6,6 +6,16 @@
 	<div class="media-body">
 		<h4 class="media-heading"><%= @question.title %></h4>
 		<div class='contents'><%= sanitize @question.content %></div>
+    <% if @question.attachments.any? %>
+    <div class='attachments'>
+      附件：
+      <ul>
+        <% @question.attachments.each do |attachment| %>
+        <li><%= link_to attachment.filename, attachment.url %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
 		<div class="actions">
 			<span class="fa fa-calendar"></span> <%= l @question.created_at, :format => :short %> / <span class="fa fa-user"></span>
       <%= @question.questioner_name %>

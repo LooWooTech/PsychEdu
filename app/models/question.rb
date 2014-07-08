@@ -1,4 +1,6 @@
 class Question < ActiveRecord::Base
+  include HasManyAttachments
+
   belongs_to :questioner, :polymorphic => true
   belongs_to :forum
 

@@ -1,4 +1,6 @@
 class Answer < ActiveRecord::Base
+  include HasManyAttachments
+
   belongs_to :question
   belongs_to :answerer, :polymorphic => true
 

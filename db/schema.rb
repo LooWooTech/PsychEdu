@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140628063139) do
+ActiveRecord::Schema.define(version: 20140707085957) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -67,6 +67,16 @@ ActiveRecord::Schema.define(version: 20140628063139) do
 
   add_index "answers", ["answerer_id", "answerer_type"], name: "index_answers_on_answerer_id_and_answerer_type", using: :btree
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+
+  create_table "article_attachments", force: true do |t|
+    t.string   "file"
+    t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "article_type"
+  end
+
+  add_index "article_attachments", ["article_id"], name: "index_article_attachments_on_article_id", using: :btree
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -378,15 +388,6 @@ ActiveRecord::Schema.define(version: 20140628063139) do
 
   add_index "topic_learnings", ["student_id"], name: "index_topic_learnings_on_student_id", using: :btree
   add_index "topic_learnings", ["topic_id"], name: "index_topic_learnings_on_topic_id", using: :btree
-
-  create_table "topic_material_attachments", force: true do |t|
-    t.string   "file"
-    t.integer  "topic_material_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "topic_material_attachments", ["topic_material_id"], name: "index_topic_material_attachments_on_topic_material_id", using: :btree
 
   create_table "topic_materials", force: true do |t|
     t.string   "title"

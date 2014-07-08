@@ -64,7 +64,7 @@ module Ask
     private
   
     def question_params
-      params.require(:question).permit(:title, :content)
+      params.require(:question).permit(:title, :content, :attachments_attributes => [:file, :_destroy, :id])
     end
 
     def find_forum

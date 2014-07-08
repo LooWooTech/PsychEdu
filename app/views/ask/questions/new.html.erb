@@ -1,15 +1,32 @@
+<% @question.attachments.build %>
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   <h4 class="modal-title">新建提问</h4>
 </div>
 
-<%= bootstrap_form_for [:ask, @forum, @question], :html => {:id => 'question-form'} do |f| %>
+<%= bootstrap_form_for [:ask, @forum, @question], :html => {:multipart =>true, :id => 'question-form'} do |f| %>
   <div class="modal-body">
-    <%= f.text_field :title, label: '标题', placeholder: '写下您问题的标题' %>
-    <%= f.text_area :content, :data => {:event => 'editor'}, label: '问题说明', rows: 8, placeholder: '描述一下您的问题' %>
+    <%= f.text_field :title, hide_label: true, placeholder: '写下您问题的标题' %>
+    <%= f.text_area :content, :data => {:event => 'editor'}, hide_label: true, rows: 8, placeholder: '描述一下您的问题' %>
+    <ul class='list-group attachment-fields'>
+    <%= f.fields_for :attachments do |attachment_fields| %>
+      <% attachment = attachment_fields.object %>
+      <li class='list-group-item'>
+      <% if attachment.new_record? %>
+        <%= attachment_fields.file_field :file, :hide_label =>true, :inline => true %>
+      <% else %>
+        <%= link_to attachment.filename, attachment.url %>
+      <% end %>
+      <%= attachment_fields.form_group do %>
+        <%= attachment_fields.check_box :_destroy, :label => '删除' %>
+      <% end %>
+      </li>
+    <% end %>
+    </ul>
   </div>
   
   <div class="modal-footer">
+    <button type="button" class="btn btn-default add-attachment">添加附件</button>
     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
     <%= f.submit '发布提问', class: 'btn btn-primary' %>
   </div>

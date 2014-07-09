@@ -1,4 +1,6 @@
-<%= content_for(:title){@question.title} %>
+<% content_for(:title){@question.title} %>
+<% @answer ||= Answer.new %>
+<% @answer.attachments.build %>
 <div class="media">
 	<a class="pull-left" href="#">
 		<img class="media-object img-circle" src="<%= image_path 'avatar/1.jpg' %>" width="48" height="48">
@@ -6,16 +8,7 @@
 	<div class="media-body">
 		<h4 class="media-heading"><%= @question.title %></h4>
 		<div class='contents'><%= sanitize @question.content %></div>
-    <% if @question.attachments.any? %>
-    <div class='attachments'>
-      附件：
-      <ul>
-        <% @question.attachments.each do |attachment| %>
-        <li><%= link_to attachment.filename, attachment.url %></li>
-        <% end %>
-      </ul>
-    </div>
-    <% end %>
+    <%= render :partial => 'attachment', :locals => {:article => @question} %>
 		<div class="actions">
 			<span class="fa fa-calendar"></span> <%= l @question.created_at, :format => :short %> / <span class="fa fa-user"></span>
       <%= @question.questioner_name %>
@@ -56,9 +49,18 @@
   <div class="media-body">
     <div><%= current_user.name %></div>
     <div class="contents">
-  	  <%= bootstrap_form_for [:ask, @question, @answer || Answer.new] do |f| %>
-  		<%= f.text_area :content, :id => 'answer-editor', :rows => 5, :placeholder => '添加您的回答', hide_label: true %>
-  	    <%= f.submit '发布回答' %>
+  	  <%= bootstrap_form_for [:ask, @question, @answer] do |f| %>
+  		  <%= f.text_area :content, :id => 'answer-editor', :rows => 5, :placeholder => '添加您的回答', hide_label: true %>
+        <ul class='list-group attachment-fields'>
+          <%= f.fields_for :attachments do |attachment_fields| %>
+            <li class='list-group-item'>
+              <%= attachment_fields.file_field :file, :hide_label => true %>
+              <%= attachment_fields.check_box :_destroy, :label => '删除' %>
+            </li>
+          <% end %>
+        </ul>
+        <button type='button' class='add-attachment btn btn-default'>添加附件</button>
+  	    <%= f.submit '发布回答', :class => 'btn btn-primary' %>
   	  <% end %>
     </div>
   </div>

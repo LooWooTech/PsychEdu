@@ -1,0 +1,10 @@
+<% if article.attachments.any? %>
+  <div class='attachments'>
+    <strong>附件：</strong>
+    <ul>
+      <% article.attachments.each do |attachment| %>
+        <li> <%= link_to attachment.filename, attachment.url %> </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

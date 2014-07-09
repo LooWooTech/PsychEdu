@@ -19,6 +19,7 @@
     </div>
     <div class="contents">
       <%= sanitize answer.content %>
+      <%= render :partial => 'attachment', :locals => {:article => answer} %>
     </div>
     <div class="actions">
       <span class="fa fa-calendar"></span> <%= l answer.created_at, :format => :short %> / <span class="fa fa-user"></span> <%= answer.answerer_name %>

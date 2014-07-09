@@ -35,7 +35,7 @@ module Ask
     end
   
     def edit
-      render :new, :layout => 'modal_box'
+      render :new, :layout => false
     end
   
     def update

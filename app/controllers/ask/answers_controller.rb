@@ -21,7 +21,7 @@ module Ask
   
     def update
       if @answer.update_attributes answer_params
-        render :partial => 'ask/questions/answer', :object => @answer
+        redirect_to [:ask, @answer.question]
       else
         render :edit
       end
@@ -35,7 +35,7 @@ module Ask
     private
   
     def answer_params
-      params.require(:answer).permit(:content)
+      params.require(:answer).permit(:content, :attachments_attributes => [:_destroy, :file, :id])
     end
   
   end

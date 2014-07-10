@@ -31,8 +31,8 @@
             </div>
 
             <%= bootstrap_form_for [:learning, @video_watching.video, Comment.new], :remote => true do |f| %>
-              <%= f.text_area :content %>
-              <%= f.submit '发表评论' %>
+              <%= f.text_area :content, :hide_label => true %>
+              <%= f.submit '发表评论', :class => 'btn btn-primary' %>
             <% end %>
 
           </div>
@@ -45,8 +45,8 @@
             </div>
 
             <%= bootstrap_form_for [:learning, @video_watching, Note.new], :remote => true do |f| %>
-              <%= f.text_area :content %>
-              <%= f.submit '保存记事' %>
+              <%= f.text_area :content, :hide_label => true %>
+              <%= f.submit '保存笔记', :class => 'btn btn-primary' %>
             <% end %>
 
           </div>

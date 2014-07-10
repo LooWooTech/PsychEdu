@@ -2,7 +2,7 @@ module Learning
   class NotesController < LearningController
     belongs_to_module :learning
 
-    before_action :find_video_watching
+    before_action :find_video_watching, :except => :destroy
 
     def index
       @notes = @video_watching.notes.page(params[:page]).per(5)
@@ -16,6 +16,12 @@ module Learning
       else
         render :text => '笔记创建失败', :status => 400
       end
+    end
+
+    def destroy
+      @note = Note.find params[:id]
+      @note.destroy
+      render :plain => '删除成功'
     end
 
     private

@@ -8,4 +8,8 @@ $(document).ready(function() {
 	$('#comments-notes').delegate('.pagination a', 'ajax:success', function(e, data) {
 		$(this).closest('.list').html(data);
 	});
+
+  $('#comments-notes').on('ajax:success', '.delete', function(e){
+    $(this).closest('.media').remove();
+  });
 });

@@ -9,6 +9,9 @@
       	记录于 <%= l note.created_at, :format => :long %> /
       	视频时间 <%= note.play_time_point %>
       </span>
+      <span class='media-fade'>/
+        <%= link_to '删除', [:learning, note], :remote => true, :method => :delete, :class => 'delete', :data => {:confirm => '确定删除这条笔记？'} %>
+      </span>
     </div>
   </div>
 </div>

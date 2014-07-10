@@ -1,16 +1,16 @@
-<% content_for(:title){ @blog_article.new_record? ? "新建博客" : "编辑博客:#{@blog_article.title}" } %>
+<% title = @blog_article.new_record? ? "写新文章" : "编辑文章:#{@blog_article.title}" %>
+<% content_for(:title){ title } %>
+
 <div class="container">
   <div class="row">
     <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">
-          Blog
-        </div>
+        <div class="panel-heading"><%= title %></div>
         <div class="panel-body">
           <%= bootstrap_form_for [:learning, @blog_article] do |f| %>
-              <%= f.text_field :title, :label => '标题' %>
-              <%= f.text_area :content, :label => '正文' %>
-              <%= f.submit '保存' %>
+            <%= f.text_field :title, :label => '标题' %>
+            <%= f.text_area :content, :label => '正文', :id => 'edit-blog' %>
+            <%= f.submit '保存', :class => 'btn btn-primary' %>
           <% end %>
         </div>
       </div>

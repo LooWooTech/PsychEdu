@@ -1,0 +1,2 @@
+$ ->
+  $('textarea#edit-blog').editor()

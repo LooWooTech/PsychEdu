@@ -4,7 +4,7 @@ module Learning
   
     layout 'learning'
   
-    load_and_authorize_resource :only => [:edit, :update, :destroy]
+    load_and_authorize_resource :only => [:edit, :update, :destroy, :request_publishing, :unpublish]
   
     before_action :student_required
     before_action :find_blog_article, :only => [:show]
@@ -44,6 +44,18 @@ module Learning
       @blog_article.destroy
       flash[:notice] = "您删除了文章《#{@blog_article.title}》"
       redirect_to learning_blog_articles_path
+    end
+
+    def request_publishing
+      @blog_article.request_publishing
+      flash[:notice] = "您申请了发表文章《#{@blog_article.title}》"
+      redirect_to [:learning, @blog_article]
+    end
+
+    def unpublish
+      @blog_article.unpublish
+      flash[:notice] = "您撤消了文章《#{@blog_article.title}》的发表"
+      redirect_to [:learning, @blog_article]
     end
   
     private

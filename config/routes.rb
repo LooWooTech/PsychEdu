@@ -16,7 +16,11 @@ PsychEdu::Application.routes.draw do
     shallow do
       resource :password, :only => [:edit, :update], :path_names => {:edit => :change}
       resource :profile, :only => [:show]
-      resources :blog_articles
+      resources :blog_articles do
+        member do
+          patch :request_publishing, :unpublish
+        end
+      end
       resources :topic_learnings, :only => [:show, :index]
       resources :announcements, :only => :show
       resources :periods, :only => [:index, :create, :destroy]
@@ -59,7 +63,7 @@ PsychEdu::Application.routes.draw do
     shallow do 
       resources :blog_articles, :only => [:index, :show] do
         member do
-          patch :publish, :un_publish
+          patch :accept_publishing, :reject_publishing
         end
       end
       resources :articles

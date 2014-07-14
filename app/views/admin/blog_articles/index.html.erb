@@ -34,7 +34,7 @@
       <td><%= truncate sanitize(strip_tags(article.content)), :length => 45 %></td>
       <td><%= article.author_name %></td>
       <td><%= l article.created_at, :format => :long %></td>
-      <td><%= publish_link article %> </td>
+      <td><%= admin_publish_link article %> </td>
     </tr>
   <% end%>
 </table>

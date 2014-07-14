@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707085957) do
+ActiveRecord::Schema.define(version: 20140710104531) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20140707085957) do
     t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "published",  default: false
+    t.integer  "publish_state", default: 0
   end
 
   add_index "blog_articles", ["author_id"], name: "index_blog_articles_on_author_id", using: :btree

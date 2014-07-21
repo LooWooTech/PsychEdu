@@ -14,6 +14,12 @@ module HasAnAccount
     validates :account, :presence => true
 
     accepts_nested_attributes_for :account, :update_only => true
+
+    after_initialize :ensure_account
+  end
+
+  def ensure_account
+    self.build_account if self.account.nil?
   end
 
 end

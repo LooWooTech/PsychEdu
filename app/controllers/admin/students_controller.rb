@@ -13,7 +13,6 @@ module Admin
 
     def new
       @student = Student.new
-      @student.build_account
     end
 
     def create

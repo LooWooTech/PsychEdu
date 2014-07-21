@@ -66,6 +66,7 @@ PsychEdu::Application.routes.draw do
           patch :accept_publishing, :reject_publishing
         end
       end
+      resources :administrators
       resources :articles
       resources :images, :only => [:create]
       resources :forums, :except => [:show]

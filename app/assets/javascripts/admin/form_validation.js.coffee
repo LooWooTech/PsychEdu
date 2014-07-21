@@ -39,7 +39,6 @@ $ ->
       'student[account_attributes][username]': 'required'
       'student[name]': 'required'
       'student[account_attributes][password]': 'required'
-      'student[account_attributes][password_confirmation]': 'required'
       'student[account_attributes][password_confirmation]':
         'equalTo': '[name="student[account_attributes][password]"]'
       'student[unit_code]': 'required'
@@ -49,7 +48,6 @@ $ ->
       'student[account_attributes][password]':
         'required': '请输入密码'
       'student[account_attributes][password_confirmation]':
-        'required': '请确认密码'
         'equalTo': '两次密码输入不一致'
       'student[name]':
         'required': '请输入姓名'
@@ -128,3 +126,28 @@ $ ->
         'required': '请输入标题'
       'article[type]':
         'required': '请选择类型'
+
+  $('#new_administrator').validate
+    rules:
+      'administrator[account_attributes][username]': 'required'
+      'administrator[account_attributes][password]': 'required'
+      'administrator[account_attributes][password_confirmation]':
+        'equalTo': '[name="administrator[account_attributes][password]"]'
+    messages:
+      'administrator[account_attributes][username]':
+        'required': '请输入用户名'
+      'administrator[account_attributes][password]':
+        'required': '请输入密码'
+      'administrator[account_attributes][password_confirmation]':
+        'equalTo': '两次密码输入不一致'
+
+  $('form[id^=edit_administrator]').validate
+    rules:
+      'administrator[account_attributes][username]': 'required'
+      'administrator[account_attributes][password_confirmation]':
+        'equalTo': '[name="administrator[account_attributes][password]"]'
+    messages:
+      'administrator[account_attributes][username]':
+        'required': '请输入用户名'
+      'administrator[account_attributes][password_confirmation]':
+        'equalTo': '两次密码输入不一致'

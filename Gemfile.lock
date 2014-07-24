@@ -1,3 +1,10 @@
+GIT
+  remote: git@github.com:elabs/pundit.git
+  revision: 9d578a0a2d123e3aefd3c734235e5429f07fea1c
+  specs:
+    pundit (0.2.3)
+      activesupport (>= 3.0.0)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -234,6 +241,7 @@ DEPENDENCIES
   mysql2
   paranoia (~> 2.0)
   puma
+  pundit!
   rails (= 4.1.0)
   rails-assets-holderjs (~> 2.3.2)
   rails-assets-html5shiv (~> 3.7.2)

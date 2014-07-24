@@ -49,7 +49,7 @@ module Admin
 
     def admin_params
       params[:administrator][:roles].delete '0'
-      params.require(:administrator).permit(:roles => [], :account_attributes => [:username, :password, :password_confirmation])
+      params.require(:administrator).permit(:unit_code, :roles => [], :account_attributes => [:username, :password, :password_confirmation])
     end
   end
 end

@@ -2,7 +2,7 @@ module Admin
   class TopicLearningsController < AdminController
 
     def index
-      @search = TopicLearning.search params[:q]
+      @search = current_user.managed_topic_learnings.search params[:q]
       @topic_learnings = @search.result.page(params[:page]).per(10)
     end
 

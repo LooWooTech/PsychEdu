@@ -29,6 +29,7 @@ end
 gem 'ckeditor', '~> 4.0.11'
 gem 'font-awesome-rails'
 gem 'bootstrap-sass'
+gem 'pundit', :git => 'git@github.com:elabs/pundit.git'
 
 # Bower packages
 gem 'rails-assets-jquery', '~> 1.11.1'

@@ -13,6 +13,8 @@ class TopicLearning < ActiveRecord::Base
 
   validates :topic, :uniqueness => {:scope => :student}
 
+  scope :in_unit, lambda {|unit_code| joins(:student).where('students.unit_code' => unit_code) }
+
   delegate :extended_topic_materials, :case_analyses, :name,
     :guide_video_url, :review_video_url, :announcements, :testing,
     :to => :topic

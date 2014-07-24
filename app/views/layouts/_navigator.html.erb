@@ -7,7 +7,7 @@
         <%= navigator_link :text => '<i class="fa fa-tag"></i> 案例解读', :url => learning_case_analyses_path, :name => :case %>
         <%= navigator_link :text => '<i class="fa fa-clipboard"></i> 资料', :url => learning_extended_topic_materials_path, :name => :material %>
         <%= navigator_link :text => '<i class="fa fa-comment"></i> 社区', :url => ask_root_path, :name => :forum %>
-        <%= navigator_link :text => '<i class="fa fa-github-alt"></i> 督导', :url => '#', :name => :supervise %>
+        <%= navigator_link :text => '<i class="fa fa-github-alt"></i> 督导', :url => '#', :name => :supervision %>
         <li class="dropdown <%= 'active' if controller.belongs_to_module?(:personal) %>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %> <b class="caret"></b></a>
           <ul class="dropdown-menu">

@@ -3,7 +3,7 @@ class AddRolesToAdministrators < ActiveRecord::Migration
 
   def up
     add_column :administrators, :roles, :text
-    if super_admin = Account.find_by_username(:admin).owner
+    if super_admin = Account.find_by_username(:admin).try(:owner)
       super_admin.roles << 'super_admin'
       super_admin.save
     end

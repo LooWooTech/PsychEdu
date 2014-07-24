@@ -3,7 +3,7 @@ module Admin
     before_action :find_student, :only => [:show, :edit, :update]
 
     def index
-      @search = Student.search params[:q]
+      @search = current_user.managed_students.search params[:q]
       @students = @search.result.order('created_at DESC').page(params[:page]).per(10)
       respond_to do |format|
         format.html

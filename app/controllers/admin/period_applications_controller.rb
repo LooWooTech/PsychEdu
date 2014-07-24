@@ -4,7 +4,7 @@ module Admin
     before_action :find_period_application, :only => [:accept, :reject]
 
     def index
-      @search = PeriodApplication.search params[:q]
+      @search = current_user.managed_period_applications.search params[:q]
       @search.review_state_eq ||= PeriodApplication.review_states[:unreviewed]
       @period_applications = @search.result.page(params[:page]).per(10)
     end

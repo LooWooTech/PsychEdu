@@ -23,6 +23,12 @@
       </div>
     <% end %>
     <div class='form-group'>
+      <%= f.label :unit_code, '单位编号', :class => 'col-lg-2 control-label' %>
+      <div class='col-lg-10'>
+        <%= f.text_field :unit_code, :class => 'form-control' %>
+      </div>
+    </div>
+    <div class='form-group'>
       <label class='col-lg-2 control-label'>分配角色</label>
       <div class='col-lg-10'>
       <% Administrator::ROLES.each do |k,v| %>

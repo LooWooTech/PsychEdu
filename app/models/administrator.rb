@@ -19,16 +19,42 @@ class Administrator < ActiveRecord::Base
 
   include HasAnAccount
 
+  ROLES.keys.each do |role_name|
+    define_method "#{role_name}?" do
+      roles.include? role_name.to_s
+    end
+  end
+
+  def managed_period_applications
+    return PeriodApplication.all if super_admin?
+    return PeriodApplication.in_unit(unit_code) if unit_admin?
+    []
+  end
+
+  def managed_topic_learnings
+    return TopicLearning.all if super_admin?
+    return TopicLearning.in_unit(unit_code) if unit_admin?
+    []
+  end
+
+  def managed_students
+    return Student.all if super_admin?
+    return Student.where(:unit_code => unit_code) if unit_admin?
+    []
+  end
+
+  def monthly_online_trackings
+    return MonthlyOnlineTracking.all if super_admin?
+    return MonthlyOnlineTracking.in_unit(unit_code) if unit_admin?
+    []
+  end
+
   def role_names
     roles.map{|role| ROLES[role]}
   end
   
   def fourm_admin?(forum)
     true
-  end
-
-  def has_role?(role_name)
-    roles.include? role_name.to_s
   end
 
   def name

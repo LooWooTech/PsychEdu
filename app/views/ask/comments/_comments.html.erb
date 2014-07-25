@@ -1,9 +1,9 @@
 <div class="media-comments">
-	<div class="media-items">
-		<%= render :collection => commentable.comments, :partial => 'ask/comments/comment' %>
-	</div>
-	<%= bootstrap_form_for [:ask, commentable, Comment.new], :remote => true, :data => { :event => 'comment.publish' } do |f| %>
-	  <%= f.text_area :content, :label => '评论' %>
-	  <%= f.submit '评论' %>
-	<% end %>
+  <div class="media-items">
+    <%= render :collection => commentable.comments, :partial => 'ask/comments/comment' %>
+  </div>
+  <%= bootstrap_form_for [:ask, commentable, Comment.new], :remote => true, :data => { :event => 'comment.publish' } do |f| %>
+    <%= f.text_area :content, :label => '评论' %>
+    <%= f.submit '评论' %>
+  <% end %>
 </div>

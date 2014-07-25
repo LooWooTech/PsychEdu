@@ -1,20 +1,20 @@
 <div class="media">
-	<a class="pull-left" href="#">
-		<img class="media-object img-circle" src="<%= image_path 'avatar/1.jpg' %>" width="48" height="48">
-	</a>
-	<div class="media-status pull-right">
-		<p><strong><%= question.answers.count %></strong></p>
-		<p><span class="glyphicon glyphicon-comment"></span></p>
-	</div>
-	<div class="media-status pull-right">
-		<p><strong><%= question.vote_score %></strong></p>
-		<p><span class="glyphicon glyphicon-thumbs-up"></span></p>
-	</div>
-	<div class="media-body">
-		<h4 class="media-heading"><%= question_link question %></h4>
-		<div class="contents">
-			<%= sanitize question.content %>
-		</div>
-		<div class="actions"><%= l question.created_at, :format => :short %> / <%= question.questioner_name %></div>
-	</div>
+  <a class="pull-left" href="#">
+    <img class="media-object img-circle" src="<%= image_path 'avatar/1.jpg' %>" width="48" height="48">
+  </a>
+  <div class="media-status pull-right">
+    <p><strong><%= question.answers.count %></strong></p>
+    <p><span class="glyphicon glyphicon-comment"></span></p>
+  </div>
+  <div class="media-status pull-right">
+    <p><strong><%= question.vote_score %></strong></p>
+    <p><span class="glyphicon glyphicon-thumbs-up"></span></p>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading"><%= question_link question %></h4>
+    <div class="contents">
+      <%= sanitize question.content %>
+    </div>
+    <div class="actions"><%= l question.created_at, :format => :short %> / <%= question.questioner_name %></div>
+  </div>
 </div>

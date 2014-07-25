@@ -19,6 +19,10 @@
       <th>简介：</th>
       <td><%= @topic.introduction %></td>
     </tr>
+    <tr>
+      <th>督导：</th>
+      <td class='supervision'><%= raw @topic.supervision %></td>
+    </tr>
   </table>
   <%= link_to '修改', edit_admin_topic_path(@topic), :class => 'btn btn-default' %>
 </div>

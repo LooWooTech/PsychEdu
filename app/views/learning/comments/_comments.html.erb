@@ -1,5 +1,5 @@
 <div class="media-items">
-	<%= render :collection => comments, :partial => 'learning/comments/comment'%>
+  <%= render :collection => comments, :partial => 'learning/comments/comment'%>
 </div>
 
 <%= paginate comments, :remote => true, :params => {:controller => 'comments', :action => 'index', :video_id => commentable.id, :id => nil} %>

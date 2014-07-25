@@ -4,6 +4,7 @@
     <title>管理后台</title>
     <%= stylesheet_link_tag "admin", media: "all" %>
     <%= javascript_include_tag "admin" %>
+    <%= yield :head %>
     <%= csrf_meta_tags %>
   </head>
   <body id='<%= @body_id %>'>

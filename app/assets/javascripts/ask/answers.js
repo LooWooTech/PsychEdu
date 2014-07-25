@@ -1,17 +1,17 @@
 $(document).ready(function() {
 
-	$('#mainarea').delegate('[data-event="answer.edit"]', 'ajax:success', function(e, data) {
-		var modal = $(data).buildModal();
+  $('#mainarea').delegate('[data-event="answer.edit"]', 'ajax:success', function(e, data) {
+    var modal = $(data).buildModal();
 
-		// editor
-		modal.find('[data-event="editor"]').editor();
-	});
+    // editor
+    modal.find('[data-event="editor"]').editor();
+  });
 
   //vote up
-	$('#mainarea').delegate('.media-post-vote .vote-up', 'click', vote_up);
+  $('#mainarea').delegate('.media-post-vote .vote-up', 'click', vote_up);
 
   //vote down
-	$('#mainarea').delegate('.media-post-vote .vote-down', 'click', vote_down);
+  $('#mainarea').delegate('.media-post-vote .vote-down', 'click', vote_down);
 
   function vote(up, link) {
     var url = $(link).attr('href');

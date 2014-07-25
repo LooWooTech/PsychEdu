@@ -9,103 +9,103 @@
 }
 
 .panel-accordion {
-	> .panel {
-		> .panel-heading {
-			padding: 0;
+  > .panel {
+    > .panel-heading {
+      padding: 0;
 
-			> a {
-				display: block;
-				font-size: 14px;
-				padding: 10px 15px;
-				text-decoration: none;
-				color: $gray;
+      > a {
+        display: block;
+        font-size: 14px;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: $gray;
 
-				&:hover {
-					color: $gray-dark;
-				}
-			}
-		}
-	}
+        &:hover {
+          color: $gray-dark;
+        }
+      }
+    }
+  }
 }
 
 .panel-heading {
-	> .actions {
-		float: right;
-	}
+  > .actions {
+    float: right;
+  }
 }
 
 .panel-nav {
 
-	&,
-	& > li {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
+  &,
+  & > li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 
-	> li {
-		border-bottom: solid 1px $gray-lighter;
+  > li {
+    border-bottom: solid 1px $gray-lighter;
 
-		&:last-child {
-			border-bottom: none;
-		}
-	}
+    &:last-child {
+      border-bottom: none;
+    }
+  }
 
-	> li > a {
-		display: block;
-		color: $gray-light;
-		padding: 5px 0;
-		font-size: 12px;
-		font-weight: bold;
-		text-decoration: none;
+  > li > a {
+    display: block;
+    color: $gray-light;
+    padding: 5px 0;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
 
-		&:hover,
-		&:focus {
-			color: $brand-inverse;
-		}
-	}
+    &:hover,
+    &:focus {
+      color: $brand-inverse;
+    }
+  }
 
-	> .active > a {
-		&,
-		&:hover,
-		&:focus {
-			color: $brand-primary;
-		}
-	}
+  > .active > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $brand-primary;
+    }
+  }
 
 }
 
 .panel-body-items {
-	background: #fefefe;
-	border-top: solid 1px #ddd;
-	@include border-bottom-radius($panel-border-radius);
+  background: #fefefe;
+  border-top: solid 1px #ddd;
+  @include border-bottom-radius($panel-border-radius);
 
-	> .item {
-		padding: 10px 0;
-		border-top: solid 1px #ddd;
-		@include clearfix();
-		&:first-child {
-			border-top: none;
-		}
-	}
+  > .item {
+    padding: 10px 0;
+    border-top: solid 1px #ddd;
+    @include clearfix();
+    &:first-child {
+      border-top: none;
+    }
+  }
 }
 
 .panel-timeline {
   @include panel-variant($panel-default-border, $panel-default-text, #fff, $panel-default-border);
 
   .panel-heading {
-  	border-bottom: none;
-  	font-size: 24px;
+    border-bottom: none;
+    font-size: 24px;
 
-  	small {
-  		display: block;
-  		font-size: 12px;
-  		color: #888;
-  		padding-left: 2px;
-  	}
+    small {
+      display: block;
+      font-size: 12px;
+      color: #888;
+      padding-left: 2px;
+    }
   }
 
   .panel-body {
-  	padding-top: 0;
+    padding-top: 0;
   }
 }

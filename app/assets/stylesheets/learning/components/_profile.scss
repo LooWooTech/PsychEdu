@@ -1,17 +1,17 @@
 .profile {
-	@include clearfix();
-	margin-bottom: 20px;
+  @include clearfix();
+  margin-bottom: 20px;
 }
 
 .profile-object {
-	float: left;
-	width: 80px;
-	padding: 5px;
-	background: #fff;
-	border: solid 1px #ddd;
+  float: left;
+  width: 80px;
+  padding: 5px;
+  background: #fff;
+  border: solid 1px #ddd;
 }
 
 .profile-body {
-	margin-left: 90px;
-	padding-top: 10px;
+  margin-left: 90px;
+  padding-top: 10px;
 }

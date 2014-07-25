@@ -16,12 +16,12 @@
       <div class="panel panel-default">
         <div class="panel-heading"><%= current_topic_learning.name %> 案例解读</div>
         <div class="panel-body">
-			<ul class='case-analyses'>
-				<% @case_analyses.each do |case_analysis| %>
-					<li><%= link_to case_analysis.title, [:learning, case_analysis] %></li>
-				<% end %>
-			</ul>
-			<%= paginate @case_analyses %>
+          <ul class='case-analyses'>
+            <% @case_analyses.each do |case_analysis| %>
+              <li><%= link_to case_analysis.title, [:learning, case_analysis] %></li>
+            <% end %>
+          </ul>
+          <%= paginate @case_analyses %>
         </div>
       </div>
     </div>

@@ -1,32 +1,32 @@
 <% content_for(:title){'学员信息'} %>
 <div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<ol class="breadcrumb">
-				<li><%= link_to '首页', learning_root_path %></li>
-				<li class="active">学员信息</li>
-			</ol>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><%= link_to '首页', learning_root_path %></li>
+        <li class="active">学员信息</li>
+      </ol>
+    </div>
+  </div>
 </div>
 
 <div class="container">
-	<div class="row">
-		<div class="col-md-8">
+  <div class="row">
+    <div class="col-md-8">
 
-			<div class="panel panel-default">
-				<div class="panel-heading">学员信息</div>
-				<div class="panel-body">
-					<p>用户名：<%= current_user.username %></p>
-					<p>姓名：<%= current_user.name %></p>
-					<p>性别：<%= show_gender current_user %></p>
-				</div>
-			</div>
+      <div class="panel panel-default">
+        <div class="panel-heading">学员信息</div>
+        <div class="panel-body">
+          <p>用户名：<%= current_user.username %></p>
+          <p>姓名：<%= current_user.name %></p>
+          <p>性别：<%= show_gender current_user %></p>
+        </div>
+      </div>
 
-			<h3>在学课程</h3>
+      <h3>在学课程</h3>
 
-			<%= render :partial => 'topic_learning', :collection => current_user.topic_learnings %>
+      <%= render :partial => 'topic_learning', :collection => current_user.topic_learnings %>
 
-		</div>
-	</div>
+    </div>
+  </div>
 </div>

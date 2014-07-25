@@ -15,7 +15,7 @@ class TopicLearning < ActiveRecord::Base
 
   scope :in_unit, lambda {|unit_code| joins(:student).where('students.unit_code' => unit_code) }
 
-  delegate :extended_topic_materials, :case_analyses, :name,
+  delegate :extended_topic_materials, :case_analyses, :name, :supervision,
     :guide_video_url, :review_video_url, :announcements, :testing,
     :to => :topic
   delegate :username, :name, :unit_code, :to => :student, :prefix => true

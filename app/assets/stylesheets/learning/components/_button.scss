@@ -8,7 +8,7 @@ $btn-inverse-border: darken($brand-inverse, 5%);
   @include button-variant($btn-inverse-color, $btn-inverse-bg, $btn-inverse-border);
 
   &:hover {
-  	color: #fff;
-  	background-color: $btn-inverse-border;
+    color: #fff;
+    background-color: $btn-inverse-border;
   }
 }

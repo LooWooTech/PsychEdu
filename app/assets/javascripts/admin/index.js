@@ -1,5 +1,6 @@
 /*
 *= require common
+*= require common/jquery.editor
 *= require modernizr
 *= require jquery-form
 *= require jquery-file-upload/vendor/jquery.ui.widget

@@ -16,12 +16,12 @@
       <div class="panel panel-default">
         <div class="panel-heading"><%= current_topic_learning.name %> 资料扩展</div>
         <div class="panel-body">
-			<ul class='case-analyses'>
-				<% @materials.each do |material| %>
-					<li><%= link_to material.title, [:learning, material] %></li>
-				<% end %>
-			</ul>
-			<%= paginate @materials %>
+          <ul class='case-analyses'>
+            <% @materials.each do |material| %>
+              <li><%= link_to material.title, [:learning, material] %></li>
+            <% end %>
+          </ul>
+          <%= paginate @materials %>
         </div>
       </div>
     </div>

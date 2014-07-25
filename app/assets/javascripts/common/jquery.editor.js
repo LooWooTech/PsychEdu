@@ -3,38 +3,40 @@
 
 (function() {
 
-	"use strict";
+  "use strict";
 
-	var config = {
-		toolbar: [
-			[
-				'Styles',
-				'Bold',
-				'Italic',
-				'-',
-				'NumberedList',
-				'BulletedList',
-				'Blockquote',
-				'-',
-				'Link',
-				'Unlink',
-				'-',
-				'Maximize'
-			]
-		]
-	};
+  var config = {
+    toolbar: [
+      [
+        'Format',
+        'Bold',
+        'Italic',
+        '-',
+        'Table',
+        'NumberedList',
+        'BulletedList',
+        'Blockquote',
+        '-',
+        'Link',
+        'Unlink',
+        '-',
+        'Maximize'
+      ]
+    ],
+    format_tags: 'h2;h3;p'
+  };
 
-	var Editor = function(el, opts) {
+  var Editor = function(el, opts) {
 
-		config = $.extend(config, opts);
+    config = $.extend(config, opts);
 
-		CKEDITOR.replace(el, config);
-	}
+    CKEDITOR.replace(el, config);
+  }
 
-	$.fn.editor = function(opts) {
-		this.each(function() {
-			var editor = new Editor(this, opts);
-		});
-	}
+  $.fn.editor = function(opts) {
+    this.each(function() {
+      var editor = new Editor(this, opts);
+    });
+  }
 
 })();

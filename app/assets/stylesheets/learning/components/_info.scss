@@ -4,38 +4,38 @@
 
 .info-heading {
 
-	border-bottom: solid 1px #ddd;
-	margin-bottom: 20px;
-	@include clearfix();
+  border-bottom: solid 1px #ddd;
+  margin-bottom: 20px;
+  @include clearfix();
 
-	h2 {
-		float: left;
-		font-size: 18px;
-		color: #333;
-	}
+  h2 {
+    float: left;
+    font-size: 18px;
+    color: #333;
+  }
 }
 
 .info-bar {
-	float: right;
+  float: right;
 
-	ul.nav {
+  ul.nav {
 
-		padding-top: 15px;
+    padding-top: 15px;
 
-		> li {
-			float: left;
-			> a {
-				padding: 5px 10px;
-				color: #ccc;
-			}
+    > li {
+      float: left;
+      > a {
+        padding: 5px 10px;
+        color: #ccc;
+      }
 
-			&.active {
-				> a {
-					color: #666;
-				}
-			}
-		}
-	}
+      &.active {
+        > a {
+          color: #666;
+        }
+      }
+    }
+  }
 }
 
 .info-body {

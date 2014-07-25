@@ -5,25 +5,25 @@ $unit_exams_prefix: "choice";
 }
 
 .#{$unit_exams_prefix} {
-	&.unfinished {
-		background: #eee;
-	}
+  &.unfinished {
+    background: #eee;
+  }
 }
 
 .#{$unit_exams_prefix}-heading {
-	border-bottom: dashed 1px #ddd;
-	padding-bottom: 10px;
-	margin-bottom: 10px;
+  border-bottom: dashed 1px #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .#{$unit_exams_prefix}-status {
-	float: left;
-	margin-right: 10px;
+  float: left;
+  margin-right: 10px;
 }
 
 .#{$unit_exams_prefix}-body {
-	margin-left: 20px;
-	margin-bottom: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 .#{$unit_exams_prefix}-content {
@@ -31,7 +31,7 @@ $unit_exams_prefix: "choice";
 }
 
 .#{$unit_exams_prefix}-option-group {
-	margin-left: 20px;
+  margin-left: 20px;
 }
 
 .#{$unit_exams_prefix}-option-group-item {

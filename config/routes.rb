@@ -16,6 +16,7 @@ PsychEdu::Application.routes.draw do
     shallow do
       resource :password, :only => [:edit, :update], :path_names => {:edit => :change}
       resource :profile, :only => [:show]
+      resource :supervision, :only => [:show]
       resources :blog_articles do
         member do
           patch :request_publishing, :unpublish

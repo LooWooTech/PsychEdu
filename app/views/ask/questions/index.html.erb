@@ -1,21 +1,21 @@
 <div class="banner">
-	<img data-src="holder.js/100%x120/#eee:#e5e5e5">
+  <img data-src="holder.js/100%x120/#eee:#e5e5e5">
 </div>
 
 <div class="info">
-	<div class="info-heading">
-		<h2>最新的问题</h2>
-		<div class="info-bar">
-			<ul class="nav">
-				<li <%= raw('class="active"') if @order == 'vote_score' %>><a href="?order=vote_score">高分</a></li>
-				<li <%= raw('class="active"') if @order == 'created_at' %>><a href="?order=created_at">最新</a></li>
-				<li><a href="#">最热</a></li>
-				<li><a href="#">精选</a></li>
-			</ul>
-		</div>
-	</div>
-	<div class="info-body media-items">
-		<%= render @questions %>
-		<%= paginate @questions %>
-	</div>
+  <div class="info-heading">
+    <h2>最新的问题</h2>
+    <div class="info-bar">
+      <ul class="nav">
+        <li <%= raw('class="active"') if @order == 'vote_score' %>><a href="?order=vote_score">高分</a></li>
+        <li <%= raw('class="active"') if @order == 'created_at' %>><a href="?order=created_at">最新</a></li>
+        <li><a href="#">最热</a></li>
+        <li><a href="#">精选</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="info-body media-items">
+    <%= render @questions %>
+    <%= paginate @questions %>
+  </div>
 </div>

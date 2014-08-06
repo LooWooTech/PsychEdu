@@ -1,16 +1,17 @@
 <div class="item<%= ' active' if unit_learning.open? %>">
 
   <em class="pull-right"><%= unit_learning.average_score %></em>
+  <% if !unit_learning.only_child? %>
   <h4>
     <small>第<%= unit_learning_counter + 1 %>单元</small>
     <%= unit_learning.name %>
   </h4>
   <%= link_to '单元提要', summary_learning_unit_learning_path(unit_learning) %>
   <%= link_to '单元小结', review_learning_unit_learning_path(unit_learning) %>
-
+  <% end %>
 
   <% if unit_learning.open? %>
-    <div class="btn-group pull-right">
+    <div class="btn-group<%= ' pull-right' if !unit_learning.only_child? %>">
       <%= link_to '开始学习', [:learning, unit_learning], :class => 'btn btn-sm btn-primary' %>
       <%= unit_exam_link unit_learning, 'btn btn-sm btn-primary' %>
     </div>

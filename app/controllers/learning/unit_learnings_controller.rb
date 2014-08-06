@@ -10,7 +10,7 @@ module Learning
         @chapter_learning = @unit_learning.chapter_learning
         render 'learning/video_watchings/show'
       else
-        render :text => '该单元尚未开放，请先通过前一单元的测试。'
+        render :text => '该单元尚未开放，可能是没有视频，或者前一单元的测试未通过。'
       end
     end
 

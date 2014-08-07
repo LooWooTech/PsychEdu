@@ -44,6 +44,7 @@
           <li class='dropdown'>
             <a href='javascript:;' class='dropdown-toggle' data-toggle='dropdown'>问答社区<b class='caret'></b></a>
             <ul class='dropdown-menu'>
+              <li><%= link_to '进入社区', ask_root_path, :target => '_blank' %></li>
               <li><%= link_to '版块分类', admin_forum_catalogs_path %></li>
               <li><%= link_to '版块', admin_forums_path %></li>
             </ul>

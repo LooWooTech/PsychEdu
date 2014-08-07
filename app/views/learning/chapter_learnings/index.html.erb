@@ -169,25 +169,17 @@
 
       <div class="panel panel-default">
         <div class="panel-heading">
-          我的问答
+          我的问题
           <div class="actions">
             <a href="#">更多</a>
           </div>
         </div>
         <ul class="list-group">
-          <li class="list-group-item"><a href='#'>什么是黄金规则和反黄金规则？</a></li>
-        </ul>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          我的督导
-          <div class="actions">
-            <a href="#">更多</a>
-          </div>
-        </div>
-        <ul class="list-group">
-          <li class="list-group-item"><a href='#'>暂未开通</a></li>
+          <% current_user.questions.last(5).each do |question| %>
+            <li class="list-group-item">
+              <%= link_to question.title, [:ask, question] %>
+            </li>
+          <% end %>
         </ul>
       </div>
 

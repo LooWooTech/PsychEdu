@@ -2,26 +2,28 @@
   <nav class="navbar navbar-inverse navbar-global">
     <div class="container">
       <%= index_link %>
-      <ul class="nav navbar-nav navbar-right">
-        <%= navigator_link :text => '<i class="fa fa-home"></i> 课程学习', :url => learning_root_path, :name => :learning %>
-        <%= navigator_link :text => '<i class="fa fa-tag"></i> 案例解读', :url => learning_case_analyses_path, :name => :case %>
-        <%= navigator_link :text => '<i class="fa fa-clipboard"></i> 资料', :url => learning_extended_topic_materials_path, :name => :material %>
-        <%= navigator_link :text => '<i class="fa fa-comment"></i> 社区', :url => ask_root_path, :name => :forum %>
-        <%= navigator_link :text => '<i class="fa fa-github-alt"></i> 督导', :url => learning_supervision_path, :name => :supervision %>
-        <li class="dropdown <%= 'active' if controller.belongs_to_module?(:personal) %>">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %> <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to '个人博客', learning_blog_articles_path %></li>
-            <li><%= link_to '学员申请', learning_periods_path %></li>
-            <li class="divider"></li>
-            <li><%= link_to '修改密码', edit_learning_password_path %></li>
-            <li><%= link_to '学员信息', learning_profile_path %></li>
-            <li><a href='#'>平台设置</a></li>
-            <li class="divider"></li>
-            <li><%= link_to '退出登录', session_path, :method => :delete %></li>
+      <% if current_user.is_a? Student %>
+          <ul class="nav navbar-nav navbar-right">
+            <%= navigator_link :text => '<i class="fa fa-home"></i> 课程学习', :url => learning_root_path, :name => :learning %>
+            <%= navigator_link :text => '<i class="fa fa-tag"></i> 案例解读', :url => learning_case_analyses_path, :name => :case %>
+            <%= navigator_link :text => '<i class="fa fa-clipboard"></i> 资料', :url => learning_extended_topic_materials_path, :name => :material %>
+            <%= navigator_link :text => '<i class="fa fa-comment"></i> 社区', :url => ask_root_path, :name => :forum %>
+            <%= navigator_link :text => '<i class="fa fa-github-alt"></i> 督导', :url => learning_supervision_path, :name => :supervision %>
+            <li class="dropdown <%= 'active' if controller.belongs_to_module?(:personal) %>">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to '个人博客', learning_blog_articles_path %></li>
+                <li><%= link_to '学员申请', learning_periods_path %></li>
+                <li class="divider"></li>
+                <li><%= link_to '修改密码', edit_learning_password_path %></li>
+                <li><%= link_to '学员信息', learning_profile_path %></li>
+                <li><a href='#'>平台设置</a></li>
+                <li class="divider"></li>
+                <li><%= link_to '退出登录', session_path, :method => :delete %></li>
+              </ul>
+            </li>
           </ul>
-        </li>
-      </ul>
+      <% end %>
     </div>
   </nav>
 </header>

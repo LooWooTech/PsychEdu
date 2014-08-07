@@ -62,7 +62,7 @@ PsychEdu::Application.routes.draw do
 
   namespace :admin do
     shallow do 
-      resources :blog_articles, :only => [:index, :show] do
+      resources :blog_articles, :only => [:index, :edit, :update] do
         member do
           patch :accept_publishing, :reject_publishing
         end

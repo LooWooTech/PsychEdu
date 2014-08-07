@@ -1,8 +1,0 @@
-<div class='well'>
-  <h1><%= @blog_article.title %></h1>
-  <%= sanitize @blog_article.content %>
-  <div>
-    <%= publish_link(@blog_article) %>
-    <%= link_to '返回列表', admin_blog_articles_path %>
-  </div>
-</div>

@@ -1,3 +1,5 @@
+#*= require modernizr
+#*= require jquery-ui
 #*= require jquery-ui
 #*= require jquery-ui/i18n/jquery.ui.datepicker-zh-CN
 $ ->

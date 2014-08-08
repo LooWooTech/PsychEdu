@@ -1,4 +1,7 @@
 $ ->
+  $.validator.setDefaults
+    ignore: 'input[type=date]'
+
   $('#open-topic-learning').validate
     rules:
       'topic_learning[learning_periods_attributes][0][start_on]': 'required'

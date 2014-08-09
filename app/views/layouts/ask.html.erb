@@ -86,8 +86,20 @@
             <% end %>
           </div>
 
-          <div class="well well-board">
-            <img data-src="holder.js/100%x200/#eee:#e5e5e5">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              我的问题
+              <div class="actions">
+                <a href="#">更多</a>
+              </div>
+            </div>
+            <ul class="list-group">
+              <% current_user.questions.last(5).each do |question| %>
+                <li class="list-group-item">
+                  <%= link_to question.title, [:ask, question] %>
+                </li>
+              <% end %>
+            </ul>
           </div>
 
         </div>

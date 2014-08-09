@@ -1,29 +1,15 @@
 <% content_for(:title){ "专题：#{current_topic_learning.name}" } %>
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-bottom: 30px; margin-top: -30px;">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-  </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
-    <div class="item active">
-      <div style="width: 100%; background: #ebdcb7;">
-        <img src="<%= image_path 'chapter_learning_example-3.png' %>" style="display:block; margin: 0 auto;">
-      </div>
-    </div>
+    <% Setting.load.banner_images.each do |banner| %>
     <div class="item">
-      <div style="width: 100%; background: #b6936a;">
-        <img src="<%= image_path 'chapter_learning_example-2.png' %>" style="display:block; margin: 0 auto;">
+      <div style="width: 100%; background: #e9eaee;">
+        <%= image_tag banner.url, :style => 'display:block; margin: 0 auto;' %>
       </div>
     </div>
-    <div class="item">
-      <div style="width: 100%; background: #edffff;">
-        <img src="<%= image_path 'chapter_learning_example-4.png' %>" style="display:block; margin: 0 auto;">
-      </div>
-    </div>
+    <% end %>
   </div>
 
   <!-- Controls -->

@@ -1,0 +1,39 @@
+<% @setting.banner_images.build %>
+<div class='well'>
+  <%= form_for [:admin, @setting], :html => {:class => 'form-horizontal'} do |f| %>
+    <fieldset>
+      <legend>平台设置</legend>
+      <div class='form-group'>
+        <%= f.label :forum_banner, '社区横幅', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= image_tag @setting.forum_banner.url, :style => 'width: 600px' if @setting.forum_banner.url.present? %>
+          <%= f.file_field :forum_banner %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <label class='col-lg-2 control-label'>滚动横幅</label>
+        <ul class='banner-fields list-group col-lg-10'>
+        <%= f.fields_for :banner_images do |image_fields| %>
+          <% banner_image = image_fields.object %>
+          <li class='list-group-item'>
+            <div>
+              <% if banner_image.new_record? %>
+                <%= image_fields.file_field :file %>
+              <% else %>
+                <%= image_tag banner_image.url, :style => 'width: 400px' %>
+              <% end %>
+            </div>
+            <div>
+              <label><%= image_fields.check_box :_destroy %>删除</label>
+            </div>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+      <div class='col-lg-10 col-lg-offset-2'>
+        <a class='add-banner btn btn-default' href='javascript:;'>添加横幅</a>
+        <%= f.submit '保存', :class => 'btn btn-primary' %>
+      </div>
+    </fieldset>
+  <% end %>
+</div>

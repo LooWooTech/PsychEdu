@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140724073147) do
+ActiveRecord::Schema.define(version: 20140809065406) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -89,6 +89,15 @@ ActiveRecord::Schema.define(version: 20140724073147) do
     t.string   "type"
     t.boolean  "top",        default: false
   end
+
+  create_table "banner_images", force: true do |t|
+    t.string   "file"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "setting_id"
+  end
+
+  add_index "banner_images", ["setting_id"], name: "index_banner_images_on_setting_id", using: :btree
 
   create_table "blog_articles", force: true do |t|
     t.string   "title"
@@ -293,6 +302,12 @@ ActiveRecord::Schema.define(version: 20140724073147) do
   end
 
   add_index "score_rules", ["topic_testing_id"], name: "index_score_rules_on_topic_testing_id", using: :btree
+
+  create_table "settings", force: true do |t|
+    t.string   "forum_banner"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "singular_choice_answers", force: true do |t|
     t.integer  "singular_choice_question_id"

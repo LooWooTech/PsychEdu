@@ -7,6 +7,12 @@
       <th>名称：</th>
       <td><%= @topic.name %></td>
     </tr>
+    <% if @topic.cover.url.present? %>
+      <tr>
+        <th>封面：</th>
+        <td><%= image_tag @topic.cover.url %></td>
+      </tr>
+    <% end %>
     <tr>
       <th>章节数量：</th>
       <td><%= @topic.chapter_count %></td>

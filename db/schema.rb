@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140809065406) do
+ActiveRecord::Schema.define(version: 20140809093235) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -439,6 +439,7 @@ ActiveRecord::Schema.define(version: 20140809065406) do
     t.string   "guide_video_url"
     t.string   "review_video_url"
     t.text     "supervision"
+    t.string   "cover"
   end
 
   create_table "unit_exams", force: true do |t|

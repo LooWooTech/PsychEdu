@@ -61,7 +61,11 @@
               <%= current_topic_learning.name %>
             </div>
             <div class="panel-body">
+              <% if current_topic_learning.has_cover? %>
+              <%= image_tag current_topic_learning.cover_url %>
+              <% else %>
               <img src="<%= image_path 'chapter_learning_example.jpg' %>" class="grid-margin-h" width="100%">
+              <% end %>
               <p>
                 <%= current_topic_learning.topic.introduction %>
               </p>

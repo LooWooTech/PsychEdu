@@ -1,5 +1,8 @@
 <div class='page-header clearfix'>
   <h1>时间跟踪</h1>
+  <ul>
+    <li><%= link_to '导出', admin_monthly_online_trackings_path(params.merge :format => :csv), :class => 'btn btn-default' %></li>
+  </ul>
 </div>
   <%= search_form_for @search, :url => admin_monthly_online_trackings_path do |f| %>
     <div class='col-lg-4'>

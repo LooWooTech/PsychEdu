@@ -15,8 +15,10 @@ class MonthlyOnlineTracking < ActiveRecord::Base
   scope :in_unit, lambda {|unit_code| joins('JOIN `topic_learnings` AS t ON t.id = monthly_online_trackings.topic_learning_id JOIN students AS s ON s.id = t.student_id').where("s.unit_code" => unit_code) }
 
   scope :current, lambda { during_month(Time.now, Time.now).first || create }
-  scope :during_month, lambda {|start_month, end_month| where :updated_at => 
-    (start_month.beginning_of_month.beginning_of_day..end_month.end_of_month.end_of_day) }
+  scope :during_month, lambda {|start_month, end_month|
+    where(:updated_at => (start_month.beginning_of_month.beginning_of_day..end_month.end_of_month.end_of_day)).
+    order('created_at ASC')
+  }
 
   def heartbeat
     if continued?

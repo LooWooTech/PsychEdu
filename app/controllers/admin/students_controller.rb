@@ -1,10 +1,11 @@
 module Admin
   class StudentsController < AdminController
-    before_action :find_student, :only => [:show, :edit, :update]
+    before_action :find_student_and_authorize, :only => [:show, :edit, :update, :destroy]
 
     def index
       @search = current_user.managed_students.search params[:q]
       @students = @search.result.order('created_at DESC').page(params[:page]).per(10)
+      authorize :student
       respond_to do |format|
         format.html
         format.csv { send_data StudentExporter.new(@search.result).export, :filename => "学员列表.csv" }
@@ -12,10 +13,12 @@ module Admin
     end
 
     def new
+      authorize :student
       @student = Student.new
     end
 
     def create
+      authorize :student
       @student = current_user.added_students.build student_params
       if @student.save
         redirect_to [:admin, @student]
@@ -43,7 +46,6 @@ module Admin
     end
 
     def destroy
-      @student = Student.find params[:id]
       @student.destroy
       flash[:notice] = "您删除了学员：#{@student.name}"
       redirect_to admin_students_path
@@ -55,8 +57,9 @@ module Admin
       params.require(:student).permit!
     end
 
-    def find_student
+    def find_student_and_authorize
       @student = Student.find params[:id]
+      authorize @student
     end
   end
 end

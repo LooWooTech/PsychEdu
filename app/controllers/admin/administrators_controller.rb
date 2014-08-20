@@ -1,18 +1,21 @@
 module Admin
   class AdministratorsController < AdminController
 
-    before_action :find_administrator, :only => [:edit, :update, :destroy]
+    before_action :find_administrator_and_authorize, :only => [:edit, :update, :destroy]
 
     def index
+      authorize :administrator
       @search = Administrator.search params[:q]
       @administrators = @search.result.page(params[:page]).per(10)
     end
 
     def new
       @administrator = Administrator.new
+      @administrator = Administrator.new
     end
 
     def create
+      @administrator = Administrator.new
       @administrator = Administrator.new admin_params
       if @administrator.save
         flash[:notice] = "您创建了管理员 #{@administrator.username}"
@@ -43,8 +46,9 @@ module Admin
 
     private
 
-    def find_administrator
+    def find_administrator_and_authorize
       @administrator = Administrator.find params[:id]
+      authorize @administrator
     end
 
     def admin_params

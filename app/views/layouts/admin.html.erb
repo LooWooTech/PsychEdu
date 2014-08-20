@@ -10,21 +10,29 @@
   <body id='<%= @body_id %>'>
     <div class='navbar navbar-default'>
       <div class='navbar-header'>
-        <a class='navbar-brand' href='/'>建德教育</a>
+        <a class='navbar-brand' href='/admin'>建德教育</a>
       </div>
       <div class='navbar-collapse'>
         <ul class='nav navbar-nav'>
-          <% if policy(:student).manage? %>
           <li class='dropdown'>
             <a href='javascript:;' class='dropdown-toggle' data-toggle='dropdown'>学员维护<b class='caret'></b></a>
             <ul class='dropdown-menu'>
-              <li><%= link_to '学员管理', admin_students_path %></li>
-              <li><%= link_to '时间跟踪', admin_monthly_online_trackings_path %></li>
-              <li><%= link_to '报名管理', admin_topic_learnings_path %></li>
-              <li><%= link_to '申请处理', admin_period_applications_path %></li>
+              <% if policy(:student).index? %>
+                <li><%= link_to '学员管理', admin_students_path %></li>
+              <% end %>
+              <% if policy(:monthly_online_tracking).index? %>
+                <li><%= link_to '时间跟踪', admin_monthly_online_trackings_path %></li>
+              <% end %>
+              <% if policy(:topic_learning).index? %>
+                <li><%= link_to '报名管理', admin_topic_learnings_path %></li>
+              <% end %>
+              <% if policy(:period_application).index? %>
+                <li><%= link_to '申请处理', admin_period_applications_path %></li>
+              <% end %>
             </ul>
           </li>
-          <% end %>
+
+          <% if policy(:topic).index? %>
           <li class='dropdown'>
             <a href='javascript:;' class='dropdown-toggle' data-toggle='dropdown'>内容维护<b class='caret'></b></a>
             <ul class='dropdown-menu'>
@@ -32,32 +40,52 @@
               <li><%= link_to '案例与资料', admin_topic_materials_path %></li>
             </ul>
           </li>
+          <% end %>
+
           <li class='dropdown'>
             <a href='javascript:;' class='dropdown-toggle' data-toggle='dropdown'>专题考核<b class='caret'></b></a>
             <ul class='dropdown-menu'>
-
-              <li><%= link_to '出题', admin_topic_testings_path %></li>
-              <li><%= link_to '审核', admin_topic_exam_reviews_path %></li>
-              <li><%= link_to '查询', admin_topic_exams_path %></li>
+              <% if policy(:topic_testing).index? %>
+                <li><%= link_to '试题管理', admin_topic_testings_path %></li>
+              <% end %>
+              <% if policy(:topic_exam).review? %>
+                <li><%= link_to '试卷评分', admin_topic_exam_reviews_path %></li>
+              <% end %>
+              <% if policy(:topic_exam).index? %>
+                <li><%= link_to '考试查询', admin_topic_exams_path %></li>
+              <% end %>
             </ul>
           </li>
+
           <li class='dropdown'>
             <a href='javascript:;' class='dropdown-toggle' data-toggle='dropdown'>问答社区<b class='caret'></b></a>
             <ul class='dropdown-menu'>
               <li><%= link_to '进入社区', ask_root_path, :target => '_blank' %></li>
-              <li><%= link_to '版块分类', admin_forum_catalogs_path %></li>
-              <li><%= link_to '版块', admin_forums_path %></li>
+              <% if policy(:forum_catalog).index? %>
+                <li><%= link_to '版块分类', admin_forum_catalogs_path %></li>
+              <% end %>
+              <% if policy(:forum).index? %>
+                <li><%= link_to '版块', admin_forums_path %></li>
+              <% end %>
             </ul>
           </li>
           <li class='dropdown'>
             <a href='javascript:;' class='dropdown-toggle' data-toggle='dropdown'>首页管理<b class='caret'></b></a>
             <ul class='dropdown-menu'>
-              <li><%= link_to '栏目文章', admin_articles_path %></li>
-              <li><%= link_to '博客发表', admin_blog_articles_path %></li>
+              <% if policy(:article).index? %>
+                <li><%= link_to '栏目文章', admin_articles_path %></li>
+              <% end %>
+              <% if policy(:blog_article).index? %>
+                <li><%= link_to '博客发表', admin_blog_articles_path %></li>
+              <% end %>
             </ul>
           </li>
-          <li><%= link_to '通知管理', admin_announcements_path %></li>
-          <li><%= link_to '后台用户管理', admin_administrators_path %></li>
+          <% if policy(:announcement).index? %>
+            <li><%= link_to '通知管理', admin_announcements_path %></li>
+          <% end %>
+          <% if policy(:administrator).index? %>
+            <li><%= link_to '后台用户管理', admin_administrators_path %></li>
+          <% end %>
           <li><%= link_to '退出登录', session_path, :method => :delete %></li>
         </ul>
       </div>

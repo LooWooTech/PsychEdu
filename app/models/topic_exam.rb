@@ -12,8 +12,7 @@ class TopicExam < ActiveRecord::Base
   delegate :title, :content, :requirements, :to => :topic_testing
   delegate :name, :student, :student_name, :student_username, :student_unit_code, :to => :topic_learning
 
-  accepts_nested_attributes_for :scores,
-                                :reject_if => lambda{|attr| attr[:comment].blank? }
+  accepts_nested_attributes_for :scores, :reject_if => lambda{|attr| attr[:comment].blank? }
 
   before_save :set_passed_at
   after_create :create_scores

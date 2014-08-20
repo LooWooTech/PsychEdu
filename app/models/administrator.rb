@@ -11,6 +11,7 @@ class Administrator < ActiveRecord::Base
   has_many :topic_materials, :foreign_key => 'created_by_id', :dependent => :nullify
   has_many :published_articles, :class_name => 'Article', :foreign_key => 'editor_id', :dependent => :nullify
   has_many :uploaded_images, :class_name => 'Image', :foreign_key => :uploader_id, :dependent => :nullify
+  has_many :questions, :as => :questioner, :dependent => :nullify
   has_many :answers, :as => :answerer, :dependent => :nullify
   has_many :comments, :as => :commenter, :dependent => :nullify
   has_many :complaints, :as => :complainer, :dependent => :nullify
@@ -28,25 +29,25 @@ class Administrator < ActiveRecord::Base
   def managed_period_applications
     return PeriodApplication.all if super_admin?
     return PeriodApplication.in_unit(unit_code) if unit_admin?
-    []
+    PeriodApplication.where(:id => -1)
   end
 
   def managed_topic_learnings
     return TopicLearning.all if super_admin?
     return TopicLearning.in_unit(unit_code) if unit_admin?
-    []
+    TopicLearning.where(:id => -1)
   end
 
   def managed_students
     return Student.all if super_admin?
     return Student.where(:unit_code => unit_code) if unit_admin?
-    []
+    Student.where(:id => -1)
   end
 
   def monthly_online_trackings
     return MonthlyOnlineTracking.all if super_admin?
     return MonthlyOnlineTracking.in_unit(unit_code) if unit_admin?
-    []
+    MonthlyOnlineTracking.where(:id => -1)
   end
 
   def role_names

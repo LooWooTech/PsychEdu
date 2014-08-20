@@ -48,7 +48,7 @@
       <td><%= t "period_application.review_state.#{period_application.review_state}" %></td>
       <td><%= l period_application.created_at, :format => :date_only %></td>
       <td>
-        <% if period_application.unreviewed? %>
+        <% if policy(period_application).audit? && period_application.unreviewed? %>
           <%= link_to '同意', accept_admin_period_application_path(period_application), :method => :patch, :data => {:confirm => '确定要同意申请吗？'} %>
           <%= link_to '拒绝', reject_admin_period_application_path(period_application), :method => :patch, :data => {:confirm => '确定要拒绝申请吗？'} %>
         <% end %>

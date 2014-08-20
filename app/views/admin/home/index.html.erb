@@ -1,0 +1,12 @@
+<div class="bs-component col-lg-6 col-lg-offset-3">
+  <ul class="list-group">
+    <% if policy(:student).index? && @unreviewed_period_application_count > 0 %>
+    <li class='list-group-item'>
+      <span class='badge'><%= @unreviewed_period_application_count %></span>
+      <%= link_to '待处理的学员申请', admin_period_applications_path  %>
+    </li>
+    <% end %>
+    <% if policy(:topic).index? && @unreviewed_period_application_count > 0 %>
+    <% end %>
+  </ul>
+</div>

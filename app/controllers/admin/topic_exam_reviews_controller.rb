@@ -1,14 +1,17 @@
 module Admin
   class TopicExamReviewsController < AdminController
     def index
+      authorize :topic_exam, :review?
       @topic_exams = TopicExam.submitted.page(params[:page]).per(10)
     end
 
     def show
+      authorize :topic_exam, :review?
       @topic_exam = TopicExam.submitted.find params[:id]
     end
 
     def update
+      authorize :topic_exam, :review?
       @topic_exam = TopicExam.find params[:id]
       if @topic_exam.update_attributes review_params
         flash[:notice] = '您更新了评分'

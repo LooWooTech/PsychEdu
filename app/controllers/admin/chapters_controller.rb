@@ -1,13 +1,15 @@
 module Admin
   class ChaptersController < AdminController
     before_action :find_topic, :only => [:new, :create]
-    before_action :find_chapter, :only => [:edit, :show, :update, :destroy]
+    before_action :find_chapter_and_authorize, :only => [:edit, :show, :update, :destroy]
 
     def new
+      authorize :chapter
       @chapter = Chapter.new
     end
 
     def create
+      authorize :chapter
       @chapter = @topic.chapters.build chapter_params
       if @chapter.save
         redirect_to [:admin, @chapter]
@@ -37,8 +39,9 @@ module Admin
 
     private
 
-    def find_chapter
+    def find_chapter_and_authorize
       @chapter = Chapter.find params[:id]
+      authorize @chapter
     end
 
     def find_topic

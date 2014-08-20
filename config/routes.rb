@@ -102,7 +102,7 @@ PsychEdu::Application.routes.draw do
         end
       end
     end
-    root 'students#index'
+    root 'home#index'
   end
 
   namespace :ask do

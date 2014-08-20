@@ -1,13 +1,15 @@
 module Admin
   class TopicsController < AdminController
 
-    before_action :find_topic, :only => [:show, :edit, :update, :destroy]
+    before_action :find_topic_and_authorize, :only => [:show, :edit, :update, :destroy]
 
     def new
+      authorize :topic
       @topic = Topic.new
     end
 
     def create
+      authorize :topic
       @topic = Topic.new topic_params
       if @topic.save
         redirect_to [:admin, @topic]
@@ -17,6 +19,7 @@ module Admin
     end
 
     def index
+      authorize :topic
       @topics = Topic.page(params[:page]).per(10)
     end
 
@@ -45,8 +48,9 @@ module Admin
       params.require(:topic).permit(:name, :introduction, :guide_video_url, :review_video_url, :supervision, :cover)
     end
 
-    def find_topic
+    def find_topic_and_authorize
       @topic = Topic.find params[:id]
+      authorize @topic
     end
   end
 end

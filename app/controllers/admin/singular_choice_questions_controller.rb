@@ -1,6 +1,6 @@
 module Admin
   class SingularChoiceQuestionsController < AdminController
-    before_action :find_question
+    before_action :find_question_and_authorize
 
     def edit; end
 
@@ -25,8 +25,9 @@ module Admin
 
     private
 
-    def find_question
+    def find_question_and_authorize
       @question = SingularChoiceQuestion.find params[:id]
+      authorize @question.unit, :edit?
     end
 
     def question_params

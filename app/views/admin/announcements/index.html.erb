@@ -1,7 +1,9 @@
 <div class='page-header clearfix'>
   <h1>通知列表</h1>
   <ul>
-    <li><%= link_to '发布通知', new_admin_announcement_path, :class => 'btn btn-default' %></li>
+    <% if policy(:announcement).create? %>
+      <li><%= link_to '发布通知', new_admin_announcement_path, :class => 'btn btn-default' %></li>
+    <% end %>
   </ul>
 </div>
 <%= search_form_for [:admin, @search] do |f| %>
@@ -44,9 +46,9 @@
       <td><%= announcement.publisher_username %></td>
       <td><%= l announcement.created_at, :format => :date_only %></td>
       <td>
-        <%= link_to '查看', [:admin, announcement] %>
-        <%= link_to '修改', edit_admin_announcement_path(announcement) %>
-        <%= link_to '删除', [:admin, announcement], :method => :delete, :data => {:confirm => '确定删除这个通知吗？'} %>
+        <%= link_to '查看', [:admin, announcement] if policy(announcement).show? %>
+        <%= link_to '修改', edit_admin_announcement_path(announcement) if policy(announcement).edit? %>
+        <%= link_to '删除', [:admin, announcement], :method => :delete, :data => {:confirm => '确定删除这个通知吗？'} if policy(announcement).destroy? %>
       </td>
     </tr>
   <% end%>

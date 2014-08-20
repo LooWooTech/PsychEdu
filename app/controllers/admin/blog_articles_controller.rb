@@ -1,6 +1,6 @@
 module Admin
   class BlogArticlesController < AdminController
-    before_action :find_blog_article, :only => [:edit, :update, :accept_publishing, :reject_publishing]
+    before_action :find_blog_article_and_authorize, :only => [:edit, :update, :accept_publishing, :reject_publishing]
 
     def index
       @search = BlogArticle.requested_publishing.search params[:q]
@@ -38,8 +38,9 @@ module Admin
 
     private
     
-    def find_blog_article
+    def find_blog_article_and_authorize
       @blog_article = BlogArticle.find params[:id]
+      authorize @blog_article, :edit?
     end
 
     def blog_params

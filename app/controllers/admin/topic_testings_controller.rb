@@ -1,17 +1,20 @@
 module Admin
   class TopicTestingsController < AdminController
-    before_action :find_topic_testing, :only => [:show, :edit, :update]
+    before_action :find_topic_testing_and_authorize, :only => [:show, :edit, :update]
 
     def index
+      authorize :topic_testing
       @topic_testings = TopicTesting.page(params[:paeg]).per(10)
     end
 
     def new
+      authorize :topic_testing
       @topic_testing = TopicTesting.new
       @topics = Topic.no_testing
     end
 
     def create
+      authorize :topic_testing
       @topic_testing = TopicTesting.new testing_params
       if @topic_testing.save
         flash[:notice] = '专题考核添加成功'
@@ -39,8 +42,9 @@ module Admin
 
     private
 
-    def find_topic_testing
+    def find_topic_testing_and_authorize
       @topic_testing = TopicTesting.find params[:id]
+      authorize @topic_testing
     end
 
     def testing_params

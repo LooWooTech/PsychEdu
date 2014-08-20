@@ -105,10 +105,10 @@
     </tr>
   </table>
   
-  <%= link_to '修改信息', edit_admin_student_path(@student), :class => 'btn btn-default' %>
+  <%= link_to '修改信息', edit_admin_student_path(@student), :class => 'btn btn-default' if policy(@student).edit? %>
 </div>
 
-<% if @unopen_topics.any? %>
+<% if policy(:topic_learning).create? && @unopen_topics.any? %>
   <div class='well'>
     <%= form_for [:admin, @student, @topic_learning], :html => {:id => 'open-topic-learning', :class => 'form-horizontal'} do |f| %>
       <fieldset>

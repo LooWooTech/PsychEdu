@@ -1,8 +1,9 @@
 module Admin
   class ArticlesController < AdminController
-    before_action :find_article, :only => [:show, :edit, :update, :destroy]
+    before_action :find_article_and_authorize, :only => [:show, :edit, :update, :destroy]
 
     def index
+      authorize :article
       @search = Article.search params[:q]
       @articles = @search.result.page(params[:page]).per(10)
     end
@@ -10,10 +11,12 @@ module Admin
     def show; end
 
     def new
+      authorize :article
       @article = Article.new
     end
 
     def create
+      authorize :article
       @article = current_user.published_articles.build article_params
       if @article.save
         flash[:notice] = "您新建了文章《#{@article.title}》"
@@ -48,8 +51,9 @@ module Admin
       params.require(:article).permit!
     end
 
-    def find_article
+    def find_article_and_authorize
       @article = Article.find params[:id]
+      authorize @article
     end
   end
 end

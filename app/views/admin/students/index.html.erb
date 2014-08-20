@@ -2,7 +2,9 @@
 <div class='page-header clearfix'>
   <h1>学员列表</h1>
   <ul>
-    <li><%= link_to '新增学员', new_admin_student_path, :class => 'btn btn-default' %></li>
+    <% if policy(:student).create? %>
+      <li><%= link_to '新增学员', new_admin_student_path, :class => 'btn btn-default' %></li>
+    <% end %>
     <li><%= link_to '导出', admin_students_path(params.merge :format => :csv), :class => 'btn btn-default' %></li>
   </ul>
 </div>
@@ -58,8 +60,8 @@
       <td><%= link_to '习题记录', admin_student_unit_exams_path(student), :target => '_blank' %>
       <td><%= link_to '考试记录', admin_topic_exams_path('q[topic_learning_student_id_eq]' => student.id), :target => '_blank' %>
       <td>
-        <%= link_to '修改', edit_admin_student_path(student) %>
-        <%= link_to '删除', [:admin, student], :method => :delete, :data => {:confirm => "确定删除#{student.name}吗？"} %>
+        <%= link_to '修改', edit_admin_student_path(student) if policy(student).edit? %>
+        <%= link_to '删除', [:admin, student], :method => :delete, :data => {:confirm => "确定删除#{student.name}吗？"} if policy(student).destroy? %>
       </td>
     </tr>
   <% end%>

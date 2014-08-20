@@ -1,7 +1,9 @@
 <div class='page-header clearfix'>
   <h1>社区版块</h1>
   <ul>
-    <li><%= link_to '新增版块', new_admin_forum_path, :class => 'btn btn-default' %></li>
+    <% if policy(:forum).create? %>
+      <li><%= link_to '新增版块', new_admin_forum_path, :class => 'btn btn-default' %></li>
+    <% end %>
   </ul>
 </div>
 <table class='table table-striped table-hover'>
@@ -19,8 +21,8 @@
       <td><%= forum.catalog_name %></td>
       <td><%= l forum.created_at, :format => :short %></td>
       <td>
-        <%= link_to '修改', edit_admin_forum_path(forum) %>
-        <%= link_to '删除', [:admin, forum], :method => :delete, :data => {:confirm => "确实要删除#{forum.name}吗？"} %>
+        <%= link_to '修改', edit_admin_forum_path(forum) if policy(forum).edit? %>
+        <%= link_to '删除', [:admin, forum], :method => :delete, :data => {:confirm => "确实要删除#{forum.name}吗？"} if policy(forum).destroy? %>
       </td>
     </tr>
   <% end%>

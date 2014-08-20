@@ -1,6 +1,6 @@
 module Admin
   class MultipleChoiceQuestionsController < AdminController
-    before_action :find_question
+    before_action :find_question_and_authorize
 
     def edit
       render 'admin/singular_choice_questions/edit'
@@ -27,8 +27,9 @@ module Admin
 
     private
 
-    def find_question
+    def find_question_and_authorize
       @question = MultipleChoiceQuestion.find params[:id]
+      authorize @question.unit, :edit?
     end
 
     def question_params

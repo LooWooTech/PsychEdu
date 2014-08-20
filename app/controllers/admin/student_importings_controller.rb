@@ -1,6 +1,7 @@
 module Admin
   class StudentImportingsController < AdminController
     def create
+      authorize :student
       @importer = StudentImporter.new(params[:file].path, params[:topic_ids], current_user)
       if @importer.failed?
         flash[:error] = @importer.errors.join('<br />')

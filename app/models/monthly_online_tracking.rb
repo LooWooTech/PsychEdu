@@ -17,7 +17,7 @@ class MonthlyOnlineTracking < ActiveRecord::Base
   scope :current, lambda { during_month(Time.now, Time.now).first || create }
   scope :during_month, lambda {|start_month, end_month|
     where(:updated_at => (start_month.beginning_of_month.beginning_of_day..end_month.end_of_month.end_of_day)).
-    order('created_at ASC')
+    order('monthly_online_trackings.created_at ASC')
   }
 
   def heartbeat

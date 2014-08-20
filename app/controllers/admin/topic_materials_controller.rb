@@ -4,17 +4,20 @@ module Admin
     before_action :find_topic_material, :only => [:edit, :update, :destroy]
 
     def index
+      authorize :topic, :index?
       @search = TopicMaterial.search params[:q]
       @topic_materials = @search.result.page(params[:page]).per(10)
     end
 
     def new
+      authorize :topic, :new?
       @topic_material = TopicMaterial.new
       @topic_material.videos.build
       @topic_material.attachments.build
     end
 
     def create
+      authorize :topic, :create?
       @topic_material = current_user.topic_materials.build topic_material_params
       if @topic_material.save
         flash[:notice] = "您新增了资料：#{@topic_material.title}"
@@ -50,6 +53,7 @@ module Admin
 
     def find_topic_material
       @topic_material = TopicMaterial.find params[:id]
+      authorize @topic_material.topic
     end
 
     def topic_material_params

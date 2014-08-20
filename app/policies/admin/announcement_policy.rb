@@ -1,9 +1,8 @@
 module Admin
-  class StudentPolicy
-
-    def initialize(user, student)
+  class AnnouncementPolicy
+    def initialize(user, announcement)
       @user = user
-      @student = student
+      @announcement = announcement
     end
 
     def index?
@@ -11,28 +10,27 @@ module Admin
     end
 
     def show?
-      @user.super_admin? || (@user.unit_admin? && @user.unit_code == @student.unit_code)
+      index?
     end
 
     def new?
-      create?
-    end
-
-    def create?
       @user.super_admin?
     end
 
+    def create?
+      new?
+    end
+
     def edit?
-      create?
+      new?
     end
 
     def update?
-      create?
+      new?
     end
 
     def destroy?
-      create?
+      new?
     end
-
   end
 end

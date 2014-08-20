@@ -1,6 +1,7 @@
 module Admin
   class MonthlyOnlineTrackingsController < AdminController
     def index
+      authorize :monthly_online_tracking
       params[:year] ||= Date.today.year
       if params[:month].present?
         @start = @end = Date.new params[:year].to_i, params[:month].to_i

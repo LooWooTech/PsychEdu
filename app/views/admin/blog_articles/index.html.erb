@@ -31,14 +31,16 @@
   </thead>
   <% @blog_articles.each do |article| %>
     <tr>
-      <td><%= link_to article.title , edit_admin_blog_article_path(article) %></td>
+      <td><%= link_to_if policy(article).edit?, article.title , edit_admin_blog_article_path(article) %></td>
       <td><%= truncate sanitize(strip_tags(article.content)), :length => 45 %></td>
       <td><%= article.author_name %></td>
       <td><%= l article.created_at, :format => :long %></td>
       <td><%= blog_publishing_state article %></td>
       <td>
-        <%= link_to '通过', accept_publishing_admin_blog_article_path(article), :method => :patch %>
-        <%= link_to '退回', reject_publishing_admin_blog_article_path(article), :method => :patch %>
+        <% if policy(article).edit? %>
+          <%= link_to '通过', accept_publishing_admin_blog_article_path(article), :method => :patch %>
+          <%= link_to '退回', reject_publishing_admin_blog_article_path(article), :method => :patch %>
+        <% end %>
       </td>
     </tr>
   <% end%>

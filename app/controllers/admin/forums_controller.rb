@@ -1,16 +1,20 @@
 module Admin
   class ForumsController < AdminController
 
-    before_action :find_forum, :only => [:edit, :update, :destroy]
+    before_action :find_forum_and_authorize, :only => [:edit, :update, :destroy]
+
     def index
+      authorize :forum
       @forums = Forum.all
     end
 
     def new
+      authorize :forum
       @forum = Forum.new
     end
 
     def create
+      authorize :forum
       @forum = Forum.new forum_params
       if @forum.save
         flash[:notice] = "您创建了 #{@forum.name}"
@@ -41,8 +45,9 @@ module Admin
 
     private
 
-    def find_forum
+    def find_forum_and_authorize
       @forum = Forum.find params[:id]
+      authorize @forum
     end
 
     def forum_params

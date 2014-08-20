@@ -1,7 +1,9 @@
 <div class='page-header clearfix'>
   <h1>文章列表</h1>
   <ul>
-    <li><%= link_to '发布文章', new_admin_article_path, :class => 'btn btn-default' %></li>
+    <% if policy(:article).create? %>
+      <li><%= link_to '发布文章', new_admin_article_path, :class => 'btn btn-default' %></li>
+    <% end %>
   </ul>
 </div>
 <%= search_form_for [:admin, @search] do |f| %>
@@ -42,8 +44,8 @@
       <td><%= article.editor_name %></td>
       <td><%= l article.created_at, :format => :long %></td>
       <td>
-        <%= link_to '修改', edit_admin_article_path(article) %>
-        <%= link_to '删除', admin_article_path(article), :method => :delete, :data => {:confirm => "确定删除《#{article.title}》吗？"} %>
+        <%= link_to '修改', edit_admin_article_path(article) if policy(article).edit? %>
+        <%= link_to '删除', admin_article_path(article), :method => :delete, :data => {:confirm => "确定删除《#{article.title}》吗？"} if policy(article).destroy? %>
       </td>
     </tr>
   <% end%>

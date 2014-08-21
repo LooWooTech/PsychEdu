@@ -29,25 +29,25 @@
       <td>
         <%= form_for @topic_exam, :url => admin_topic_exam_review_path(@topic_exam),
           :method => :patch, :html => {:class => 'form-horizontal'} do |f| %>
-          <%= f.fields_for :scores do |score_field| %>
           <ul>
             <% @topic_exam.scores.each do |score| %>
-            <li>
-              <div> <%= score.rule_name %> </div>
-              <div> <%= score.rule_description %> </div>
-                <div>
-                  <%= score_field.label :score, '得分' %>
-                  <%= score_field.number_field :score %>
-                </div>
-                <div>
-                  <%= score_field.label :comment, '评语' %>
-                  <%= score_field.text_area :comment %>
-                </div>
-            </li>
+              <%= f.fields_for score do |score_field| %>
+                <li>
+                  <div> <%= score.rule_name %> </div>
+                  <div> <%= score.rule_description %> </div>
+                  <div>
+                    <%= score_field.label :score, '得分' %>
+                    <%= score_field.number_field :score %>
+                  </div>
+                  <div>
+                    <%= score_field.label :comment, '评语' %>
+                    <%= score_field.text_area :comment %>
+                  </div>
+                </li>
+              <% end %>
             <% end %>
           </ul>
           <%= f.submit '提交' %>
-          <% end %>
         <% end %>
       </td>
     </tr>

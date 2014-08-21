@@ -13,6 +13,7 @@ class BlogArticle < ActiveRecord::Base
 
   scope :published, lambda { where :publish_state => PUBLISH_STATE[:accepted] }
   scope :requested_publishing, lambda { where.not :publish_state => PUBLISH_STATE[:unrequested] }
+  scope :unreviewed, lambda { where :publish_state => PUBLISH_STATE[:unreviewed] }
 
   delegate :name, :to => :author, :prefix => true
 

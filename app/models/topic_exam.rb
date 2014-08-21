@@ -8,6 +8,7 @@ class TopicExam < ActiveRecord::Base
 
   scope :unsubmitted, lambda{ where :submitted => false }
   scope :submitted, lambda{ where :submitted => true }
+  scope :unreviewed, lambda{ submitted.joins(:scores).where('topic_exam_scores.comment IS NULL OR TRIM(topic_exam_scores.comment) = ""').distinct }
 
   delegate :title, :content, :requirements, :to => :topic_testing
   delegate :name, :student, :student_name, :student_username, :student_unit_code, :to => :topic_learning

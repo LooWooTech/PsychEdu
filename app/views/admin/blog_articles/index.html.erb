@@ -15,6 +15,10 @@
     <%= f.text_field :author_name_cont %>
   </div>
   <div class='col-lg-3'>
+    <%= f.label :publish_state_eq, '发布状态' %>
+    <%= f.select :publish_state_eq, {'未审核' => BlogArticle::PUBLISH_STATE[:unreviewed], '已退回' => BlogArticle::PUBLISH_STATE[:rejected], '已通过' => BlogArticle::PUBLISH_STATE[:accepted] }, :include_blank => '全部'%>
+  </div>
+  <div class='col-lg-3'>
     <button type='submit'>搜索</button>
   </div>
 <% end %>

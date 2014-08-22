@@ -2,7 +2,8 @@ module Admin
   class TopicExamReviewsController < AdminController
     def index
       authorize :topic_exam, :review?
-      @topic_exams = TopicExam.submitted.page(params[:page]).per(10)
+      @search = TopicExam.unreviewed.search params[:q]
+      @topic_exams = @search.result.page(params[:page]).per(10)
     end
 
     def show

@@ -1,20 +1,4 @@
 $ ->
-  if $('#unit-summary').size() > 0
-    summaryEditor = new wysihtml5.Editor 'unit-summary',
-      toolbar: 'unit-summary-editor-toolbar',
-      parserRules: wysihtml5ParserRules,
-      stylesheets: ['<%= asset_path 'wysihtml5_editor.css'%>'],
-      useLineBreaks: false,
-      autoLink: true
-
-  if $('#unit-review').size() > 0
-    reviewEditor = new wysihtml5.Editor 'unit-review',
-      toolbar: 'unit-review-editor-toolbar',
-      parserRules: wysihtml5ParserRules,
-      stylesheets: ['<%= asset_path 'wysihtml5_editor.css'%>'],
-      useLineBreaks: false,
-      autoLink: true
-
   $('#question-import').submit ->
     if $(this).find('input[type=file]').val().trim() is ""
       alert "请先选择要导入的题库文件。"

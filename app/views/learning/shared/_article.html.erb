@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1">
+      <div class="well article">
+        <h1><%= article.title %></h1>
+        <%= raw article.content %>
+        <% if article.videos.any? %>
+        <div class='videos'>
+          <div class='header'>相关视频：</div>
+          <ul>
+          <% article.videos.each do |video| %>
+            <li><%= link_to video.name, [:learning, video], :target => '_blank' %></li>
+          <% end %>
+          </ul>
+        </div>
+        <% end %>
+        
+        <% if article.attachments.any? %>
+        <div class='attachmetns'>
+          <div class='header'>附件下载：</div>
+          <ul>
+          <% article.attachments.each do |attachment| %>
+            <li><%= link_to attachment.filename, attachment.url %></li>
+          <% end %>
+          </ul>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,7 @@
 
 <%= bootstrap_form_for [:ask, @answer], :data => {:'event-id' => @answer.id} do |f| %>
   <div class="modal-body">
-    <%= f.text_area :content, :data => {:event => 'editor'}, hide_label: true, rows: 8, placeholder: '描述一下您的答案' %>
+    <%= f.cktext_area :content, :hide_label => true, :rows => 8, :placeholder => '描述一下您的答案' %>
     <ul class='list-group attachment-fields'>
       <%= f.fields_for :attachments do |attachment_field| %>
         <li class='list-group-item'>

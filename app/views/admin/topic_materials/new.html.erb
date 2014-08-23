@@ -23,12 +23,9 @@
         </div>
       </div>
       <div class='form-group'>
-        <div class='col-lg-10 col-lg-offset-2'>
-          <%= render :partial => 'admin/shared/rich_text_toolbar', :locals => {:toolbar_id => 'case-analysis-content-editor-toolbar'} %>
-        </div>
         <%= f.label :content, '*内容', :class => 'col-lg-2 control-label' %>
         <div class='col-lg-10'>
-          <%= f.text_area :content, :id => 'case-analysis-content' %>
+          <%= f.cktext_area :content, :ckeditor => {:height => 400} %>
         </div>
       </div>
       <%= render :partial => 'admin/shared/linked_videos', :locals => {:f => f} %>

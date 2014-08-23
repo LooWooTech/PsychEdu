@@ -9,7 +9,7 @@
         <div class="panel-body">
           <%= bootstrap_form_for [:learning, @blog_article] do |f| %>
             <%= f.text_field :title, :label => '标题' %>
-            <%= f.text_area :content, :label => '正文', :id => 'edit-blog' %>
+            <%= f.cktext_area :content, :label => '正文' %>
             <%= f.submit '保存', :class => 'btn btn-primary' %>
           <% end %>
         </div>

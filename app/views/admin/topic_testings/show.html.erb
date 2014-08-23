@@ -13,18 +13,18 @@
     </tr>
     <tr>
       <th>内容</th>
-      <td><%= sanitize @topic_testing.content %></td>
+      <td><%= raw @topic_testing.content %></td>
     </tr>
     <tr>
       <th>要求</th>
-      <td><%= sanitize @topic_testing.requirements %></td>
+      <td><%= raw @topic_testing.requirements %></td>
     </tr>
     <tr>
       <th>评分规则</th>
       <td>
       <% @topic_testing.score_rules.each do |rule| %>
         <strong><%= rule.name %>，总分<%= rule.score %>。</strong>
-        <div><%= sanitize rule.description %></div>
+        <div><%= raw rule.description %></div>
       <% end %>
       </td>
     </tr>

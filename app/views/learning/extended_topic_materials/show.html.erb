@@ -1,27 +1,2 @@
 <% content_for(:title){ "资料扩展：#{@material.title}" } %>
-<h1><%= @material.title %></h1>
-<div class='article'>
-  <%= sanitize @material.content %>
-</div>
-
-<% if @material.videos.any? %>
-<div class='videos'>
-  <div class='header'>相关视频：</div>
-  <ul>
-  <% @material.videos.each do |video| %>
-    <li><%= link_to video.name, [:learning, video], :target => '_blank' %></li>
-  <% end %>
-  </ul>
-</div>
-<% end %>
-
-<% if @material.attachments.any? %>
-<div class='attachmetns'>
-  <div class='header'>附件下载：</div>
-  <ul>
-  <% @material.attachments.each do |attachment| %>
-    <li><%= link_to attachment.filename, attachment.url %></li>
-  <% end %>
-  </ul>
-</div>
-<% end %>
+<%= render :partial => 'learning/shared/article', :object => @material %>

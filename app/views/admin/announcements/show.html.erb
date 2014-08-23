@@ -1,5 +1,5 @@
 <div class='well'>
-<%= sanitize @announcement.content %>
+<%= raw @announcement.content %>
 <div>
 <%= link_to '编辑', edit_admin_announcement_path(@announcement), :class => 'btn btn-default' if policy(@announcement).edit? %>
 <%= link_to '返回', :back, :class => 'btn btn-default' %>

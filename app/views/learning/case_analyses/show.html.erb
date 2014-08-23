@@ -1,27 +1,2 @@
 <% content_for(:title){ "案例：#{@case_analysis.title}" } %>
-<h1><%= @case_analysis.title %></h1>
-<div class='article'>
-  <%= sanitize @case_analysis.content %>
-</div>
-
-<% if @case_analysis.videos.any? %>
-<div class='videos'>
-  <div class='header'>相关视频：</div>
-  <ul>
-  <% @case_analysis.videos.each do |video| %>
-    <li><%= link_to video.name, [:learning, video], :target => '_blank' %></li>
-  <% end %>
-  </ul>
-</div>
-<% end %>
-
-<% if @case_analysis.attachments.any? %>
-<div class='attachmetns'>
-  <div class='header'>附件下载：</div>
-  <ul>
-  <% @case_analysis.attachments.each do |attachment| %>
-    <li><%= link_to attachment.filename, attachment.url %></li>
-  <% end %>
-  </ul>
-</div>
-<% end %>
+<%= render :partial => 'learning/shared/article', :object => @case_analysis %>

@@ -4,4 +4,4 @@
   <span>作者: <%= @blog_article.author_name %></span>
   <span>发布时间: <%= l @blog_article.created_at, :format => :long %></span>
 </div>
-<%= sanitize @blog_article.content %>
+<%= raw @blog_article.content %>

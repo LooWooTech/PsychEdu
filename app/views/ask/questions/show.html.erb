@@ -50,7 +50,7 @@
     <div><%= current_user.name %></div>
     <div class="contents">
       <%= bootstrap_form_for [:ask, @question, @answer] do |f| %>
-        <%= f.text_area :content, :id => 'answer-editor', :rows => 5, :placeholder => '添加您的回答', hide_label: true %>
+        <%= f.cktext_area :content, :rows => 5, :placeholder => '添加您的回答', hide_label: true %>
         <ul class='list-group attachment-fields'>
           <%= f.fields_for :attachments do |attachment_fields| %>
             <li class='list-group-item'>
@@ -65,9 +65,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#answer-editor').editor();
-  });
-</script>

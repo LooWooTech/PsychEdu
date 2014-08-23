@@ -1,4 +1,11 @@
-<div class='article'>
-  <h1><%= current_topic_learning.name %></h1>
-<%= raw @supervision %>
+<% content_for(:title){ "督导" } %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1">
+      <div class="well article">
+        <h1><%= current_topic_learning.name %></h1>
+        <%= raw @supervision %>
+      </div>
+    </div>
+  </div>
 </div>

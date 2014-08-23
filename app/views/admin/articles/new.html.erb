@@ -25,8 +25,7 @@
       <div class='form-group'>
         <%= f.label :content, '内容*', :class => 'col-lg-2 control-label' %>
         <div class='col-lg-10'>
-          <%= render :partial => 'admin/shared/rich_text_toolbar', :locals => {:toolbar_id => 'article-editor-toolbar'} %>
-          <%= f.text_area :content, :id => 'article-content' %>
+          <%= f.cktext_area :content, :ckeditor => {:height => 500} %>
         </div>
       </div>
       <%= render :partial => 'admin/shared/linked_videos', :locals => {:f => f} %>

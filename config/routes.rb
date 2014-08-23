@@ -1,5 +1,6 @@
 PsychEdu::Application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
   resource :session, :only => [:create, :destroy]
   resources :articles, :only => [:show, :index]
   resources :blog_articles, :only => [:index, :show]
@@ -70,7 +71,6 @@ PsychEdu::Application.routes.draw do
       end
       resources :administrators
       resources :articles
-      resources :images, :only => [:create]
       resources :forums, :except => [:show]
       resources :forum_catalogs, :except => [:show]
       resources :topic_materials, :except => :show

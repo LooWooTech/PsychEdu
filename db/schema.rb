@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140809093235) do
+ActiveRecord::Schema.define(version: 20140823025920) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -150,6 +150,22 @@ ActiveRecord::Schema.define(version: 20140809093235) do
 
   add_index "choices", ["choice_question_id", "choice_question_type"], name: "index_choices_on_choice_question_id_and_choice_question_type", using: :btree
 
+  create_table "ckeditor_assets", force: true do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+
   create_table "comments", force: true do |t|
     t.text     "content"
     t.integer  "commentable_id"
@@ -192,15 +208,6 @@ ActiveRecord::Schema.define(version: 20140809093235) do
   end
 
   add_index "forums", ["catalog_id"], name: "index_forums_on_catalog_id", using: :btree
-
-  create_table "images", force: true do |t|
-    t.string   "file"
-    t.integer  "uploader_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "images", ["uploader_id"], name: "index_images_on_uploader_id", using: :btree
 
   create_table "linked_videos", force: true do |t|
     t.string   "name"

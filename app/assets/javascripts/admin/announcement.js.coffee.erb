@@ -1,8 +1,0 @@
-$ ->
-  if $('#announcement-content').size() > 0
-    reviewEditor = new wysihtml5.Editor 'announcement-content',
-      toolbar: 'announcement-editor-toolbar',
-      parserRules: wysihtml5ParserRules,
-      stylesheets: ['<%= asset_path 'wysihtml5_editor.css'%>'],
-      useLineBreaks: false,
-      autoLink: true

@@ -27,7 +27,7 @@ group :test, :development do
   gem 'database_cleaner'
   gem 'simplecov'
 end
-gem 'ckeditor', '~> 4.0.11'
+gem 'ckeditor', '~> 4.1.0'
 gem 'font-awesome-rails'
 gem 'bootstrap-sass'
 gem 'pundit', :git => 'git@github.com:elabs/pundit.git'

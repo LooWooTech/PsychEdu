@@ -4,4 +4,4 @@
   <span>编辑: <%= @article.editor_name %></span>
   <span>发布时间: <%= l @article.created_at, :format => :long %></span>
 </div>
-<%= sanitize @article.content %>
+<%= raw @article.content %>

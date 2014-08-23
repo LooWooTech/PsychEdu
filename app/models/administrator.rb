@@ -10,7 +10,6 @@ class Administrator < ActiveRecord::Base
   has_many :announcements, :foreign_key => 'publisher_id', :dependent => :nullify
   has_many :topic_materials, :foreign_key => 'created_by_id', :dependent => :nullify
   has_many :published_articles, :class_name => 'Article', :foreign_key => 'editor_id', :dependent => :nullify
-  has_many :uploaded_images, :class_name => 'Image', :foreign_key => :uploader_id, :dependent => :nullify
   has_many :questions, :as => :questioner, :dependent => :nullify
   has_many :answers, :as => :answerer, :dependent => :nullify
   has_many :comments, :as => :commenter, :dependent => :nullify

@@ -1,13 +1,13 @@
 <% @question.attachments.build %>
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <h4 class="modal-title">新建提问</h4>
+  <h4 class="modal-title"><%= @question.new_record? ? '新建提问' : '编辑问题' %></h4>
 </div>
 
 <%= bootstrap_form_for [:ask, @forum, @question], :html => {:multipart =>true, :id => 'question-form'} do |f| %>
   <div class="modal-body">
     <%= f.text_field :title, hide_label: true, placeholder: '写下您问题的标题' %>
-    <%= f.text_area :content, :data => {:event => 'editor'}, hide_label: true, rows: 8, placeholder: '描述一下您的问题' %>
+    <%= f.cktext_area :content, :hide_label => true, :rows => 8, :placeholder => '描述一下您的问题' %>
     <ul class='list-group attachment-fields'>
     <%= f.fields_for :attachments do |attachment_fields| %>
       <% attachment = attachment_fields.object %>

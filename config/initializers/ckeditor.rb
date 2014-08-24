@@ -33,5 +33,5 @@ Ckeditor.setup do |config|
   # config.asset_path = "http://www.example.com/assets/ckeditor/"
 
   config.assets_languages = ['zh-cn']
-  config.assets_plugins = []
+  config.assets_plugins = ['link', 'image', 'magicline', 'table']
 end

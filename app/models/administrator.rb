@@ -15,6 +15,8 @@ class Administrator < ActiveRecord::Base
   has_many :comments, :as => :commenter, :dependent => :nullify
   has_many :complaints, :as => :complainer, :dependent => :nullify
 
+  has_and_belongs_to_many :assigned_topics, :class_name => 'Topic'
+
   serialize :roles, Array
 
   include HasAnAccount

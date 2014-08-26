@@ -1,4 +1,4 @@
-class Remove < ActiveRecord::Migration
+class RemoveImages < ActiveRecord::Migration
   def up
     drop_table :images
   end

@@ -1,0 +1,24 @@
+<div class='page-header clearfix'>
+  <h1>专家分配情况</h1>
+</div>
+<table class='table table-striped table-hover'>
+  <thead>
+    <tr>
+      <th>用户名</th>
+      <th>可分配</th>
+      <th>待评分</th>
+      <th>已评分</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <% @experts.each do |expert| %>
+    <% unassigned_count = TopicExam.unassigned_for(expert).count %>
+    <tr>
+      <td><%= expert.username %></td>
+      <td><%= unassigned_count %></td>
+      <td><%= expert.assigned_topic_exams.unreviewed.count %></td>
+      <td><%= expert.assigned_topic_exams.reviewed.count %></td>
+      <td><%= link_to_if unassigned_count > 0, '分配', new_admin_expert_topic_exam_assignment_path(expert) %></td>
+    </tr>
+  <% end%>
+</table>

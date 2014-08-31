@@ -1,0 +1,28 @@
+<div class='page-header clearfix'>
+  <h1>分配试卷</h1>
+</div>
+<%= form_tag admin_expert_topic_exam_assignments_path(@expert) do %>
+  <table class='table table-striped table-hover'>
+    <thead>
+      <tr>
+        <th><input class='check-all' type='checkbox'/></th>
+        <th>学员姓名</th>
+        <th>单位编码</th>
+        <th>专题名</th>
+        <th>题目</th>
+      </tr>
+    </thead>
+      <tbody>
+        <% @unassigned_topic_exams.each do |exam| %>
+          <tr>
+            <td><%= check_box_tag 'topic_exam_ids[]', exam.id %></td>
+            <td><%= exam.student_name %></td>
+            <td><%= exam.student_unit_code  %></td>
+            <td><%= exam.name %></td>
+            <td><%= exam.title %></td>
+          </tr>
+        <% end%>
+      </tbody>
+  </table>
+  <input type='submit' value='分配' class='btn btn-primary' />
+<% end%>

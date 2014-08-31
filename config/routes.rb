@@ -85,10 +85,14 @@ PsychEdu::Application.routes.draw do
         resources :unit_exams, :only => [:index]
       end
       resources :topic_exams, :only => [:index]
+      resources :topic_exam_reviews, :only => [:show, :index, :update]
+      resources :experts, :only => [:index] do
+        resources :topic_exam_assignments, :only => [:new, :create]
+      end
+      resources :topic_exam_assignments, :only => [:index, :destroy]
       resources :topic_learnings, :only => [:index, :destroy]
       resources :student_importings, :only => [:index, :create]
       resources :topic_testings, :only => [:new, :create, :show, :edit, :update, :index]
-      resources :topic_exam_reviews, :only => [:show, :index, :update]
       resources :announcements
       resources :topics, :only => [:new, :create, :index, :show, :edit, :update, :destroy] do
         resources :chapters, :only => [:new, :create, :show, :edit, :update, :destroy] do

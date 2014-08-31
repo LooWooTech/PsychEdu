@@ -16,6 +16,7 @@ class Administrator < ActiveRecord::Base
   has_many :complaints, :as => :complainer, :dependent => :nullify
 
   has_and_belongs_to_many :assigned_topics, :class_name => 'Topic'
+  has_many :assigned_topic_exams, :class_name => 'TopicExam', :foreign_key => 'reviewer_id'
 
   serialize :roles, Array
 
@@ -25,6 +26,8 @@ class Administrator < ActiveRecord::Base
     define_method "#{role_name}?" do
       roles.include? role_name.to_s
     end
+
+    scope role_name, lambda{ where "roles LIKE '%#{role_name}%'" }
   end
 
   def managed_period_applications

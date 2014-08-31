@@ -2,6 +2,7 @@ class TopicExam < ActiveRecord::Base
   PASS_LINE = 60
 
   belongs_to :topic_learning
+  belongs_to :reviewer, :class_name => 'Administrator'
 
   has_many :materials, :class_name => 'TopicExamMaterial', :dependent => :destroy
   has_many :scores, :class_name => 'TopicExamScore', :dependent => :destroy
@@ -9,9 +10,14 @@ class TopicExam < ActiveRecord::Base
   scope :unsubmitted, lambda{ where :submitted => false }
   scope :submitted, lambda{ where :submitted => true }
   scope :unreviewed, lambda{ submitted.joins(:scores).where('topic_exam_scores.comment IS NULL OR TRIM(topic_exam_scores.comment) = ""').distinct }
+  scope :reviewed, lambda{ submitted.joins(:scores).where('topic_exam_scores.comment IS NOT NULL AND TRIM(topic_exam_scores.comment) <> ""').distinct }
+  scope :unassigned, lambda{ where(:reviewer => nil) }
+  scope :assigned, lambda{ where.not(:reviewer => nil) }
+  scope :unassigned_for, lambda{|expert| unassigned.joins(:topic_learning).joins('INNER JOIN administrators_topics AS a_t ON a_t.topic_id = topic_learnings.topic_id').where('a_t.administrator_id' => expert.id) }
 
   delegate :title, :content, :requirements, :to => :topic_testing
   delegate :name, :student, :student_name, :student_username, :student_unit_code, :to => :topic_learning
+  delegate :username, :to => :reviewer, :prefix => true
 
   accepts_nested_attributes_for :scores, :reject_if => lambda{|attr| attr[:comment].blank? }
 

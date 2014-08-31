@@ -20,5 +20,12 @@
         <%= link_to '待审核的博文', admin_blog_articles_path %>
       </li>
     <% end %>
+
+    <% if policy(:topic_exam_assignment).index? && @unassigned_topic_exam_count > 0 %>
+      <li class='list-group-item'>
+        <span class='badge'><%= @unassigned_topic_exam_count %></span>
+        <%= link_to '待审分配的答卷', admin_experts_path %>
+      </li>
+    <% end %>
   </ul>
 </div>

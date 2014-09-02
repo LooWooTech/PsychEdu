@@ -1,9 +1,9 @@
-<% content_for(:title){ @title } %>
+<% content_for(:title){ title } %>
 <div class="container">
   <div class="row">
     <div class="col-md-8">
       <div class="page-header">
-        <h3><%= @title %></h3>
+        <h3><%= title %></h3>
       </div>
       <div class="well">
         <video id="video"></video>
@@ -15,7 +15,7 @@
 <% content_for :head do %>
 <script type='text/javascript'>
   var flashvers = {};
-  flashvers.mp4_url = "<%= @video_url %>";
+  flashvers.mp4_url = "<%= video_url %>";
   flashvers.dianping = "false";
   flashvers.save_dx = 10;
   flashvers.over_per = 1.5;

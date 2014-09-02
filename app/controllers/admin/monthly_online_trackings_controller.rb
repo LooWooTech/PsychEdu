@@ -15,7 +15,7 @@ module Admin
       @table = Kaminari.paginate_array(@search.result.group_by(&:topic_learning).to_a).page(params[:page]).per(10)
       respond_to do |format|
         format.html
-        format.csv { send_data MonthlyOnlineTrackingExporter.new(@table, @start, @end).export, :filename => "时间跟踪#{@start}到#{@end}" }
+        format.csv { send_data MonthlyOnlineTrackingExporter.new(@table, @start, @end).export, :filename => URI.encode("时间跟踪#{@start}到#{@end}") }
       end
     end
   end

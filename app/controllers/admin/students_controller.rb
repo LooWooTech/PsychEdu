@@ -8,7 +8,7 @@ module Admin
       authorize :student
       respond_to do |format|
         format.html
-        format.csv { send_data StudentExporter.new(@search.result).export, :filename => "学员列表.csv" }
+        format.csv { send_data StudentExporter.new(@search.result).export, :filename => URI.encode("学员列表.csv") }
       end
     end
 

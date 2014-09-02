@@ -31,7 +31,7 @@
           :method => :patch, :html => {:class => 'form-horizontal'} do |f| %>
           <ul>
             <% @topic_exam.scores.each do |score| %>
-              <%= f.fields_for score do |score_field| %>
+              <%= f.fields_for :scores, score do |score_field| %>
                 <li>
                   <div> <%= score.rule_name %> </div>
                   <div> <%= score.rule_description %> </div>

@@ -55,7 +55,7 @@
               <td><%= link_to material.filename, material.url %></td>
               <td><%= truncate material.note %></td>
               <td><%= l material.created_at, :format => :long %></td>
-              <td><%= link_to '删除', [:learning, material], :method => :delete, :data => {:confirm => '确实要删除吗？'} unless @topic_exam.reviewed? %></td>
+              <td><%= link_to '删除', [:learning, material], :method => :delete, :data => {:confirm => '确实要删除吗？'} unless @topic_exam.submitted? %></td>
             </tr>
             <% end %>
           </tbody>

@@ -9,11 +9,11 @@
     </tr>
     <tr>
       <th>内容</th>
-      <td><%= @topic_exam.content %></td>
+      <td><%= sanitize @topic_exam.content %></td>
     </tr>
     <tr>
       <th>要求</th>
-      <td><%= @topic_exam.requirements %></td>
+      <td><%= sanitize @topic_exam.requirements %></td>
     </tr>
     <tr>
       <th>上传材料</th>

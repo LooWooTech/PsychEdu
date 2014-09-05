@@ -53,12 +53,12 @@ module Ask
   
     def top
       @question.toggle_top
-      redirect_to @question
+      redirect_to [:ask, @question]
     end
   
     def refine
       @question.toggle_refined
-      redirect_to @question
+      redirect_to [:ask, @question]
     end
   
     private

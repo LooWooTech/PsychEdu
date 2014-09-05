@@ -14,7 +14,7 @@ module Learning
       if @note.save
         render :partial => 'learning/notes/note', :object => @note
       else
-        render :text => '笔记创建失败', :status => 400
+        render :plain => '笔记创建失败', :status => 400
       end
     end
 

@@ -12,7 +12,7 @@ module CommentsController
     if @comment.save
       render :partial => 'comment', :locals => {:comment => @comment}
     else
-      render :text => '评论创建失败', :status => 400
+      render :plain => '评论创建失败', :status => 400
     end
   end
 

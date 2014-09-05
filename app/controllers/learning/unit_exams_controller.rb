@@ -7,7 +7,7 @@ module Learning
     def create
       @unit_learning = UnitLearning.find params[:unit_learning_id]
       if @unit_learning.exam_limited?
-        render :text => "您已经#{UnitLearning::EXAM_TIMES_LIMIT}次通过练习，无需继续练习。"
+        render :plain => "您已经#{UnitLearning::EXAM_TIMES_LIMIT}次通过练习，无需继续练习。"
       else
         @unit_exam = @unit_learning.generate_exam
         redirect_to [:learning, @unit_exam]

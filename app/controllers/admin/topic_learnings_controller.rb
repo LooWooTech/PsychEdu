@@ -13,9 +13,9 @@ module Admin
       @topic_learning = @student.topic_learnings.build topic_learning_params
       if @topic_learning.save
         @topic_learning.learning_periods.each &:accepted!
-        render :text => admin_student_path(@student)
+        render :plain => admin_student_path(@student)
       else
-        render :status => 400, :text => @topic_learning.errors.full_messages.map{|msg| "<li>#{msg}</li>"}.join
+        render :status => 400, :plain => @topic_learning.errors.full_messages.map{|msg| "<li>#{msg}</li>"}.join
       end
     end
 

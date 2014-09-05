@@ -11,7 +11,7 @@ module Learning
         flash[:notice] = '已交卷，请等待审核。'
         redirect_to [:learning, @topic_exam]
       else
-        render :text => '该专题目前不能进行考试', :status => 400
+        render :plain => '该专题目前不能进行考试', :status => 400
       end
     end
 

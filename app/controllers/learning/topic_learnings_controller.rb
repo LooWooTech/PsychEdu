@@ -14,7 +14,7 @@ module Learning
         @topic_exam = current_topic_learning.last_exam
         render 'learning/topic_exams/show'
       else
-        render :text => '该专题目前不能进行考试', :status => 400
+        render :plain => '该专题目前不能进行考试', :status => 400
       end
     end
 

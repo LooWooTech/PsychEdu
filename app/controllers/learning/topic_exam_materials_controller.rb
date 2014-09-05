@@ -7,7 +7,7 @@ module Learning
       if @topic_exam_material.save
         redirect_to learning_exam_path
       else
-        render :text => '上传失败', :status => 400
+        render :plain => '上传失败', :status => 400
       end
     end
 

@@ -14,9 +14,9 @@ module Ask
       @complaint = current_user.complaints.build complaint_params
       @complaint.complainable = @complainable
       if @complaint.save
-        render :text => '谢谢，管理员已经收到您的举报，会尽快处理。'
+        render :plain => '谢谢，管理员已经收到您的举报，会尽快处理。'
       else
-        render :text => '举报失败', :status => 400
+        render :plain => '举报失败', :status => 400
       end
     end
   

@@ -46,11 +46,11 @@
               <% if !forum_catalog.empty? %>
               <div class="panel panel-default">
                 <div class="panel-heading">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#forum-catalog-<%= forum_catalog.id %>">
                     <%= forum_catalog.name %>
                     </a>
                 </div>
-                <div id="collapseOne" class="panel-collapse collapse in">
+                <div id="forum-catalog-<%= forum_catalog.id %>" class="panel-collapse collapse <%= @forum && @forum.catalog_id == forum_catalog.id ? 'in' : nil %>">
                   <div class="panel-body">
                     <ul class="panel-nav">
                       <% forum_catalog.forums.each do |forum| %>
@@ -67,11 +67,11 @@
             <% if Forum.uncataloged.any? %>
             <div class="panel panel-default">
               <div class="panel-heading">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                <a data-toggle="collapse" data-parent="#accordion" href="#no-catalog">
                   未分类
                 </a>
               </div>
-              <div id="collapseTwo" class="panel-collapse collapse">
+              <div id="no-catalog" class="panel-collapse collapse <%= @forum && @forum.catalog_id.nil? ? 'in' : nil %>">
                 <div class="panel-body">
                   <ul class="panel-nav">
                     <% Forum.uncataloged.each do |forum| %>

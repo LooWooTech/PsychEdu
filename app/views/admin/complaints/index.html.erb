@@ -1,0 +1,43 @@
+<div class='page-header clearfix'>
+  <h1>举报列表</h1>
+</div>
+
+<%= search_form_for [:admin, @search] do |f| %>
+  <div class='col-lg-3'>
+    <%= f.label :complainable_type_eq, '举报类型' %>
+    <%= f.select :complainable_type_eq, {'提问' => 'Question', '回答' => 'Answer' , '评论' => 'Comment' }, :include_blank => '全部' %>
+  </div>
+  <div class='col-lg-3'>
+    <%= f.label :state_eq, '状态' %>
+    <%= f.select :state_eq, {'未处理' => Complaint::STATE[:unprocessed], '已处理' => Complaint::STATE[:processed], '已忽略' => Complaint::STATE[:ignored]}, :include_blank => '全部' %>
+  </div>
+  <div class='col-lg-3'>
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<table class='table table-striped table-hover'>
+  <thead>
+    <tr>
+      <th>举报类型</th>
+      <th>举报原因</th>
+      <th>举报人</th>
+      <th>举报时间</th>
+      <th>状态</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <% @complaints.each do |complaint| %>
+    <tr>
+      <td><%= t "complaint.complainable_type.#{complaint.complainable_type}" %></td>
+      <td><%= link_to truncate(complaint.content, :length => 45), [:admin, complaint] %></td>
+      <td><%= complaint.complainer_name %></td>
+      <td><%= l complaint.created_at, :format => :long %></td>
+      <td><%= t "complaint.state.#{complaint.state}" %></td>
+      <td>
+        <%= link_to '已处理', processed_admin_complaint_path(complaint), :method => :patch %>
+        <%= link_to '忽略', ignored_admin_complaint_path(complaint), :method => :patch %>
+      </td>
+    </tr>
+  <% end%>
+</table>

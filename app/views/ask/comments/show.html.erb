@@ -1,0 +1,8 @@
+<%= 
+  case @comment.commentable
+  when Question
+    render :partial => 'ask/questions/question_show', :locals => {:question => @comment.commentable}
+  when Answer
+    render :partial => 'ask/questions/answer', :object => @comment.commentable
+  end
+%>

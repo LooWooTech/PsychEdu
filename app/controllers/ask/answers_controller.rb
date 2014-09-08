@@ -3,7 +3,12 @@ module Ask
     belongs_to_module :forum
   
     load_resource :question, :only => :create
+    load_resource :only => :show
     load_and_authorize_resource :only =>[:edit, :update, :destroy]
+
+    def show
+      @question = @answer.question
+    end
   
     def create
       @answer = current_user.answers.build(answer_params.merge :question => @question)

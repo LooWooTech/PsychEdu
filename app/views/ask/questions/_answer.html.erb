@@ -19,10 +19,10 @@
     </div>
     <div class="contents">
       <%= sanitize answer.content %>
-      <%= render :partial => 'attachment', :locals => {:article => answer} %>
+      <%= render :partial => 'ask/questions/attachment', :locals => {:article => answer} %>
     </div>
     <div class="actions">
-      <span class="fa fa-calendar"></span> <%= l answer.created_at, :format => :short %> / <span class="fa fa-user"></span> <%= answer.answerer_name %>
+      <span class="fa fa-calendar"></span> <%= link_to l(answer.created_at, :format => :short), [:ask, answer] %> / <span class="fa fa-user"></span> <%= answer.answerer_name %>
       <span class="media-fade">
         /
         <%= link_to '修改', edit_ask_answer_path(answer), :remote => true, :data => {:event => 'answer.edit'} if can?(:edit, answer) %>

@@ -1,0 +1,26 @@
+<div class='well'>
+  <div class='page-header clearfix'>
+    <h1>举报详情</h1>
+  </div>
+  <table class='table table-hover table-condensed table-detail'>
+    <tr>
+      <th>举报对象：</th>
+      <td><%= link_to t("complaint.complainable_type.#{@complaint.complainable_type}"), [:ask, @complaint.complainable], :target => '_blank' %></td>
+    </tr>
+    <tr>
+      <th>举报原因：</th>
+      <td><%= @complaint.content %></td>
+    </tr>
+    <tr>
+      <th>举报人：</th>
+      <td><%= @complaint.complainer_name %></td>
+    </tr>
+    <tr>
+      <th>举报时间：</th>
+      <td><%= l @complaint.created_at, :format => :long %></td>
+    </tr>
+  </table>
+  <%= link_to '已处理', processed_admin_complaint_path(@complaint), :method => :patch, :class => 'btn btn-default' %>
+  <%= link_to '忽略', ignored_admin_complaint_path(@complaint), :method => :patch, :class => 'btn btn-default' %>
+  
+</div>

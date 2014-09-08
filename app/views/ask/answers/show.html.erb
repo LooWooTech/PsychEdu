@@ -1,0 +1,16 @@
+<% content_for(:title){@question.title} %>
+<%= render :partial => 'ask/questions/question_show', :locals => {:question => @question} %>
+<div class="info">
+  <div class="info-heading">
+    <h2>共<%= @question.answers.count %>个回答</h2>
+    <div class="info-bar">
+      <ul class="nav">
+        <li><%= link_to '查看全部', [:ask, @question] %></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-body media-items">
+    <%= render :partial => 'ask/questions/answer', :object => @answer %>
+  </div>
+</div>

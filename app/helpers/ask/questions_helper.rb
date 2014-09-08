@@ -1,13 +1,13 @@
 module Ask
   module QuestionsHelper
-    def top_link
-      text = @question.top? ? '取消置顶' : '置顶'
-      link_to text, top_ask_question_path(@question), :method => :patch if can?(:manage, @question)
+    def top_link(question)
+      text = question.top? ? '取消置顶' : '置顶'
+      link_to text, top_ask_question_path(question), :method => :patch if can?(:manage, question)
     end
   
-    def refine_link
-      text = @question.refined? ? '取消精选' : '精选'
-      link_to text, refine_ask_question_path(@question), :method => :patch if can?(:manage, @question)
+    def refine_link(question)
+      text = question.refined? ? '取消精选' : '精选'
+      link_to text, refine_ask_question_path(question), :method => :patch if can?(:manage, question)
     end
   
     def question_link(question)

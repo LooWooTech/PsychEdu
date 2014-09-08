@@ -15,7 +15,7 @@
     </div>
   </div>
   <div class="info-body media-items">
-    <%= render @questions %>
+    <%= render :partial => 'ask/questions/question_list_item', :collection => @questions, :as => :question %>
     <%= paginate @questions %>
   </div>
 </div>

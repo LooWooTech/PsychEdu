@@ -27,5 +27,12 @@
         <%= link_to '待审分配的答卷', admin_experts_path %>
       </li>
     <% end %>
+
+    <% if policy(:complaint).index? && @unprocessed_complaint_count > 0 %>
+      <li class='list-group-item'>
+        <span class='badge'><%= @unprocessed_complaint_count %></span>
+        <%= link_to '待处理的举报', admin_complaints_path(:q => {:state_eq => Complaint::STATE[:unprocessed]})%>
+      </li>
+    <% end %>
   </ul>
 </div>

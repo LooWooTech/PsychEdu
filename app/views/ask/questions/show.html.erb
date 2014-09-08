@@ -1,30 +1,7 @@
 <% content_for(:title){@question.title} %>
 <% @answer ||= Answer.new %>
 <% @answer.attachments.build %>
-<div class="media">
-  <a class="pull-left" href="#">
-    <img class="media-object img-circle" src="<%= image_path 'avatar/1.jpg' %>" width="48" height="48">
-  </a>
-  <div class="media-body">
-    <h4 class="media-heading"><%= @question.title %></h4>
-    <div class='contents'><%= sanitize @question.content %></div>
-    <%= render :partial => 'attachment', :locals => {:article => @question} %>
-    <div class="actions">
-      <span class="fa fa-calendar"></span> <%= l @question.created_at, :format => :short %> / <span class="fa fa-user"></span>
-      <%= @question.questioner_name %>
-      <span class="media-fade">
-        /
-        <%= link_to '修改', edit_ask_question_path(@question), :remote => true, :data => {:event => 'question.edit'} if can?(:edit, @question) %>
-        <%= link_to '删除', [:ask, @question], :method => :delete, :data => {:confirm => '确实要删除这个问题吗？'} if can?(:destroy, @question) %>
-        <%= link_to "评论(#{@question.comments.count})", ask_question_comments_path(@question), :remote => true, :data => {:event => 'comment.query'} %>
-        <%= link_to "举报", new_ask_question_complaint_path(@question), :remote => true, :data => {:event => 'complaints'} %>
-        <%= top_link %>
-        <%= refine_link %>
-      </span>
-      <div class="action-comments-box"></div>
-    </div>
-  </div>
-</div>
+<%= render :partial => 'ask/questions/question_show', :locals => {:question => @question} %>
 
 <div class="info">
   <div class="info-heading">

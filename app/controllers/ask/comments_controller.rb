@@ -7,6 +7,10 @@ module Ask
       render :partial => 'comments', :locals => {:commentable => @commentable}
     end
 
+    def show
+      @comment = Comment.find params[:id]
+    end
+
     private
 
     def find_commentable

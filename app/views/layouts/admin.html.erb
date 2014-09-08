@@ -70,6 +70,9 @@
               <% if policy(:forum).index? %>
                 <li><%= link_to '版块', admin_forums_path %></li>
               <% end %>
+              <% if policy(:complaint).index? %>
+                <li><%= link_to '举报管理', admin_complaints_path %></li>
+              <% end %>
             </ul>
           </li>
           <li class='dropdown'>

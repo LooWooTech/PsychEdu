@@ -14,20 +14,23 @@ PsychEdu::Application.routes.draw do
     get :review, :to => 'topic_learnings#review'
     get :exam, :to => 'topic_learnings#exam'
 
-    shallow do
-      resource :password, :only => [:edit, :update], :path_names => {:edit => :change}
-      resource :profile, :only => [:show]
-      resource :supervision, :only => [:show]
-      resources :linked_videos, :only => [:show]
-      resources :blog_articles do
-        member do
-          patch :request_publishing, :unpublish
-        end
+    resource :password, :only => [:edit, :update], :path_names => {:edit => :change}
+    resource :profile, :only => [:show]
+    resource :supervision, :only => [:show]
+
+    resources :blog_articles do
+      member do
+        patch :request_publishing, :unpublish
       end
-      resources :topic_learnings, :only => [:show, :index]
-      resources :announcements, :only => :show
-      resources :periods, :only => [:index, :create, :destroy]
-      resources :heartbeats, :only => [:create]
+    end
+
+    resources :topic_learnings, :only => [:show, :index]
+    resources :announcements, :only => :show
+    resources :periods, :only => [:index, :create, :destroy]
+    resources :heartbeats, :only => [:create]
+    resources :linked_videos, :only => [:show]
+
+    shallow do
 
       resources :case_analyses, :only => [:index, :show] do
         resources :topic_material_videos, :only => [:show]
@@ -64,37 +67,47 @@ PsychEdu::Application.routes.draw do
 
   namespace :admin do
     resource :setting, :only => [:edit, :update]
+
+    resources :complaints, :only => [:index, :show] do
+      member do
+        patch :processed, :ignored
+      end
+    end
+
+    resources :administrators
+    resources :articles
+    resources :forums, :except => [:show]
+    resources :forum_catalogs, :except => [:show]
+    resources :topic_materials, :except => :show
+    resources :topic_exams, :only => [:index]
+    resources :topic_exam_reviews, :only => [:show, :index, :update]
+    resources :topic_exam_assignments, :only => [:index, :destroy]
+    resources :topic_learnings, :only => [:index, :destroy]
+    resources :student_importings, :only => [:index, :create]
+    resources :topic_testings, :only => [:new, :create, :show, :edit, :update, :index]
+    resources :monthly_online_trackings, :only => [:index]
+    resources :announcements
+
+    resources :blog_articles, :only => [:index, :edit, :update] do
+      member do
+        patch :accept_publishing, :reject_publishing
+      end
+    end
+
+    resources :period_applications, :only => [:index] do
+      member do
+        patch :accept, :reject
+      end
+    end
+
     shallow do 
-      resources :blog_articles, :only => [:index, :edit, :update] do
-        member do
-          patch :accept_publishing, :reject_publishing
-        end
-      end
-      resources :administrators
-      resources :articles
-      resources :forums, :except => [:show]
-      resources :forum_catalogs, :except => [:show]
-      resources :topic_materials, :except => :show
-      resources :period_applications, :only => [:index] do
-        member do
-          patch :accept, :reject
-        end
-      end
-      resources :monthly_online_trackings, :only => [:index]
       resources :students do
         resources :topic_learnings, :only => [:create]
         resources :unit_exams, :only => [:index]
       end
-      resources :topic_exams, :only => [:index]
-      resources :topic_exam_reviews, :only => [:show, :index, :update]
       resources :experts, :only => [:index] do
         resources :topic_exam_assignments, :only => [:new, :create]
       end
-      resources :topic_exam_assignments, :only => [:index, :destroy]
-      resources :topic_learnings, :only => [:index, :destroy]
-      resources :student_importings, :only => [:index, :create]
-      resources :topic_testings, :only => [:new, :create, :show, :edit, :update, :index]
-      resources :announcements
       resources :topics, :only => [:new, :create, :index, :show, :edit, :update, :destroy] do
         resources :chapters, :only => [:new, :create, :show, :edit, :update, :destroy] do
           resources :units, :only => [:new, :create, :show, :edit, :update, :destroy] do
@@ -121,8 +134,11 @@ PsychEdu::Application.routes.draw do
         :concerns => :complainable
     end
 
+    resources :answer_votes, :only => :create
+    resources :answers, :only => :show
+    resources :comments, :only => :show
+
     shallow do
-      resources :answer_votes, :only => :create
       resources :forums, :only => :show do
         resources :questions,
           :only => [:new, :create, :show, :edit, :update, :destroy],

@@ -7,6 +7,7 @@ module Admin
 
       if current_user.super_admin?
         @unassigned_topic_exam_count = TopicExam.unassigned.count
+        @unprocessed_complaint_count = Complaint.unprocessed.count
       end
     end
   end

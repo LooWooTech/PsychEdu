@@ -7,6 +7,7 @@ class TopicExamExporter
       :student_name => '姓名',
       :name => '专题',
       :score => '成绩',
+      :created_at => '注册日期',
       :passed_at => '结业日期'
     }
   end

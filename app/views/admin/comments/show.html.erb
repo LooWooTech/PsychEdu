@@ -1,0 +1,25 @@
+<div class='well'>
+  <div class='page-header clearfix'>
+    <h1>评论内容</h1>
+  </div>
+  <table class='table table-hover table-condensed table-detail'>
+    <tr>
+      <th>评论对象：</th>
+      <td><%= t("comment.commentable_type.#{@comment.commentable_type}") %> </td>
+    </tr>
+    <tr>
+      <th>评论人：</th>
+      <td><%= @comment.commenter_name %> </td>
+    </tr>
+    <tr>
+      <th>评论内容：</th>
+      <td><%= @comment.content %></td>
+    </tr>
+    <tr>
+      <th>评论时间：</th>
+      <td><%= l @comment.created_at, :format => :long %></td>
+    </tr>
+  </table>
+  <%= link_to '删除', [:admin, @comment], :method => :delete, :data => {:confirm => "确定删除这条评论吗？"}, :class => 'btn btn-default' %>
+  
+</div>

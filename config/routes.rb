@@ -87,6 +87,7 @@ PsychEdu::Application.routes.draw do
     resources :topic_testings, :only => [:new, :create, :show, :edit, :update, :index]
     resources :monthly_online_trackings, :only => [:index]
     resources :announcements
+    resources :comments, :only => [:index, :show, :destroy]
 
     resources :blog_articles, :only => [:index, :edit, :update] do
       member do

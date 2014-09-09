@@ -17,7 +17,7 @@ class TopicLearning < ActiveRecord::Base
 
   delegate :extended_topic_materials, :case_analyses, :name, :supervision,
     :guide_video_url, :review_video_url, :announcements, :testing,
-    :has_cover?, :cover_url,
+    :has_cover?, :cover_url, :cover_link,
     :to => :topic
   delegate :username, :name, :unit_code, :to => :student, :prefix => true
 

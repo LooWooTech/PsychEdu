@@ -4,7 +4,7 @@ class Setting < ActiveRecord::Base
   mount_uploader :forum_banner, ForumBannerUploader
 
   accepts_nested_attributes_for :banner_images, :update_only => true,
-    :allow_destroy => true, :reject_if => lambda{|attrs| attrs[:file].blank? }
+    :allow_destroy => true, :reject_if => lambda{|attrs| attrs[:id].blank? && attrs[:file].blank? }
 
   class << self
     def load

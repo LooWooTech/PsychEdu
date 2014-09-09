@@ -45,7 +45,7 @@ module Admin
     private
 
     def topic_params
-      params.require(:topic).permit(:name, :introduction, :guide_video_url, :review_video_url, :supervision, :cover)
+      params.require(:topic).permit(:name, :introduction, :guide_video_url, :review_video_url, :supervision, :cover, :cover_link)
     end
 
     def find_topic_and_authorize

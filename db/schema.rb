@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140905073754) do
+ActiveRecord::Schema.define(version: 20140909003029) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20140905073754) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "setting_id"
+    t.string   "link"
   end
 
   add_index "banner_images", ["setting_id"], name: "index_banner_images_on_setting_id", using: :btree
@@ -320,6 +321,7 @@ ActiveRecord::Schema.define(version: 20140905073754) do
     t.string   "forum_banner"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "forum_banner_link"
   end
 
   create_table "singular_choice_answers", force: true do |t|
@@ -455,6 +457,7 @@ ActiveRecord::Schema.define(version: 20140905073754) do
     t.string   "review_video_url"
     t.text     "supervision"
     t.string   "cover"
+    t.string   "cover_link"
   end
 
   create_table "unit_exams", force: true do |t|

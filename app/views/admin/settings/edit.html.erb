@@ -9,6 +9,10 @@
           <%= image_tag @setting.forum_banner.url, :style => 'width: 600px' if @setting.forum_banner.url.present? %>
           <%= f.file_field :forum_banner %>
         </div>
+        <%= f.label :forum_banner_link, '链接', :class => 'col-lg-2 control-label' %>
+        <div class='col-lg-10'>
+          <%= f.text_field :forum_banner_link, :class => 'form-control' %>
+        </div>
       </div>
       <div class='form-group'>
         <label class='col-lg-2 control-label'>滚动横幅</label>
@@ -22,6 +26,10 @@
               <% else %>
                 <%= image_tag banner_image.url, :style => 'width: 400px' %>
               <% end %>
+            </div>
+            <div>
+              <%= image_fields.label :link, '链接', :class => 'control-label' %>
+              <%= image_fields.text_field :link, :class => 'form-control' %>
             </div>
             <div>
               <label><%= image_fields.check_box :_destroy %>删除</label>

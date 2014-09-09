@@ -6,7 +6,7 @@
     <% Setting.load.banner_images.each do |banner| %>
     <div class="item">
       <div style="width: 100%; background: #e9eaee;">
-        <%= image_tag banner.url, :style => 'display:block; margin: 0 auto;' %>
+        <%= link_to_if banner.link.present?, image_tag(banner.url, :style => 'display:block; margin: 0 auto;'), banner.link %>
       </div>
     </div>
     <% end %>
@@ -62,9 +62,9 @@
             </div>
             <div class="panel-body">
               <% if current_topic_learning.has_cover? %>
-              <%= image_tag current_topic_learning.cover_url %>
+                <%= link_to_if current_topic_learning.cover_link.present?, image_tag(current_topic_learning.cover_url), current_topic_learning.cover_link %>
               <% else %>
-              <img src="<%= image_path 'chapter_learning_example.jpg' %>" class="grid-margin-h" width="100%">
+                <img src="<%= image_path 'chapter_learning_example.jpg' %>" class="grid-margin-h" width="100%">
               <% end %>
               <p>
                 <%= current_topic_learning.topic.introduction %>

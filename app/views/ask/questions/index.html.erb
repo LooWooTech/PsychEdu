@@ -1,5 +1,5 @@
 <div class="banner">
-  <%= image_tag Setting.load.forum_banner.url %>
+  <%= link_to_if @setting.forum_banner_link.present?, image_tag(@setting.forum_banner.url), @setting.forum_banner_link %>
 </div>
 
 <div class="info">

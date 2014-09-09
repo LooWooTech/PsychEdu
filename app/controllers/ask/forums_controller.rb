@@ -6,6 +6,7 @@ module Ask
       @top = @forum.questions.top
       @order = params[:order] || 'vote_score'
       @questions = @forum.questions.nontop.order("#@order DESC").page(params[:page]).per(10)
+      @setting =  Setting.load
       render 'ask/questions/index'
     end
   end

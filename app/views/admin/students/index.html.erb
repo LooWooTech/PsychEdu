@@ -28,6 +28,14 @@
     <%= f.select :province_eq, Student::PROVINCES, :include_blank => '全部' %>
   </div>
   <div class='col-lg-4'>
+    <%= f.label :created_at_gt, '注册晚于' %>
+    <%= f.date_field :created_at_gt  %>
+  </div>
+  <div class='col-lg-4'>
+    <%= f.label :created_at_lt, '注册早于' %>
+    <%= f.date_field :created_at_lt  %>
+  </div>
+  <div class='col-lg-4'>
     <%= f.label :topic_learnings_topic_id_eq, '在学专题' %>
     <%= f.select :topic_learnings_topic_id_eq, options_from_collection_for_select(Topic.all, :id, :name, @search.topic_learnings_topic_id_eq), :include_blank => '全部' %>
   </div>

@@ -5,16 +5,20 @@ module Admin
       @chapter = chapter
     end
 
-    def create?
+    def new?
       @user.super_admin?
     end
 
+    def create?
+      new?
+    end
+
     def edit?
-      create?
+      new?
     end
 
     def destroy?
-      create?
+      new?
     end
 
     def show?

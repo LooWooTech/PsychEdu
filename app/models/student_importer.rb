@@ -65,11 +65,6 @@ class StudentImporter
     rescue ArgumentError
       @data = SmarterCSV.process @file, :file_encoding => 'GBK'
     end
-    validate_columns
-  end
-
-  def validate_columns
-    COLUMNS.each{|key, value| @errors << "“#{value}”列缺失" if @data[0].keys.exclude? value }
   end
 
   class Row
@@ -125,7 +120,11 @@ class StudentImporter
     end
 
     def province
-      Student::PROVINCES.find{|name| @row[:所在省].include? name }
+      if @row[:所在省].present?
+        Student::PROVINCES.find{|name| @row[:所在省].include? name }
+      else
+        ''
+      end
     end
 
   end

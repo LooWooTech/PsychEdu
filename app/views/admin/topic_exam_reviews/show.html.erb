@@ -1,6 +1,6 @@
 <div class='well'>
   <div class='page-header clearfix'>
-    <h1><%= @topic_exam.student_name %>的<%= @topic_exam.name %>专题考核</h1>
+    <h1><%= @topic_exam.student_name %> <%= @topic_exam.name %> 专题考核</h1>
   </div>
   <table class='table table-hover table-condensed table-detail'>
     <tr>
@@ -28,7 +28,7 @@
       <th>评分</th>
       <td>
         <%= form_for @topic_exam, :url => admin_topic_exam_review_path(@topic_exam),
-          :method => :patch, :html => {:class => 'form-horizontal'} do |f| %>
+          :method => :patch, :html => {:class => 'form-horizontal', :id => 'review-topic-exam'} do |f| %>
           <ul>
             <% @topic_exam.scores.each do |score| %>
               <%= f.fields_for :scores, score do |score_field| %>
@@ -36,8 +36,8 @@
                   <div> <%= score.rule_name %> </div>
                   <div> <%= score.rule_description %> </div>
                   <div>
-                    <%= score_field.label :score, '得分' %>
-                    <%= score_field.number_field :score %>
+                    <%= score_field.label :score, "评分(#{score.total})" %>
+                    <%= score_field.number_field :score, :max => score.total, :class => 'score' %>
                   </div>
                   <div>
                     <%= score_field.label :comment, '评语' %>

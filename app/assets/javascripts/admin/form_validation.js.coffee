@@ -154,3 +154,11 @@ $ ->
         'required': '请输入用户名'
       'administrator[account_attributes][password_confirmation]':
         'equalTo': '两次密码输入不一致'
+
+  if $('#review-topic-exam').size() > 0
+    $('#review-topic-exam').validate()
+
+    $('#review-topic-exam .score').each (i, e) ->
+      $(e).rules 'add',
+        messages:
+          max: "不能超过 {0} 分"

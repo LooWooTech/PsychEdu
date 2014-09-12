@@ -1,5 +1,5 @@
 <div class='page-header clearfix'>
-  <h1>专题考核审核</h1>
+  <h1>专题考核评分</h1>
 </div>
 <%= search_form_for @search, :url => admin_topic_exam_reviews_path do |f| %>
   <div class='col-lg-4'>
@@ -36,7 +36,7 @@
       <td><%= link_to exam.student_name, [:admin, exam.student] %></td>
       <td><%= exam.student_unit_code %></td>
       <td><%= exam.name %></td>
-      <td><%= link_to exam.reviewed? ? '查看' : '审核', admin_topic_exam_review_path(exam) %></td>
+      <td><%= link_to exam.reviewed? ? '查看' : '评分', admin_topic_exam_review_path(exam) %></td>
     </tr>
   <% end%>
 </table>

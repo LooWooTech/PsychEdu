@@ -4,8 +4,14 @@ class TopicExamScore < ActiveRecord::Base
 
   delegate :name, :description, :to => :rule, :prefix => true
 
+  validates :score, :numericality => {:less_than_or_equal_to => :total}, :on => :update
+
   def reviewed?
     comment.present?
+  end
+
+  def total
+    rule.score || 0
   end
 
 end

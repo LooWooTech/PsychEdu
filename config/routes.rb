@@ -44,7 +44,7 @@ PsychEdu::Application.routes.draw do
         resources :comments, :only => [:create, :destroy, :index]
       end
 
-      resources :topic_exams, :only => [:show] do
+      resources :topic_exams, :only => [:index, :show] do
         member do
           patch :submit
         end

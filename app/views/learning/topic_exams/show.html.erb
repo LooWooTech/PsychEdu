@@ -101,29 +101,7 @@
       <% end %>
 
       <% if current_topic_learning.exam_history.any? %>
-      <div class="panel panel-default">
-        <div class="panel-heading">考核历史</div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>时间</th>
-              <th>得分</th>
-              <th>状态</th>
-              <th>操作</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% current_topic_learning.exam_history.each do |exam| %>
-            <tr>
-              <td><%= l exam.created_at, :format => :long %></td>
-              <td><%= exam.score %></td>
-              <td><%= exam_state exam %></td>
-              <td><%= link_to '查看', [:learning, exam] %></td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+        <%= render :partial => 'learning/topic_exams/topic_exams', :locals => {:topic_exams => current_topic_learning.exam_history} %>
       <% end %>
 
     </div>

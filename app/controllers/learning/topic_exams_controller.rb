@@ -1,7 +1,11 @@
 module Learning
   class TopicExamsController < LearningController
     belongs_to_module :learning
-    before_action :find_topic_exam
+    before_action :find_topic_exam, :only => [:show, :submit]
+
+    def index
+      @topic_exams = current_topic_learning.exam_history
+    end
 
     def show; end
 

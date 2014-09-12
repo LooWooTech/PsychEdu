@@ -1,0 +1,22 @@
+<% content_for(:title){ "专题考核历史" } %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><%= link_to '首页', learning_root_path %></li>
+        <li class="active">专题考核历史</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="page-header">
+    <h3>专题考核历史</h3>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <%= render :partial => 'learning/topic_exams/topic_exams', :locals => {:topic_exams => @topic_exams} %>
+    </div>
+  </div>
+</div>

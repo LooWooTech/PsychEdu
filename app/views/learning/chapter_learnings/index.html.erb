@@ -121,6 +121,7 @@
                 <% else %>
                   <%= link_to '查看', [:learning, current_topic_learning.unreviewed_exam], :class => 'btn btn-sm btn-primary' %>
                 <% end %>
+                  <%= link_to '考核历史', learning_topic_exams_path , :class => 'btn btn-sm btn-primary' if current_topic_learning.exam_history.any? %>
             </div>
           </div>
         </div>

@@ -18,10 +18,5 @@ module Learning
       end
     end
 
-    def guide
-      @video_url = current_topic_learning.guide_video_url
-      @title = "专题导学：#{current_topic_learning.name}"
-      render 'learning/shared/video_watching'
-    end
   end
 end

@@ -8,7 +8,7 @@ module ChoiceQuestion
 
     validates :content, :uniqueness => {:scope => :unit_id}
 
-    accepts_nested_attributes_for :choices, :update_only => true
+    accepts_nested_attributes_for :choices, :update_only => true, :allow_destroy => true, :reject_if => lambda{|attrs| attrs[:content].blank? }
   end
 
   def published?

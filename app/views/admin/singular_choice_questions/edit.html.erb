@@ -8,20 +8,25 @@
           <%= f.text_area :content, :class => 'form-control' %>
         </div>
       </div>
-      <% @question.choices.each_with_index do |choice, index| %>
-        <%= f.fields_for :choices, choice do |choice_fields| %>
-          <div class='form-group'>
-            <%= choice_fields.label :content, "选项#{index + 1}", :class => 'col-lg-2 control-label' %>
-            <div class='col-lg-10'>
-              <%= choice_fields.text_field :content, :class => 'form-control' %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
+      <div class='form-group'>
+        <%= f.label '选项', :class => 'col-lg-2 control-label' %>
+        <ul class='choice-fields list-group col-lg-10'>
+          <%= f.fields_for :choices do |choice_fields| %>
+            <li class='list-group-item'>
+              <div>
+                <%= choice_fields.text_field :content, :class => 'form-control' %>
+                <label> <%= choice_fields.check_box :_destroy %> 删除 </label>
+                <label> <%= choice_fields.check_box :correct %> 正确答案 </label>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
       <div class='form-group'>
         <div class='col-lg-10 col-lg-offset-2'>
+          <a href='javascript:;' class='add-choice btn btn-default' >添加选项</a>
+          <%= link_to '返回', [:admin, @question.unit], :class => 'btn btn-default' %>
           <%= f.submit '保存', :class => 'btn btn-primary' %>
-          <%= link_to '返回', :back, :class => 'btn btn-default' %>
         </div>
       </div>
     </fieldset>

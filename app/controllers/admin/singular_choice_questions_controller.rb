@@ -31,7 +31,7 @@ module Admin
     end
 
     def question_params
-      params.require(:singular_choice_question).permit(:content, :choices_attributes => [:id, :content])
+      params.require(:singular_choice_question).permit(:content, :choices_attributes => [:id, :content, :_destroy, :correct])
     end
   end
 end

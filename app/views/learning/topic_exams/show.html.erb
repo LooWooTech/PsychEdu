@@ -11,101 +11,90 @@
 </div>
 
 <div class="container">
-  <div class="page-header">
-    <h3>专题考核</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading">考核内容</div>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>题目</th>
+          <td><%= sanitize @topic_exam.title %></td>
+        </tr>
+        <tr>
+          <th>内容</th>
+          <td><%= raw @topic_exam.content %></td>
+        </tr>
+        <tr>
+          <th>要求</th>
+          <td><%= raw @topic_exam.requirements %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <div class="row">
-    <div class="col-md-8">
-      
-      <div class="panel panel-default">
-        <div class="panel-heading">考核题目</div>
-        <table class="table">
-          <tbody>
-            <tr>
-              <th>题目</th>
-              <td><%= sanitize @topic_exam.title %></td>
-            </tr>
-            <tr>
-              <th>内容</th>
-              <td><%= raw @topic_exam.content %></td>
-            </tr>
-            <tr>
-              <th>要求</th>
-              <td><%= raw @topic_exam.requirements %></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
 
-      <% if @topic_exam.materials.any? %>
-      <div class="panel panel-default">
-        <div class="panel-heading">已上传材料</div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>文件名</th>
-              <th>备注</th>
-              <th>上传时间</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @topic_exam.materials.each do |material| %>
-            <tr>
-              <td><%= link_to material.filename, material.url %></td>
-              <td><%= truncate material.note %></td>
-              <td><%= l material.created_at, :format => :long %></td>
-              <td><%= link_to '删除', [:learning, material], :method => :delete, :data => {:confirm => '确实要删除吗？'} unless @topic_exam.submitted? %></td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+  <% if @topic_exam.materials.any? %>
+  <div class="panel panel-default">
+    <div class="panel-heading">已上传材料</div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>文件名</th>
+          <th>备注</th>
+          <th>上传时间</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @topic_exam.materials.each do |material| %>
+        <tr>
+          <td><%= link_to material.filename, material.url %></td>
+          <td><%= truncate material.note %></td>
+          <td><%= l material.created_at, :format => :long %></td>
+          <td><%= link_to '删除', [:learning, material], :method => :delete, :data => {:confirm => '确实要删除吗？'} unless @topic_exam.submitted? %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <% end %>
+
+  <% if !@topic_exam.submitted? %>
+  <div class="panel panel-default">
+    <div class="panel-heading">学员上传材料</div>
+    <div class="panel-body">
+      <%= bootstrap_form_for [:learning, @topic_exam, @topic_exam.materials.build], :multipart => true, :html => {:id => 'topic-exam-material-upload'} do |f| %>
+        <%= f.file_field :file, :label => '上传文件' %>
+        <%= f.text_area :note, :label => '备注' %>
+        <%= f.submit '上传' %>
       <% end %>
-
-      <% if !@topic_exam.submitted? %>
-      <div class="panel panel-default">
-        <div class="panel-heading">学员上传材料</div>
-        <div class="panel-body">
-          <%= bootstrap_form_for [:learning, @topic_exam, @topic_exam.materials.build], :multipart => true, :html => {:id => 'topic-exam-material-upload'} do |f| %>
-            <%= f.file_field :file, :label => '上传文件' %>
-            <%= f.text_area :note, :label => '备注' %>
-            <%= f.submit '上传' %>
-          <% end %>
-          <hr>
-          <%= form_tag submit_learning_topic_exam_path(@topic_exam), :method => :patch, :id => 'topic-exam-submit' do %>
-            <%= submit_tag '交卷', :class => 'btn btn-primary btn-block' %>
-          <% end %>
-        </div>
-      </div>
+      <hr>
+      <%= form_tag submit_learning_topic_exam_path(@topic_exam), :method => :patch, :id => 'topic-exam-submit' do %>
+        <%= submit_tag '交卷', :class => 'btn btn-primary btn-block' %>
       <% end %>
-
-      <% if @topic_exam.reviewed? %>
-      <div class="panel panel-default">
-        <div class="panel-heading">考核点评</div>
-        <div class="panel-body">
-          <ol>
-            <% @topic_exam.scores.each do |score| %>
-              <li><%= score.comment %></li>
-            <% end %>
-          </ol>
-        </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">考试分数</div>
-        <div class="panel-body">
-          <%= @topic_exam.score %>
-        </div>
-      </div>
-      <% end %>
-
-      <% if current_topic_learning.exam_history.any? %>
-        <%= render :partial => 'learning/topic_exams/topic_exams', :locals => {:topic_exams => current_topic_learning.exam_history} %>
-      <% end %>
-
     </div>
   </div>
+  <% end %>
+
+  <% if @topic_exam.reviewed? %>
+  <div class="panel panel-default">
+    <div class="panel-heading">考核点评</div>
+    <div class="panel-body">
+      <ol>
+        <% @topic_exam.scores.each do |score| %>
+          <li><%= score.comment %></li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">考试分数</div>
+    <div class="panel-body">
+      <%= @topic_exam.score %>
+    </div>
+  </div>
+  <% end %>
+
+  <% if current_topic_learning.exam_history.any? %>
+    <%= render :partial => 'learning/topic_exams/topic_exams', :locals => {:topic_exams => current_topic_learning.exam_history} %>
+  <% end %>
 </div>
-
-

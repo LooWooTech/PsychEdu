@@ -1,7 +1,7 @@
 <% content_for(:title){ "#{@video_watching.unit_name}：#{@video_watching.name}"} %>
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-10">
       <div class="well">
         <% if @video_watching.unit_learning.only_child? %>
           <h1><%= @video_watching.chapter_name %></h1>
@@ -55,7 +55,7 @@
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-2">
 
       <div class="panel panel-default">
         <div class="panel-body">
@@ -112,7 +112,7 @@
     params.allowScriptAccess="sameDomain";
     params.wmode="opaque";
     
-    swfobject.embedSWF("/flashplayer/player.swf", "video", "630px", "480px", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
+    swfobject.embedSWF("/flashplayer/player.swf", "video", "850px", "480px", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
 
     function swf_save_data(time, xml) {
       $.post('<%= learning_video_watching_path @video_watching %>',{

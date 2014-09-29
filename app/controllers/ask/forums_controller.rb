@@ -7,7 +7,7 @@ module Ask
       @order = params[:order] || 'vote_score'
       @questions = @forum.questions.nontop.order("#@order DESC").page(params[:page]).per(10)
       @setting =  Setting.load
-      render 'ask/questions/index'
+      render 'ask/home/index'
     end
   end
 end

@@ -7,10 +7,7 @@ module Ask
     before_action :find_forum, :only => [:new, :create, :index]
   
     def index
-      @top = Question.top
-      @order = params[:order] || 'vote_score'
-      @questions = Question.nontop.order("#@order DESC").page(params[:page]).per(10)
-      @setting =  Setting.load
+      @questions = current_user.questions.page(params[:page]).per(10)
     end
   
     def new

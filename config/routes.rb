@@ -138,6 +138,7 @@ PsychEdu::Application.routes.draw do
     resources :answer_votes, :only => :create
     resources :answers, :only => :show
     resources :comments, :only => :show
+    resources :questions, :only => :index
 
     shallow do
       resources :forums, :only => :show do
@@ -155,7 +156,7 @@ PsychEdu::Application.routes.draw do
         end
       end
     end
-    root 'questions#index'
+    root 'home#index'
   end
 
 end

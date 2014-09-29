@@ -30,16 +30,6 @@
           </div>
           <% end %>
 
-          <div class="well well-board">
-            <form role="search">
-              <div class="input-group" style="margin-bottom: 10px;">
-                  <input type="text" class="form-control" placeholder="找问题">
-                  <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default" style="height: 34px;">搜索</button>
-                  </span>
-              </div>
-            </form>
-          </div>
 
           <div class="panel-group panel-accordion" id="accordion">
             <% ForumCatalog.find_each do |forum_catalog| %>
@@ -90,7 +80,7 @@
             <div class="panel-heading">
               我的问题
               <div class="actions">
-                <a href="#">更多</a>
+                <%= link_to '更多', ask_questions_path %>
               </div>
             </div>
             <ul class="list-group">

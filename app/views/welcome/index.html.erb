@@ -1,164 +1,127 @@
-<ul class='navigator'>
-  <li><a href='/'>首页</a></li>
-  <% PlatformIntroduction.find_each do |introduction| %>
-    <li><%= link_to introduction.title, article_path(introduction) %>
-  <% end %>
-  <li><%= link_to '登录', sign_in_path %></li>
-</ul>
+<% @body_id = 'public' %>
+<div id='left'>
+  <div class='news'>
+    <div class='header'>
+      <h1>最新资讯</h1>
+      <%= link_to raw('更多&raquo;'), articles_path(:type => 'News'), :class => 'more' %>
+    </div>
+    <ul>
+      <% @news.each do |news| %>
+      <li>
+        <%= link_to news.title, article_path(news) %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
 
-<div class='news'>
-  <h1>最新资讯</h1>
-  <ul class='top'>
-  <% News.top.each do |article| %>
-    <li>
-      <%= image_tag article.cover_url if article.contains_image? %>
-      <%= link_to article.title, article_path(article) %>
-      <div class='summary'>
-      <%= truncate(strip_tags(article.content), :length => 100) %>
-      </div>
-    </li>
-  <% end %>
-  </ul>
-  <ul class='non-top'>
-    <% @news.each do |news| %>
-    <li>
-      <%= link_to news.title, article_path(news) %>
-      <span class='date'><%= l news.created_at, :format => :date_only %></span>
-    </li>
-    <% end %>
-  </ul>
-  <%= link_to '更多...', articles_path(:type => 'News') %>
+  <div class='students'>
+    <div class='header'>
+      <h1>学员风采</h1>
+      <%= link_to raw('更多&raquo;'), blog_articles_path, :class => 'more' %>
+    </div>
+    <ul>
+      <% @blog_articles.each do |article| %>
+      <li>
+        <%= link_to article.title, article %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+
+
+  <div class='faq'>
+    <div class='header'>
+      <h1>常见问题</h1>
+      <%= link_to raw('更多&raquo;'), articles_path(:type => 'FAQ'), :class => 'more' %>
+    </div>
+    <ul>
+      <% @faqs.each do |faq| %>
+      <li>
+        <%= link_to faq.title, article_path(faq) %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
 
-<div class='articles'>
-  <h1>课程安排</h1>
-  <ul class='top'>
-  <% CourseArrangement.top.each do |article| %>
-    <li>
-      <%= image_tag article.cover_url if article.contains_image? %>
-      <%= link_to article.title, article_path(article) %>
-      <div class='summary'>
-      <%= truncate(strip_tags(article.content), :length => 100) %>
-      </div>
-    </li>
-  <% end %>
-  </ul>
-  <ul>
-    <% @course_arrangements.each do |arrangement| %>
-    <li>
-      <%= link_to arrangement.title, article_path(arrangement) %>
-      <span class='date'><%= l arrangement.created_at, :format => :date_only %></span>
-    </li>
-    <% end %>
-  </ul>
-  <%= link_to '更多...', articles_path(:type => 'CourseArrangement') %>
+<div id='center'>
+  <div class='course-introduction'>
+    <div class='header'>
+      <h1>课程介绍</h1>
+      <%= link_to raw('更多&raquo;'), articles_path(:type => 'CourseIntroduction'), :class => 'more' %>
+    </div>
+    <ul>
+      <% @course_introductions.each do |introduction| %>
+      <li>
+        <%= image_tag introduction.cover_url, :class => 'cover' if introduction.contains_image? %>
+        <div class='content <%= 'no-cover' if !introduction.contains_image? %>'>
+          <h1><%= link_to introduction.title, article_path(introduction) %></h1>
+          <%= truncate strip_tags(introduction.content), :length => 80 %>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  
+  <div class='topic-introduction'>
+    <div class='header'>
+      <h1>专题介绍</h1>
+      <%= link_to raw('更多&raquo;'), articles_path(:type => 'TopicIntroduction'), :class => 'more' %>
+    </div>
+    <ul>
+      <% @topic_introductions.each do |introduction| %>
+      <li>
+        <%= image_tag introduction.cover_url, :class => 'cover' if introduction.contains_image? %>
+        <div class='content <%= 'no-cover' if !introduction.contains_image? %>'>
+          <h1><%= link_to introduction.title, article_path(introduction) %></h1>
+          <%= truncate strip_tags(introduction.content), :length => 80 %>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
 
-<div class='articles'>
-  <h1>课程介绍</h1>
-  <ul class='top'>
-  <% CourseIntroduction.top.each do |article| %>
-    <li>
-      <%= image_tag article.cover_url if article.contains_image? %>
-      <%= link_to article.title, article_path(article) %>
-      <div class='summary'>
-      <%= truncate(strip_tags(article.content), :length => 100) %>
-      </div>
-    </li>
-  <% end %>
-  </ul>
-  <ul>
-    <% @course_introductions.each do |introduction| %>
-    <li>
-      <%= link_to introduction.title, article_path(introduction) %>
-      <span class='date'><%= l introduction.created_at, :format => :date_only %></span>
-    </li>
-    <% end %>
-  </ul>
-  <%= link_to '更多...', articles_path(:type => 'CourseIntroduction') %>
-</div>
+<div id='right'>
+  <div class='course-arrangement'>
+    <div class='header'>
+      <h1>课程安排</h1>
+      <%= link_to raw('更多&raquo;'), articles_path(:type => 'CourseArrangement'), :class => 'more' %>
+    </div>
+    <ul>
+      <% @course_arrangements.each do |arrangement| %>
+      <li>
+        <%= link_to arrangement.title, article_path(arrangement) %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
 
-<div class='articles'>
-  <h1>专题介绍</h1>
-  <ul class='top'>
-  <% TopicIntroduction.top.each do |article| %>
-    <li>
-      <%= image_tag article.cover_url if article.contains_image? %>
-      <%= link_to article.title, article_path(article) %>
-      <div class='summary'>
-      <%= truncate(strip_tags(article.content), :length => 100) %>
-      </div>
-    </li>
-  <% end %>
-  </ul>
-  <ul>
-    <% @topic_introductions.each do |introduction| %>
-    <li>
-      <%= link_to introduction.title, article_path(introduction) %>
-      <span class='date'><%= l introduction.created_at, :format => :date_only %></span>
-    </li>
-    <% end %>
-  </ul>
-  <%= link_to '更多...', articles_path(:type => 'TopicIntroduction') %>
-</div>
+  <div class='online-trial'>
+    <div class='header'>
+      <h1>在线试听</h1>
+      <%= link_to raw('更多&raquo;'), articles_path(:type => 'TrialVideo'), :class => 'more' %>
+    </div>
+    <ul>
+      <% @trial_videos.each do |trial_video| %>
+      <li>
+        <%= link_to trial_video.title, article_path(trial_video) %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
 
-<div class='articles'>
-  <h1>案例分享</h1>
-  <ul class='top'>
-  <% CaseSharing.top.each do |article| %>
-    <li>
-      <%= image_tag article.cover_url if article.contains_image? %>
-      <%= link_to article.title, article_path(article) %>
-      <div class='summary'>
-      <%= truncate(strip_tags(article.content), :length => 100) %>
-      </div>
-    </li>
-  <% end %>
-  </ul>
-  <ul>
-    <% @case_sharings.each do |case_sharing| %>
-    <li>
-      <%= link_to case_sharing.title, article_path(case_sharing) %>
-      <span class='date'><%= l case_sharing.created_at, :format => :date_only %></span>
-    </li>
-    <% end %>
-  </ul>
-  <%= link_to '更多...', articles_path(:type => 'CaseSharing') %>
-</div>
-
-<div class='articles'>
-  <h1>学员风采</h1>
-  <ul>
-    <% @blog_articles.each do |article| %>
-    <li>
-      <%= link_to article.title, article %>
-      <span class='date'><%= l article.created_at, :format => :date_only %></span>
-    </li>
-    <% end %>
-  </ul>
-  <%= link_to '更多...', blog_articles_path %>
-</div>
-
-<div class='articles'>
-  <h1>常见问题</h1>
-  <ul class='top'>
-  <% FAQ.top.each do |article| %>
-    <li>
-      <%= image_tag article.cover_url if article.contains_image? %>
-      <%= link_to article.title, article_path(article) %>
-      <div class='summary'>
-      <%= truncate(strip_tags(article.content), :length => 100) %>
-      </div>
-    </li>
-  <% end %>
-  </ul>
-  <ul>
-    <% @faqs.each do |faq| %>
-    <li>
-      <%= link_to faq.title, article_path(faq) %>
-      <span class='date'><%= l faq.created_at, :format => :date_only %></span>
-    </li>
-    <% end %>
-  </ul>
-  <%= link_to '更多...', articles_path(:type => 'FAQ') %>
+  <div class='case-sharing'>
+    <div class='header'>
+      <h1>案例分享</h1>
+      <%= link_to raw('更多&raquo;'), articles_path(:type => 'CaseSharing'), :class => 'more' %>
+    </div>
+    <ul>
+      <% @case_sharings.each do |case_sharing| %>
+      <li>
+        <%= link_to case_sharing.title, article_path(case_sharing) %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
 </div>

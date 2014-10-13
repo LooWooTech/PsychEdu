@@ -1,7 +1,0 @@
-<% content_for(:title){ @blog_article.title } %>
-<h1><%= @blog_article.title %></h1>
-<div>
-  <span>作者: <%= @blog_article.author_name %></span>
-  <span>发布时间: <%= l @blog_article.created_at, :format => :long %></span>
-</div>
-<%= raw @blog_article.content %>

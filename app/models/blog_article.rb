@@ -17,6 +17,14 @@ class BlogArticle < ActiveRecord::Base
 
   delegate :name, :to => :author, :prefix => true
 
+  def contains_image?
+    !!cover_url
+  end
+
+  def cover_url
+    content[/\<img .* src=['"]([^"']+)['"].+?\>/, 1]
+  end
+
   def publishing_unrequested?
     publish_state == PUBLISH_STATE[:unrequested]
   end

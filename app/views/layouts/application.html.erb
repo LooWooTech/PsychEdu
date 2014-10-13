@@ -5,11 +5,27 @@
     <%= stylesheet_link_tag "application", media: "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+    <%= yield :javascript %>
   </head>
   <body id='<%= @body_id %>'>
-    <%= yield %>
+    <div id='header'>
+      <%= image_tag 'head.png', :alt => '建德教育' %>
+    </div>
+
+    <div id='navigator'>
+      <ul>
+        <li><a href='/'>首页</a></li>
+        <% PlatformIntroduction.find_each do |introduction| %>
+          <li><%= link_to introduction.title, article_path(introduction) %>
+        <% end %>
+        <li><%= link_to '登录', sign_in_path %></li>
+      </ul>
+    </div>
+
+    <div id='main'><%= yield %></div>
+
     <div id='footer'>
-      <span id='copyright'>&copy; 建德教育</div>
+      <div id='copyright'>&copy; 建德教育</div>
     </div>
   </body>
 </html>

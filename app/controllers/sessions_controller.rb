@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  layout false
+
   def create
     if @account = Account.authenticate(params[:username], params[:password])
       sign_in @account

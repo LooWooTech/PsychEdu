@@ -33,4 +33,4 @@ class ArticlePolicy
   end
 end
 
-NewsPolicy = CourseArrangementPolicy = CourseIntroductionPolicy = TopicIntrodocutionPolicy = CaseSharingPolicy = FAQPolicy = PlatformIntroductionPolicy = TrialVideoPolicy = ArticlePolicy
+NewsPolicy = CourseArrangementPolicy = CourseIntroductionPolicy = TopicIntroductionPolicy = CaseSharingPolicy = FAQPolicy = PlatformIntroductionPolicy = TrialVideoPolicy = ArticlePolicy

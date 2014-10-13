@@ -1,7 +1,53 @@
+<% @body_id = 'public' %>
 <% content_for(:title){ @article.title } %>
-<h1><%= @article.title %></h1>
-<div>
-  <span>编辑: <%= @article.editor_name %></span>
-  <span>发布时间: <%= l @article.created_at, :format => :long %></span>
+
+<% content_for(:javascript) do %>
+<script type='text/javascript'>
+  $(function(){
+    $('#article .videos li').each(function(index, li) {
+      var video = $(li).find('video');
+      var flashvers = {};
+      flashvers.mp4_url = $(video).data('url');
+      flashvers.dianping = "false";
+      flashvers.flash_xml = '';
+      
+      var params = {};
+      params.menu="false";
+      params.allowFullScreen="true";
+      params.allowScriptAccess="sameDomain";
+      params.wmode="opaque";
+      params.play='false';
+      
+      console.log($(video).data('url'));
+      console.log($(video).attr('id'));
+      swfobject.embedSWF("/flashplayer/player.swf", $(video).attr('id'), "100%", "480px", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
+    });
+  });
+</script>
+<% end %>
+
+<div id='bread-crumbs'>
+  <a href='/'>首页</a> &raquo; 
+  <% if @article.is_a? BlogArticle %>
+    <%= link_to '文章列表', blog_articles_path %>
+  <% else %>
+    <%= link_to '文章列表', articles_path(:type => @article.type) %>
+  <% end %>
+  &raquo; <%= link_to @article.title, article_path(@article) %>
 </div>
-<%= raw @article.content %>
+
+<div id='article'>
+  <h1><%= @article.title %></h1>
+  <div class='meta'>
+    <span>编辑: <%= @article.author_name %></span>
+    <span>发布时间: <%= l @article.created_at, :format => :long %></span>
+  </div>
+  <% if @article.videos.any? %>
+    <ul class='videos'>
+      <% @article.videos.each do |video| %>
+        <li><video id='video-<%= video.id %>' data-url='<%= video.url %>'></video></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class='content'> <%= raw @article.content %> </div>
+</div>

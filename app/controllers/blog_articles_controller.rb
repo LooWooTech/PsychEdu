@@ -1,9 +1,11 @@
 class BlogArticlesController < ApplicationController
   def index
-    @blog_articles = BlogArticle.published.page(params[:page]).per(10)
+    @articles = BlogArticle.published.page(params[:page]).per(10)
+    render 'articles/index'
   end
 
   def show
-    @blog_article = BlogArticle.published.find params[:id]
+    @article = BlogArticle.published.find params[:id]
+    render 'articles/show'
   end
 end

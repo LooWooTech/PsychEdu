@@ -42,7 +42,7 @@
     <span>编辑: <%= @article.author_name %></span>
     <span>发布时间: <%= l @article.created_at, :format => :long %></span>
   </div>
-  <% if @article.videos.any? %>
+  <% if !@article.is_a?(BlogArticle) && @article.videos.any? %>
     <ul class='videos'>
       <% @article.videos.each do |video| %>
         <li><video id='video-<%= video.id %>' data-url='<%= video.url %>'></video></li>

@@ -18,8 +18,6 @@
       params.wmode="opaque";
       params.play='false';
       
-      console.log($(video).data('url'));
-      console.log($(video).attr('id'));
       swfobject.embedSWF("/flashplayer/player.swf", $(video).attr('id'), "100%", "480px", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
     });
   });

@@ -18,7 +18,7 @@
         <% PlatformIntroduction.find_each do |introduction| %>
           <li><%= link_to introduction.title, article_path(introduction) %>
         <% end %>
-        <li><%= link_to '登录', sign_in_path %></li>
+        <li><%= link_to '登录', sign_in_path, :target => '_blank' %></li>
       </ul>
     </div>
 

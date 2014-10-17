@@ -3,11 +3,18 @@ module Admin
     def index
       authorize :topic_exam, :review?
       if current_user.super_admin?
-        @search = TopicExam.unreviewed.search params[:q]
+        @search = TopicExam.search params[:q]
       else
-        @search = current_user.assigned_topic_exams.unreviewed.search params[:q]
+        @search = current_user.assigned_topic_exams.search params[:q]
       end
+
       @topic_exams = @search.result.page(params[:page]).per(10)
+
+      if params[:review_state] == 'unreviewed'
+        @topic_exams = @topic_exams.unreviewed
+      elsif params[:review_state] == 'reviewed'
+        @topic_exams = @topic_exams.reviewed
+      end
     end
 
     def show

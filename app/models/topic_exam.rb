@@ -10,7 +10,7 @@ class TopicExam < ActiveRecord::Base
   scope :unsubmitted, lambda{ where :submitted => false }
   scope :submitted, lambda{ where :submitted => true }
   scope :unreviewed, lambda{ submitted.joins(:scores).where('topic_exam_scores.score IS NULL').distinct }
-  scope :reviewed, lambda{ submitted.joins(:scores).where('topic_exam_scores.score IS NOT NULL').distinct }
+  scope :reviewed, lambda{ submitted.where.not :id => unreviewed.pluck(:id) }
   scope :unassigned, lambda{ where(:reviewer => nil) }
   scope :assigned, lambda{ where.not(:reviewer => nil) }
   scope :unassigned_for, lambda{|expert| unassigned.joins(:topic_learning).joins('INNER JOIN administrators_topics AS a_t ON a_t.topic_id = topic_learnings.topic_id').where('a_t.administrator_id' => expert.id) }

@@ -19,6 +19,10 @@
     <%= f.select :topic_learning_topic_id_eq, options_from_collection_for_select(Topic.all, :id, :name, @search.topic_learning_topic_id_eq), :include_blank => '全部专题' %>
   </div>
   <div class='col-lg-4'>
+    <%= label_tag :review_state, '状态' %>
+    <%= select_tag :review_state, options_for_select({'已审核' => 'reviewed', '未审核' => 'unreviewed'}, params[:review_state]), :include_blank => true %>
+  </div>
+  <div class='col-lg-4'>
     <button type='submit'>搜索</button>
   </div>
 <% end %>
@@ -33,7 +37,7 @@
   </thead>
   <% @topic_exams.each do |exam| %>
     <tr>
-      <td><%= link_to exam.student_name, [:admin, exam.student] %></td>
+      <td><%= link_to_if policy(exam.student).show?, exam.student_name, [:admin, exam.student] %></td>
       <td><%= exam.student_unit_code %></td>
       <td><%= exam.name %></td>
       <td><%= link_to exam.reviewed? ? '查看' : '评分', admin_topic_exam_review_path(exam) %></td>

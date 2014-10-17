@@ -95,30 +95,30 @@
 
 <% content_for :head do %>
 <script type='text/javascript'>
-    var flashvers = {};
-    flashvers.mp4_url = "<%= @video_watching.url %>";
-    flashvers.dianping = "<%= @video_watching.with_comment? %>";
-    flashvers.save_dx = 10;
-    flashvers.over_per = 1.5;
-    flashvers.xml_url = "<%= @video_watching.metadata_file_url %>";
-    flashvers.public_root = "/sound/";
-    flashvers.event_sound_root = "<%= @video_watching.root_path %>";
-    //flashvers.flash_xml = '';
-    flashvers.flash_xml = '<%= raw @video_watching.playing_data %>';
-    
-    var params = {};
-    params.menu="false";
-    params.allowFullScreen="true";
-    params.allowScriptAccess="sameDomain";
-    params.wmode="opaque";
-    
-    swfobject.embedSWF("/flashplayer/player.swf", "video", "850px", "480px", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
+  var flashvers = {};
+  flashvers.mp4_url = "<%= @video_watching.url %>";
+  flashvers.dianping = "<%= @video_watching.with_comment? %>";
+  flashvers.save_dx = 10;
+  flashvers.over_per = 1.5;
+  flashvers.xml_url = "<%= @video_watching.metadata_file_url %>";
+  flashvers.public_root = "/sound/";
+  flashvers.event_sound_root = "<%= @video_watching.root_path %>";
+  //flashvers.flash_xml = '';
+  flashvers.flash_xml = '<%= raw @video_watching.playing_data %>';
+  
+  var params = {};
+  params.menu="false";
+  params.allowFullScreen="true";
+  params.allowScriptAccess="sameDomain";
+  params.wmode="opaque";
+  
+  swfobject.embedSWF("/flashplayer/player.swf", "video", "850px", "480px", "10.3.0", "/flashplayer/expressInstall.swf",flashvers,params);
 
-    function swf_save_data(time, xml) {
-      $.post('<%= learning_video_watching_path @video_watching %>',{
-        _method: 'patch',
-        data: xml.replace(/[\r\n]/g,'')
-      });
-    }
+  function swf_save_data(time, xml) {
+    $.post('<%= learning_video_watching_path @video_watching %>',{
+      _method: 'patch',
+      data: xml.replace(/[\r\n]/g,'')
+    });
+  }
 </script>
 <% end %>

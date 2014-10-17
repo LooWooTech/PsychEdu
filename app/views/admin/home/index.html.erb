@@ -10,7 +10,7 @@
     <% if policy(:topic_exam).review? && @unreviewed_topic_exam_count > 0 %>
       <li class='list-group-item'>
         <span class='badge'><%= @unreviewed_topic_exam_count %></span>
-        <%= link_to '待评分的试卷', admin_topic_exam_reviews_path %>
+        <%= link_to '待评分的试卷', admin_topic_exam_reviews_path(:review_state => 'unreviewed') %>
       </li>
     <% end %>
 

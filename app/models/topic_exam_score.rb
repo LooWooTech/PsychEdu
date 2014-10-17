@@ -7,7 +7,7 @@ class TopicExamScore < ActiveRecord::Base
   validates :score, :numericality => {:less_than_or_equal_to => :total}, :on => :update
 
   def reviewed?
-    comment.present?
+    score.present?
   end
 
   def total

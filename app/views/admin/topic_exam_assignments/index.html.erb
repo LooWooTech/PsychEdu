@@ -22,7 +22,7 @@
       <td><%= topic_exam.name %></td>
       <td><%= topic_exam.title %></td>
       <td><%= topic_exam.reviewer_username %></td>
-      <td><%= link_to '撤消分配', admin_topic_exam_assignment_path(topic_exam), :method => :delete, :data => {:confirm => '确实要撤消吗？'} %></td>
+      <td><%= link_to '撤消分配', admin_topic_exam_assignment_path(topic_exam), :method => :delete, :data => {:confirm => '确实要撤消吗？'} if topic_exam.unreviewed? %></td>
     </tr>
   <% end%>
 </table>

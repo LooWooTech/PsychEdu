@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141013083418) do
+ActiveRecord::Schema.define(version: 20141016095854) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -390,7 +390,7 @@ ActiveRecord::Schema.define(version: 20141013083418) do
   create_table "topic_exam_scores", force: true do |t|
     t.integer  "topic_exam_id"
     t.integer  "score_rule_id"
-    t.float    "score",         default: 0.0
+    t.float    "score"
     t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"

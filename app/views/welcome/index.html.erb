@@ -56,7 +56,7 @@
         <%= image_tag introduction.cover_url, :class => 'cover' if introduction.contains_image? %>
         <div class='content <%= 'no-cover' if !introduction.contains_image? %>'>
           <h1><%= link_to introduction.title, article_path(introduction) %></h1>
-          <%= truncate strip_tags(introduction.content), :length => 80 %>
+          <%= truncate sanitize(strip_tags(introduction.content)), :length => 80, :escape => false %>
         </div>
       </li>
       <% end %>
@@ -74,7 +74,7 @@
         <%= image_tag introduction.cover_url, :class => 'cover' if introduction.contains_image? %>
         <div class='content <%= 'no-cover' if !introduction.contains_image? %>'>
           <h1><%= link_to introduction.title, article_path(introduction) %></h1>
-          <%= truncate strip_tags(introduction.content), :length => 80 %>
+          <%= truncate sanitize(strip_tags(introduction.content)), :length => 80, :escape => false %>
         </div>
       </li>
       <% end %>

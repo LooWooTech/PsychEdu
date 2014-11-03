@@ -18,7 +18,7 @@
             <% end %>
           </h1>
           <div class='date'><%= l article.created_at, :format => :date_only %></div>
-          <div class='summary'><%= truncate strip_tags(article.content), :length => 200 %></div>
+          <div class='summary'><%= truncate strip_tags(article.content), :length => 200, :escape => false %></div>
         </div>
       </li>
     <% end %>

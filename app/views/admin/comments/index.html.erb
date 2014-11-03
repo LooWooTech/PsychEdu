@@ -28,7 +28,7 @@
     <tr>
       <td><%= t("comment.commentable_type.#{comment.commentable_type}") %></td>
       <td><%= comment.commenter_name %></td>
-      <td><%= link_to truncate(sanitize(comment.content), :length => 45), [:admin, comment] %></td>
+      <td><%= link_to truncate(sanitize(comment.content), :length => 45, :escape => false), [:admin, comment] %></td>
       <td><%= l comment.created_at, :format => :long %></td>
       <td>
         <%= link_to '查看', [:admin, comment] %>

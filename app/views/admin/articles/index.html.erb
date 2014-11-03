@@ -40,7 +40,7 @@
   <% @articles.each do |article| %>
     <tr>
       <td><%= link_to article.title , admin_article_path(article) %></td>
-      <td><%= truncate sanitize(strip_tags(article.content)), :length => 45 %></td>
+      <td><%= truncate sanitize(strip_tags(article.content)), :length => 45, :escape => false %></td>
       <td><%= article.editor_name %></td>
       <td><%= l article.created_at, :format => :long %></td>
       <td>

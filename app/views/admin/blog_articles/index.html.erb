@@ -36,7 +36,7 @@
   <% @blog_articles.each do |article| %>
     <tr>
       <td><%= link_to_if policy(article).edit?, article.title , edit_admin_blog_article_path(article) %></td>
-      <td><%= truncate sanitize(strip_tags(article.content)), :length => 45 %></td>
+      <td><%= truncate sanitize(strip_tags(article.content)), :length => 45, :escape => false %></td>
       <td><%= article.author_name %></td>
       <td><%= l article.created_at, :format => :long %></td>
       <td><%= blog_publishing_state article %></td>

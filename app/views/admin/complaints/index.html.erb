@@ -30,7 +30,7 @@
   <% @complaints.each do |complaint| %>
     <tr>
       <td><%= t "complaint.complainable_type.#{complaint.complainable_type}" %></td>
-      <td><%= link_to truncate(complaint.content, :length => 45), [:admin, complaint] %></td>
+      <td><%= link_to truncate(complaint.content, :length => 45, :escape => false), [:admin, complaint] %></td>
       <td><%= complaint.complainer_name %></td>
       <td><%= l complaint.created_at, :format => :long %></td>
       <td><%= t "complaint.state.#{complaint.state}" %></td>

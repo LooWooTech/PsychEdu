@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20141016095854) do
     t.string   "article_type"
   end
 
-  add_index "article_attachments", ["article_id"], name: "index_article_attachments_on_article_id", using: :btree
+  add_index "article_attachments", ["article_id", "article_type"], name: "index_article_attachments_on_article_id_and_article_type", using: :btree
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -225,7 +225,6 @@ ActiveRecord::Schema.define(version: 20141016095854) do
   end
 
   add_index "linked_videos", ["master_id", "master_type"], name: "index_linked_videos_on_master_id_and_master_type", using: :btree
-  add_index "linked_videos", ["master_id"], name: "index_linked_videos_on_master_id", using: :btree
 
   create_table "monthly_online_trackings", force: true do |t|
     t.integer  "topic_learning_id"

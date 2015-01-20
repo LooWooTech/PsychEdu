@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016095854) do
+ActiveRecord::Schema.define(version: 20150120023639) do
 
   create_table "accounts", force: true do |t|
     t.string   "username"
@@ -215,6 +215,12 @@ ActiveRecord::Schema.define(version: 20141016095854) do
 
   add_index "forums", ["catalog_id"], name: "index_forums_on_catalog_id", using: :btree
 
+  create_table "klasses", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "linked_videos", force: true do |t|
     t.string   "name"
     t.string   "url"
@@ -372,9 +378,11 @@ ActiveRecord::Schema.define(version: 20141016095854) do
     t.date     "certify_date"
     t.text     "training_experience"
     t.text     "psychology_job"
+    t.integer  "klass_id"
   end
 
   add_index "students", ["added_by_id"], name: "index_students_on_added_by_id", using: :btree
+  add_index "students", ["klass_id"], name: "index_students_on_klass_id", using: :btree
 
   create_table "topic_exam_materials", force: true do |t|
     t.integer  "topic_exam_id"

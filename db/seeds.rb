@@ -6,4 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Administrator.create(:account => Account.new(:username => 'admin', :password => 'admin', :password_confirmation => 'admin'))
+Administrator.create(:account => Account.new(:username => 'admin', :password => 'admin', :password_confirmation => 'admin', :roles => ['super_admin']))

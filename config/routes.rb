@@ -74,7 +74,6 @@ PsychEdu::Application.routes.draw do
       end
     end
 
-    resources :klasses, :except => [:show]
     resources :administrators
     resources :articles
     resources :forums, :except => [:show]

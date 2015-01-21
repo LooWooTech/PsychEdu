@@ -25,7 +25,6 @@ class Student < ActiveRecord::Base
   has_many :blog_articles, :foreign_key => 'author_id', :dependent => :destroy
 
   belongs_to :added_by, :class_name => 'Administrator'
-  belongs_to :klass
 
   validates :name, :unit_code, :presence => true
 

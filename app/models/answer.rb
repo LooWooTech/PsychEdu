@@ -11,6 +11,7 @@ class Answer < ActiveRecord::Base
   validates :content, :presence => true
 
   delegate :name, :to => :answerer, :prefix => true
+  delegate :can_interact_with?, :to => :question
 
   def calculate_vote_score
     update_attribute :vote_score, votes.up.count

@@ -13,8 +13,8 @@
         /
         <%= link_to '修改', edit_ask_question_path(question), :remote => true, :data => {:event => 'question.edit'} if can?(:edit, question) %>
         <%= link_to '删除', [:ask, question], :method => :delete, :data => {:confirm => '确实要删除这个问题吗？'} if can?(:destroy, question) %>
-        <%= link_to "评论(#{question.comments.count})", ask_question_comments_path(question), :remote => true, :data => {:event => 'comment.query'} %>
-        <%= link_to "举报", new_ask_question_complaint_path(question), :remote => true, :data => {:event => 'complaints'} %>
+        <%= link_to "评论(#{question.comments.count})", ask_question_comments_path(question), :remote => true, :data => {:event => 'comment.query'} if question.can_interact_with?(current_user) %>
+        <%= link_to "举报", new_ask_question_complaint_path(question), :remote => true, :data => {:event => 'complaints'} if question.can_interact_with?(current_user) %>
         <%= top_link question %>
         <%= refine_link question %>
       </span>

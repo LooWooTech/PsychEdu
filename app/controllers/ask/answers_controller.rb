@@ -11,12 +11,16 @@ module Ask
     end
   
     def create
-      @answer = current_user.answers.build(answer_params.merge :question => @question)
+      if @question.can_interact_with? current_user
+        @answer = current_user.answers.build(answer_params.merge :question => @question)
   
-      if @answer.save
-        redirect_to [:ask, @question]
+        if @answer.save
+          redirect_to [:ask, @question]
+        else
+          render 'ask/questions/show'
+        end
       else
-        render 'ask/questions/show'
+        render :status => 403, :plain => '您没有权限回答该问题'
       end
     end
   

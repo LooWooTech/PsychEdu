@@ -32,4 +32,9 @@ class Question < ActiveRecord::Base
     update_attribute :vote_score, answers.sum(:vote_score)
   end
 
+  def can_interact_with?(user)
+    return true if questioner.is_a?(Administrator) || user.is_a?(Administrator)
+    questioner.unit_code && user.unit_code == questioner.unit_code
+  end
+
 end

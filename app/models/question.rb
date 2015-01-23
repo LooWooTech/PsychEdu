@@ -33,7 +33,7 @@ class Question < ActiveRecord::Base
   end
 
   def can_interact_with?(user)
-    return true if questioner.is_a?(Administrator) || user.is_a?(Administrator)
+    return true if questioner.is_a?(Administrator) || user.is_a?(Administrator) || !in_unit?
     questioner.unit_code && user.unit_code == questioner.unit_code
   end
 

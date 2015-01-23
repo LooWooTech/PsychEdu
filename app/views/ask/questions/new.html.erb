@@ -8,6 +8,7 @@
   <div class="modal-body">
     <%= f.text_field :title, hide_label: true, placeholder: '写下您问题的标题' %>
     <%= f.cktext_area :content, :hide_label => true, :rows => 8, :placeholder => '描述一下您的问题' %>
+    <%= f.check_box :in_unit, :label => '仅限组内交流' unless current_user.is_a?(Administrator) %>
     <ul class='list-group attachment-fields'>
     <%= f.fields_for :attachments do |attachment_fields| %>
       <% attachment = attachment_fields.object %>

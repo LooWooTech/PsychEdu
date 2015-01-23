@@ -13,6 +13,8 @@ class Answer < ActiveRecord::Base
   delegate :name, :to => :answerer, :prefix => true
   delegate :can_interact_with?, :to => :question
 
+  after_create { question.touch }
+
   def calculate_vote_score
     update_attribute :vote_score, votes.up.count
     question.calculate_vote_score

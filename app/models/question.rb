@@ -16,6 +16,10 @@ class Question < ActiveRecord::Base
 
   delegate :name, :to => :questioner, :prefix => true
 
+  def has_answers?
+    !no_answer?
+  end
+
   def no_answer?
     answers.empty?
   end
@@ -35,6 +39,14 @@ class Question < ActiveRecord::Base
   def can_interact_with?(user)
     return true if questioner.is_a?(Administrator) || user.is_a?(Administrator) || !in_unit?
     questioner.unit_code && user.unit_code == questioner.unit_code
+  end
+
+  def last_answerer_name
+    if no_answer?
+      ''
+    else
+      answers.last.answerer_name
+    end
   end
 
 end
